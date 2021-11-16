@@ -1,12 +1,14 @@
 #include <vector>
 #include <cmath>
-#include "../const.h"
+#include "../util.h"
 using namespace std;
 
 class Handle {
     protected:
         static const float base_max_health;
         static const float base_collison_radius;
+        static const double base_max_speed;
+        double max_speed;
         double location[2];
         double velocity[2];
         double acceleration[2];
@@ -24,7 +26,6 @@ class Handle {
             DECORATION = 2,
             ITEM = 3
         };
-        bool isCoordinateInMap(double x, double y);
 
         inline float getHealth() const {return health;}
         inline double getX() const {return location[0];}

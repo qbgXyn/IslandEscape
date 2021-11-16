@@ -7,7 +7,6 @@ class Unit : public Handle{
         static const float base_attackInterval;
         static const float base_attack_radius;
         static const float base_armor;
-        static const double base_max_speed;
         float damage;
         float attackInterval;
         float armor;
@@ -16,8 +15,8 @@ class Unit : public Handle{
     public:
         inline float getDamage() const {return damage;}
         inline float getArmor() const {return armor;}
-        void gainAttributeFromEffect();
-        virtual void attack() = 0;
+        void gainAttributeFromEffect(Effect &e);
+        virtual void attack();
 
 
 };

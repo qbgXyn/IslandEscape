@@ -9,7 +9,9 @@ const float Ghost::base_attack_radius = 16.0;
 const float Ghost::base_armor = 1.0;
 
 
-Ghost::Ghost(double x, double y) : Unit(x, y) {}
+Ghost::Ghost(double x, double y, Unit *chasing_target = nullptr) : Unit(x, y) {
+    this->chasing_target = chasing_target;
+}
 
 
 void Ghost::attack() {
