@@ -10,5 +10,4 @@ class Item_inventory {
         string name;
         string description;
 
-
 };

@@ -1,6 +1,6 @@
 #include "Handle.h"
 
-explicit Handle::Handle(double x, double y) {
+Handle::Handle(double x, double y) {
     location[0] = x;
     location[1] = y;
 } 
