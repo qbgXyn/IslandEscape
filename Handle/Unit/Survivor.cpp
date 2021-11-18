@@ -9,5 +9,15 @@ Survivor::Survivor(Map* map, double x, double y) : Unit(map, x, y) {
 }
 
 void Survivor::attack() {
-    
+    /*
+    set attack interval of survivor
+    get all Handle that within radius (60 degree of the circle(radius = attack_radius, center = Coordinate(Survivor)) in front of Survivor)
+    if :
+        1. Handle is not invulnerable
+        2. Handle is Unit
+        3. attack(Survivor) > armor(Unit)
+    then
+    deal (attack(Survivor) - armor(Unit)) amount of attack to Unit
+
+    */
 }

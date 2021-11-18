@@ -6,7 +6,7 @@ class Item_inventory {
         int count;
         int durability;
         Item::Category category;
-        Item::Type type; // the ID of an item
+        Item::ID id; // the ID of an item
         string name;
         string description;
 

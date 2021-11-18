@@ -44,4 +44,7 @@ class Handle {
         void move(); // every tick, we call this function for every handle to update the info
 
         bool hasCollision(const Handle &h);
+
+    protected:
+        Type type;
 };

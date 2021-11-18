@@ -7,12 +7,12 @@ class Item {
             EQUIPMENT = 3,
             SPECIAL = 4 // including key
         };
-        enum class Type{
+        enum class ID{
             KEY = 1
         };
     private:
         Category category;
-        Type type; // the ID of an item
+        ID id; // the ID of an item
 
 
 };
