@@ -12,7 +12,7 @@ class Ghost : public Unit {
         const float base_attack_radius = 16.0;
         const float base_armor = 1.0;
 
-        explicit Ghost(double x, double y, Unit *chasing_target);
+        explicit Ghost(Map *map, double x, double y, Unit *chasing_target);
         void attack();
         void patrol();
 

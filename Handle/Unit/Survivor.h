@@ -12,7 +12,7 @@ class Survivor : public Unit {
         const float base_armor = 0.0;
         const double base_max_speed = 10;
 
-        explicit Survivor(double x, double y);
+        explicit Survivor(Map *map, double x, double y);
         void attack();
         vector<Item_inventory> Inventory;
 };

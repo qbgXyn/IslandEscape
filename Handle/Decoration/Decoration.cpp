@@ -1,6 +1,6 @@
 #include "Decoration.h"
 
 
-Decoration::Decoration(double x, double y, int inInvulnerable = 1) : Handle(x, y) {
+Decoration::Decoration(Map *map, double x, double y, int inInvulnerable = 1) : Handle(map, x, y) {
     this->inInvulnerable = inInvulnerable;
 }

@@ -1,6 +1,7 @@
 #include "Unit.h"
 
-Unit::Unit(double x, double y) : Handle(x, y) {}
+Unit::Unit(Map *map, double x, double y) : Handle(map, x, y) {
+}
 
 
 void Unit::gainAttributeFromEffect(Effect &e) {

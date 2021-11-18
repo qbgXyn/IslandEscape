@@ -1,6 +1,7 @@
 #include "Survivor.h"
 
-Survivor::Survivor(double x, double y) : Unit(x, y) {}
+Survivor::Survivor(Map* map, double x, double y) : Unit(map, x, y) {
+}
 
 void Survivor::attack() {
     

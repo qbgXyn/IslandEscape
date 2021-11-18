@@ -11,7 +11,7 @@ class Unit : public Handle{
         float attackInterval;
         float armor;
         vector<Effect> EffectList;
-        explicit Unit(double x, double y);
+        explicit Unit(Map *map, double x, double y);
     public:
         inline float getDamage() const {return damage;}
         inline float getArmor() const {return armor;}
