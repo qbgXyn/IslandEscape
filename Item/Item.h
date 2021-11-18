@@ -8,7 +8,12 @@ class Item {
             SPECIAL = 4 // including key
         };
         enum class ID{
-            KEY = 1
+            KEY,
+            TORCH,
+            ROCK,
+            BELL,
+            SPEED_POTION,
+            REGEN_INSTANT_POTION
         };
     private:
         Category category;
