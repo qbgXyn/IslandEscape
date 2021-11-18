@@ -30,7 +30,6 @@ class Handle {
             ITEM = 3
         };
 
-
         inline float getHealth() const {return health;}
         inline double getX() const {return location[0];}
         inline double getY() const {return location[1];}

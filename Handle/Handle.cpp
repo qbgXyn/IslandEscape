@@ -15,7 +15,6 @@ bool Handle::hasCollision(const Handle &h) {
     return (d - this->collisionRadius - h.collisionRadius < 0);
 }
 
-
 void Handle::move() {
-
+    
 }

@@ -15,3 +15,9 @@ vector<Handle> Map::getHandleGroup(double x, double y, double radius) {
     }
     return result;
 }
+<<<<<<< HEAD
+=======
+double Map::getMaxHeight() const {
+    return height / 2;
+}
+>>>>>>> 4d04435af4cbfc175bc4205f5fd82de57786559e
