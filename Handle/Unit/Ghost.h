@@ -4,6 +4,7 @@ class Ghost : public Unit {
     private:
         Unit *chasing_target;
     public:
+        explicit Ghost(Map *map, double x, double y, Unit *chasing_target);
         static const int base_max_health = 5;
         static const float base_collison_radius;
         static const double base_max_speed;
@@ -12,8 +13,8 @@ class Ghost : public Unit {
         static const float base_attackInterval;
         static const float base_attack_radius;
         static const int base_armor = 1;
+        static const int base_visible_radius = 80;
 
-        explicit Ghost(Map *map, double x, double y, Unit *chasing_target);
         void attack();
         void patrol();
 

@@ -1,5 +1,6 @@
 #include <vector>
 #include <cmath>
+#include <string>
 #include "../util.h"
 using namespace std;
 
@@ -14,6 +15,8 @@ class Handle {
         int inInvisible;    // to prevent unintended behaviour, e.g. double invisible potion with last one run out of duration
         int inCollisionless;    // for each effect run out of duration we reduce the counter by 1
         float collisionRadius;
+
+        string texture; // the picture of this handle
 
         Map *map;
 

@@ -6,7 +6,8 @@ class Unit : public Handle{
         int damage;
         float attackInterval;
         int armor;
-        vector<Effect> EffectList;
+        vector<Effect&> EffectList;
+        int visible_radius;
         explicit Unit(Map *map, double x, double y);
     public:
         inline float getDamage() const {return damage;}
