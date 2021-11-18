@@ -6,17 +6,13 @@ using namespace std;
 class Map;
 class Handle {
     protected:
-        static const float base_max_health;
-        static const float base_collison_radius;
-        static const double base_max_speed;
         double max_speed;
         double location[2];
         double velocity[2];
-        double acceleration[2];
-        float health;
+        int health;
         int inInvulnerable; // instead of bool, also use it as counter, i.e. if > 0, is true
         int inInvisible;    // to prevent unintended behaviour, e.g. double invisible potion with last one run out of duration
-        int inCollisionless;    // for each effect run out duration we reduce the counter by 1
+        int inCollisionless;    // for each effect run out of duration we reduce the counter by 1
         float collisionRadius;
 
         Map *map;
@@ -30,7 +26,7 @@ class Handle {
             ITEM = 3
         };
 
-        inline float getHealth() const {return health;}
+        inline int getHealth() const {return health;}
         inline double getX() const {return location[0];}
         inline double getY() const {return location[1];}
         inline double getVelocity() const {return hypot(velocity[0], velocity[1]);}

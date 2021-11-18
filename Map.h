@@ -9,8 +9,8 @@ class Map {
         vector<Handle> List; // all handle
     public:
         Map(double width, double height);
-        inline double Map::getMaxWidth() const {return width / 2;}
-        inline double Map::getMaxHeight() const {return height / 2;}
+        inline double getMaxWidth() const {return width / 2;}
+        inline double getMaxHeight() const {return height / 2;}
         inline bool isCoordinateInMap(double x, double y) {return (x > 0) && (x <= width) && (y > 0) && (y <= height);}
 
         inline double distanceBetweenPoints(double x1, double y1, double x2, double y2) {return std::hypot(x2-x1, y2-y1);}
