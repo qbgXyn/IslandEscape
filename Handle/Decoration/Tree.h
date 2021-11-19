@@ -6,6 +6,8 @@ class Tree : public Decoration {
         static const float base_collison_radius;
         static const double base_max_speed;
     public:
-        explicit Tree(Map *map, double x, double y, int inInvulnerable);
+        explicit Tree(Map *map, int x, int y, int inInvulnerable = 1);
+
+        Decoration::Type get_type() const {return Decoration::Type::TREE;}
 
 };
