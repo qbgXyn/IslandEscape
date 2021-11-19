@@ -16,9 +16,5 @@ class Map {
 
         inline double distanceBetweenPoints(double x1, double y1, double x2, double y2) {return std::hypot(x2-x1, y2-y1);}
 
-        vector<Handle&> getHandleGroup(double x, double y, double radius);
-
-
-        bool hasCollision(const Handle &h, double x, double y);
 
 };
