@@ -1,3 +1,6 @@
+#ifndef GHOST_H
+#define GHOST_H
+
 #include "Unit.h"
 
 class Ghost : public Unit {
@@ -19,3 +22,4 @@ class Ghost : public Unit {
         void patrol();
 
 };
+#endif // GHOST_H

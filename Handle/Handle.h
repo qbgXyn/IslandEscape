@@ -1,3 +1,6 @@
+#ifndef HANDLE_H
+#define HANDLE_H
+
 #include <vector>
 #include <cmath>
 #include <string>
@@ -22,6 +25,7 @@ class Handle {
 
     protected:
         explicit Handle(Map *map, double x, double y);
+        virtual ~Handle() = default;
     public:
         enum class Type {
             UNIT = 1,
@@ -51,3 +55,4 @@ class Handle {
     protected:
         Type type;
 };
+#endif // HANDLE_H

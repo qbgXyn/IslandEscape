@@ -2,10 +2,10 @@
 * Utilities for graphics and display
 */
 
-/* #ifndef GRAPHICS_H
+#ifndef GRAPHICS_H
 #define GRAPHICS_H
 
-//#include "City.h"
+#include "Map.h"
 #include "mainwindow.h"
 
 #include <QPixmap>
@@ -83,4 +83,3 @@ private:
 };
 
 #endif // GRAPHICS_H
-*/

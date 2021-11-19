@@ -1,3 +1,6 @@
+#ifndef SURVIVOR_H
+#define SURVIVOR_H
+
 #include "Unit.h"
 #include "../Inventory/Item_Inventory.h"
 
@@ -21,3 +24,4 @@ class Survivor : public Unit {
 
         inline bool isInventoryFull() const {return (Inventory.size() == maxSlotOfInventory);}
 };
+#endif // SURVIVOR_H
