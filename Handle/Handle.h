@@ -23,7 +23,7 @@ class Handle {
 
         Map *map;
 
-    protected:
+    public:
         explicit Handle(Map *map, double x, double y);
         virtual ~Handle() = default;
     public:

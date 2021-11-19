@@ -9,7 +9,7 @@ class Campfire : public Decoration {
         static const float base_collison_radius;
         static const double base_max_speed;
     public:
-        explicit Campfire(Map *map, int x, int y, int inInvulnerable = 1);
+        explicit Campfire(Map *map, double x, double y, int inInvulnerable = 1);
 
         Decoration::Type get_type() const {return Decoration::Type::CAMPFIRE;}
 

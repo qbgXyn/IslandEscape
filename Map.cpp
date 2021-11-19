@@ -1,18 +1,22 @@
 #include "Map.h"
 
-Map::Map(int width, int height) : width(width), height(height) {
-    grid = new Decoration** [width];
-    for (int x = 0; x < width; x++) {
-        grid[x] = new Decoration* [height];
-        for (int y = 0; y < height; y++) {
-            grid[x][y] = nullptr;
+Map::Map(double width, double height) : width(width), height(height) {
+    int i = width/grid_radius;  // width = i grids
+    int j = height/grid_radius; // height = j grids
+    grid = new Handle** [i];
+    for (int x = 0; x < i; x++) {
+        grid[x] = new Handle* [j];
+        for (int y = 0; y < j; y++) {
+            grid[x][y] = new Land{this, i, j};;
         }
     }
 }
 
 Map::~Map() {
-    for (int x = 0; x < width; x++) {
-        for (int y = 0; y < height; y++) {
+    int i = width/grid_radius;
+    int j = height/grid_radius;
+    for (int x = 0; x < i; x++) {
+        for (int y = 0; y < j; y++) {
             delete grid[x][y];
         }
         delete [] grid[x];
@@ -33,63 +37,59 @@ vector<Handle&> Map::getHandleGroup(double x, double y, double radius) {
     return result;
 }
 
-Decoration* Map::get_at(int x, int y) const {
+Handle* Map::get_at(double x, double y) const {
     if (x < 0 || x >= width)
         return nullptr;
     if (y < 0 || y >= height)
         return nullptr;
-    return grid[x][y];
+    return grid[(int)(x/grid_radius)][(int)(y/grid_radius)];
 }
 
-bool Map::construct_at(Decoration::Type type, int x, int y) {
+bool Map::construct_at(Decoration::Type type, double x, double y) {
     if (x < 0 || x >= width)
         return false;
     if (y < 0 || y >= height)
         return false;
 
-    Decoration* decoration;
-    grid[x][y] = decoration;
+    int i = x/grid_radius;
+    int j = y/grid_radius;
+    if (grid[i][j]!=nullptr)    // Clear the land first
+        delete grid[i][j];
+    Handle* handle;
+    grid[i][j] = handle;
     switch (type)
     {
-    case Decoration::Type::LAND:
-        decoration = new Land{this, x, y};
-        break;
     case Decoration::Type::HOUSE:
-        decoration = new House{this, x, y};
+        handle = new House{this, x, y};
         break;
     case Decoration::Type::DOOR:
-        decoration = new Door{this, x, y};
+        handle = new Door{this, x, y};
         break;
     case Decoration::Type::TREE:
-        decoration = new Tree{this, x, y};
+        handle = new Tree{this, x, y};
         break;
     case Decoration::Type::CAMPFIRE:
-        decoration = new Campfire{this, x, y};
+        handle = new Campfire{this, x, y};
         break;
     case Decoration::Type::BOAT:
-        decoration = new Boat{this, x, y};
+        handle = new Boat{this, x, y};
         break;
-    
     default:
         break;
     }
 
 }
 
-bool Map::can_walk(float x, float y) {
+bool Map::can_walk(double x, double y) {
     // Out of bound
     if (x < 0 || x >= width)
         return false;
     if (y < 0 || y >= height)
         return false;
 
-    // int_x int_y for map
-    int int_x = static_cast<int>(x);
-    int int_y = static_cast<int>(y);
-
     // Walk into House, Tree
-    if (get_at(int_x, int_y)->get_type()==Decoration::Type::HOUSE
-    || get_at(int_x, int_y)->get_type()==Decoration::Type::TREE)
+    if (get_at(x, y)->get_type()==Decoration::Type::HOUSE
+    || get_at(x, y)->get_type()==Decoration::Type::TREE)
         return false;
 
     // Walk on Land, Door, Campfire, Boat

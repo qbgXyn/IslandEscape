@@ -5,12 +5,11 @@
 class Decoration : public Handle {
     public:
         enum class Type {
-            LAND = 1,
-            HOUSE = 2,
-            DOOR = 3,
-            TREE = 4,
-            CAMPFIRE = 5,
-            BOAT = 6
+            HOUSE = 1,
+            DOOR = 2,
+            TREE = 3,
+            CAMPFIRE = 4,
+            BOAT = 5
         };
 
         Decoration(Map *map, double x, double y, int inInvulnerable = 1);

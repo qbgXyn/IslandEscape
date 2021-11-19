@@ -13,28 +13,39 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     Effect/Effect.cpp \
     graphics.cpp \
+    Handle/Decoration/Boat.cpp \
+    Handle/Decoration/Campfire.cpp \
     Handle/Decoration/Decoration.cpp \
+    Handle/Decoration/Door.cpp \
+    Handle/Decoration/House.cpp \
+    Handle/Decoration/Item_Handle.cpp \
+    Handle/Decoration/Tree.cpp \
     Handle/Handle.cpp \
+    Handle/Land/Land.cpp \
     Handle/Unit/Ghost.cpp \
     Handle/Unit/Survivor.cpp \
     Handle/Unit/Unit.cpp \
     Main.cpp \
     mainwindow.cpp \
     Map.cpp \
-    menuwindow.cpp \
-    util.cpp
+    menuwindow.cpp
 
 HEADERS += \
     Effect/Effect.h \
     graphics.h \
+    Handle/Decoration/Boat.h \
+    Handle/Decoration/Campfire.h \
     Handle/Decoration/Decoration.h \
+    Handle/Decoration/Door.h \
+    Handle/Decoration/House.h \
     Handle/Decoration/Item_Handle.h \
     Handle/Decoration/Tree.h \
     Handle/Handle.h \
+    Handle/Inventory/Item_Inventory.h \
+    Handle/Land/Land.h \
     Handle/Unit/Ghost.h \
     Handle/Unit/Survivor.h \
     Handle/Unit/Unit.h \
-    Handle/Inventory/Item_Inventory.h \
     Item/Item.h \
     mainwindow.h \
     Map.h \

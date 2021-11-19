@@ -13,13 +13,16 @@
 class Map {
 
     private:
-        Decoration*** grid;
-        static const int grid_radius = 8; // length of a square of a grid on the map, for displaying texture only(grass, sea, etc.)
-        int width; // x
-        int height; // y
+
+        Handle*** grid;
+        static const int grid_radius = 64; // length of a square of a grid on the map, for displaying texture only(grass, sea, etc.)
+        double width; // x
+        double height; // y
         vector<Handle&> List; // all handle
+
     public:
-        Map(int width, int height);
+
+        Map(double width, double height);
         ~Map();
         inline double getMaxWidth() const {return width / 2;}
         inline double getMaxHeight() const {return height / 2;}
@@ -30,9 +33,9 @@ class Map {
 
         vector<Handle&> Map::getHandleGroup(double x, double y, double radius);
 
-        Decoration* get_at(int x, int y) const;
-        bool construct_at(Decoration::Type type, int x, int y);
-        bool can_walk(float x, float y);  
+        Handle* get_at(double x, double y) const;
+        bool construct_at(Decoration::Type type, double x, double y);
+        bool can_walk(double x, double y);
 
 };
 #endif // MAP_H
