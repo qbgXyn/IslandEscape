@@ -28,6 +28,8 @@ class Map {
 
         inline double distanceBetweenPoints(double x1, double y1, double x2, double y2) {return std::hypot(x2-x1, y2-y1);}
 
+        vector<Handle&> Map::getHandleGroup(double x, double y, double radius);
+
         Decoration* get_at(int x, int y) const;
         bool construct_at(Decoration::Type type, int x, int y);
         bool can_walk(float x, float y);  
