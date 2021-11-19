@@ -25,6 +25,7 @@ class Handle {
 
     protected:
         explicit Handle(Map *map, double x, double y);
+        virtual ~Handle() = default;
     public:
         enum class Type {
             UNIT = 1,

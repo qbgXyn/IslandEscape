@@ -1,5 +1,5 @@
-/* #include "graphics.h"
-#include "City.h"
+#include "graphics.h"
+#include "Map.h"
 #include "mainwindow.h"
 
 #include <QPainter>
@@ -369,4 +369,3 @@ void GameWidget::load_icons() {
 void GameWidget::dealloc_icons() {
     delete[] ICONS;
 }
-*/

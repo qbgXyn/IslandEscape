@@ -1,3 +1,6 @@
+#ifndef MAP_H
+#define MAP_H
+
 #include "Handle/Handle.h"
 #include "Handle/Decoration/Decoration.h"
 #include "Handle/Decoration/Land.h"
@@ -17,6 +20,7 @@ class Map {
         vector<Handle&> List; // all handle
     public:
         Map(int width, int height);
+        ~Map();
         inline double getMaxWidth() const {return width / 2;}
         inline double getMaxHeight() const {return height / 2;}
         inline bool isCoordinateInMap(double x, double y) {return (x >= 0) && (x < width) && (y >= 0) && (y < height);}
@@ -33,3 +37,4 @@ class Map {
         bool can_walk(float x, float y);  
 
 };
+#endif // MAP_H

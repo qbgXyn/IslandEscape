@@ -10,6 +10,16 @@ Map::Map(int width, int height) : width(width), height(height) {
     }
 }
 
+Map::~Map() {
+    for (int x = 0; x < width; x++) {
+        for (int y = 0; y < height; y++) {
+            delete grid[x][y];
+        }
+        delete [] grid[x];
+    }
+    delete [] grid;
+}
+
 bool Map::isCoordinatePathable(double x, double y) {}
 
 vector<Handle&> Map::getHandleGroup(double x, double y, double radius) {

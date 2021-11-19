@@ -1,7 +1,7 @@
 #include "menuwindow.h"
 #include "ui_menuwindow.h"
 #include "mainwindow.h"
-//#include "City.h"
+#include "Map.h"
 
 #include <QString>
 #include <QPixmap>
