@@ -1,3 +1,6 @@
+#ifndef ITEM_HANDLE_H
+#define ITEM_HANDLE_H
+
 #include "Decoration.h"
 #include "../../Item/Item.h"
 class Item_Handle : public Decoration {
@@ -10,3 +13,4 @@ class Item_Handle : public Decoration {
         explicit Item_Handle(Map *map, double x, double y, int inInvulnerable, int inCollisionless);
 
 };
+#endif // ITEM_HANDLE_H

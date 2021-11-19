@@ -1,3 +1,6 @@
+#ifndef HOUSE_H
+#define HOUSE_H
+
 #include "Decoration.h"
 
 class House : public Decoration {
@@ -11,3 +14,4 @@ class House : public Decoration {
         Decoration::Type get_type() const {return Decoration::Type::HOUSE;}
 
 };
+#endif // HOUSE_H

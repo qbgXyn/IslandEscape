@@ -1,3 +1,6 @@
+#ifndef TREE_H
+#define TREE_H
+
 #include "Decoration.h"
 
 class Tree : public Decoration {
@@ -11,3 +14,4 @@ class Tree : public Decoration {
         Decoration::Type get_type() const {return Decoration::Type::TREE;}
 
 };
+#endif // TREE_H

@@ -1,3 +1,6 @@
+#ifndef UNIT_H
+#define UNIT_H
+
 #include "../Handle.h"
 #include "../../Effect/Effect.h"
 
@@ -17,3 +20,4 @@ class Unit : public Handle{
 
 
 };
+#endif // UNIT_H

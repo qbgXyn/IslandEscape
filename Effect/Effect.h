@@ -1,3 +1,6 @@
+#ifndef EFFECT_H
+#define EFFECT_H
+
 class Effect {
 
     public:
@@ -18,3 +21,4 @@ class Effect {
         double data;
         Type type;
 };
+#endif // EFFECT_H

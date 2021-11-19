@@ -1,3 +1,6 @@
+#ifndef CAMPFIRE_H
+#define CAMPFIRE_H
+
 #include "Decoration.h"
 
 class Campfire : public Decoration {
@@ -11,3 +14,4 @@ class Campfire : public Decoration {
         Decoration::Type get_type() const {return Decoration::Type::CAMPFIRE;}
 
 };
+#endif // CAMPFIRE_H

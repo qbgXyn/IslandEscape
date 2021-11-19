@@ -1,3 +1,6 @@
+#ifndef HANDLE_H
+#define HANDLE_H
+
 #include <vector>
 #include <cmath>
 #include <string>
@@ -51,3 +54,4 @@ class Handle {
     protected:
         Type type;
 };
+#endif // HANDLE_H
