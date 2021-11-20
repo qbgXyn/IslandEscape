@@ -7,7 +7,7 @@ const float Ghost::base_attackInterval = 3.0;
 const float Ghost::base_attack_radius = 16.0;
 
 
-Ghost::Ghost(Map *map, double x, double y, Unit *chasing_target = nullptr) : Unit(map, x, y) {
+Ghost::Ghost(Map *map, double x, double y, Unit *chasing_target) : Unit(map, x, y) {
     this->chasing_target = chasing_target;
 }
 
