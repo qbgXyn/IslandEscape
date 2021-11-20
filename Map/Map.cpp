@@ -3,11 +3,11 @@
 Map::Map(double width, double height) : width(width), height(height) {
     int i = width/grid_radius;  // width = i grids
     int j = height/grid_radius; // height = j grids
-    grid = new Handle** [i];
+    grid = new Type* [i];
     for (int x = 0; x < i; x++) {
-        grid[x] = new Handle* [j];
+        grid[x] = new Type [j];
         for (int y = 0; y < j; y++) {
-            grid[x][y] = new Land{this, i, j};;
+            grid[x][y] = Type::LAND;
         }
     }
 }
@@ -16,15 +16,14 @@ Map::~Map() {
     int i = width/grid_radius;
     int j = height/grid_radius;
     for (int x = 0; x < i; x++) {
-        for (int y = 0; y < j; y++) {
-            delete grid[x][y];
-        }
         delete [] grid[x];
     }
     delete [] grid;
 }
 
-bool Map::isCoordinatePathable(double x, double y) {}
+bool Map::isCoordinatePathable(double x, double y) {
+
+}
 
 vector<Handle&> Map::getHandleGroup(double x, double y, double radius) {
     vector<Handle&> result;
@@ -37,11 +36,11 @@ vector<Handle&> Map::getHandleGroup(double x, double y, double radius) {
     return result;
 }
 
-Handle* Map::get_at(double x, double y) const {
+Map::Type Map::get_at(double x, double y) const {
     if (x < 0 || x >= width)
-        return nullptr;
+        return Type::VOID;
     if (y < 0 || y >= height)
-        return nullptr;
+        return Type::VOID;
     return grid[(int)(x/grid_radius)][(int)(y/grid_radius)];
 }
 
@@ -53,10 +52,9 @@ bool Map::construct_at(Decoration::Type type, double x, double y) {
 
     int i = x/grid_radius;
     int j = y/grid_radius;
-    if (grid[i][j]!=nullptr)    // Clear the land first
-        delete grid[i][j];
+
     Handle* handle;
-    grid[i][j] = handle;
+
     switch (type)
     {
     case Decoration::Type::HOUSE:

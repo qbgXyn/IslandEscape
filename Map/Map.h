@@ -1,26 +1,30 @@
 #ifndef MAP_H
 #define MAP_H
 
-#include "Handle/Handle.h"
-#include "Handle/Decoration/Decoration.h"
-#include "Handle/Decoration/Land.h"
-#include "Handle/Decoration/House.h"
-#include "Handle/Decoration/Door.h"
-#include "Handle/Decoration/Tree.h"
-#include "Handle/Decoration/Campfire.h"
-#include "Handle/Decoration/Boat.h"
+#include "../Handle/Handle.h"
+#include "../Handle/Decoration/Decoration.h"
+
+#include "../Handle/Decoration/House.h"
+#include "../Handle/Decoration/Door.h"
+#include "../Handle/Decoration/Tree.h"
+#include "../Handle/Decoration/Campfire.h"
+#include "../Handle/Decoration/Boat.h"
 
 class Map {
 
     private:
 
-        Handle*** grid;
         static const int grid_radius = 64; // length of a square of a grid on the map, for displaying texture only(grass, sea, etc.)
         double width; // x
         double height; // y
         vector<Handle&> List; // all handle
 
     public:
+        enum class Type {
+            LAND,
+            OCEAN,
+            VOID
+        };
 
         Map(double width, double height);
         ~Map();
@@ -33,9 +37,11 @@ class Map {
 
         vector<Handle&> Map::getHandleGroup(double x, double y, double radius);
 
-        Handle* get_at(double x, double y) const;
+        Type get_at(double x, double y) const;
         bool construct_at(Decoration::Type type, double x, double y);
         bool can_walk(double x, double y);
+    private:
+        Type** grid;
 
 };
 #endif // MAP_H
