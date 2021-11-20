@@ -19,6 +19,8 @@ class Handle {
         int inCollisionless;    // for each effect run out of duration we reduce the counter by 1
         float collisionRadius;
 
+        bool pathableList[3];
+
         string texture; // the picture of this handle
 
         Map *map;
@@ -50,7 +52,10 @@ class Handle {
 
         void move(); // every tick, we call this function for every handle to update the info
 
-        bool hasCollision(const Handle &h);
+        bool hasCollision(const Handle *h) const;
+
+        bool isCoordinatePathable(double x, double y) const;
+        bool isCoordinateWalkable(double x, double y) const;
 
     protected:
         Type type;

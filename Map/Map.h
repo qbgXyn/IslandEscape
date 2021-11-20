@@ -24,7 +24,7 @@ class Map {
         vector<Handle*> List; // all handle
 
     public:
-        enum class Type {
+        enum class Terrain {
             LAND,
             OCEAN,
             VOID
@@ -35,19 +35,19 @@ class Map {
         double getMaxWidth() const;
         double getMaxHeight() const;
         bool isCoordinateInMap(double x, double y) const;
-        Type getTypeOfGrid(double x, double y) const;
-        bool isCoordinatePathable(double x, double y) const;
+        Terrain getTerrainOfGrid(double x, double y) const;
+
 
         double distanceBetweenPoints(double x1, double y1, double x2, double y2) const;
 
         vector<Handle*> Map::getHandleGroup(double x, double y, double radius);
 
-        Type get_at(double x, double y) const;
+        Terrain get_at(double x, double y) const;
         bool createDecoration(Decoration::Type type, double x, double y);
         bool createUnit(Unit::Type type, double x, double y);
-        bool can_walk(double x, double y);
+
     private:
-        Type** grid;
+        Terrain** grid;
 
 };
 #endif // MAP_H

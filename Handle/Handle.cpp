@@ -55,11 +55,11 @@ void Handle::setinCollisionless() {
     ++inCollisionless;
 }
 
-bool Handle::hasCollision(const Handle &h) {
-    if (h.inCollisionless > 0 || inCollisionless > 0) return true; // if one of them is collisionless
+bool Handle::hasCollision(const Handle *h) const {
+    if (h->inCollisionless > 0 || inCollisionless > 0) return true; // if one of them is collisionless
 
-    double d = map->distanceBetweenPoints(this->location[0], this->location[1], h.location[0], h.location[1]);
-    return (d - this->collisionRadius - h.collisionRadius < 0);
+    double d = map->distanceBetweenPoints(this->location[0], this->location[1], h->location[0], h->location[1]);
+    return (d - this->collisionRadius - h->collisionRadius < 0);
 }
 
 void Handle::move() {
@@ -71,4 +71,40 @@ void Handle::move() {
     4. if velocity > 0, and move button released, decrease velocity
     5. if max speed not reached, and move button pressed, increase velocity
     */
+}
+
+bool Handle::isCoordinatePathable(double x, double y) const {
+    if (!map->isCoordinateInMap(x, y)) {
+        return false;
+    }
+
+    Map::Terrain terrain = map->getTerrainOfGrid(x, y);
+    if (terrain == Map::Terrain::LAND) {
+        return (pathableList[0]);
+    }else if (terrain == Map::Terrain::OCEAN) {
+        return (pathableList[1]);
+    }else if (terrain == Map::Terrain::VOID) {
+        return (pathableList[2]);
+    }
+    return false;
+}
+
+bool Handle::isCoordinateWalkable(double x, double y) const{
+    // check if out of bound or
+    // handle can be on that terrain
+    if (!isCoordinatePathable(x, y)) {
+        return false;
+    }
+
+    vector<Handle*> list = map->getHandleGroup(x, y, collisionRadius); // get all surrounding handle
+
+    vector<Handle*>::const_iterator it_end = list.end(); // check if it collide with existing handle
+    for(vector<Handle*>::const_iterator it = list.begin(); it != it_end; ++it) {
+        if (hasCollision(*it)) {
+            return false;
+        }
+    }
+
+    return true;
+
 }

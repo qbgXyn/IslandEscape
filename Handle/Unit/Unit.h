@@ -9,7 +9,7 @@ class Unit : public Handle{
         int damage;
         float attackInterval;
         int armor;
-        vector<Effect&> EffectList;
+        vector<Effect*> EffectList;
         int visible_radius;
         explicit Unit(Map *map, double x, double y);
     public:
@@ -19,7 +19,7 @@ class Unit : public Handle{
         };
         inline float getDamage() const {return damage;}
         inline float getArmor() const {return armor;}
-        void gainAttributeFromEffect(Effect &e);
+        void gainAttributeFromEffect(Effect *e);
         virtual void attack() = 0;
 
 
