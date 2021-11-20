@@ -6,6 +6,9 @@ const float Survivor::base_attackInterval = 1.0;
 const float Survivor::base_attack_radius = 16.0;
 
 Survivor::Survivor(Map* map, double x, double y) : Unit(map, x, y) {
+    pathable += Map::Terrain::GRASS;
+    pathable += Map::Terrain::STONE;
+    pathable += Map::Terrain::SHOAL;
 }
 
 void Survivor::attack() {

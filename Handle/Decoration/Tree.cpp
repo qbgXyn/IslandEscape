@@ -5,5 +5,6 @@ const double Tree::base_max_speed = 0.0;
 
 
 Tree::Tree(Map *map, double x, double y, int inInvulnerable) : Decoration(map, x, y, inInvulnerable) {
-
+    pathable += Map::Terrain::GRASS;
+    pathable += Map::Terrain::STONE;
 }

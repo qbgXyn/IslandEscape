@@ -32,15 +32,15 @@ float Handle::getCollisionRadius() const {
 }
 
 bool Handle::isInvulnerable() const {
-    return (inInvulnerable > 0) ? true: false;
+    return (inInvulnerable > 0);
 }
 
 bool Handle::isCollisionless() const {
-    return (inCollisionless > 0) ? true: false;
+    return (inCollisionless > 0);
 }
 
 bool Handle::isInvisible() const {
-    return (inInvisible > 0) ? true: false;
+    return (inInvisible > 0);
 }
 
 void Handle::setInvulnerable() {
@@ -56,8 +56,10 @@ void Handle::setinCollisionless() {
 }
 
 bool Handle::hasCollision(const Handle *h) const {
-    if (h->inCollisionless > 0 || inCollisionless > 0) return true; // if one of them is collisionless
-
+    // if one of them is collisionless
+    if (h->isCollisionless() || isCollisionless()) {
+        return false;
+    }
     double d = map->distanceBetweenPoints(this->location[0], this->location[1], h->location[0], h->location[1]);
     return (d - this->collisionRadius - h->collisionRadius < 0);
 }
@@ -79,14 +81,7 @@ bool Handle::isCoordinatePathable(double x, double y) const {
     }
 
     Map::Terrain terrain = map->getTerrainOfGrid(x, y);
-    if (terrain == Map::Terrain::LAND) {
-        return (pathableList[0]);
-    }else if (terrain == Map::Terrain::OCEAN) {
-        return (pathableList[1]);
-    }else if (terrain == Map::Terrain::VOID) {
-        return (pathableList[2]);
-    }
-    return false;
+    return pathable[terrain];
 }
 
 bool Handle::isCoordinateWalkable(double x, double y) const{

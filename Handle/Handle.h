@@ -5,6 +5,7 @@
 #include <cmath>
 #include <string>
 #include "../util.h"
+#include "../Map/Terrain.h"
 using namespace std;
 
 class Map;
@@ -19,7 +20,8 @@ class Handle {
         int inCollisionless;    // for each effect run out of duration we reduce the counter by 1
         float collisionRadius;
 
-        bool pathableList[3];
+
+        Terrain pathable;
 
         string texture; // the picture of this handle
 
@@ -30,9 +32,9 @@ class Handle {
         virtual ~Handle() = default;
     public:
         enum class Type {
-            UNIT = 1,
-            DECORATION = 2,
-            ITEM = 3
+            UNIT,
+            DECORATION,
+            ITEM
         };
 
         int getHealth() const;

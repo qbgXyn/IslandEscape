@@ -25,9 +25,11 @@ class Map {
 
     public:
         enum class Terrain {
-            LAND,
+            GRASS,
+            STONE,
             OCEAN,
-            VOID
+            SHOAL,
+            VOID // should not appears
         };
 
         Map(double width, double height);

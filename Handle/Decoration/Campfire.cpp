@@ -5,5 +5,6 @@ const double Campfire::base_max_speed = 0.0;
 
 
 Campfire::Campfire(Map *map, double x, double y, int inInvulnerable) : Decoration(map, x, y, inInvulnerable) {
-
+    pathable += Map::Terrain::GRASS;
+    pathable += Map::Terrain::STONE;
 }
