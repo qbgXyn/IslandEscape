@@ -21,8 +21,25 @@ Map::~Map() {
     delete [] grid;
 }
 
+
+double Map::getMaxWidth() const {
+    return width / 2;
+}
+
+double Map::getMaxHeight() const {
+    return height / 2;
+}
+
+bool Map::isCoordinateInMap(double x, double y) {
+    return (x >= 0) && (x < width) && (y >= 0) && (y < height);
+}
+
 bool Map::isCoordinatePathable(double x, double y) {
 
+}
+
+double Map::distanceBetweenPoints(double x1, double y1, double x2, double y2) {
+    return std::hypot(x2-x1, y2-y1);
 }
 
 vector<Handle&> Map::getHandleGroup(double x, double y, double radius) {

@@ -33,20 +33,20 @@ class Handle {
             ITEM = 3
         };
 
-        inline int getHealth() const {return health;}
-        inline double getX() const {return location[0];}
-        inline double getY() const {return location[1];}
-        inline double getVelocity() const {return hypot(velocity[0], velocity[1]);}
-        inline double getDirection() const {return atan2(velocity[1], velocity[0]) * 180.0 / PI;}
-        inline virtual float getCollisionRadius() const {return collisionRadius;}
+        int getHealth() const;
+        double getX() const;
+        double getY() const;
+        double getVelocity() const;
+        double getDirection() const;
+        float getCollisionRadius() const;
 
-        inline bool isInvulnerable() const {return (inInvulnerable > 0) ? true: false;}
-        inline bool isCollisionless() const {return (inCollisionless > 0) ? true: false;}
-        inline bool isInvisible() const {return (inInvisible > 0) ? true: false;}
+        bool isInvulnerable() const;
+        bool isCollisionless() const;
+        bool isInvisible() const;
 
-        inline void setInvulnerable() { ++inInvulnerable;}
-        inline void setInvisible() { ++inInvisible;}
-        inline void setinCollisionless() { ++inCollisionless;}
+        void setInvulnerable();
+        void setInvisible();
+        void setinCollisionless();
 
         void move(); // every tick, we call this function for every handle to update the info
 

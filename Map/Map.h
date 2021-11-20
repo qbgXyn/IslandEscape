@@ -28,12 +28,12 @@ class Map {
 
         Map(double width, double height);
         ~Map();
-        inline double getMaxWidth() const {return width / 2;}
-        inline double getMaxHeight() const {return height / 2;}
-        inline bool isCoordinateInMap(double x, double y) {return (x >= 0) && (x < width) && (y >= 0) && (y < height);}
+        double getMaxWidth() const;
+        double getMaxHeight() const;
+        bool isCoordinateInMap(double x, double y);
         bool isCoordinatePathable(double x, double y);
 
-        inline double distanceBetweenPoints(double x1, double y1, double x2, double y2) {return std::hypot(x2-x1, y2-y1);}
+        double distanceBetweenPoints(double x1, double y1, double x2, double y2);
 
         vector<Handle&> Map::getHandleGroup(double x, double y, double radius);
 
