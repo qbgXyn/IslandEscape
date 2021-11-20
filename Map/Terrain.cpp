@@ -1,7 +1,7 @@
 #include "Terrain.h"
 
 
-bool Terrain::operator[](Map::Terrain terrain) const{
+bool Terrain::operator()(Map::Terrain terrain) const{
     switch (terrain)
     {
     case Map::Terrain::GRASS:

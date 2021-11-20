@@ -5,6 +5,6 @@ using namespace std;
 class Terrain {
     public:
         set<Map::Terrain> t;
-        bool operator[](Map::Terrain terrain) const;
+        bool operator()(Map::Terrain terrain) const;
         void operator+=(Map::Terrain terrain);
 };

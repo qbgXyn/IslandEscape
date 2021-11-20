@@ -81,7 +81,7 @@ bool Handle::isCoordinatePathable(double x, double y) const {
     }
 
     Map::Terrain terrain = map->getTerrainOfGrid(x, y);
-    return pathable[terrain];
+    return pathable(terrain);
 }
 
 bool Handle::isCoordinateWalkable(double x, double y) const{

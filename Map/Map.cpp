@@ -7,7 +7,7 @@ Map::Map(double width, double height) : width(width), height(height) {
     for (int x = 0; x < i; x++) {
         grid[x] = new Terrain [j];
         for (int y = 0; y < j; y++) {
-            grid[x][y] = Terrain::LAND;
+            grid[x][y] = Terrain::GRASS;
         }
     }
 }
