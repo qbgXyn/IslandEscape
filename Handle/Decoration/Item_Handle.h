@@ -5,12 +5,14 @@
 #include "../../Item/Item.h"
 class Item_Handle : public Decoration {
     private:
-        Item::ID id; // the ID of an item
         static const int base_max_health = 1;
         static const float base_collison_radius;
         static const double base_max_speed;
+        
     public:
-        explicit Item_Handle(Map *map, double x, double y, int inInvulnerable = 1, int inCollisionless = 1);
+        explicit Item_Handle(Map *map, double x, double y, Item::ID id, int inInvulnerable = 1, int inCollisionless = 1);
+        Item *item;
+        virtual Item* getCorrespondingItem() const;
 
 };
 #endif // ITEM_HANDLE_H
