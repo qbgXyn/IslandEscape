@@ -28,3 +28,16 @@ void Unit::addEffect(Effect *e) {
     EffectList.push_back(e);
 }
 
+bool Unit::insideSector(const Handle *h, double sector_angle) const
+{
+    double half_angle = sector_angle / 2;
+    double current_direction = this -> getDirection();
+    double start_angle = current_direction - half_angle;
+    double end_angle = current_direction + half_angle;
+    double target_handle_angle = atan(h -> location[1] / h -> location[0]);
+    if (target_handle_angle >= start_angle && target_handle_angle <= end_angle)
+    {
+        return true;
+    }
+    return false;
+}
