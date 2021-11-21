@@ -1,6 +1,9 @@
 #include "Map.h"
 #include "../Handle/Handle.h"
 
+#include "../Item/key.h"
+#include "../Item/regen_instant_potion.h"
+
 Map::Map(double width, double height) : width(width), height(height) {
     int i = width/grid_radius;  // width = i grids
     int j = height/grid_radius; // height = j grids
@@ -126,3 +129,29 @@ bool Map::createUnit(Unit::Type type, double x, double y) {
 }
 
 
+Item* Map::createItem(Item::ID id) {
+    Item * i = nullptr;
+    switch (id)
+    {
+    case Item::ID::KEY:
+        i = new key;
+        break;
+    case Item::ID::TORCH:
+        break;
+    case Item::ID::ROCK:
+        break;
+    case Item::ID::BELL:
+        break;
+    case Item::ID::SPEED_POTION:
+        break;
+    case Item::ID::REGEN_INSTANT_POTION:
+        i = new regen_instant_potion;
+        break;
+    }
+    return i;
+}
+
+
+void Map::removeHandle(Handle *h) {
+    List.erase(remove(List.begin(), List.end(), h), List.end());
+}

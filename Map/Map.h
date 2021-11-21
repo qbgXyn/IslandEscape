@@ -47,6 +47,9 @@ class Map {
         Terrain get_at(double x, double y) const;
         bool createDecoration(Handle::Type type, double x, double y);
         bool createUnit(Handle::Type type, double x, double y);
+        Item* createItem(Item::ID);
+
+        void removeHandle(Handle *h);
 
     private:
         Terrain** grid;

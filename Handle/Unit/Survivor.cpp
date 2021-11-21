@@ -59,10 +59,11 @@ bool Survivor::isInventoryFull() const {
 }
 
 void Survivor::useItem(Item_inventory *i) {
-    Item::ID id = i->getID();
-    int durability = i->getDurability();
-    double data = i->getData();
-
+    Item *item = i->item;
+    Item::ID id = item->getID();
+    int durability = item->getDurability();
+    double data = item->getData();
+    double duration = item->getDuration();
     switch(id) {
         case Item::ID::KEY:
             turnOnBoat();
@@ -77,11 +78,11 @@ void Survivor::useItem(Item_inventory *i) {
             // further information needed for implementation
             break;
         case Item::ID::SPEED_POTION:
-            Effect *e = new Effect(Effect::Type::SPEED, data, i->getDuration());
+            Effect *e = new Effect(Effect::Type::SPEED, data, duration);
             addEffect(e);
             break;
         case Item::ID::REGEN_INSTANT_POTION:
-            Effect *e = new Effect(Effect::Type::REGEN_INSTANT, data, i->getDuration());
+            Effect *e = new Effect(Effect::Type::REGEN_INSTANT, data, duration);
             addEffect(e);
             break;
     }
@@ -91,13 +92,36 @@ void Survivor::useItem(Item_inventory *i) {
         if (durability == 0) {
             delete i;
         }else {
-            i->setDurability(durability);
+            item->setDurability(durability);
         }
     }
 }
 
+
+void Survivor::pickupItem() {
+    vector<Handle*> list = map->getHandleGroup(location[0], location[1], collisionRadius); // get all surrounding handle
+
+    Item_inventory* i;
+    Handle* h;
+
+    vector<Handle*>::const_iterator it_end = list.end(); // check if it collide with existing handle
+    for(vector<Handle*>::const_iterator it = list.begin(); it != it_end; ++it) {
+        h = *it;
+        if (h->getType() == Handle::Type::ITEM && !isInventoryFull()) {
+            i = new Item_inventory {*(h->getCorrespondingItem())};
+            delete *it;
+        }
+    }
+}
+
+
+void Survivor::dropItem() {
+    
+}
+
+
 bool Survivor::turnOnBoat() const {
-    vector<Handle*> list = map->getHandleGroup(location[0], location[1], max_collision_radius); // get all surrounding handle
+    vector<Handle*> list = map->getHandleGroup(location[0], location[1], collisionRadius); // get all surrounding handle
 
     vector<Handle*>::const_iterator it_end = list.end(); // check if it collide with existing handle
     for(vector<Handle*>::const_iterator it = list.begin(); it != it_end; ++it) {

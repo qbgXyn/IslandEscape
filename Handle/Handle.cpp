@@ -7,6 +7,9 @@ Handle::Handle(Map *map, double x, double y) {
     location[1] = y;
 } 
 
+Handle::~Handle() {
+    map->removeHandle(this);
+}
 
 int Handle::getHealth() const {
     return health;
@@ -116,4 +119,9 @@ bool Handle::isCoordinateWalkable(double x, double y) const{
 
     return true;
 
+}
+
+
+Item* getCorrespondingItem() {
+    return nullptr;
 }

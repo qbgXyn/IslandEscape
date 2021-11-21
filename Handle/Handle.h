@@ -44,7 +44,7 @@ class Handle {
 
     public:
         explicit Handle(Map *map, double x, double y);
-        virtual ~Handle() = default;
+        ~Handle();
     public:
         int getHealth() const;
         double getX() const;
@@ -70,6 +70,9 @@ class Handle {
 
         bool isCoordinatePathable(double x, double y) const;
         bool isCoordinateWalkable(double x, double y) const;
+
+
+        virtual Item* getCorrespondingItem() const;
 
     protected:
         Type type;
