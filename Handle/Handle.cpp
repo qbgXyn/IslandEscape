@@ -121,6 +121,10 @@ bool Handle::isCoordinateWalkable(double x, double y) const{
 
 }
 
+void Handle::setHealth(int newHealth)
+{
+    health = newHealth;
+}
 
 Item* getCorrespondingItem() {
     return nullptr;

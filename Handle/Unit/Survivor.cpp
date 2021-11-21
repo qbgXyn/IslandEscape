@@ -1,5 +1,6 @@
 #include "Survivor.h"
 #include <chrono>
+
 //#include <bits/stdc++.h>
 const float Survivor::base_collison_radius = 16.0;
 const double Survivor::base_max_speed = 20.0;
@@ -35,9 +36,13 @@ void Survivor::attack() {
         {
             if (isInvulnerable == false) //check if it is vulnerable
             {
-                if (it -> getCategory() == Handle::Category::Unit)
+                if ((*it) -> getCategory() == Handle::Category::UNIT) // check if it is Unit
                 {
-
+                    if (this -> getDamage() >= (*it) -> getArmor()) // check if attack > armor
+                    {
+                        int newHealth = this -> getHealth() - (this -> getDamage() - (*it) -> getArmor());
+                        this -> setHealth(newHealth);
+                    }
                 }
             }
         }
