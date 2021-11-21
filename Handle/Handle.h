@@ -71,6 +71,7 @@ class Handle {
         bool isCoordinatePathable(double x, double y) const;
         bool isCoordinateWalkable(double x, double y) const;
 
+        void setHealth (int newHealth);
 
         virtual Item* getCorrespondingItem() const;
 
