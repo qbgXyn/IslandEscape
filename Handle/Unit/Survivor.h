@@ -22,6 +22,10 @@ class Survivor : public Unit {
         void attack();
         vector<Item_inventory> Inventory;
 
-        inline bool isInventoryFull() const {return (Inventory.size() == maxSlotOfInventory);}
+        bool isInventoryFull() const;
+        void useItem(Item_inventory *i);
+
+
+        bool turnOnBoat() const;
 };
 #endif // SURVIVOR_H

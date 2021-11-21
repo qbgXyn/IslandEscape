@@ -23,3 +23,8 @@ void Unit::gainAttributeFromEffect(Effect *e) {
     }
 }
 
+void Unit::addEffect(Effect *e) {
+    gainAttributeFromEffect(e);
+    EffectList.push_back(e);
+}
+

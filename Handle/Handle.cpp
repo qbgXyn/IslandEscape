@@ -61,7 +61,7 @@ bool Handle::hasCollision(const Handle *h) const {
         return false;
     }
     double d = map->distanceBetweenPoints(this->location[0], this->location[1], h->location[0], h->location[1]);
-    return (d - this->collisionRadius - h->collisionRadius < 0);
+    return ( (d - this->collisionRadius - h->collisionRadius) < 0);
 }
 
 void Handle::move() {

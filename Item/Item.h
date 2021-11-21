@@ -5,10 +5,10 @@
 class Item {
     public:
         enum class Category{
-            POTION = 1,
-            WEAPON = 2,
-            EQUIPMENT = 3,
-            SPECIAL = 4 // including key
+            POTION,
+            WEAPON,
+            EQUIPMENT,
+            SPECIAL // including key
         };
         enum class ID{
             KEY,

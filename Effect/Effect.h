@@ -5,17 +5,16 @@ class Effect {
 
     public:
         enum class Type {
-            REGEN_INSTANT = 1,
-            SPEED = 2,
-            INVULNERABLE = 3,
-            INVISIBLE = 4
+            REGEN_INSTANT,
+            SPEED,
+            INVULNERABLE,
+            INVISIBLE
             // for simplicity, only part of the attribute can be buffed by potion
         };
-        explicit Effect(double duration);
-        inline double getDuration() const {return duration;}
-        inline double getData() const {return data;}
-        inline Type getType() const {return type;}
-        Type getAttribute() const {return type;}
+        explicit Effect(Type type, double duration);
+        double getDuration() const;
+        double getData() const;
+        Type getType() const;
     private:
         double duration;
         double data;

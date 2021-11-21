@@ -3,6 +3,7 @@
 
 #include "../Handle.h"
 #include "../../Effect/Effect.h"
+#include "../Inventory/Item_inventory.h"
 
 class Unit : public Handle{
     protected:
@@ -20,6 +21,7 @@ class Unit : public Handle{
         inline float getDamage() const {return damage;}
         inline float getArmor() const {return armor;}
         void gainAttributeFromEffect(Effect *e);
+        void addEffect(Effect *e);
         virtual void attack() = 0;
 
 

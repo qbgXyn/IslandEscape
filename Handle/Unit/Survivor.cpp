@@ -34,3 +34,49 @@ void Survivor::attack() {
     }
     }
 }
+
+bool Survivor::isInventoryFull() const {
+    return (Inventory.size() == maxSlotOfInventory);
+}
+
+void Survivor::useItem(Item_inventory *i) {
+    Item::ID id = i->getID();
+    int durability = i->getDurability();
+    double data = i->getData();
+
+    switch(id) {
+        case Item::ID::KEY:
+            turnOnBoat();
+            break;
+        case Item::ID::TORCH:
+            // further information needed for implementation
+            break;
+        case Item::ID::ROCK:
+            // further information needed for implementation
+            break;
+        case Item::ID::BELL:
+            // further information needed for implementation
+            break;
+        case Item::ID::SPEED_POTION:
+            Effect *e = new Effect(Effect::Type::SPEED, data, i->getDuration());
+            addEffect(e);
+            break;
+        case Item::ID::REGEN_INSTANT_POTION:
+            Effect *e = new Effect(Effect::Type::REGEN_INSTANT, data, i->getDuration());
+            addEffect(e);
+            break;
+    }
+
+    if (durability > 0) {
+        --durability;
+        if (durability == 0) {
+            delete i;
+        }else {
+            i->setDurability(durability);
+        }
+    }
+}
+
+bool Survivor::turnOnBoat() const {
+
+}
