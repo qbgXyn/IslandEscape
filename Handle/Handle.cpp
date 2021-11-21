@@ -1,10 +1,8 @@
 //#include "Handle.h"
 #include "../Map/Map.h"
 #include "../util.h"
-Handle::Handle(Map *map, Category category, Type type, double x, double y) {
+Handle::Handle(Map *map, double x, double y) {
     this->map = map;
-    this->category = category;
-    this->type = type;
     location[0] = x;
     location[1] = y;
 } 

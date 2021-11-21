@@ -9,7 +9,7 @@ class Boat : public Decoration {
         static const float base_collison_radius;
         static const double base_max_speed;
     public:
-        explicit Boat(Map *map, Category category, Type type, double x, double y, int inInvulnerable = 1);
+        explicit Boat(Map *map, double x, double y, int inInvulnerable = 1);
 
 
 };

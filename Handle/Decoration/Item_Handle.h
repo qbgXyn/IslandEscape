@@ -10,7 +10,7 @@ class Item_Handle : public Decoration {
         static const float base_collison_radius;
         static const double base_max_speed;
     public:
-        explicit Item_Handle(Map *map, Category category, Type type, double x, double y, int inInvulnerable = 1, int inCollisionless = 1);
+        explicit Item_Handle(Map *map, double x, double y, int inInvulnerable = 1, int inCollisionless = 1);
 
 };
 #endif // ITEM_HANDLE_H

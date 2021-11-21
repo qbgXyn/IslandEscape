@@ -1,6 +1,7 @@
 #include "Decoration.h"
 
 
-Decoration::Decoration(Map *map, Category category, Type type, double x, double y, int inInvulnerable) : Handle(map, category, type, x, y) {
+Decoration::Decoration(Map *map, double x, double y, int inInvulnerable) : Handle(map, x, y) {
+    category = Handle::Category::DECORATION;
     this->inInvulnerable = inInvulnerable;
 }

@@ -4,7 +4,7 @@
 #include "../Handle.h"
 class Decoration : public Handle {
     public:
-        Decoration(Map *map, Category category, Type type, double x, double y, int inInvulnerable = 1);
+        Decoration(Map *map, double x, double y, int inInvulnerable = 1);
 
 
 };

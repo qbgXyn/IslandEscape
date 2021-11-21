@@ -1,6 +1,7 @@
 #include "Unit.h"
 
-Unit::Unit(Map *map, Category category, Type type, double x, double y) : Handle(map, category, type, x, y) {
+Unit::Unit(Map *map, double x, double y) : Handle(map, x, y) {
+    category = Handle::Category::UNIT;
 }
 
 

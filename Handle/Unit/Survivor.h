@@ -3,10 +3,11 @@
 
 #include "Unit.h"
 #include "../Inventory/Item_Inventory.h"
+#include "../../Effect/Effect.h"
 
 class Survivor : public Unit {
     public:
-        explicit Survivor(Map *map, Category category, Type type, double x, double y);
+        explicit Survivor(Map *map, double x, double y);
         static const int base_max_health = 10;
         static const float base_collison_radius;
         static const double base_max_speed;

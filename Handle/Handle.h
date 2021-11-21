@@ -13,8 +13,7 @@ class Handle {
     public:
         enum class Category {
             UNIT,
-            DECORATION,
-            ITEM
+            DECORATION
         };
         enum class Type {
             SURVIVOR,
@@ -44,7 +43,7 @@ class Handle {
         Map *map;
 
     public:
-        explicit Handle(Map *map, Category category, Type type, double x, double y);
+        explicit Handle(Map *map, double x, double y);
         virtual ~Handle() = default;
     public:
         int getHealth() const;

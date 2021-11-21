@@ -7,7 +7,7 @@ class Ghost : public Unit {
     private:
         Unit *chasing_target;
     public:
-        explicit Ghost(Map *map, Category category, Type type, double x, double y, Unit *chasing_target = nullptr);
+        explicit Ghost(Map *map, double x, double y, Unit *chasing_target = nullptr);
         static const int base_max_health = 5;
         static const float base_collison_radius;
         static const double base_max_speed;

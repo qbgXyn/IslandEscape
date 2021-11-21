@@ -79,19 +79,19 @@ bool Map::createDecoration(Decoration::Type type, double x, double y) {
     switch (type)
     {
     case Handle::Type::HOUSE:
-        handle = new House{this, Handle::Category::DECORATION, Handle::Type::HOUSE, center_x, center_y};
+        handle = new House{this, center_x, center_y};
         break;
     case Handle::Type::DOOR:
-        handle = new Door{this, Handle::Category::DECORATION, Handle::Type::DOOR, center_x, center_y};
+        handle = new Door{this, center_x, center_y};
         break;
     case Handle::Type::TREE:
-        handle = new Tree{this, Handle::Category::DECORATION, Handle::Type::TREE, center_x, center_y};
+        handle = new Tree{this, center_x, center_y};
         break;
     case Handle::Type::CAMPFIRE:
-        handle = new Campfire{this, Handle::Category::DECORATION, Handle::Type::CAMPFIRE, center_x, center_y};
+        handle = new Campfire{this, center_x, center_y};
         break;
     case Handle::Type::BOAT:
-        handle = new Boat{this, Handle::Category::DECORATION, Handle::Type::BOAT, center_x, center_y};
+        handle = new Boat{this, center_x, center_y};
         break;
     }
     
@@ -110,10 +110,10 @@ bool Map::createUnit(Unit::Type type, double x, double y) {
     switch (type)
     {
     case Handle::Type::SURVIVOR:
-        handle = new Survivor{this, Handle::Category::UNIT, Handle::Type::SURVIVOR, x, y};
+        handle = new Survivor{this, x, y};
         break;
     case Handle::Type::GHOST:
-        handle = new Ghost{this, Handle::Category::UNIT, Handle::Type::GHOST, x, y};
+        handle = new Ghost{this, x, y};
         break;
     }
 

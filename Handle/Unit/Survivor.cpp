@@ -5,7 +5,8 @@ const double Survivor::base_max_speed = 20.0;
 const float Survivor::base_attackInterval = 1.0;
 const float Survivor::base_attack_radius = 16.0;
 
-Survivor::Survivor(Map *map, Category category, Type type, double x, double y) : Unit(map, category, type, x, y) {
+Survivor::Survivor(Map *map, double x, double y) : Unit(map, x, y) {
+    type = Handle::Type::SURVIVOR;
     pathable += Map::Terrain::GRASS;
     pathable += Map::Terrain::STONE;
     pathable += Map::Terrain::SHOAL;

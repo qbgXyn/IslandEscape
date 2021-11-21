@@ -7,7 +7,8 @@ const float Ghost::base_attackInterval = 3.0;
 const float Ghost::base_attack_radius = 16.0;
 
 
-Ghost::Ghost(Map *map, Category category, Type type, double x, double y, Unit *chasing_target) : Unit(map, category, type, x, y) {
+Ghost::Ghost(Map *map, double x, double y, Unit *chasing_target) : Unit(map, x, y) {
+    type = Handle::Type::GHOST;
     this->chasing_target = chasing_target;
     pathable += Map::Terrain::GRASS;
     pathable += Map::Terrain::STONE;
