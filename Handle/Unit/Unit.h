@@ -19,7 +19,7 @@ class Unit : public Handle{
         void gainAttributeFromEffect(Effect *e);
         void addEffect(Effect *e);
         virtual void attack() = 0;
-
+        bool insideSector(const Handle *h, double sector_angle) const;
 
 };
 #endif // UNIT_H
