@@ -11,7 +11,6 @@ class Door : public Decoration {
     public:
         explicit Door(Map *map, Category category, Type type, double x, double y, int inInvulnerable = 1);
 
-        Decoration::Type get_type() const {return Decoration::Type::DOOR;}
 
 };
 #endif // DOOR_H

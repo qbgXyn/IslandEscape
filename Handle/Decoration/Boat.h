@@ -11,7 +11,6 @@ class Boat : public Decoration {
     public:
         explicit Boat(Map *map, Category category, Type type, double x, double y, int inInvulnerable = 1);
 
-        Decoration::Type get_type() const {return Decoration::Type::BOAT;}
 
 };
 #endif // BOAT_H

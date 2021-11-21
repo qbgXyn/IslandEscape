@@ -11,7 +11,6 @@ class House : public Decoration {
     public:
         explicit House(Map *map, Category category, Type type, double x, double y, int inInvulnerable = 1);
 
-        Decoration::Type get_type() const {return Decoration::Type::HOUSE;}
 
 };
 #endif // HOUSE_H

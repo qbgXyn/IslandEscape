@@ -11,7 +11,6 @@ class Tree : public Decoration {
     public:
         explicit Tree(Map *map, Category category, Type type, double x, double y, int inInvulnerable = 1);
 
-        Decoration::Type get_type() const {return Decoration::Type::TREE;}
 
 };
 #endif // TREE_H

@@ -11,7 +11,6 @@ class Campfire : public Decoration {
     public:
         explicit Campfire(Map *map, Category category, Type type, double x, double y, int inInvulnerable = 1);
 
-        Decoration::Type get_type() const {return Decoration::Type::CAMPFIRE;}
 
 };
 #endif // CAMPFIRE_H
