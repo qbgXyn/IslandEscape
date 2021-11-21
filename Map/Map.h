@@ -42,11 +42,11 @@ class Map {
 
         double distanceBetweenPoints(double x1, double y1, double x2, double y2) const;
 
-        vector<Handle*> Map::getHandleGroup(double x, double y, double radius);
+        vector<Handle*> getHandleGroup(double x, double y, double radius);
 
         Terrain get_at(double x, double y) const;
-        bool createDecoration(Decoration::Type type, double x, double y);
-        bool createUnit(Unit::Type type, double x, double y);
+        bool createDecoration(Handle::Type type, double x, double y);
+        bool createUnit(Handle::Type type, double x, double y);
 
     private:
         Terrain** grid;

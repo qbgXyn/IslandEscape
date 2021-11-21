@@ -1,4 +1,5 @@
 #include "Map.h"
+#include "../Handle/Handle.h"
 
 Map::Map(double width, double height) : width(width), height(height) {
     int i = width/grid_radius;  // width = i grids
@@ -77,20 +78,20 @@ bool Map::createDecoration(Decoration::Type type, double x, double y) {
     Handle* handle;
     switch (type)
     {
-    case Decoration::Type::HOUSE:
-        handle = new House{this, center_x, center_y};
+    case Handle::Type::HOUSE:
+        handle = new House{this, Handle::Category::DECORATION, Handle::Type::HOUSE, center_x, center_y};
         break;
-    case Decoration::Type::DOOR:
-        handle = new Door{this, center_x, center_y};
+    case Handle::Type::DOOR:
+        handle = new Door{this, Handle::Category::DECORATION, Handle::Type::DOOR, center_x, center_y};
         break;
-    case Decoration::Type::TREE:
-        handle = new Tree{this, center_x, center_y};
+    case Handle::Type::TREE:
+        handle = new Tree{this, Handle::Category::DECORATION, Handle::Type::TREE, center_x, center_y};
         break;
-    case Decoration::Type::CAMPFIRE:
-        handle = new Campfire{this, center_x, center_y};
+    case Handle::Type::CAMPFIRE:
+        handle = new Campfire{this, Handle::Category::DECORATION, Handle::Type::CAMPFIRE, center_x, center_y};
         break;
-    case Decoration::Type::BOAT:
-        handle = new Boat{this, center_x, center_y};
+    case Handle::Type::BOAT:
+        handle = new Boat{this, Handle::Category::DECORATION, Handle::Type::BOAT, center_x, center_y};
         break;
     }
     
@@ -108,11 +109,11 @@ bool Map::createUnit(Unit::Type type, double x, double y) {
     Handle* handle;
     switch (type)
     {
-    case Unit::Type::Survivor:
-        handle = new Survivor{this, x, y};
+    case Handle::Type::SURVIVOR:
+        handle = new Survivor{this, Handle::Category::UNIT, Handle::Type::SURVIVOR, x, y};
         break;
-    case Unit::Type::Ghost:
-        handle = new Ghost{this, x, y};
+    case Handle::Type::GHOST:
+        handle = new Ghost{this, Handle::Category::UNIT, Handle::Type::GHOST, x, y};
         break;
     }
 

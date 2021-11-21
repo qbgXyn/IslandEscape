@@ -10,6 +10,22 @@ using namespace std;
 
 class Map;
 class Handle {
+    public:
+        enum class Category {
+            UNIT,
+            DECORATION,
+            ITEM
+        };
+        enum class Type {
+            SURVIVOR,
+            GHOST,
+            ITEM,
+            BOAT,
+            CAMPFIRE,
+            DOOR,
+            HOUSE,
+            TREE
+        };
     protected:
         double max_speed;
         double location[2];
@@ -28,21 +44,18 @@ class Handle {
         Map *map;
 
     public:
-        explicit Handle(Map *map, double x, double y);
+        explicit Handle(Map *map, Category category, Type type, double x, double y);
         virtual ~Handle() = default;
     public:
-        enum class Type {
-            UNIT,
-            DECORATION,
-            ITEM
-        };
-
         int getHealth() const;
         double getX() const;
         double getY() const;
         double getVelocity() const;
         double getDirection() const;
         float getCollisionRadius() const;
+
+        Type getType() const;
+        Category getCategory() const;
 
         bool isInvulnerable() const;
         bool isCollisionless() const;
@@ -61,5 +74,6 @@ class Handle {
 
     protected:
         Type type;
+        Category category;
 };
 #endif // HANDLE_H

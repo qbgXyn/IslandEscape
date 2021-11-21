@@ -9,7 +9,7 @@ class Door : public Decoration {
         static const float base_collison_radius;
         static const double base_max_speed;
     public:
-        explicit Door(Map *map, double x, double y, int inInvulnerable = 1);
+        explicit Door(Map *map, Category category, Type type, double x, double y, int inInvulnerable = 1);
 
         Decoration::Type get_type() const {return Decoration::Type::DOOR;}
 

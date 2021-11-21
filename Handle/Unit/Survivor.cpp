@@ -5,7 +5,7 @@ const double Survivor::base_max_speed = 20.0;
 const float Survivor::base_attackInterval = 1.0;
 const float Survivor::base_attack_radius = 16.0;
 
-Survivor::Survivor(Map* map, double x, double y) : Unit(map, x, y) {
+Survivor::Survivor(Map *map, Category category, Type type, double x, double y) : Unit(map, category, type, x, y) {
     pathable += Map::Terrain::GRASS;
     pathable += Map::Terrain::STONE;
     pathable += Map::Terrain::SHOAL;
@@ -78,5 +78,14 @@ void Survivor::useItem(Item_inventory *i) {
 }
 
 bool Survivor::turnOnBoat() const {
+    vector<Handle*> list = map->getHandleGroup(location[0], location[1], max_collision_radius); // get all surrounding handle
 
+    vector<Handle*>::const_iterator it_end = list.end(); // check if it collide with existing handle
+    for(vector<Handle*>::const_iterator it = list.begin(); it != it_end; ++it) {
+        if ((*it)->getType() == Handle::Type::BOAT) {
+            // game win!
+            return true;
+        }
+    }
+    return false;
 }

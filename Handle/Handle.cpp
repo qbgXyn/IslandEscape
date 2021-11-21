@@ -1,7 +1,10 @@
 //#include "Handle.h"
 #include "../Map/Map.h"
-Handle::Handle(Map *map, double x, double y) {
+#include "../util.h"
+Handle::Handle(Map *map, Category category, Type type, double x, double y) {
     this->map = map;
+    this->category = category;
+    this->type = type;
     location[0] = x;
     location[1] = y;
 } 
@@ -29,6 +32,14 @@ double Handle::getDirection() const {
 
 float Handle::getCollisionRadius() const {
     return collisionRadius;
+}
+
+Handle::Type Handle::getType() const {
+    return type;
+}
+
+Handle::Category Handle::getCategory() const {
+    return category;
 }
 
 bool Handle::isInvulnerable() const {
@@ -91,7 +102,12 @@ bool Handle::isCoordinateWalkable(double x, double y) const{
         return false;
     }
 
-    vector<Handle*> list = map->getHandleGroup(x, y, collisionRadius); // get all surrounding handle
+    // no need to check if collisionless
+    if(isCollisionless()) {
+        return true;
+    }
+
+    vector<Handle*> list = map->getHandleGroup(x, y, max_collision_radius); // get all surrounding handle
 
     vector<Handle*>::const_iterator it_end = list.end(); // check if it collide with existing handle
     for(vector<Handle*>::const_iterator it = list.begin(); it != it_end; ++it) {

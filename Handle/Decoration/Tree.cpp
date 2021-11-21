@@ -4,7 +4,7 @@ const float Tree::base_collison_radius = 32.0;
 const double Tree::base_max_speed = 0.0;
 
 
-Tree::Tree(Map *map, double x, double y, int inInvulnerable) : Decoration(map, x, y, inInvulnerable) {
+Tree::Tree(Map *map, Category category, Type type, double x, double y, int inInvulnerable) : Decoration(map, category, type, x, y, inInvulnerable) {
     pathable += Map::Terrain::GRASS;
     pathable += Map::Terrain::STONE;
 }
