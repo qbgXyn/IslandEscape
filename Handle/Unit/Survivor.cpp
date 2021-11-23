@@ -1,9 +1,12 @@
 #include "Survivor.h"
 #include <chrono>
+
+//#include <bits/stdc++.h>
 const float Survivor::base_collison_radius = 16.0;
 const double Survivor::base_max_speed = 20.0;
 const float Survivor::base_attackInterval = 1.0;
 const float Survivor::base_attack_radius = 16.0;
+const double Survivor::base_attack_sector_angle = 60.0;
 
 Survivor::Survivor(Map *map, double x, double y) : Unit(map, x, y) {
     type = Handle::Type::SURVIVOR;
@@ -23,8 +26,28 @@ void Survivor::attack() {
         3. attack(Survivor) > armor(Unit)
     then
     deal (attack(Survivor) - armor(Unit)) amount of attack to Unit
-
     */
+    vector<Handle*> list = map->getHandleGroup(location[0], location[1], base_attack_radius); // get all surrounding handle within attack radius
+
+    vector<Handle*>::const_iterator it_end = list.end(); 
+    for(vector<Handle*>::const_iterator it = list.begin(); it != it_end; ++it) 
+    {
+        if (insideSector(*it, base_attack_sector_angle) == true) // check if it within attack sector range
+        {
+            if (isInvulnerable == false) //check if it is vulnerable
+            {
+                if ((*it) -> getCategory() == Handle::Category::UNIT) // check if it is Unit
+                {
+                    if (this -> getDamage() >= (*it) -> getArmor()) // check if attack > armor
+                    {
+                        int newHealth = this -> getHealth() - (this -> getDamage() - (*it) -> getArmor());
+                        this -> setHealth(newHealth);
+                    }
+                }
+            }
+        }
+
+    }
     while (true)
     {
     auto t_end = std::chrono::high_resolution_clock::now();

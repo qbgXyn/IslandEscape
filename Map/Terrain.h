@@ -1,3 +1,6 @@
+#ifndef TERRAIN_H
+#define TERRAIN_H
+
 #include <string>
 #include <set>
 #include "Map.h"
@@ -8,3 +11,4 @@ class Terrain {
         bool operator()(Map::Terrain terrain) const;
         void operator+=(Map::Terrain terrain);
 };
+#endif // TERRAIN_H

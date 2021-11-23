@@ -12,12 +12,12 @@ class Effect {
             // for simplicity, only part of the attribute can be buffed by potion
         };
         explicit Effect(Type type, double data, double duration);
-        double getDuration() const;
-        double getData() const;
         Type getType() const;
+        double getData() const;
+        double getDuration() const;
     private:
-        double duration;
-        double data;
         Type type;
+        double data;
+        double duration;
 };
 #endif // EFFECT_H

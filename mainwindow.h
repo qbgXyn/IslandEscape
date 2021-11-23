@@ -1,7 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "Map.h"
+#include "Map/Map.h"
 
 #include <QMainWindow>
 

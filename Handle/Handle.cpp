@@ -76,6 +76,10 @@ bool Handle::hasCollision(const Handle *h) const {
     return ( (d - this->collisionRadius - h->collisionRadius) < 0);
 }
 
+float Handle::getArmor() const {
+    return 0;
+}
+
 void Handle::move() {
     /*
     1. get new position
@@ -121,6 +125,10 @@ bool Handle::isCoordinateWalkable(double x, double y) const{
 
 }
 
+void Handle::setHealth(int newHealth)
+{
+    health = newHealth;
+}
 
 Item* getCorrespondingItem() {
     return nullptr;

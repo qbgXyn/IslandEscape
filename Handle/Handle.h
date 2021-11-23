@@ -30,6 +30,7 @@ class Handle {
         double location[2];
         double velocity[2];
         int health;
+        int armor;
         int inInvulnerable; // instead of bool, also use it as counter, i.e. if > 0, is true
         int inInvisible;    // to prevent unintended behaviour, e.g. double invisible potion with last one run out of duration
         int inCollisionless;    // for each effect run out of duration we reduce the counter by 1
@@ -68,9 +69,12 @@ class Handle {
 
         bool hasCollision(const Handle *h) const;
 
+        virtual float getArmor() const;
+
         bool isCoordinatePathable(double x, double y) const;
         bool isCoordinateWalkable(double x, double y) const;
 
+        void setHealth (int newHealth);
 
         virtual Item* getCorrespondingItem() const;
 
