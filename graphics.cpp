@@ -1,5 +1,5 @@
 #include "graphics.h"
-#include "Map.h"
+#include "Map/Map.h"
 #include "mainwindow.h"
 
 #include <QPainter>

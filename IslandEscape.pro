@@ -27,7 +27,8 @@ SOURCES += \
     Handle/Unit/Unit.cpp \
     Main.cpp \
     mainwindow.cpp \
-    Map.cpp \
+    Map/Map.cpp \
+    Map/Terrain.cpp \
     menuwindow.cpp
 
 HEADERS += \
@@ -48,7 +49,8 @@ HEADERS += \
     Handle/Unit/Unit.h \
     Item/Item.h \
     mainwindow.h \
-    Map.h \
+    Map/Map.h \
+    Map/Terrain.h \
     menuwindow.h \
     util.h
 

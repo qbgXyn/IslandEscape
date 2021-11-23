@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "Map.h"
+#include "Map/Map.h"
 
 #include <QString>
 #include <QTimer>

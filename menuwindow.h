@@ -1,8 +1,7 @@
 #ifndef MENUWINDOW_H
 #define MENUWINDOW_H
 
-//#include "City.h"
-#include "Map.h"
+#include "Map/Map.h"
 
 #include <QMainWindow>
 
