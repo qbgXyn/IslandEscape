@@ -3,9 +3,8 @@
 
 #include "../Handle.h"
 #include "../../Effect/Effect.h"
-#include "../Inventory/Item_inventory.h"
 
-class Unit : public Handle{
+class Unit : public Handle {
     protected:
         int damage;
         float attackInterval;
@@ -13,8 +12,8 @@ class Unit : public Handle{
         int visible_radius;
         explicit Unit(Map *map, double x, double y);
     public:
-        float getDamage() const {return damage;}
-        float getArmor() const {return armor;}
+        float getDamage() const;
+        float getArmor() const;
         void gainAttributeFromEffect(Effect *e);
         void addEffect(Effect *e);
         virtual void attack() = 0;

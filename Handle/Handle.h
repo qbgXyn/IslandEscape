@@ -6,6 +6,7 @@
 #include <string>
 #include "../util.h"
 #include "../Map/Terrain.h"
+#include "../Item/Item.h"
 using namespace std;
 
 class Map;

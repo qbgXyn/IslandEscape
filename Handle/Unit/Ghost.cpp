@@ -10,11 +10,11 @@ const float Ghost::base_attack_radius = 16.0;
 Ghost::Ghost(Map *map, double x, double y, Unit *chasing_target) : Unit(map, x, y) {
     type = Handle::Type::GHOST;
     this->chasing_target = chasing_target;
-    pathable += Map::Terrain::GRASS;
-    pathable += Map::Terrain::STONE;
-    pathable += Map::Terrain::SHOAL;
-    pathable += Map::Terrain::OCEAN;
-    pathable += Map::Terrain::VOID;
+    pathable += Terrain::Type::GRASS;
+    pathable += Terrain::Type::STONE;
+    pathable += Terrain::Type::SHOAL;
+    pathable += Terrain::Type::OCEAN;
+    pathable += Terrain::Type::VOID;
 }
 
 void Ghost::attack() {

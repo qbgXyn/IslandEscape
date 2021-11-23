@@ -96,7 +96,7 @@ bool Handle::isCoordinatePathable(double x, double y) const {
         return false;
     }
 
-    Map::Terrain terrain = map->getTerrainOfGrid(x, y);
+    Terrain::Type terrain = map->getTerrainOfGrid(x, y);
     return pathable(terrain);
 }
 

@@ -3,7 +3,6 @@
 
 #include "Unit.h"
 #include "../Inventory/Item_Inventory.h"
-#include "../../Effect/Effect.h"
 
 class Survivor : public Unit {
     public:

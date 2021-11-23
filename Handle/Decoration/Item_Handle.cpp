@@ -1,4 +1,5 @@
 #include "Item_Handle.h"
+#include "../../Map/Map.h"
 
 const float Item_Handle::base_collison_radius = 0.0;
 const double Item_Handle::base_max_speed = 0.0;
@@ -7,9 +8,9 @@ Item_Handle::Item_Handle(Map *map, double x, double y, Item::ID id, int inInvuln
     this->inCollisionless = inCollisionless;
     type = Handle::Type::ITEM;
     item = map->createItem(id);
-    pathable += Map::Terrain::GRASS;
-    pathable += Map::Terrain::STONE;
-    pathable += Map::Terrain::SHOAL;
+    pathable += Terrain::Type::GRASS;
+    pathable += Terrain::Type::STONE;
+    pathable += Terrain::Type::SHOAL;
 
 }
 

@@ -1,10 +1,10 @@
 #include "Terrain.h"
 
 
-bool Terrain::operator()(Map::Terrain terrain) const {
+bool Terrain::operator()(Terrain::Type terrain) const {
     return t.count(terrain);
 }
 
-void Terrain::operator+=(Map::Terrain terrain) {
+void Terrain::operator+=(Terrain::Type terrain) {
     t.insert(terrain);
 }

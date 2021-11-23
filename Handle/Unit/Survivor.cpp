@@ -1,4 +1,5 @@
 #include "Survivor.h"
+#include "../../Map/Map.h"
 #include <chrono>
 
 //#include <bits/stdc++.h>
@@ -10,9 +11,9 @@ const double Survivor::base_attack_sector_angle = 60.0;
 
 Survivor::Survivor(Map *map, double x, double y) : Unit(map, x, y) {
     type = Handle::Type::SURVIVOR;
-    pathable += Map::Terrain::GRASS;
-    pathable += Map::Terrain::STONE;
-    pathable += Map::Terrain::SHOAL;
+    pathable += Terrain::Type::GRASS;
+    pathable += Terrain::Type::STONE;
+    pathable += Terrain::Type::SHOAL;
 }
 
 void Survivor::attack() {
