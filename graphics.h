@@ -5,7 +5,7 @@
 #ifndef GRAPHICS_H
 #define GRAPHICS_H
 
-#include "Map.h"
+#include "Map/Map.h"
 #include "mainwindow.h"
 
 #include <QPixmap>

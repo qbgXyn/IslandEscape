@@ -11,6 +11,7 @@ class Item_Handle : public Decoration {
         
     public:
         explicit Item_Handle(Map *map, double x, double y, Item::ID id, int inInvulnerable = 1, int inCollisionless = 1);
+        ~Item_Handle();
         Item *item;
         virtual Item* getCorrespondingItem() const;
 

@@ -11,7 +11,12 @@ Item_Handle::Item_Handle(Map *map, double x, double y, Item::ID id, int inInvuln
     pathable += Map::Terrain::STONE;
     pathable += Map::Terrain::SHOAL;
 
-    }
+}
+
+Item_Handle::~Item_Handle() {
+    delete item;
+}
+
 
 Item* Item_Handle::getCorrespondingItem() const {
     return item;

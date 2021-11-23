@@ -91,13 +91,13 @@ void Survivor::pickupItem() {
         h = *it;
         if (h->getType() == Handle::Type::ITEM && !isInventoryFull()) {
             i = new Item_inventory {*(h->getCorrespondingItem())};
-            delete *it;
+            delete h;
         }
     }
 }
 
 
-void Survivor::dropItem() {
+void Survivor::dropItem(Item_inventory *i) {
     
 }
 

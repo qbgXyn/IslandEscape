@@ -26,7 +26,7 @@ class Survivor : public Unit {
         bool isInventoryFull() const;
         void useItem(Item_inventory *i);
         void pickupItem();
-        void dropItem();
+        void dropItem(Item_inventory *i);
 
 
         bool turnOnBoat() const;
