@@ -83,14 +83,16 @@ void Survivor::useItem(Item_inventory *i) {
         case Item::ID::BELL:
             // further information needed for implementation
             break;
-        case Item::ID::SPEED_POTION:
+        case Item::ID::SPEED_POTION: {
             Effect *e = new Effect(Effect::Type::SPEED, data, duration);
             addEffect(e);
             break;
-        case Item::ID::REGEN_INSTANT_POTION:
+        }
+        case Item::ID::REGEN_INSTANT_POTION: {
             Effect *e = new Effect(Effect::Type::REGEN_INSTANT, data, duration);
             addEffect(e);
             break;
+        }
     }
 
     if (durability > 0) {
