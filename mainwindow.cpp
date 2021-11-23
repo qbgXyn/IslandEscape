@@ -16,12 +16,11 @@ MainWindow::MainWindow(Map *const map, QWidget *parent) :
         map(map)
 {
     ui->setupUi(this);
-    // If need initialize
 
     // Run main loop
     loop_timer = new QTimer{this};
     connect(loop_timer, &QTimer::timeout, this, &MainWindow::main_loop);
-    // 20 updates per second
+    // 50 updates per second
     loop_timer->start(20);
 }
 
@@ -32,7 +31,14 @@ MainWindow::~MainWindow() {
     delete map;
 }
 
-// This is called 20 times per second
+// This is called 50 times per second
 void MainWindow::main_loop() {
-
+    if (game_time >= 1)
+        game_time -= 1;
+    if (torch_time >= 1)
+        torch_time -= 1;
+    ui->label_health->setText(": 100");
+    ui->label_time->setText(": " + QString::number(game_time/50) + "s");
+    ui->label_torch->setText(": " + QString::number(torch_time/50) + "s");
+    ui->widget->loop();
 }

@@ -27,11 +27,11 @@ Map::~Map() {
 
 
 double Map::getMaxWidth() const {
-    return width / 2;
+    return width;
 }
 
 double Map::getMaxHeight() const {
-    return height / 2;
+    return height;
 }
 
 bool Map::isCoordinateInMap(double x, double y) const {
@@ -40,9 +40,9 @@ bool Map::isCoordinateInMap(double x, double y) const {
 
 Terrain::Type Map::getTerrainOfGrid(double x, double y) const {
     if (isCoordinateInMap(x, y)) {
-        int int_x = x / grid_radius;
-        int int_y = y / grid_radius;
-        return grid[int_x][int_y];
+        int i = x/grid_radius;
+        int j = y/grid_radius;
+        return grid[i][j];
     }
     return Terrain::Type::VOID;
 
