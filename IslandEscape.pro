@@ -21,10 +21,13 @@ SOURCES += \
     Handle/Decoration/Item_Handle.cpp \
     Handle/Decoration/Tree.cpp \
     Handle/Handle.cpp \
-    Handle/Land/Land.cpp \
+    Handle/Inventory/Item_Inventory.cpp \
     Handle/Unit/Ghost.cpp \
     Handle/Unit/Survivor.cpp \
     Handle/Unit/Unit.cpp \
+    Item/Item.cpp \
+    Item/key.cpp \
+    Item/regen_instant_potion.cpp \
     Main.cpp \
     mainwindow.cpp \
     Map/Map.cpp \
@@ -43,11 +46,12 @@ HEADERS += \
     Handle/Decoration/Tree.h \
     Handle/Handle.h \
     Handle/Inventory/Item_Inventory.h \
-    Handle/Land/Land.h \
     Handle/Unit/Ghost.h \
     Handle/Unit/Survivor.h \
     Handle/Unit/Unit.h \
     Item/Item.h \
+    Item/key.h \
+    Item/regen_instant_potion.h \
     mainwindow.h \
     Map/Map.h \
     Map/Terrain.h \
