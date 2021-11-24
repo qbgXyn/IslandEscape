@@ -7,9 +7,9 @@ Handle::Handle(Map *map, double x, double y) {
     location[1] = y;
 } 
 
-Handle::~Handle() {
-    map->removeHandle(this);
-}
+// Handle::~Handle() {
+//     map->removeHandle(this);
+// }
 
 int Handle::getHealth() const {
     return health;
@@ -130,6 +130,6 @@ void Handle::setHealth(int newHealth)
     health = newHealth;
 }
 
-Item* getCorrespondingItem() {
+Item* Handle::getCorrespondingItem() const {
     return nullptr;
 }

@@ -6,6 +6,6 @@ const double House::base_max_speed = 0.0;
 
 House::House(Map *map, double x, double y, int inInvulnerable) : Decoration(map, x, y, inInvulnerable) {
     type = Handle::Type::HOUSE;
-    pathable += Map::Terrain::GRASS;
-    pathable += Map::Terrain::STONE;
+    pathable += Terrain::Type::GRASS;
+    pathable += Terrain::Type::STONE;
 }

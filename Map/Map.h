@@ -16,6 +16,8 @@
 #include "../Handle/Decoration/Campfire.h"
 #include "../Handle/Decoration/Boat.h"
 
+#include "../Handle/Decoration/Item_Handle.h"
+
 class Map {
 
     private:
@@ -39,10 +41,10 @@ class Map {
         vector<Handle*> getHandleGroup(double x, double y, double radius);
 
         Terrain::Type get_at(double x, double y) const;
-        bool createDecoration(Handle::Type type, double x, double y);
-        bool createUnit(Handle::Type type, double x, double y);
         Item* createItem(Item::ID);
+        bool createItem_Handle(Item::ID id, double x, double y);
 
+        bool createHandle(Handle::Type type, double x, double y);
         void removeHandle(Handle *h);
 
     private:

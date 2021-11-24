@@ -34,13 +34,14 @@ MenuWindow::~MenuWindow()
     delete ui;
 }
 
-/* void MenuWindow::start_game(City* city) {
-    MainWindow *m = new MainWindow{city, nullptr};
+void MenuWindow::start_game(int selected_level) {
+    Map* map = new Map(12*64, 10*64);
+    MainWindow *m = new MainWindow{map, nullptr};
     m->setAttribute(Qt::WA_DeleteOnClose);
     m->show();
 
     close();
-} */
+}
 
 void MenuWindow::initialize_level_btn() {
     ui->btn_level_1->setStyleSheet(NOT_PASSED_STYLE);
@@ -62,12 +63,25 @@ void MenuWindow::initialize_level_btn() {
 
 void MenuWindow::on_btn_start_clicked() {
     ui->pages->setCurrentWidget(ui->page_level_selection);
-    /* Map* map = new Map(12,12);
-    start_game(map); */
 }
 
-void MenuWindow::on_btn_level_1_clicked() { selected_level = 1; }
-void MenuWindow::on_btn_level_2_clicked() { selected_level = 2; }
-void MenuWindow::on_btn_level_3_clicked() { selected_level = 3; }
-void MenuWindow::on_btn_level_4_clicked() { selected_level = 4; }
-void MenuWindow::on_btn_level_5_clicked() { selected_level = 5; }
+void MenuWindow::on_btn_level_1_clicked() {
+    selected_level = 1;
+    start_game(selected_level);
+}
+void MenuWindow::on_btn_level_2_clicked() {
+    selected_level = 2;
+    start_game(selected_level);
+}
+void MenuWindow::on_btn_level_3_clicked() {
+    selected_level = 3;
+    start_game(selected_level);
+}
+void MenuWindow::on_btn_level_4_clicked() {
+    selected_level = 4;
+    start_game(selected_level);
+}
+void MenuWindow::on_btn_level_5_clicked() {
+    selected_level = 5;
+    start_game(selected_level);
+}
