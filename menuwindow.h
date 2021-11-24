@@ -16,7 +16,7 @@ public:
     ~MenuWindow();
 
 private:
-    //void start_game(City* city);
+    void start_game(int selected_level);
 
     void initialize_level_btn();
 
