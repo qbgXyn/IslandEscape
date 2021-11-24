@@ -1,4 +1,5 @@
 #include "Survivor.h"
+#include "../Decoration/Item_Handle.h"
 #include "../../Map/Map.h"
 #include <chrono>
 
@@ -33,9 +34,9 @@ void Survivor::attack() {
     vector<Handle*>::const_iterator it_end = list.end(); 
     for(vector<Handle*>::const_iterator it = list.begin(); it != it_end; ++it) 
     {
-        if (insideSector(*it, base_attack_sector_angle) == true) // check if it within attack sector range
+        if (isInsideSector(*it, base_attack_sector_angle) == true) // check if it within attack sector range
         {
-            if (isInvulnerable == false) //check if it is vulnerable
+            if (!isInvulnerable()) //check if it is vulnerable
             {
                 if ((*it) -> getCategory() == Handle::Category::UNIT) // check if it is Unit
                 {
@@ -117,6 +118,7 @@ void Survivor::pickupItem() {
         h = *it;
         if (h->getType() == Handle::Type::ITEM && !isInventoryFull()) {
             i = new Item_inventory {*(h->getCorrespondingItem())};
+            Inventory.push_back(i);
             delete h;
         }
     }
@@ -124,7 +126,12 @@ void Survivor::pickupItem() {
 
 
 void Survivor::dropItem(Item_inventory *i) {
-    
+    if (i != nullptr) {
+        map->createItem_Handle(i->item->getID(), location[0], location[1]);
+        // Item_Handle* ih = new Item_Handle{map, this->location[0], this->location[1], i->item->getID()};
+        // map->List.push_back(ih);
+        delete i;
+    }
 }
 
 

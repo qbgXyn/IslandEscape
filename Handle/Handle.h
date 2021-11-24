@@ -46,7 +46,7 @@ class Handle {
 
     public:
         explicit Handle(Map *map, double x, double y);
-        ~Handle();
+        virtual ~Handle() = default;
     public:
         int getHealth() const;
         double getX() const;

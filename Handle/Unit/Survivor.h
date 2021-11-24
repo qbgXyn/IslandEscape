@@ -21,7 +21,7 @@ class Survivor : public Unit {
         static const int maxSlotOfInventory = 9;
 
         void attack();
-        vector<Item_inventory> Inventory;
+        vector<Item_inventory*> Inventory;
 
         bool isInventoryFull() const;
         void useItem(Item_inventory *i);

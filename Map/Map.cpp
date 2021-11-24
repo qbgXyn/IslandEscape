@@ -18,7 +18,6 @@ Map::Map(double width, double height) : width(width), height(height) {
 
 Map::~Map() {
     int i = width/grid_radius;
-    int j = height/grid_radius;
     for (int x = 0; x < i; x++) {
         delete [] grid[x];
     }
@@ -73,43 +72,9 @@ Terrain::Type Map::get_at(double x, double y) const {
     return grid[(int)(x/grid_radius)][(int)(y/grid_radius)];
 }
 
-bool Map::createDecoration(Decoration::Type type, double x, double y) {
 
-    int center_x = (x/grid_radius) * grid_radius + (grid_radius / 2);
-    int center_y = (y/grid_radius) * grid_radius + (grid_radius / 2);
-
-    Handle* handle;
-    switch (type)
-    {
-    case Handle::Type::HOUSE:
-        handle = new House{this, center_x, center_y};
-        break;
-    case Handle::Type::DOOR:
-        handle = new Door{this, center_x, center_y};
-        break;
-    case Handle::Type::TREE:
-        handle = new Tree{this, center_x, center_y};
-        break;
-    case Handle::Type::CAMPFIRE:
-        handle = new Campfire{this, center_x, center_y};
-        break;
-    case Handle::Type::BOAT:
-        handle = new Boat{this, center_x, center_y};
-        break;
-    }
-    
-    if (handle->isCoordinateWalkable(x, y)) {
-        List.push_back(handle);
-        return true;
-    }
-    delete handle;
-    return false;
-
-}
-
-
-bool Map::createUnit(Unit::Type type, double x, double y) {
-    Handle* handle;
+bool Map::createHandle(Handle::Type type, double x, double y) {
+    Handle* handle = nullptr;
     switch (type)
     {
     case Handle::Type::SURVIVOR:
@@ -118,6 +83,24 @@ bool Map::createUnit(Unit::Type type, double x, double y) {
     case Handle::Type::GHOST:
         handle = new Ghost{this, x, y};
         break;
+
+    case Handle::Type::HOUSE:
+        handle = new House{this, x, y};
+        break;
+    case Handle::Type::DOOR:
+        handle = new Door{this, x, y};
+        break;
+    case Handle::Type::TREE:
+        handle = new Tree{this, x, y};
+        break;
+    case Handle::Type::CAMPFIRE:
+        handle = new Campfire{this, x, y};
+        break;
+    case Handle::Type::BOAT:
+        handle = new Boat{this, x, y};
+        break;
+    default:
+        return false;
     }
 
     if (handle->isCoordinateWalkable(x, y)) {
@@ -128,6 +111,17 @@ bool Map::createUnit(Unit::Type type, double x, double y) {
     return false;
 }
 
+
+bool Map::createItem_Handle(Item::ID id, double x, double y) {
+    Handle* handle = new Item_Handle{this, x, y, id};
+
+    if (handle->isCoordinateWalkable(x, y)) {
+        List.push_back(handle);
+        return true;
+    }
+    delete handle;
+    return false;
+}
 
 Item* Map::createItem(Item::ID id) {
     Item * i = nullptr;
@@ -153,5 +147,17 @@ Item* Map::createItem(Item::ID id) {
 
 
 void Map::removeHandle(Handle *h) {
-    List.erase(remove(List.begin(), List.end(), h), List.end());
+    vector<Handle*>::const_iterator it_end = List.end();
+    for(vector<Handle*>::const_iterator it = List.begin(); it != it_end; ++it) {
+        if ((*it) == h) {
+            delete (*it);
+            List.erase(it);
+        }
+    }
+
+
+    // List.erase(remove(List.begin(), List.end(), h), List.end());
+
+    // List.erase(std::remove_if(List.begin(), List.end(),
+    //                             [h](Handle *i) { return i && (i == h); }));
 }
