@@ -7,6 +7,7 @@
 #include <QWheelEvent>
 #include <QMessageBox>
 #include <QTextFormat>
+#inlcude <QMatrix>
 
 #include <cmath>
 #include <regex>

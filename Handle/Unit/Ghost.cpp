@@ -1,4 +1,5 @@
 #include "Ghost.h"
+#include "../../Map/Map.h"
 
 const float Ghost::base_collison_radius = 0.0;
 // for simplicity, no collsion means we don't need any algorithm for path finding
@@ -27,9 +28,9 @@ void Ghost::attack() {
     vector<Handle*>::const_iterator it_end = list.end(); 
     for(vector<Handle*>::const_iterator it = list.begin(); it != it_end; ++it) 
     {
-        if (insideSector(*it, base_attack_sector_angle) == true) // check if it within attack sector range
+        if (isInsideSector(*it, base_attack_sector_angle) == true) // check if it within attack sector range
         {
-            if (isInvulnerable == false) //check if it is vulnerable
+            if (!isInvulnerable()) //check if it is vulnerable
             {
                 if ((*it) -> getType() == Handle::Type::SURVIVOR) // check if it is Unit
                 {
