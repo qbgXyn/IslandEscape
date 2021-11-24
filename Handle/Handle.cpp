@@ -89,6 +89,17 @@ void Handle::move() {
     4. if velocity > 0, and move button released, decrease velocity
     5. if max speed not reached, and move button pressed, increase velocity
     */
+   double newPosition[2];
+   newPosition[0] = location[0] + velocity[0];
+   newPosition[1] = location[1] + velocity[1];
+   if (isCoordinateWalkable(newPosition[0], newPosition[1]) == true)
+   {
+       location[0] = newPosition[0];
+       location[1] = newPosition[1];
+
+   }
+   velocity[0] = 0;
+   velocity[1] = 0;
 }
 
 bool Handle::isCoordinatePathable(double x, double y) const {
