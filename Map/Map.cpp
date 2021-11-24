@@ -7,11 +7,11 @@
 Map::Map(double width, double height) : width(width), height(height) {
     int i = width/grid_radius;  // width = i grids
     int j = height/grid_radius; // height = j grids
-    grid = new Terrain* [i];
+    grid = new Terrain::Type* [i];
     for (int x = 0; x < i; x++) {
-        grid[x] = new Terrain [j];
+        grid[x] = new Terrain::Type [j];
         for (int y = 0; y < j; y++) {
-            grid[x][y] = Terrain::GRASS;
+            grid[x][y] = Terrain::Type::GRASS;
         }
     }
 }
@@ -27,24 +27,24 @@ Map::~Map() {
 
 
 double Map::getMaxWidth() const {
-    return width / 2;
+    return width;
 }
 
 double Map::getMaxHeight() const {
-    return height / 2;
+    return height;
 }
 
 bool Map::isCoordinateInMap(double x, double y) const {
     return (x >= 0) && (x < width) && (y >= 0) && (y < height);
 }
 
-Map::Terrain Map::getTerrainOfGrid(double x, double y) const {
+Terrain::Type Map::getTerrainOfGrid(double x, double y) const {
     if (isCoordinateInMap(x, y)) {
-        int int_x = x / grid_radius;
-        int int_y = y / grid_radius;
-        return grid[int_x][int_y];
+        int i = x/grid_radius;
+        int j = y/grid_radius;
+        return grid[i][j];
     }
-    return Terrain::VOID;
+    return Terrain::Type::VOID;
 
 }
 
@@ -65,11 +65,11 @@ vector<Handle*> Map::getHandleGroup(double x, double y, double radius) {
     return result;
 }
 
-Map::Terrain Map::get_at(double x, double y) const {
+Terrain::Type Map::get_at(double x, double y) const {
     if (x < 0 || x >= width)
-        return Terrain::VOID;
+        return Terrain::Type::VOID;
     if (y < 0 || y >= height)
-        return Terrain::VOID;
+        return Terrain::Type::VOID;
     return grid[(int)(x/grid_radius)][(int)(y/grid_radius)];
 }
 

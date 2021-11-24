@@ -3,7 +3,6 @@
 
 #include "Unit.h"
 #include "../Inventory/Item_Inventory.h"
-#include "../../Effect/Effect.h"
 
 class Survivor : public Unit {
     public:
@@ -27,7 +26,7 @@ class Survivor : public Unit {
         bool isInventoryFull() const;
         void useItem(Item_inventory *i);
         void pickupItem();
-        void dropItem();
+        void dropItem(Item_inventory *i);
 
 
         bool turnOnBoat() const;

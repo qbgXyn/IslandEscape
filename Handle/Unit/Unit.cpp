@@ -5,6 +5,13 @@ Unit::Unit(Map *map, double x, double y) : Handle(map, x, y) {
 }
 
 
+float Unit::getDamage() const {
+    return damage;
+}
+float Unit::getArmor() const {
+    return armor;
+}
+
 void Unit::gainAttributeFromEffect(Effect *e) {
     Effect::Type type = e->getType();
     switch(type) {

@@ -1,15 +1,9 @@
 <RCC>
     <qresource prefix="/resources">
-        <file>images/house.png</file>
-        <file>images/apartment.png</file>
-        <file>images/stripes.png</file>
-        <file>images/clinic.png</file>
-        <file>images/gold_mine.png</file>
-        <file>images/hospital.png</file>
-        <file>images/silver_mine.png</file>
-        <file>images/navigation.png</file>
-        <file>images/destruct.png</file>
-        <file>images/next.png</file>
         <file>images/island.png</file>
+        <file>images/clock.png</file>
+        <file>images/heart.png</file>
+        <file>images/player.png</file>
+        <file>images/torch.png</file>
     </qresource>
 </RCC>

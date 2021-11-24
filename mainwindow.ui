@@ -22,38 +22,13 @@
 background-image: url(:/resources/images/stripes.png);
 };</string>
    </property>
-   <widget class="QWidget" name="side_menu" native="true">
-    <property name="geometry">
-     <rect>
-      <x>1119</x>
-      <y>500</y>
-      <width>400</width>
-      <height>439</height>
-     </rect>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>400</width>
-      <height>16777215</height>
-     </size>
-    </property>
-    <property name="font">
-     <font>
-      <family>Comic Sans MS</family>
-      <pointsize>14</pointsize>
-     </font>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::RightToLeft</enum>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_instruction">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>720</y>
-      <width>1511</width>
-      <height>221</height>
+      <x>140</x>
+      <y>50</y>
+      <width>1141</width>
+      <height>29</height>
      </rect>
     </property>
     <property name="font">
@@ -77,17 +52,115 @@ background-image: url(:/resources/images/stripes.png);
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QProgressBar" name="progressBar">
+   <widget class="QLabel" name="logo_health">
     <property name="geometry">
      <rect>
-      <x>540</x>
-      <y>690</y>
-      <width>391</width>
-      <height>71</height>
+      <x>280</x>
+      <y>110</y>
+      <width>64</width>
+      <height>64</height>
      </rect>
     </property>
-    <property name="value">
-     <number>24</number>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="images.qrc">:/resources/images/heart.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_health">
+    <property name="geometry">
+     <rect>
+      <x>360</x>
+      <y>110</y>
+      <width>128</width>
+      <height>64</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>48</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_time">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>110</y>
+      <width>128</width>
+      <height>64</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>48</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="logo_time">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>110</y>
+      <width>64</width>
+      <height>64</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="images.qrc">:/resources/images/clock.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_torch">
+    <property name="geometry">
+     <rect>
+      <x>1030</x>
+      <y>110</y>
+      <width>128</width>
+      <height>64</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>48</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="logo_torch">
+    <property name="geometry">
+     <rect>
+      <x>980</x>
+      <y>110</y>
+      <width>36</width>
+      <height>64</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="images.qrc">:/resources/images/torch.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>
@@ -100,6 +173,8 @@ background-image: url(:/resources/images/stripes.png);
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="images.qrc"/>
+ </resources>
  <connections/>
 </ui>

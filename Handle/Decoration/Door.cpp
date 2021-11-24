@@ -7,6 +7,6 @@ const double Door::base_max_speed = 0.0;
 
 Door::Door(Map *map, double x, double y, int inInvulnerable) : Decoration(map, x, y, inInvulnerable) {
     type = Handle::Type::DOOR;
-    pathable += Map::Terrain::GRASS;
-    pathable += Map::Terrain::STONE;
+    pathable += Terrain::Type::GRASS;
+    pathable += Terrain::Type::STONE;
 }

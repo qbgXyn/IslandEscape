@@ -13,8 +13,9 @@
 
 GameWidget::GameWidget(QWidget* parent) :
     QWidget(parent),
-    city(dynamic_cast<MainWindow *>(parent)->city),
-    grid_size(city->get_grid_size()),
+    map(dynamic_cast<MainWindow *>(parent)->map),
+    map_width(map->getMaxWidth()),
+    map_height(map->getMaxHeight()),
     scroll_x(0), scroll_y(0),
     scale(1.0f),
     UP(false), DOWN(false), LEFT(false), RIGHT(false),
@@ -31,24 +32,41 @@ GameWidget::~GameWidget() {
 }
 
 void GameWidget::loop() {
-    scroll_x += (int) (15.0f * ((int) RIGHT - (int) LEFT) / scale);
-    scroll_y += (int) (15.0f * ((int) DOWN - (int) UP) / scale);
+    const int x_min = -map_width/2;
+    const int x_max = map_width/2;
+    const int y_min = -map_height/2;
+    const int y_max = map_height/2;
+    if (scroll_x >= x_min && scroll_x <= x_max) {
+        scroll_x += (int) (5.0f * ((int) RIGHT - (int) LEFT));
+    }
+    if (scroll_x < x_min)
+        scroll_x = x_min;
+    if (scroll_x > x_max)
+        scroll_x = x_max;
+    if (scroll_y >= y_min && scroll_y <= y_max) {
+        scroll_y += (int) (5.0f * ((int) DOWN - (int) UP));
+    }
+    if (scroll_y < y_min)
+        scroll_y = y_min;
+    if (scroll_y > y_max)
+        scroll_y = y_max;
+
     repaint(0, 0, width(), height());
     ++tick;
 }
 
 void GameWidget::keyPressEvent(QKeyEvent* event) {
     switch (event->key()) {
-    case Qt::Key::Key_W:
+    case Qt::Key::Key_Up:
         UP = true;
         break;
-    case Qt::Key::Key_S:
+    case Qt::Key::Key_Down:
         DOWN = true;
         break;
-    case Qt::Key::Key_A:
+    case Qt::Key::Key_Left:
         LEFT = true;
         break;
-    case Qt::Key::Key_D:
+    case Qt::Key::Key_Right:
         RIGHT = true;
         break;
     }
@@ -56,16 +74,16 @@ void GameWidget::keyPressEvent(QKeyEvent* event) {
 
 void GameWidget::keyReleaseEvent(QKeyEvent* event) {
     switch (event->key()) {
-    case Qt::Key::Key_W:
+    case Qt::Key::Key_Up:
         UP = false;
         break;
-    case Qt::Key::Key_S:
+    case Qt::Key::Key_Down:
         DOWN = false;
         break;
-    case Qt::Key::Key_A:
+    case Qt::Key::Key_Left:
         LEFT = false;
         break;
-    case Qt::Key::Key_D:
+    case Qt::Key::Key_Right:
         RIGHT = false;
         break;
     }
@@ -81,84 +99,9 @@ void GameWidget::wheelEvent(QWheelEvent* event) {
     }
 }
 
-void GameWidget::mouseReleaseEvent(QMouseEvent* event) {
-    int screen_x = event->x();
-    int screen_y = event->y();
-    int x, y;
-    obtain_grid_coordinates(screen_x, screen_y, x, y);// Check if selected point lies on the grid
-    if (x >= 0 && y >= 0 && x < grid_size && y < grid_size) {
-        MainWindow *main_window = dynamic_cast<MainWindow *>(window());
-        MainWindow::SideMenuButton button_selected = main_window->get_selected_side_menu_button();
-        if (button_selected != MainWindow::SideMenuButton::NAVIGATE) {
-            if (event->button() == Qt::MouseButton::RightButton) {
-                main_window->on_side_menu_button_clicked(MainWindow::SideMenuButton::NAVIGATE);
-            } else if (event->button() == Qt::MouseButton::LeftButton) {
-                // If the selected button are buildings
-                if (button_selected != MainWindow::SideMenuButton::DEMOLISH && city->is_empty_at(x, y)) {
-                    city->construct_at(static_cast<Building::Type>(button_selected), x, y);
-
-                    // Trick to jump back to navigation if player does not have enough budget for the building
-                    main_window->on_side_menu_button_clicked(button_selected);
-                }
-
-                // Selected button is delete
-                else if (button_selected == MainWindow::SideMenuButton::DEMOLISH && !city->is_empty_at(x, y)) {
-                    city->demolish_at(x, y);
-                }
-            }
-        } else if (!city->is_empty_at(x, y)) {
-            QMessageBox *mb = new QMessageBox{window()};
-            mb->setWindowTitle("Simple City");
-            mb->setStyleSheet("font: 14pt \"Comic Sans MS\";");
-
-            if (event->button() == Qt::MouseButton::LeftButton) {
-                mb->setText(QString::fromStdString(
-                        "<p style='text-align: center;'>" +
-                        std::regex_replace(city->get_at(x, y)->get_short_information(), std::regex{"\n"}, "<br>") +
-                        "</p>"
-                ));
-            } else if (event->button() == Qt::MouseButton::RightButton) {
-                mb->setText(QString::fromStdString(
-                        "<p style='text-align: center;'>" +
-                        std::regex_replace(city->get_at(x, y)->get_long_information(), std::regex{"\n"}, "<br>") +
-                        "</p>"
-                ));
-            }
-            mb->setAttribute(Qt::WA_DeleteOnClose, true);
-            mb->show();
-        }
-    }
-}
-
-void GameWidget::mouseMoveEvent(QMouseEvent* event) {
-    int screen_x = event->x();
-    int screen_y = event->y();
-
-    MainWindow *main_window = dynamic_cast<MainWindow *>(window());
-    MainWindow::SideMenuStatus button_group_status = main_window->get_side_menu_status();
-    if (screen_x > width() - 100) {
-        if (button_group_status == MainWindow::SideMenuStatus::HIDDEN) {
-            main_window->set_side_menu_status(MainWindow::SideMenuStatus::HIDDEN_TO_VISIBLE);
-        }
-    } else if (screen_x < width() - 420){
-        if (button_group_status == MainWindow::SideMenuStatus::VISIBLE) {
-            main_window->set_side_menu_status(MainWindow::SideMenuStatus::VISIBLE_TO_HIDDEN);
-        }
-    }
-
-    if (screen_x > width() - 420 || button_group_status == MainWindow::SideMenuStatus::HIDDEN){ // Does handle only if the cursor is on the to-be menu
-        int x, y;
-
-        obtain_grid_coordinates(screen_x, screen_y, x, y);
-
-        hovering_grid_x = x;
-        hovering_grid_y = y;
-    }
-}
-
 void GameWidget::obtain_grid_coordinates_from_real(int rx, int ry, int& x, int& y) {
-    x = (rx + grid_size * 50) / 100;
-    y = (ry + grid_size * 50) / 100;
+    x = (rx + map_width * 50) / 100;
+    y = (ry + map_height * 50) / 100;
 }
 
 void GameWidget::obtain_grid_coordinates(int dispx, int dispy, int& x, int& y) {
@@ -207,60 +150,29 @@ void GameWidget::drawPixmap(QPainter& paint, int x, int y, int w, int h, const Q
     paint.drawPixmap(dispx1, dispy1, dispx2 - dispx1, dispy2 - dispy1, pixmap);
 }
 
-// Helper function
-int contains_type(Building* b1, Building* b2) {
-    if (b1 == nullptr || b2 == nullptr) {
-        return -2;
-    }
-
-    Building::Category t1 = b1->get_category();
-    Building::Category t2 = b2->get_category();
-
-    if (t1 == Building::Category::RESIDENTIAL) {
-        return (b2->get_type() == Building::Type::GOLD_MINE) ? 0 : 1;
-    }
-    if (t2 == Building::Category::RESIDENTIAL) {
-        return (b1->get_type() == Building::Type::GOLD_MINE) ? 0 : 1;
-    }
-    if (t1 == t2 && t2 == Building::Category::HEALTH) {
-        return -1;
-    }
-
-    return -2;
-}
-
-// Helper function
-void tsetColor(QPainter& paint, int dcolor) {
-    QPen p = paint.pen();
-    p.setWidth(7);
-    switch (dcolor) {
-    case -1:
-        p.setColor(QColor::fromRgb(255, 0, 0));
-        break;
-    case 0:
-        p.setColor(QColor::fromRgb(255, 255, 255));
-        break;
-    case 1:
-        p.setColor(QColor::fromRgb(0, 255, 0));
-        break;
-    }
-    paint.setPen(p);
-}
-
 void GameWidget::paintEvent(QPaintEvent* event) {
-    QPainter paint{ this };
+    QPainter paint{this};
 
     // Set green background
-    paint.fillRect(0, 0, width(), height(), QBrush{ QColor::fromRgb(100,200,100) });
+    paint.fillRect(0, 0, width(), height(), QBrush{ QColor::fromRgb(119,158,203) });
 
-    QFont ft;
+    /* QFont ft;
     ft.setPixelSize(25);
     ft.setBold(true);
     ft.setFamily("Comic Sans MS");
-    paint.setFont(ft);
+    paint.setFont(ft); */
 
-    const int min = -grid_size * 50;
-    const int max = grid_size * 50;// Draw special overlays on the grid
+    const int min = -map_width/2;
+    const int max = map_width/2;
+    const int minn = -map_height/2;
+    const int maxx = map_height/2;
+
+    int i = map_width/64;
+    int j = map_height/64;
+
+    /* const int min = -grid_size * 50;
+    const int max = grid_size * 50;
+    // Draw special overlays on the grid
     switch (dynamic_cast<MainWindow *>(window())->get_selected_overlay_button()) {
         case MainWindow::OverlayButton::NORMAL:
             break;
@@ -311,15 +223,17 @@ void GameWidget::paintEvent(QPaintEvent* event) {
             paint.setPen(original);
             break;
         }
-    }// Draw buildings on the grid
-    for (int x = 0; x < grid_size; x++) {
-        for (int y = 0; y < grid_size; y++) {
-            if (!city->is_empty_at(x, y)) {
+    }
+    // Draw buildings on the grid
+    for (int x = 0; x < i; x++) {
+        for (int y = 0; y < i; y++) {
+            if (!map->is_empty_at(x, y)) {
                 drawPixmap(paint, (x - grid_size / 2) * 100, (y - grid_size / 2) * 100, 100, 100,
                            ICONS[static_cast<int>(city->get_at(x, y)->get_type()) - 1]);
             }
         }
-    }// Render extra effects on the grid, depending on the build mode
+    }
+    // Render extra effects on the grid, depending on the build mode
     if (hovering_grid_x >= 0 && hovering_grid_y >= 0 && hovering_grid_x < grid_size && hovering_grid_y < grid_size)
         if ((tick / 10) % 2 == 0) {
             MainWindow::SideMenuButton button_selected = dynamic_cast<MainWindow *>(window())->get_selected_side_menu_button();
@@ -333,15 +247,40 @@ void GameWidget::paintEvent(QPaintEvent* event) {
                 fillRect(paint, (hovering_grid_x - grid_size / 2) * 100, (hovering_grid_y - grid_size / 2) * 100, 100,
                          100, QBrush{QColor::fromRgbF(1.0f, 0, 0, 0.5f)});
             }
-        }// Draw grid lines
-    for (int x = 0; x <= grid_size; x++) {
-        int xpos = (x - grid_size / 2) * 100;
-        drawLine(paint, xpos, min, xpos, max);
+        } */
+    // Draw grid lines
+    for (int x = 0; x <= i; x++) {
+        int xpos = (x - i / 2) * 64;
+        drawLine(paint, xpos, minn, xpos, maxx);
     }
-    for (int y = 0; y <= grid_size; y++) {
-        int ypos = (y - grid_size / 2) * 100;
+    for (int y = 0; y <= j; y++) {
+        int ypos = (y - j / 2) * 64;
         drawLine(paint, min, ypos, max, ypos);
-    }// Draw player statistics
+    }
+    // Draw player
+    QPixmap player(":/resources/images/player.png");
+    QMatrix rm;
+    if (LEFT==true) {
+        rm.rotate(-90);
+        if (UP==true)
+            rm.rotate(45);
+        if (DOWN==true)
+            rm.rotate(-45);
+    }
+    else if (RIGHT==true) {
+        rm.rotate(90);
+        if (UP==true)
+            rm.rotate(-45);
+        if (DOWN==true)
+            rm.rotate(45);
+    }
+    else if (DOWN==true)
+        rm.rotate(180);
+    int w = player.width(), h = player.height();
+    player = player.transformed(rm);
+    player = player.copy((player.width()-w)/2, (player.height()-h)/2, w, h);
+    drawPixmap(paint, scroll_x-64, scroll_y-64, 128, 128, player);
+    /* // Draw player statistics
 #define STAT_WIDTH 500
 #define HEIGHT 40
     paint.drawText(10, 10 + HEIGHT, STAT_WIDTH, 50, Qt::AlignTop,
@@ -354,16 +293,11 @@ void GameWidget::paintEvent(QPaintEvent* event) {
     paint.drawText(10, 210 + HEIGHT, STAT_WIDTH, 50, Qt::AlignTop,
                    "Population Change: " + QString::number(city->get_population_growth()));
     paint.drawText(10, 260 + HEIGHT, STAT_WIDTH, 50, Qt::AlignTop,
-                   "Population Growth Rate: " + QString::number(city->get_population_growth_rate()));
+                   "Population Growth Rate: " + QString::number(city->get_population_growth_rate())); */
 }
 
 void GameWidget::load_icons() {
-    ICONS = new QPixmap[6]{ {":/resources/images/clinic.png"},
-                            {":/resources/images/hospital.png"},
-                            {":/resources/images/silver_mine.png"},
-                            {":/resources/images/gold_mine.png"},
-                            {":/resources/images/house.png"},
-                            {":/resources/images/apartment.png"} };
+    ICONS = new QPixmap {":/resources/images/player.png"};
 }
 
 void GameWidget::dealloc_icons() {

@@ -1,14 +1,19 @@
 #ifndef TERRAIN_H
 #define TERRAIN_H
 
-#include <string>
 #include <set>
-#include "Map.h"
 using namespace std;
 class Terrain {
     public:
-        set<Map::Terrain> t;
-        bool operator()(Map::Terrain terrain) const;
-        void operator+=(Map::Terrain terrain);
+        enum class Type {
+            GRASS,
+            STONE,
+            OCEAN,
+            SHOAL,
+            VOID // should not appears
+        };
+        set<Terrain::Type> t;
+        bool operator()(Terrain::Type terrain) const;
+        void operator+=(Terrain::Type terrain);
 };
 #endif // TERRAIN_H

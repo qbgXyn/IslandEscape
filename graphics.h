@@ -33,12 +33,6 @@ protected:
     // Handle mouse scrolling for magnification
     virtual void wheelEvent(QWheelEvent* event) override;
 
-    // Handle mouse clicks
-    virtual void mouseReleaseEvent(QMouseEvent* event) override;
-
-    // Handle mouse movement
-    virtual void mouseMoveEvent(QMouseEvent* event) override;
-
 private:
     // Obtain the display coordinates from the 'real' coordinates
     void to_display_coordinates(int x, int y, int& dispx, int& dispy);
@@ -60,8 +54,9 @@ private:
     void load_icons();
     void dealloc_icons();
 
-    //City *const city;
-    int grid_size;
+    Map *const map;
+    double map_width;
+    double map_height;
 
     // Scrolling
     int scroll_x, scroll_y;

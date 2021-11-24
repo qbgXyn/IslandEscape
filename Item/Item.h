@@ -13,7 +13,6 @@ class Item {
             SPEED_POTION,
             REGEN_INSTANT_POTION
         };
-        Item* createItem(Item::ID);
         ID getID() const;
         string getName() const;
         string getDescription() const;

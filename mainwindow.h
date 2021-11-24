@@ -26,7 +26,10 @@ private:
 
     Ui::MainWindow* ui;
 
-    Map* const map;
+    Map *const map;
+
+    int game_time{30*50}; //seconds*50
+    int torch_time{20*50}; //seconds*50
 
     QTimer* loop_timer;
 

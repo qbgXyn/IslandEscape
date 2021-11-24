@@ -1,4 +1,5 @@
 #include "Survivor.h"
+#include "../../Map/Map.h"
 #include <chrono>
 
 //#include <bits/stdc++.h>
@@ -10,9 +11,9 @@ const double Survivor::base_attack_sector_angle = 60.0;
 
 Survivor::Survivor(Map *map, double x, double y) : Unit(map, x, y) {
     type = Handle::Type::SURVIVOR;
-    pathable += Map::Terrain::GRASS;
-    pathable += Map::Terrain::STONE;
-    pathable += Map::Terrain::SHOAL;
+    pathable += Terrain::Type::GRASS;
+    pathable += Terrain::Type::STONE;
+    pathable += Terrain::Type::SHOAL;
 }
 
 void Survivor::attack() {
@@ -82,14 +83,16 @@ void Survivor::useItem(Item_inventory *i) {
         case Item::ID::BELL:
             // further information needed for implementation
             break;
-        case Item::ID::SPEED_POTION:
+        case Item::ID::SPEED_POTION: {
             Effect *e = new Effect(Effect::Type::SPEED, data, duration);
             addEffect(e);
             break;
-        case Item::ID::REGEN_INSTANT_POTION:
+        }
+        case Item::ID::REGEN_INSTANT_POTION: {
             Effect *e = new Effect(Effect::Type::REGEN_INSTANT, data, duration);
             addEffect(e);
             break;
+        }
     }
 
     if (durability > 0) {
@@ -114,13 +117,13 @@ void Survivor::pickupItem() {
         h = *it;
         if (h->getType() == Handle::Type::ITEM && !isInventoryFull()) {
             i = new Item_inventory {*(h->getCorrespondingItem())};
-            delete *it;
+            delete h;
         }
     }
 }
 
 
-void Survivor::dropItem() {
+void Survivor::dropItem(Item_inventory *i) {
     
 }
 

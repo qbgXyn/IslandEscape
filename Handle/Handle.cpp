@@ -76,6 +76,10 @@ bool Handle::hasCollision(const Handle *h) const {
     return ( (d - this->collisionRadius - h->collisionRadius) < 0);
 }
 
+float Handle::getArmor() const {
+    return 0;
+}
+
 void Handle::move() {
     /*
     1. get new position
@@ -92,7 +96,7 @@ bool Handle::isCoordinatePathable(double x, double y) const {
         return false;
     }
 
-    Map::Terrain terrain = map->getTerrainOfGrid(x, y);
+    Terrain::Type terrain = map->getTerrainOfGrid(x, y);
     return pathable(terrain);
 }
 
