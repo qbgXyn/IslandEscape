@@ -7,7 +7,7 @@
 #include <QWheelEvent>
 #include <QMessageBox>
 #include <QTextFormat>
-//#include <QMatrix>
+#include <QPixmap>
 
 #include <cmath>
 #include <regex>
@@ -155,7 +155,16 @@ void GameWidget::paintEvent(QPaintEvent* event) {
     QPainter paint{this};
 
     // Set green background
-    paint.fillRect(0, 0, width(), height(), QBrush{ QColor::fromRgb(119,158,203) });
+    //use for making the map background
+   /* paint.fillRect(0, 0, width(), height(), QBrush{ QColor::fromRgb(119,158,203) });
+
+        for (int x = 0; x < grid_size; x++) {
+        for (int y = 0; y < grid_size; y++) {
+                drawPixmap(paint, (x - grid_size / 2) * 100, (y - grid_size / 2) * 100, 100, 100,
+                           ICONS[0]);
+
+        }
+    }*/
 
     /* QFont ft;
     ft.setPixelSize(25);
