@@ -80,7 +80,7 @@ float Handle::getArmor() const {
     return 0;
 }
 
-void Handle::move() {
+void Handle::update() {
     /*
     1. get new position
     2. check collision

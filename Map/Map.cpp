@@ -1,3 +1,6 @@
+#include <random>
+#include <cstdlib>
+
 #include "Map.h"
 #include "../Handle/Handle.h"
 
@@ -47,6 +50,10 @@ Terrain::Type Map::getTerrainOfGrid(double x, double y) const {
 
 }
 
+double Map::getRandomLocation(double minValue, double maxValue) const {
+    double value = (double)rand() / RAND_MAX;
+    return minValue + value * (maxValue - minValue);
+}   
 
 
 double Map::distanceBetweenPoints(double x1, double y1, double x2, double y2) const {

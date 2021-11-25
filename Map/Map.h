@@ -35,6 +35,8 @@ class Map {
         bool isCoordinateInMap(double x, double y) const;
         Terrain::Type getTerrainOfGrid(double x, double y) const;
 
+        double getRandomLocation(double minValue, double maxValue) const;
+
 
         double distanceBetweenPoints(double x1, double y1, double x2, double y2) const;
 
