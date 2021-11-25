@@ -16,7 +16,7 @@ class Unit : public Handle {
         float getArmor() const;
         void gainAttributeFromEffect(Effect *e);
         void addEffect(Effect *e);
-        virtual void attack() = 0;
+        void attack(double attackRadius, double sectorAngle, double attackInterval);
         bool isInsideSector(const Handle *h, double sector_angle) const;
 
 };

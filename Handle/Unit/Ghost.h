@@ -19,7 +19,7 @@ class Ghost : public Unit {
         static const int base_armor = 1;
         static const int base_visible_radius = 80;
 
-        void attack();
+        // void attack();
         void patrol();
 
 };

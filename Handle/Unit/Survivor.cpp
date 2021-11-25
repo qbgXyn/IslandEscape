@@ -17,49 +17,49 @@ Survivor::Survivor(Map *map, double x, double y) : Unit(map, x, y) {
     pathable += Terrain::Type::SHOAL;
 }
 
-void Survivor::attack() {
-    //set attack interval of survivor
+// void Survivor::attack() {
+//     //set attack interval of survivor
 
-     auto t_start = std::chrono::high_resolution_clock::now();
-    /*get all Handle that within radius (60 degree of the circle(radius = attack_radius, center = Coordinate(Survivor)) in front of Survivor)
-    if :
-        1. Handle is not invulnerable
-        2. Handle is Unit
-        3. attack(Survivor) > armor(Unit)
-    then
-    deal (attack(Survivor) - armor(Unit)) amount of attack to Unit
-    */
-    vector<Handle*> list = map->getHandleGroup(location[0], location[1], base_attack_radius); // get all surrounding handle within attack radius
+//      auto t_start = std::chrono::high_resolution_clock::now();
+//     /*get all Handle that within radius (60 degree of the circle(radius = attack_radius, center = Coordinate(Survivor)) in front of Survivor)
+//     if :
+//         1. Handle is not invulnerable
+//         2. Handle is Unit
+//         3. attack(Survivor) > armor(Unit)
+//     then
+//     deal (attack(Survivor) - armor(Unit)) amount of attack to Unit
+//     */
+//     vector<Handle*> list = map->getHandleGroup(location[0], location[1], base_attack_radius); // get all surrounding handle within attack radius
 
-    vector<Handle*>::const_iterator it_end = list.end(); 
-    for(vector<Handle*>::const_iterator it = list.begin(); it != it_end; ++it) 
-    {
-        if (isInsideSector(*it, base_attack_sector_angle) == true) // check if it within attack sector range
-        {
-            if (!isInvulnerable()) //check if it is vulnerable
-            {
-                if ((*it) -> getCategory() == Handle::Category::UNIT) // check if it is Unit
-                {
-                    if (this -> getDamage() >= (*it) -> getArmor()) // check if attack > armor
-                    {
-                        int newHealth = this -> getHealth() - (this -> getDamage() - (*it) -> getArmor());
-                        this -> setHealth(newHealth);
-                    }
-                }
-            }
-        }
+//     vector<Handle*>::const_iterator it_end = list.end(); 
+//     for(vector<Handle*>::const_iterator it = list.begin(); it != it_end; ++it) 
+//     {
+//         if (isInsideSector(*it, base_attack_sector_angle) == true) // check if it within attack sector range
+//         {
+//             if (!isInvulnerable()) //check if it is vulnerable
+//             {
+//                 if ((*it) -> getCategory() == Handle::Category::UNIT) // check if it is Unit
+//                 {
+//                     if (this -> getDamage() >= (*it) -> getArmor()) // check if attack > armor
+//                     {
+//                         int newHealth = this -> getHealth() - (this -> getDamage() - (*it) -> getArmor());
+//                         this -> setHealth(newHealth);
+//                     }
+//                 }
+//             }
+//         }
 
-    }
-    while (true)
-    {
-    auto t_end = std::chrono::high_resolution_clock::now();
-    if (std::chrono::duration<float, milli>(t_end - t_start).count() > 1 / base_attackInterval)
-    {
-        //cout << chrono::duration<float, milli>(t_end - t_start).count() << endl;
-        break;
-    }
-    }
-}
+//     }
+//     while (true)
+//     {
+//     auto t_end = std::chrono::high_resolution_clock::now();
+//     if (std::chrono::duration<float, milli>(t_end - t_start).count() > 1 / base_attackInterval)
+//     {
+//         //cout << chrono::duration<float, milli>(t_end - t_start).count() << endl;
+//         break;
+//     }
+//     }
+// }
 
 bool Survivor::isInventoryFull() const {
     return (Inventory.size() == maxSlotOfInventory);
