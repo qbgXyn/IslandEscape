@@ -1,5 +1,7 @@
 #include <random>
 #include <cstdlib>
+#include <string>
+#include <fstream>
 
 #include "Map.h"
 #include "../Handle/Handle.h"
@@ -7,14 +9,57 @@
 #include "../Item/key.h"
 #include "../Item/regen_instant_potion.h"
 
-Map::Map(double width, double height) : width(width), height(height) {
+#include "Terrain.h"
+
+Map::Map(double width, double height, std::string filename) : width(width), height(height) {
     int i = width/grid_radius;  // width = i grids
     int j = height/grid_radius; // height = j grids
-    grid = new Terrain::Type* [i];
-    for (int x = 0; x < i; x++) {
-        grid[x] = new Terrain::Type [j];
-        for (int y = 0; y < j; y++) {
-            grid[x][y] = Terrain::Type::GRASS;
+    std::fstream file; //load and read map txt file
+    file.open(filename);
+    if (file)
+    {
+        grid = new Terrain::Type* [i];
+        for (int x = 0; x < i; x++) {
+            grid[x] = new Terrain::Type [j];
+            for (int y = 0; y < j; y++) {
+                int type;
+                file >> type;
+                if (type >= 1 && type <= 5)
+                {
+                    switch(static_cast<Terrain::Type>(type))
+                    {
+                        case Terrain::Type::GRASS:
+                        grid[x][y] = Terrain::Type::GRASS;
+                        break;
+                        
+                        case Terrain::Type::STONE:
+                        grid[x][y] = Terrain::Type::STONE;
+                        break;
+
+                        case Terrain::Type::OCEAN:
+                        grid[x][y] = Terrain::Type::OCEAN;
+                        break;
+
+                        case Terrain::Type::SHOAL:
+                        grid[x][y] = Terrain::Type::SHOAL;
+                        break;
+
+                        case Terrain::Type::VOID:
+                        grid[x][y] = Terrain::Type::VOID;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    else
+    {
+        grid = new Terrain::Type* [i];
+        for (int x = 0; x < i; x++) {
+            grid[x] = new Terrain::Type [j];
+            for (int y = 0; y < j; y++) {
+                grid[x][y] = Terrain::Type::GRASS;
+            }
         }
     }
 }

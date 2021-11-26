@@ -73,7 +73,7 @@ void Unit::attack(double attackRadius, double sectorAngle, double attackInterval
         {
             if (!isInvulnerable()) //check if it is vulnerable
             {
-                if ((*it) -> getCategory() == Handle::Category::UNIT) // check if it is Unit
+                if ((*it) -> getType() != this -> getType()) // check if it is the same type
                 {
                     if (this -> getDamage() >= (*it) -> getArmor()) // check if attack > armor
                     {
