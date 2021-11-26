@@ -63,7 +63,7 @@ bool Unit::isGridVisible(int x, int y) const {
 }
 
 bool Unit::isHandleVisible(Handle *h) const {
-    return isGridVisible(h->getX() / 64, h->getY() / 64);
+    return isGridVisible(h->getX() / map->grid_size, h->getY() / map->grid_size);
 }
 
 void Unit::attack(double attackRadius, double sectorAngle, double attackInterval) {
