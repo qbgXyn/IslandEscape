@@ -14,7 +14,7 @@
 Map::Map(double width, double height, std::string filename) : width(width), height(height) {
     int i = width/grid_radius;  // width = i grids
     int j = height/grid_radius; // height = j grids
-    std::fstream file;
+    std::fstream file; //load and read map txt file
     file.open(filename);
     if (file)
     {
@@ -29,19 +29,23 @@ Map::Map(double width, double height, std::string filename) : width(width), heig
                     switch(static_cast<Terrain::Type>(type))
                     {
                         case Terrain::Type::GRASS:
-                        //grid[x][y] = 
+                        grid[x][y] = Terrain::Type::GRASS;
                         break;
                         
                         case Terrain::Type::STONE:
+                        grid[x][y] = Terrain::Type::STONE;
                         break;
 
                         case Terrain::Type::OCEAN:
+                        grid[x][y] = Terrain::Type::OCEAN;
                         break;
 
                         case Terrain::Type::SHOAL:
+                        gird[x][y] = Terrain::Type::SHOAL;
                         break;
 
                         case Terrain::Type::VOID:
+                        grid[x][y] = Terrain::Type::VOID;
                         break;
                     }
                 }
