@@ -22,7 +22,6 @@ class Map {
 
     private:
 
-        static const int grid_radius = 64; // length of a square of a grid on the map, for displaying texture only(grass, sea, etc.)
         double width; // x
         double height; // y
         vector<Handle*> List; // all handle
@@ -48,6 +47,9 @@ class Map {
 
         bool createHandle(Handle::Type type, double x, double y);
         void removeHandle(Handle *h);
+
+        
+        static const int grid_radius = 64; // length of a square of a grid on the map, for displaying texture only(grass, sea, etc.)
 
     private:
         Terrain::Type** grid;

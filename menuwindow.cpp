@@ -35,7 +35,7 @@ MenuWindow::~MenuWindow()
 }
 
 void MenuWindow::start_game(int selected_level) {
-    Map* map = new Map(12*64, 10*64);
+    Map* map = new Map(12*map->grid_radius, 10*map->grid_radius);
     MainWindow *m = new MainWindow{map, nullptr};
     m->setAttribute(Qt::WA_DeleteOnClose);
     m->show();

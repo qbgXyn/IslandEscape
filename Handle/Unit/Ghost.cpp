@@ -7,9 +7,10 @@ const float Ghost::base_collison_radius = 0.0;
 const double Ghost::base_max_speed = 20.0;
 const float Ghost::base_attackInterval = 3.0;
 const float Ghost::base_attack_radius = 16.0;
+const double Ghost::base_attack_sector_angle = 60.0;
 
-const double patrolRadius = 256.0;
-const double chasingRadius = 640.0;
+const double Ghost::patrolRadius = 256.0;
+const double Ghost::chasingRadius = 640.0;
 
 
 Ghost::Ghost(Map *map, double x, double y, Unit *chasing_target) : Unit(map, x, y) {
