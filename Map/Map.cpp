@@ -41,7 +41,7 @@ Map::Map(double width, double height, std::string filename) : width(width), heig
                         break;
 
                         case Terrain::Type::SHOAL:
-                        gird[x][y] = Terrain::Type::SHOAL;
+                        grid[x][y] = Terrain::Type::SHOAL;
                         break;
 
                         case Terrain::Type::VOID:
