@@ -136,6 +136,15 @@ void Survivor::dropItem(Item_inventory *i) {
     }
 }
 
+// bool Survivor::switchTorchState() {
+//     if (selectedItem->item->getID() == Item::ID::TORCH) {
+
+//     }
+//     if (selectedItem->item->getID() == Item::ID::TORCH_LIT) {
+//         Item_inventory* i = new Item_inventory{*selectedItem->item};
+//     }
+// }
+
 
 bool Survivor::turnOnBoat() const {
     vector<Handle*> list = map->getHandleGroup(location[0], location[1], collisionRadius); // get all surrounding handle

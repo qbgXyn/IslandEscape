@@ -2,7 +2,7 @@
 
 key::key(Item::ID id, int durability) : Item(id, durability) {
     name = "key";
-    description = "";
+    description = "a key for turn on the boat";
     data = 0.0;
     duration = 0.0;
 }
