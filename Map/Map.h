@@ -51,7 +51,7 @@ class Map {
         void removeHandle(Handle *h);
 
         
-        static const int grid_radius = 64; // length of a square of a grid on the map, for displaying texture only(grass, sea, etc.)
+        static const int grid_size = 64; // length of a square of a grid on the map, for displaying texture only(grass, sea, etc.)
 
     private:
         Terrain::Type** grid;

@@ -52,6 +52,20 @@ bool Unit::isInsideSector(const Handle *h, double sector_angle) const
 }
 
 
+int Unit::getVisionRadius() const {
+    return visible_size;
+}
+bool Unit::isGridVisible(int x, int y) const {
+    int u_x = ( static_cast<int> (location[0]) ) / map->grid_size;
+    int u_y = ( static_cast<int> (location[1]) ) / map->grid_size;
+
+    return ( abs(u_x - x) <= visible_size ) && ( abs(u_y - y) <= visible_size );
+}
+
+bool Unit::isHandleVisible(Handle *h) const {
+    return isGridVisible(h->getX() / 64, h->getY() / 64);
+}
+
 void Unit::attack(double attackRadius, double sectorAngle, double attackInterval) {
     //set attack interval of survivor
 

@@ -9,11 +9,14 @@ class Unit : public Handle {
         int damage;
         float attackInterval;
         vector<Effect*> EffectList;
-        int visible_radius;
+        int visible_size; // base on grid && is a square for simplicity
         explicit Unit(Map *map, double x, double y);
     public:
         float getDamage() const;
-        float getArmor() const;
+        virtual float getArmor() const;
+        virtual int getVisionRadius() const;
+        virtual bool isGridVisible(int x, int y) const;
+        virtual bool isHandleVisible(Handle *h) const;
         void gainAttributeFromEffect(Effect *e);
         void addEffect(Effect *e);
         void attack(double attackRadius, double sectorAngle, double attackInterval);

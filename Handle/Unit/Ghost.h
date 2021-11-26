@@ -35,6 +35,7 @@ class Ghost : public Unit {
         // void attack();
         void patrol();
         void move_AI(double x, double y);
+        void ai();
         void chase(Unit* u);
 
 };

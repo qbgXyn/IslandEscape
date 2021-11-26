@@ -15,6 +15,8 @@ Survivor::Survivor(Map *map, double x, double y) : Unit(map, x, y) {
     pathable += Terrain::Type::GRASS;
     pathable += Terrain::Type::STONE;
     pathable += Terrain::Type::SHOAL;
+
+    visible_size = 2;
 }
 
 // void Survivor::attack() {

@@ -19,6 +19,7 @@ class Survivor : public Unit {
         static const int base_visible_radius = 100;
 
         static const int maxSlotOfInventory = 9;
+        int selectedInventoryIndex;
 
         // void attack();
         vector<Item_inventory*> Inventory;
