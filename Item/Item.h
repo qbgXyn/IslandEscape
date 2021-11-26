@@ -8,6 +8,7 @@ class Item {
         enum class ID{
             KEY,
             TORCH,
+            TORCH_LIT,
             ROCK,
             BELL,
             SPEED_POTION,

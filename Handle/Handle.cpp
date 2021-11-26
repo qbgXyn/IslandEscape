@@ -80,6 +80,16 @@ float Handle::getArmor() const {
     return 0;
 }
 
+int Handle::getVisionRadius() const {
+    return 0;
+}
+bool Handle::isGridVisible(int x, int y) const {
+    return false;
+}
+bool Handle::isHandleVisible(Handle *h) const {
+    return false;
+}
+
 void Handle::update() {
     /*
     1. get new position

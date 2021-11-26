@@ -15,6 +15,8 @@ Survivor::Survivor(Map *map, double x, double y) : Unit(map, x, y) {
     pathable += Terrain::Type::GRASS;
     pathable += Terrain::Type::STONE;
     pathable += Terrain::Type::SHOAL;
+
+    visible_size = 2;
 }
 
 // void Survivor::attack() {
@@ -133,6 +135,15 @@ void Survivor::dropItem(Item_inventory *i) {
         delete i;
     }
 }
+
+// bool Survivor::switchTorchState() {
+//     if (selectedItem->item->getID() == Item::ID::TORCH) {
+
+//     }
+//     if (selectedItem->item->getID() == Item::ID::TORCH_LIT) {
+//         Item_inventory* i = new Item_inventory{*selectedItem->item};
+//     }
+// }
 
 
 bool Survivor::turnOnBoat() const {

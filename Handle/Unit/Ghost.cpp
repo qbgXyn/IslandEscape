@@ -23,6 +23,8 @@ Ghost::Ghost(Map *map, double x, double y, Unit *chasing_target) : Unit(map, x, 
     pathable += Terrain::Type::SHOAL;
     pathable += Terrain::Type::OCEAN;
     pathable += Terrain::Type::VOID;
+
+    visible_size = 3;
 }
 
 // void Ghost::attack() {
@@ -89,12 +91,21 @@ void Ghost::move_AI(double x, double y) {
     velocity[1] = dy/total * max_speed;
 }
 
+void Ghost::ai() {
+    if (chasing_target) {
+        chase(chasing_target);
+    }else if (velocity[0] <= ECLIPSE && velocity[0] >= -ECLIPSE && velocity[1] <= ECLIPSE && velocity[1] >= -ECLIPSE) {     // if velocity is 0, i.e ghost is static
+        patrol();
+    }
+}
+
 void Ghost::chase(Unit* u) {
     double d = std::hypot(location[0] - patrolCenterLocation[0], location[1] - location[0]);
-    if (d > chasingRadius) {
+    if (d > chasingRadius || !isHandleVisible(u)) {
         move_AI(patrolCenterLocation[0], patrolCenterLocation[1]);
+        chasing_target = nullptr;
     }else {
-        if (map->distanceBetweenPoints(location[0], location[1], u->getX(), u->getY()) < base_attack_radius) {
+        if (map->distanceBetweenPoints(location[0], location[1], u->getX(), u->getY()) < base_attack_radius /* add is attack cooldown finished condition */) {
             attack(base_attack_radius, base_attack_sector_angle, base_attackInterval);
         }
         move_AI(u->getX(), u->getY());

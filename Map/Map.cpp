@@ -12,8 +12,8 @@
 #include "Terrain.h"
 
 Map::Map(double width, double height, std::string filename) : width(width), height(height) {
-    int i = width/grid_radius;  // width = i grids
-    int j = height/grid_radius; // height = j grids
+    int i = width/grid_size;  // width = i grids
+    int j = height/grid_size; // height = j grids
     std::fstream file; //load and read map txt file
     file.open(filename);
     if (file)
@@ -65,7 +65,7 @@ Map::Map(double width, double height, std::string filename) : width(width), heig
 }
 
 Map::~Map() {
-    int i = width/grid_radius;
+    int i = width/grid_size;
     for (int x = 0; x < i; x++) {
         delete [] grid[x];
     }
@@ -87,8 +87,8 @@ bool Map::isCoordinateInMap(double x, double y) const {
 
 Terrain::Type Map::getTerrainOfGrid(double x, double y) const {
     if (isCoordinateInMap(x, y)) {
-        int i = x/grid_radius;
-        int j = y/grid_radius;
+        int i = x/grid_size;
+        int j = y/grid_size;
         return grid[i][j];
     }
     return Terrain::Type::VOID;
@@ -121,7 +121,7 @@ Terrain::Type Map::get_at(double x, double y) const {
         return Terrain::Type::VOID;
     if (y < 0 || y >= height)
         return Terrain::Type::VOID;
-    return grid[(int)(x/grid_radius)][(int)(y/grid_radius)];
+    return grid[(int)(x/grid_size)][(int)(y/grid_size)];
 }
 
 
