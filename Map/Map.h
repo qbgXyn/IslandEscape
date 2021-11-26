@@ -18,6 +18,8 @@
 
 #include "../Handle/Decoration/Item_Handle.h"
 
+#include <string>
+
 class Map {
 
     private:
@@ -28,7 +30,7 @@ class Map {
         vector<Handle*> List; // all handle
 
     public:
-        Map(double width, double height);
+        Map(double width, double height, string filename);
         ~Map();
         double getMaxWidth() const;
         double getMaxHeight() const;

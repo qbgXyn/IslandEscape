@@ -4,6 +4,7 @@
 #include "Map/Map.h"
 
 #include <QMainWindow>
+#include <string>
 
 namespace Ui { class MenuWindow; }
 
@@ -16,7 +17,7 @@ public:
     ~MenuWindow();
 
 private:
-    void start_game(int selected_level);
+    void start_game(int selected_level, string filename);
 
     void initialize_level_btn();
 
