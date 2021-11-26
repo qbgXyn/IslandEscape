@@ -5,5 +5,35 @@
         <file>images/heart.png</file>
         <file>images/player.png</file>
         <file>images/torch.png</file>
+        <file>images/brushwalker437.png</file>
+        <file>images/mysteryemwarzone2100textures/CrackedConcreteWithBitsOfStone.png</file>
+        <file>images/mysteryemwarzone2100textures/Grass1.png</file>
+        <file>images/mysteryemwarzone2100textures/grassyCliff.png</file>
+        <file>images/mysteryemwarzone2100textures/GravelTarmac.png</file>
+        <file>images/mysteryemwarzone2100textures/Oldsandbags.png</file>
+        <file>images/mysteryemwarzone2100textures/Pavement.png</file>
+        <file>images/mysteryemwarzone2100textures/PebbledWall.png</file>
+        <file>images/mysteryemwarzone2100textures/Pebbles.png</file>
+        <file>images/mysteryemwarzone2100textures/Pebbles2.png</file>
+        <file>images/mysteryemwarzone2100textures/Rock1.png</file>
+        <file>images/mysteryemwarzone2100textures/Rock2(bad).png</file>
+        <file>images/mysteryemwarzone2100textures/Rock3.png</file>
+        <file>images/mysteryemwarzone2100textures/Rock4.png</file>
+        <file>images/mysteryemwarzone2100textures/Rock5.png</file>
+        <file>images/mysteryemwarzone2100textures/Rock6.png</file>
+        <file>images/mysteryemwarzone2100textures/Rock7.png</file>
+        <file>images/mysteryemwarzone2100textures/Rock8(algae).png</file>
+        <file>images/mysteryemwarzone2100textures/Rock9.png</file>
+        <file>images/mysteryemwarzone2100textures/SmallRocks.png</file>
+        <file>images/mysteryemwarzone2100textures/snowRocks.png</file>
+        <file>images/mysteryemwarzone2100textures/SpeckledStone.png</file>
+        <file>images/mysteryemwarzone2100textures/TiledConcrete.png</file>
+        <file>images/mysteryemwarzone2100textures/UndergroundEarth(bidirectionallyseamless).png</file>
+        <file>images/mysteryemwarzone2100textures/UndergroundEarth(horizontallyseamless).png</file>
+        <file>images/mysteryemwarzone2100textures/violetRocks.png</file>
+        <file>images/mysteryemwarzone2100textures/WallLargeRocks.png</file>
+        <file>images/mysteryemwarzone2100textures/water.png</file>
+        <file>images/mysteryemwarzone2100textures/WierdTexture(no idea of what it is).png</file>
+        <file>images/mysteryemwarzone2100textures/WierdTexture2.png</file>
     </qresource>
 </RCC>
