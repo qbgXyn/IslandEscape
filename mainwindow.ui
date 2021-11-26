@@ -25,22 +25,27 @@ background-image: url(:/resources/images/stripes.png);
    <widget class="QLabel" name="label_instruction">
     <property name="geometry">
      <rect>
-      <x>140</x>
+      <x>200</x>
       <y>50</y>
-      <width>1141</width>
+      <width>1021</width>
       <height>29</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <pointsize>24</pointsize>
+      <weight>75</weight>
+      <italic>false</italic>
+      <bold>true</bold>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
      </font>
     </property>
     <property name="layoutDirection">
      <enum>Qt::LeftToRight</enum>
     </property>
     <property name="autoFillBackground">
-     <bool>false</bool>
+     <bool>true</bool>
     </property>
     <property name="text">
      <string>[↑↓←→] - Movement        [c] - Pick Up Items        [e] - Inventory        [Spacebar] - Attack</string>
@@ -60,6 +65,9 @@ background-image: url(:/resources/images/stripes.png);
       <width>64</width>
       <height>64</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
     </property>
     <property name="text">
      <string/>
@@ -85,6 +93,9 @@ background-image: url(:/resources/images/stripes.png);
       <pointsize>48</pointsize>
      </font>
     </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -103,6 +114,9 @@ background-image: url(:/resources/images/stripes.png);
       <pointsize>48</pointsize>
      </font>
     </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -115,6 +129,9 @@ background-image: url(:/resources/images/stripes.png);
       <width>64</width>
       <height>64</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
     </property>
     <property name="text">
      <string/>
@@ -140,6 +157,9 @@ background-image: url(:/resources/images/stripes.png);
       <pointsize>48</pointsize>
      </font>
     </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
     <property name="text">
      <string/>
     </property>
@@ -152,6 +172,9 @@ background-image: url(:/resources/images/stripes.png);
       <width>36</width>
       <height>64</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
     </property>
     <property name="text">
      <string/>

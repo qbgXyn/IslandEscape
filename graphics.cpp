@@ -300,6 +300,19 @@ void GameWidget::paintEvent(QPaintEvent* event) {
                    "Population Change: " + QString::number(city->get_population_growth()));
     paint.drawText(10, 260 + HEIGHT, STAT_WIDTH, 50, Qt::AlignTop,
                    "Population Growth Rate: " + QString::number(city->get_population_growth_rate())); */
+    // Draw Out of Vision
+    if (map->get_torch_time() > 0) {
+        paint.fillRect(0, 0, width()/2-64*4, height(), QBrush{ QColor::fromRgb(0,0,0) });
+        paint.fillRect(0, 0, width(), height()/2-64*4, QBrush{ QColor::fromRgb(0,0,0) });
+        paint.fillRect(width(), height(), -width()/2+64*4, -height(), QBrush{ QColor::fromRgb(0,0,0) });
+        paint.fillRect(width(), height(), -width(), -height()/2+64*4, QBrush{ QColor::fromRgb(0,0,0) });
+    }
+    else {
+        paint.fillRect(0, 0, width()/2-64*3, height(), QBrush{ QColor::fromRgb(0,0,0) });
+        paint.fillRect(0, 0, width(), height()/2-64*3, QBrush{ QColor::fromRgb(0,0,0) });
+        paint.fillRect(width(), height(), -width()/2+64*3, -height(), QBrush{ QColor::fromRgb(0,0,0) });
+        paint.fillRect(width(), height(), -width(), -height()/2+64*3, QBrush{ QColor::fromRgb(0,0,0) });
+    }
 }
 
 void GameWidget::load_icons() {
