@@ -24,7 +24,7 @@ Map::Map(double width, double height, std::string filename) : width(width), heig
             for (int y = 0; y < j; y++) {
                 int type;
                 file >> type;
-                if (type >= 1 && type <= 5)
+                if (type >= 0 && type <= 4)
                 {
                     switch(static_cast<Terrain::Type>(type))
                     {
