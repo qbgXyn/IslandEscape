@@ -11,54 +11,27 @@
 
 #include "Terrain.h"
 
+#include <iostream>
+
 Map::Map(double width, double height, std::string filename) : width(width), height(height) {
     int i = width/grid_size;  // width = i grids
     int j = height/grid_size; // height = j grids
-    std::fstream file; //load and read map txt file
+    fstream file; //load and read map txt file
+    filename = "../../../../"+filename;
     file.open(filename);
-    if (file)
-    {
-        grid = new Terrain::Type* [i];
-        for (int x = 0; x < i; x++) {
-            grid[x] = new Terrain::Type [j];
-            for (int y = 0; y < j; y++) {
-                int type;
-                file >> type;
-                if (type >= 1 && type <= 5)
-                {
-                    switch(static_cast<Terrain::Type>(type))
-                    {
-                        case Terrain::Type::GRASS:
-                        grid[x][y] = Terrain::Type::GRASS;
-                        break;
-                        
-                        case Terrain::Type::STONE:
-                        grid[x][y] = Terrain::Type::STONE;
-                        break;
-
-                        case Terrain::Type::OCEAN:
-                        grid[x][y] = Terrain::Type::OCEAN;
-                        break;
-
-                        case Terrain::Type::SHOAL:
-                        grid[x][y] = Terrain::Type::SHOAL;
-                        break;
-
-                        case Terrain::Type::VOID:
-                        grid[x][y] = Terrain::Type::VOID;
-                        break;
-                    }
-                }
-            }
+    grid = new Terrain::Type* [i];
+    for (int x = 0; x < i; x++) {
+        grid[x] = new Terrain::Type [j];
+        for (int y = 0; y < j; y++) {
+            grid[x][y] = Terrain::Type::GRASS;
         }
     }
-    else
-    {
-        grid = new Terrain::Type* [i];
+    for (int y = 0; y < j; y++) {
         for (int x = 0; x < i; x++) {
-            grid[x] = new Terrain::Type [j];
-            for (int y = 0; y < j; y++) {
-                grid[x][y] = Terrain::Type::GRASS;
+            int type = 0;
+            file >> type;
+            if (type >= 0 && type <= 3) {
+                grid[x][y] = static_cast<Terrain::Type>(type);
             }
         }
     }

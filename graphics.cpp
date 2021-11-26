@@ -33,10 +33,10 @@ GameWidget::~GameWidget() {
 }
 
 void GameWidget::loop() {
-    const int x_min = -map_width/2;
-    const int x_max = map_width/2;
-    const int y_min = -map_height/2;
-    const int y_max = map_height/2;
+    const int x_min = 0;
+    const int x_max = map_width;
+    const int y_min = 0;
+    const int y_max = map_height;
     if (scroll_x >= x_min && scroll_x <= x_max) {
         scroll_x += (int) (5.0f * ((int) RIGHT - (int) LEFT));
     }
@@ -156,8 +156,10 @@ void GameWidget::paintEvent(QPaintEvent* event) {
 
     // Set green background
     //use for making the map background
-   /* paint.fillRect(0, 0, width(), height(), QBrush{ QColor::fromRgb(119,158,203) });
+    paint.drawPixmap(0, 0, width(), height(), ICONS[2]);
+    //paint.fillRect(0, 0, width(), height(), QBrush{ QColor::fromRgb(119,158,203) });
 
+    /*
         for (int x = 0; x < grid_size; x++) {
         for (int y = 0; y < grid_size; y++) {
                 drawPixmap(paint, (x - grid_size / 2) * 100, (y - grid_size / 2) * 100, 100, 100,
@@ -172,13 +174,10 @@ void GameWidget::paintEvent(QPaintEvent* event) {
     ft.setFamily("Comic Sans MS");
     paint.setFont(ft); */
 
-    const int min = -map_width/2;
-    const int max = map_width/2;
-    const int minn = -map_height/2;
-    const int maxx = map_height/2;
-
-    int i = map_width/64;
-    int j = map_height/64;
+    const int min = 0;
+    const int max = map_width;
+    const int minn = 0;
+    const int maxx = map_height;
 
     /* const int min = -grid_size * 50;
     const int max = grid_size * 50;
@@ -233,16 +232,15 @@ void GameWidget::paintEvent(QPaintEvent* event) {
             paint.setPen(original);
             break;
         }
-    }
+    } */
     // Draw buildings on the grid
-    for (int x = 0; x < i; x++) {
-        for (int y = 0; y < i; y++) {
-            if (!map->is_empty_at(x, y)) {
-                drawPixmap(paint, (x - grid_size / 2) * 100, (y - grid_size / 2) * 100, 100, 100,
-                           ICONS[static_cast<int>(city->get_at(x, y)->get_type()) - 1]);
-            }
+    for (int x = min; x < max; x+=map->grid_size) {
+        for (int y = minn; y < maxx; y+=map->grid_size) {
+            drawPixmap(paint, x, y, map->grid_size, map->grid_size,
+                       ICONS[static_cast<int>(map->getTerrainOfGrid(x,y))]);
         }
     }
+    /*
     // Render extra effects on the grid, depending on the build mode
     if (hovering_grid_x >= 0 && hovering_grid_y >= 0 && hovering_grid_x < grid_size && hovering_grid_y < grid_size)
         if ((tick / 10) % 2 == 0) {
@@ -259,13 +257,11 @@ void GameWidget::paintEvent(QPaintEvent* event) {
             }
         } */
     // Draw grid lines
-    for (int x = 0; x <= i; x++) {
-        int xpos = (x - i / 2) * 64;
-        drawLine(paint, xpos, minn, xpos, maxx);
+    for (int x = min; x <= max; x+=map->grid_size) {
+        drawLine(paint, x, minn, x, maxx);
     }
-    for (int y = 0; y <= j; y++) {
-        int ypos = (y - j / 2) * 64;
-        drawLine(paint, min, ypos, max, ypos);
+    for (int y = minn; y <= maxx; y+=map->grid_size) {
+        drawLine(paint, min, y, max, y);
     }
     // Draw player
     QPixmap player(":/resources/images/player.png");
@@ -307,9 +303,12 @@ void GameWidget::paintEvent(QPaintEvent* event) {
 }
 
 void GameWidget::load_icons() {
-    ICONS = new QPixmap {":/resources/images/player.png"};
+    ICONS = new QPixmap [4] {{":/resources/images/Grass.png"},
+                             {":/resources/images/Stone.png"},
+                             {":/resources/images/Ocean.png"},
+                             {":/resources/images/Sand.png"}};
 }
 
 void GameWidget::dealloc_icons() {
-    delete[] ICONS;
+    delete [] ICONS;
 }
