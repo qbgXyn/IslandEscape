@@ -23,6 +23,11 @@ MenuWindow::MenuWindow(QWidget *parent) :
     ui->label_logo->setPixmap(p->scaled(p->width() * SCALE, p->height() * SCALE)); */
     initialize_level_btn();
 
+    bgm  = new QMediaPlayer();
+    bgm->setMedia(QUrl("qrc:/resources/sound/main_bgm.mp3"));
+    bgm->setVolume(100);
+    bgm->play();
+
     // Set pixmap for increase and decrease size buttons
     /* QPixmap increase {":/resources/images/next.png"};
     QPixmap decrease = increase.transformed(QTransform().rotate(180));
