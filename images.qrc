@@ -22,5 +22,10 @@
         <file>images/campfire11.png</file>
         <file>images/campfire12.png</file>
         <file>images/boat.png</file>
+        <file>images/short_sword.png</file>
+        <file>images/potions/pt1.png</file>
+        <file>images/potions/pt2.png</file>
+        <file>images/potions/pt3.png</file>
+        <file>images/potions/pt4.png</file>
     </qresource>
 </RCC>

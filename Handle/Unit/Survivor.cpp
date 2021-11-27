@@ -88,11 +88,11 @@ void Survivor::useItem(Item_inventory *i) {
     switch(id) {
         case Item::ID::KEY:
             turnOnBoat();
-            break;
+            return; // no need to reduce durability
         case Item::ID::TORCH:
         case Item::ID::TORCH_LIT:
             switchTorchState();
-            break;
+            return; // no need to reduce durability
         case Item::ID::ROCK:
             // further information needed for implementation
             break;
@@ -165,7 +165,7 @@ void Survivor::switchTorchState() {
         durability = Inventory[selectedItemIndex]->item->getDurability();
         delete Inventory[selectedItemIndex];
 
-        if (id == Item::ID::TORCH) {
+        if (id == Item::ID::TORCH && durability > 0) {
             Inventory[selectedItemIndex] = new Item_inventory {Item::ID::TORCH_LIT};
         }else {
             Inventory[selectedItemIndex] = new Item_inventory {Item::ID::TORCH};

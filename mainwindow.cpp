@@ -37,8 +37,14 @@ void MainWindow::main_loop() {
     int torch_time = map->player->getTorchTime();
     if (game_time > 0)
         map->setGameTime(game_time - 1);
-    if (torch_time > 0 && map->player->hasItem(Item::ID::TORCH_LIT))
-        map->player->setTorchTime(torch_time - 1);
+    if (torch_time > 0 && map->player->hasItem(Item::ID::TORCH_LIT)) {
+        if (torch_time - 1 >= 0) {
+            map->player->setTorchTime(torch_time - 1);
+        }else {
+            map->player->switchTorchState();
+        }
+
+    }
     ui->label_health->setText(": 100");
     ui->label_time->setText(": " + QString::number(game_time/50) + "s");
     ui->label_torch->setText(": " + QString::number(torch_time/50) + "s");
