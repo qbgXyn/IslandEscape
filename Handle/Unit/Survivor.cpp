@@ -80,6 +80,7 @@ bool Survivor::isInventoryFull() const {
 }
 
 void Survivor::useItem(Item_inventory *i) {
+    if (i == nullptr) return;
     Item *item = i->item;
     Item::ID id = item->getID();
     int durability = item->getDurability();
