@@ -88,21 +88,21 @@ void MenuWindow::on_btn_start_clicked() {
 
 void MenuWindow::on_btn_level_1_clicked() {
     selected_level = 1;
-    start_game(selected_level, "MapTrail.txt");
+    start_game(selected_level, "Map1.txt");
 }
 void MenuWindow::on_btn_level_2_clicked() {
     selected_level = 2;
-    start_game(selected_level, "Map1.txt");
+    start_game(selected_level, "Map2.txt");
 }
 void MenuWindow::on_btn_level_3_clicked() {
     selected_level = 3;
-    start_game(selected_level, "Map2.txt");
+    start_game(selected_level, "Map3.txt");
 }
 void MenuWindow::on_btn_level_4_clicked() {
     selected_level = 4;
-    start_game(selected_level, "Map3.txt");
+    start_game(selected_level, "Map4.txt");
 }
 void MenuWindow::on_btn_level_5_clicked() {
     selected_level = 5;
-    start_game(selected_level, "Map4.txt");
+    start_game(selected_level, "Map5.txt");
 }
