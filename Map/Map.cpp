@@ -11,11 +11,16 @@
 
 #include "Terrain.h"
 
+#include <iostream>
+#include <unistd.h>
+
 Map::Map(double width, double height, std::string filename) : width(width), height(height) {
     int i = width/grid_size;  // width = i grids
     int j = height/grid_size; // height = j grids
     fstream file; //load and read map txt file
     filename = "../../../../"+filename;
+    char a[256];
+    cout << getcwd(a, 256) << endl;
     file.open(filename);
     int type = 0;
     grid = new Terrain::Type* [i];
