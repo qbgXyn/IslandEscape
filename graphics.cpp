@@ -55,12 +55,12 @@ void GameWidget::loop() {
     int horizontal = (int)RIGHT - (int)LEFT;
     int vertical = (int)DOWN - (int)UP;
     if (horizontal != 0 && vertical != 0) {
-        map->player->setVelocityX(horizontal*(3.5355339));
-        map->player->setVelocityY(vertical*3.5355339);
+        map->player->setVelocityX(horizontal*(7.071067));
+        map->player->setVelocityY(vertical*(7.071067));
     }
     else {
-        map->player->setVelocityX(horizontal*5);
-        map->player->setVelocityY(vertical*5);
+        map->player->setVelocityX(horizontal*10);
+        map->player->setVelocityY(vertical*10);
     }
     map->player->update();
     scroll_x = map->player->getX();

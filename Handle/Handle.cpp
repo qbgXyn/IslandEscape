@@ -108,6 +108,10 @@ void Handle::update() {
         location[0] = newPosition[0];
         location[1] = newPosition[1];
    }
+   else if (isCoordinateWalkable(newPosition[0], location[1]) == true)
+        location[0] = newPosition[0];
+   else if (isCoordinateWalkable(location[0], newPosition[1]) == true)
+        location[1] = newPosition[1];
 }
 
 bool Handle::isCoordinatePathable(double x, double y) const {
