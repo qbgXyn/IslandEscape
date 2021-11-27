@@ -10,10 +10,11 @@ const float Ghost::base_attack_radius = 16.0;
 const double Ghost::base_attack_sector_angle = 60.0;
 
 const double Ghost::patrolRadius = 256.0;
-const double Ghost::chasingRadius = 640.0;
+const double Ghost::detectRadius = 400.0;
+const double Ghost::chasingRadius = 800.0;
 
 
-Ghost::Ghost(Map *map, double x, double y, Unit *chasing_target) : Unit(map, x, y) {
+Ghost::Ghost(Map *map, double x, double y, Handle *chasing_target) : Unit(map, x, y) {
     type = Handle::Type::GHOST;
     this->chasing_target = chasing_target;
     patrolCenterLocation[0] = x;
@@ -24,7 +25,10 @@ Ghost::Ghost(Map *map, double x, double y, Unit *chasing_target) : Unit(map, x, 
     pathable += Terrain::Type::OCEAN;
     pathable += Terrain::Type::VOID;
 
-    visible_size = 3;
+    visible_size = base_visible_size;
+    health = base_max_health;
+    damage = base_damage;
+    armor = base_armor;
 }
 
 // void Ghost::attack() {
@@ -76,6 +80,16 @@ void Ghost::patrol() {
             break;
         }
     }
+    vector<Handle*> list = map->getHandleGroup(location[0], location[1], detectRadius); // get all surrounding handle within attack radius
+
+    vector<Handle*>::const_iterator it_end = list.end(); 
+    for(vector<Handle*>::const_iterator it = list.begin(); it != it_end; ++it) {
+        if ((*it)->getType() == Handle::Type::SURVIVOR) {
+            chasing_target = *it;
+            return;
+        }
+    }
+
     move_AI(x, y);
 
 }
@@ -99,7 +113,7 @@ void Ghost::ai() {
     }
 }
 
-void Ghost::chase(Unit* u) {
+void Ghost::chase(Handle* u) {
     double d = std::hypot(location[0] - patrolCenterLocation[0], location[1] - location[0]);
     if (d > chasingRadius || !isHandleVisible(u)) {
         move_AI(patrolCenterLocation[0], patrolCenterLocation[1]);

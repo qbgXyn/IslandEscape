@@ -13,6 +13,7 @@ class Unit : public Handle {
         explicit Unit(Map *map, double x, double y);
     public:
         float getDamage() const;
+        void setDamage(int damage);
         virtual float getArmor() const;
         virtual int getVisionRadius() const;
         virtual bool isGridVisible(int x, int y) const;

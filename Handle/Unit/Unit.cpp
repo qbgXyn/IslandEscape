@@ -10,6 +10,11 @@ Unit::Unit(Map *map, double x, double y) : Handle(map, x, y) {
 float Unit::getDamage() const {
     return damage;
 }
+
+void Unit::setDamage(int damage) {
+    this->damage = damage;
+}
+
 float Unit::getArmor() const {
     return armor;
 }

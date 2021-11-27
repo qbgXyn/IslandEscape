@@ -16,7 +16,13 @@ Survivor::Survivor(Map *map, double x, double y) : Unit(map, x, y) {
     pathable += Terrain::Type::STONE;
     pathable += Terrain::Type::SHOAL;
 
-    visible_size = 2;
+    visible_size = base_visible_size;
+    health = base_max_health;
+    damage = base_damage;
+    armor = base_armor;
+
+    Inventory[0] = new Item_inventory {Item::ID::SWORD};
+    Inventory[1] = new Item_inventory {Item::ID::TORCH};
 }
 
 // void Survivor::attack() {
@@ -102,6 +108,10 @@ void Survivor::useItem(Item_inventory *i) {
             addEffect(e);
             break;
         }
+        case Item::ID::SWORD:
+            setDamage(item->getData());
+            attack(base_attack_radius, base_attack_sector_angle, base_attackInterval);
+            break;
     }
 
     if (durability > 0) {

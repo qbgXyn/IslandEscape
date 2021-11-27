@@ -11,12 +11,12 @@ class Survivor : public Unit {
         static const float base_collison_radius;
         static const double base_max_speed;
         
-        static const int base_damage = 1;
+        static const int base_damage = 0;
         static const float base_attackInterval;
         static const float base_attack_radius;
         static const double base_attack_sector_angle;
         static const int base_armor = 0;
-        static const int base_visible_radius = 100;
+        static const int base_visible_size = 2;
 
         static const int maxSlotOfInventory = 9;
         int selectedItemIndex;

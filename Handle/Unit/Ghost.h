@@ -5,7 +5,7 @@
 
 class Ghost : public Unit {
     private:
-        Unit *chasing_target;
+        Handle *chasing_target;
 
 
         // given a coordinate, randomly pick a coordinate within a radius centered at patrolCenter
@@ -16,7 +16,7 @@ class Ghost : public Unit {
         double patrolCenterLocation[2]; // coordinate of center
         double randomTargetLocation[2];
     public:
-        explicit Ghost(Map *map, double x, double y, Unit *chasing_target = nullptr);
+        explicit Ghost(Map *map, double x, double y, Handle *chasing_target = nullptr);
         static const int base_max_health = 5;
         static const float base_collison_radius;
         static const double base_max_speed;
@@ -26,9 +26,10 @@ class Ghost : public Unit {
         static const float base_attack_radius;
         static const double base_attack_sector_angle;
         static const int base_armor = 1;
-        static const int base_visible_radius = 80;
+        static const int base_visible_size = 3;
 
         static const double patrolRadius;
+        static const double detectRadius;
         static const double chasingRadius;
 
 
@@ -36,7 +37,7 @@ class Ghost : public Unit {
         void patrol();
         void move_AI(double x, double y);
         void ai();
-        void chase(Unit* u);
+        void chase(Handle* u);
 
 };
 #endif // GHOST_H
