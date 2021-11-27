@@ -35,11 +35,8 @@ MenuWindow::~MenuWindow()
     delete ui;
 }
 
-//<<<<<<< HEAD
-//=======
 void MenuWindow::start_game(int selected_level, string filename) {
     Map* map = new Map(12*map->grid_size, 10*map->grid_size, filename);
-//>>>>>>> 2653c9504a1df00f84ad150701c197522868e1c1
     MainWindow *m = new MainWindow{map, nullptr};
     m->setAttribute(Qt::WA_DeleteOnClose);
     m->show();

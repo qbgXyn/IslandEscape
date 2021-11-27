@@ -133,7 +133,7 @@ bool Handle::isCoordinateWalkable(double x, double y) const{
         return true;
     }
 
-    vector<Handle*> list = map->getHandleGroup(x, y, max_collision_radius); // get all surrounding handle
+    vector<Handle*> list = map->getHandleGroup(x, y, MAX_COLLISION_RADIUS); // get all surrounding handle
 
     vector<Handle*>::const_iterator it_end = list.end(); // check if it collide with existing handle
     for(vector<Handle*>::const_iterator it = list.begin(); it != it_end; ++it) {
