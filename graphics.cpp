@@ -37,7 +37,7 @@ void GameWidget::loop() {
     const int x_max = map_width;
     const int y_min = 0;
     const int y_max = map_height;
-    if (scroll_x >= x_min && scroll_x <= x_max) {
+    /*if (scroll_x >= x_min && scroll_x <= x_max) {
         scroll_x += (int) (5.0f * ((int) RIGHT - (int) LEFT));
     }
     if (scroll_x < x_min)
@@ -51,6 +51,20 @@ void GameWidget::loop() {
         scroll_y = y_min;
     if (scroll_y > y_max)
         scroll_y = y_max;
+    */
+    int horizontal = (int)RIGHT - (int)LEFT;
+    int vertical = (int)DOWN - (int)UP;
+    if (horizontal != 0 && vertical != 0) {
+        map->player->setVelocityX(horizontal*(3.5355339));
+        map->player->setVelocityY(vertical*3.5355339);
+    }
+    else {
+        map->player->setVelocityX(horizontal*5);
+        map->player->setVelocityY(vertical*5);
+    }
+    map->player->update();
+    scroll_x = map->player->getX();
+    scroll_y = map->player->getY();
 
     repaint(0, 0, width(), height());
     ++tick;
@@ -101,13 +115,14 @@ void GameWidget::keyReleaseEvent(QKeyEvent* event) {
 }
 
 void GameWidget::wheelEvent(QWheelEvent* event) {
-    scale = (float) (scale * exp(event->angleDelta().y() / 720.0));
+    /* scale = (float) (scale * exp(event->angleDelta().y() / 720.0));
     if (scale > 10.0f) {
         scale = 10.0f;
     }
     if (scale < 0.1f) {
         scale = 0.1f;
     }
+    */
 }
 
 void GameWidget::obtain_grid_coordinates_from_real(int rx, int ry, int& x, int& y) {
