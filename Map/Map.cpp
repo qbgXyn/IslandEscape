@@ -17,6 +17,7 @@ Map::Map(double width, double height, std::string filename) : width(width), heig
     fstream file; //load and read map txt file
     filename = "../../../../"+filename;
     file.open(filename);
+    int type = 0;
     grid = new Terrain::Type* [i];
     for (int x = 0; x < i; x++) {
         grid[x] = new Terrain::Type [j];
@@ -26,7 +27,6 @@ Map::Map(double width, double height, std::string filename) : width(width), heig
     }
     for (int y = 0; y < j; y++) {
         for (int x = 0; x < i; x++) {
-            int type = 0;
             file >> type;
             if (type >= 0 && type <= 3) {
                 grid[x][y] = static_cast<Terrain::Type>(type);
