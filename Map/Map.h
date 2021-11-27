@@ -54,7 +54,8 @@ class Map {
 
         int getGameTime() const;
         void setGameTime(int time);
-        
+       
+        Survivor* player;
         static const int grid_size = 64; // length of a square of a grid on the map, for displaying texture only(grass, sea, etc.)
 
     private:

@@ -33,12 +33,14 @@ MainWindow::~MainWindow() {
 
 // This is called 50 times per second
 void MainWindow::main_loop() {
-    if (map->get_game_time() >= 1)
-        map->set_game_time(map->get_game_time() - 1);
-    if (map->get_torch_time() >= 1)
-        map->set_torch_time(map->get_torch_time() - 1);
+    int game_time = map->getGameTime();
+    int torch_time = map->player->getTorchTime();
+    if (game_time > 0)
+        map->setGameTime(game_time - 1);
+    if (torch_time > 0 && map->player->hasItem(Item::ID::TORCH_LIT))
+        map->player->setTorchTime(torch_time - 1);
     ui->label_health->setText(": 100");
-    ui->label_time->setText(": " + QString::number(map->get_game_time()/50) + "s");
-    ui->label_torch->setText(": " + QString::number(map->get_torch_time()/50) + "s");
+    ui->label_time->setText(": " + QString::number(game_time/50) + "s");
+    ui->label_torch->setText(": " + QString::number(torch_time/50) + "s");
     ui->widget->loop();
 }

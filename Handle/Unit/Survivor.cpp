@@ -90,7 +90,8 @@ void Survivor::useItem(Item_inventory *i) {
             turnOnBoat();
             break;
         case Item::ID::TORCH:
-            // further information needed for implementation
+        case Item::ID::TORCH_LIT:
+            switchTorchState();
             break;
         case Item::ID::ROCK:
             // further information needed for implementation
@@ -128,10 +129,7 @@ void Survivor::useItem(Item_inventory *i) {
 void Survivor::pickupItem() {
     vector<Handle*> list = map->getHandleGroup(location[0], location[1], collisionRadius); // get all surrounding handle
 
-    Item_inventory* i;
     Handle* h;
-
-
 
     vector<Handle*>::const_iterator it_end = list.end(); // check if it collide with existing handle
     for(vector<Handle*>::const_iterator it = list.begin(); it != it_end; ++it) { // iterate all handle
@@ -157,7 +155,7 @@ void Survivor::dropItem(Item_inventory *i) {
     }
 }
 
-bool Survivor::switchTorchState() {
+void Survivor::switchTorchState() {
     if (Inventory[selectedItemIndex] == nullptr) return;
 
     int durability;
@@ -203,6 +201,7 @@ int Survivor::getTorchTime() const{
         }
 
     }
+    return 0;
 }
 
 void Survivor::setTorchTime(int time) {
@@ -226,6 +225,15 @@ bool Survivor::turnOnBoat() const {
     for(vector<Handle*>::const_iterator it = list.begin(); it != it_end; ++it) {
         if ((*it)->getType() == Handle::Type::BOAT) {
             // game win!
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Survivor::hasItem(Item::ID id) const {
+    for (int i = 0; i < maxSlotOfInventory; ++i) {
+        if (Inventory[i] != nullptr && Inventory[i]->item->getID() == id) {
             return true;
         }
     }

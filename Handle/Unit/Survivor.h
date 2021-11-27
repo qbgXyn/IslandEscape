@@ -29,9 +29,11 @@ class Survivor : public Unit {
         void pickupItem();
         void dropItem(Item_inventory *i);
 
-        bool switchTorchState();
+        void switchTorchState();
         int getTorchTime() const;
         void setTorchTime(int time);
+
+        bool hasItem(Item::ID id) const;
 
 
         bool turnOnBoat() const;

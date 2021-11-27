@@ -226,7 +226,7 @@ void GameWidget::paintEvent(QPaintEvent* event) {
     drawPixmap(paint, scroll_x-64, scroll_y-64, 128, 128, player);
 
     // Draw Out of Vision
-    if (map->get_torch_time() > 0) {
+    if (map->player->getTorchTime() > 0 && map->player->hasItem(Item::ID::TORCH_LIT)) {
         paint.fillRect(0, 0, width()/2-64*4, height(), QBrush{ QColor::fromRgb(0,0,0) });
         paint.fillRect(0, 0, width(), height()/2-64*4, QBrush{ QColor::fromRgb(0,0,0) });
         paint.fillRect(width(), height(), -width()/2+64*4, -height(), QBrush{ QColor::fromRgb(0,0,0) });

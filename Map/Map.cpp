@@ -154,6 +154,9 @@ Item* Map::createItem(Item::ID id) {
         i = new key;
         break;
     case Item::ID::TORCH:
+    case Item::ID::TORCH_LIT:
+    case Item::ID::SWORD:
+        // initally created in players' inventory, so no need to create it
         break;
     case Item::ID::ROCK:
         break;
