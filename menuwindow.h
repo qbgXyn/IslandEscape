@@ -5,6 +5,7 @@
 
 #include <QMainWindow>
 #include <string>
+#include <QMediaPlayer>
 
 namespace Ui { class MenuWindow; }
 
@@ -22,6 +23,8 @@ private:
     void initialize_level_btn();
 
     Ui::MenuWindow *ui;
+
+    QMediaPlayer *bgm;
 
     // Store the selected level in this variable
     int selected_level{0};

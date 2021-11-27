@@ -1,6 +1,7 @@
 //#include "Handle.h"
 #include "../Map/Map.h"
 #include "../util.h"
+
 Handle::Handle(Map *map, double x, double y) {
     this->map = map;
     location[0] = x;
@@ -104,12 +105,13 @@ void Handle::update() {
    newPosition[1] = location[1] + velocity[1];
    if (isCoordinateWalkable(newPosition[0], newPosition[1]) == true)
    {
-       location[0] = newPosition[0];
-       location[1] = newPosition[1];
-
+        location[0] = newPosition[0];
+        location[1] = newPosition[1];
    }
-   velocity[0] = 0;
-   velocity[1] = 0;
+   else if (isCoordinateWalkable(newPosition[0], location[1]) == true)
+        location[0] = newPosition[0];
+   else if (isCoordinateWalkable(location[0], newPosition[1]) == true)
+        location[1] = newPosition[1];
 }
 
 bool Handle::isCoordinatePathable(double x, double y) const {

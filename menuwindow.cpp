@@ -23,6 +23,11 @@ MenuWindow::MenuWindow(QWidget *parent) :
     ui->label_logo->setPixmap(p->scaled(p->width() * SCALE, p->height() * SCALE)); */
     initialize_level_btn();
 
+    bgm  = new QMediaPlayer();
+    bgm->setMedia(QUrl("qrc:/resources/sound/main_bgm.mp3"));
+    bgm->setVolume(100);
+    bgm->play();
+
     // Set pixmap for increase and decrease size buttons
     /* QPixmap increase {":/resources/images/next.png"};
     QPixmap decrease = increase.transformed(QTransform().rotate(180));
@@ -36,7 +41,21 @@ MenuWindow::~MenuWindow()
 }
 
 void MenuWindow::start_game(int selected_level, string filename) {
-    Map* map = new Map(12*map->grid_size, 10*map->grid_size, filename);
+    Map* map;
+    switch (selected_level) {
+        case 1: {
+            map = new Map(60*map->grid_size, 60*map->grid_size, filename);
+            break;
+        }
+        case 2: {
+            map = new Map(12*map->grid_size, 10*map->grid_size, filename);
+            break;
+        }
+        default: {
+            map = new Map(1*map->grid_size, 1*map->grid_size, filename);
+            break;
+        }
+    }
     map->player = reinterpret_cast<Survivor*>(map->createHandle(Handle::Type::SURVIVOR, 0, 0));
     MainWindow *m = new MainWindow{map, nullptr};
     m->setAttribute(Qt::WA_DeleteOnClose);
