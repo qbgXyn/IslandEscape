@@ -47,7 +47,7 @@ class Map {
         vector<Handle*> getHandleGroup(double x, double y, double radius);
 
         Terrain::Type get_at(double x, double y) const;
-        Item* createItem(Item::ID);
+        static Item* createItem(Item::ID);
         bool createItem_Handle(Item::ID id, double x, double y);
 
         bool createHandle(Handle::Type type, double x, double y);
