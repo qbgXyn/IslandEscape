@@ -46,7 +46,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="page_main">
      <layout class="QVBoxLayout" name="verticalLayout">
@@ -143,7 +143,7 @@
           <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
          </property>
          <property name="text">
-          <string>1</string>
+          <string>Trail</string>
          </property>
          <property name="iconSize">
           <size>
@@ -177,7 +177,7 @@
           <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
          </property>
          <property name="text">
-          <string>5</string>
+          <string>4</string>
          </property>
          <property name="iconSize">
           <size>
@@ -211,7 +211,7 @@
           <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
          </property>
          <property name="text">
-          <string>4</string>
+          <string>3</string>
          </property>
          <property name="iconSize">
           <size>
@@ -245,7 +245,7 @@
           <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
          </property>
          <property name="text">
-          <string>2</string>
+          <string>1</string>
          </property>
          <property name="iconSize">
           <size>
@@ -279,7 +279,7 @@
           <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
          </property>
          <property name="text">
-          <string>3</string>
+          <string>2</string>
          </property>
          <property name="iconSize">
           <size>
