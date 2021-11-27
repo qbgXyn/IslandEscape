@@ -69,7 +69,7 @@ void MenuWindow::on_btn_start_clicked() {
 
 void MenuWindow::on_btn_level_1_clicked() {
     selected_level = 1;
-    start_game(selected_level, "Map1.txt");
+    start_game(selected_level, "MapTrail.txt");
 }
 void MenuWindow::on_btn_level_2_clicked() {
     selected_level = 2;
