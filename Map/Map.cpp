@@ -184,3 +184,12 @@ void Map::removeHandle(Handle *h) {
     // List.erase(std::remove_if(List.begin(), List.end(),
     //                             [h](Handle *i) { return i && (i == h); }));
 }
+
+
+int Map::getGameTime() const {
+    return game_time;
+}
+
+void Map::setGameTime(int time) {
+    game_time = time;
+}

@@ -11,6 +11,7 @@ class Item {
             TORCH_LIT,
             ROCK,
             BELL,
+            SWORD,
             SPEED_POTION,
             REGEN_INSTANT_POTION
         };

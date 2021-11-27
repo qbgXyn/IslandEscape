@@ -182,6 +182,33 @@ bool Survivor::switchTorchState() {
 }
 
 
+int Survivor::getTorchTime() const{
+    Item::ID id;
+    for (int i = 0; i < maxSlotOfInventory; ++i) {
+        if (Inventory[i] != nullptr) {
+            id = Inventory[i]->item->getID();
+            if (id == Item::ID::TORCH || id == Item::ID::TORCH_LIT) {
+                return Inventory[i]->item->getDurability();
+            }
+        }
+
+    }
+}
+
+void Survivor::setTorchTime(int time) {
+    Item::ID id;
+    for (int i = 0; i < maxSlotOfInventory; ++i) {
+        if (Inventory[i] != nullptr) {
+            id = Inventory[i]->item->getID();
+            if (id == Item::ID::TORCH || id == Item::ID::TORCH_LIT) {
+                Inventory[i]->item->setDurability(time);
+                return;
+            }
+        }
+
+    }
+}
+
 bool Survivor::turnOnBoat() const {
     vector<Handle*> list = map->getHandleGroup(location[0], location[1], collisionRadius); // get all surrounding handle
 

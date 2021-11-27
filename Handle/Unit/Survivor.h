@@ -30,6 +30,10 @@ class Survivor : public Unit {
         void dropItem(Item_inventory *i);
 
         bool switchTorchState();
+        int getTorchTime() const;
+        void setTorchTime(int time);
+
+
         bool turnOnBoat() const;
 };
 #endif // SURVIVOR_H
