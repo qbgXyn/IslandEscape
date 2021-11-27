@@ -96,7 +96,7 @@ Terrain::Type Map::get_at(double x, double y) const {
 }
 
 
-bool Map::createHandle(Handle::Type type, double x, double y) {
+Handle* Map::createHandle(Handle::Type type, double x, double y) {
     Handle* handle = nullptr;
     switch (type)
     {
@@ -123,15 +123,15 @@ bool Map::createHandle(Handle::Type type, double x, double y) {
         handle = new Boat{this, x, y};
         break;
     default:
-        return false;
+        return nullptr;
     }
 
     if (handle->isCoordinateWalkable(x, y)) {
         List.push_back(handle);
-        return true;
+        return handle;
     }
     delete handle;
-    return false;
+    return nullptr;
 }
 
 

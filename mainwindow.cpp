@@ -21,7 +21,7 @@ MainWindow::MainWindow(Map *const map, QWidget *parent) :
     loop_timer = new QTimer{this};
     connect(loop_timer, &QTimer::timeout, this, &MainWindow::main_loop);
     // 50 updates per second
-    loop_timer->start(20);
+    loop_timer->start(GAME_INTERVAL);
 }
 
 MainWindow::~MainWindow() {
@@ -46,7 +46,7 @@ void MainWindow::main_loop() {
 
     }
     ui->label_health->setText(": 100");
-    ui->label_time->setText(": " + QString::number(game_time/50) + "s");
-    ui->label_torch->setText(": " + QString::number(torch_time/50) + "s");
+    ui->label_time->setText(": " + QString::number(game_time/GAME_TICK) + "s");
+    ui->label_torch->setText(": " + QString::number(torch_time/GAME_TICK) + "s");
     ui->widget->loop();
 }

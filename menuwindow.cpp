@@ -37,6 +37,7 @@ MenuWindow::~MenuWindow()
 
 void MenuWindow::start_game(int selected_level, string filename) {
     Map* map = new Map(12*map->grid_size, 10*map->grid_size, filename);
+    map->player = reinterpret_cast<Survivor*>(map->createHandle(Handle::Type::SURVIVOR, 0, 0));
     MainWindow *m = new MainWindow{map, nullptr};
     m->setAttribute(Qt::WA_DeleteOnClose);
     m->show();

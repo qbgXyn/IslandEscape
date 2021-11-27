@@ -49,7 +49,7 @@ class Map {
         static Item* createItem(Item::ID);
         bool createItem_Handle(Item::ID id, double x, double y);
 
-        bool createHandle(Handle::Type type, double x, double y);
+        Handle* createHandle(Handle::Type type, double x, double y);
         void removeHandle(Handle *h);
 
         int getGameTime() const;
