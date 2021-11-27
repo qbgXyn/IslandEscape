@@ -28,6 +28,9 @@ class Map {
         double height; // y
         vector<Handle*> List; // all handle
 
+        int game_time{30*50}; //seconds*50
+        int torch_time{10*50}; //seconds*50
+
     public:
         Map(double width, double height, string filename);
         ~Map();
@@ -44,12 +47,16 @@ class Map {
         vector<Handle*> getHandleGroup(double x, double y, double radius);
 
         Terrain::Type get_at(double x, double y) const;
-        Item* createItem(Item::ID);
+        static Item* createItem(Item::ID);
         bool createItem_Handle(Item::ID id, double x, double y);
 
         bool createHandle(Handle::Type type, double x, double y);
         void removeHandle(Handle *h);
 
+        int get_game_time() {return game_time;}
+        int get_torch_time() {return torch_time;}
+        void set_game_time(int time) {game_time = time;}
+        void set_torch_time(int time) {torch_time = time;}
         
         static const int grid_size = 64; // length of a square of a grid on the map, for displaying texture only(grass, sea, etc.)
 

@@ -19,17 +19,17 @@ class Survivor : public Unit {
         static const int base_visible_radius = 100;
 
         static const int maxSlotOfInventory = 9;
-        Item_inventory* selectedItem;
+        int selectedItemIndex;
 
         // void attack();
-        vector<Item_inventory*> Inventory;
+        Item_inventory* Inventory[maxSlotOfInventory];
 
         bool isInventoryFull() const;
         void useItem(Item_inventory *i);
         void pickupItem();
         void dropItem(Item_inventory *i);
 
-        // bool switchTorchState();
+        bool switchTorchState();
         bool turnOnBoat() const;
 };
 #endif // SURVIVOR_H

@@ -64,7 +64,13 @@ Survivor::Survivor(Map *map, double x, double y) : Unit(map, x, y) {
 // }
 
 bool Survivor::isInventoryFull() const {
-    return (Inventory.size() == maxSlotOfInventory);
+    int counter = 0;
+    for (int i = 0; i < maxSlotOfInventory; ++i) {
+        if (Inventory[i] != nullptr) {
+            ++counter;
+        }
+    }
+    return counter >= maxSlotOfInventory;
 }
 
 void Survivor::useItem(Item_inventory *i) {
@@ -115,13 +121,18 @@ void Survivor::pickupItem() {
     Item_inventory* i;
     Handle* h;
 
+
+
     vector<Handle*>::const_iterator it_end = list.end(); // check if it collide with existing handle
-    for(vector<Handle*>::const_iterator it = list.begin(); it != it_end; ++it) {
+    for(vector<Handle*>::const_iterator it = list.begin(); it != it_end; ++it) { // iterate all handle
         h = *it;
-        if (h->getType() == Handle::Type::ITEM && !isInventoryFull()) {
-            i = new Item_inventory {*(h->getCorrespondingItem())};
-            Inventory.push_back(i);
-            delete h;
+        if (h->getType() == Handle::Type::ITEM && !isInventoryFull()) { // if it's item
+            for(int index = 0; index < maxSlotOfInventory; ++index) { // iterate all slot in inventory
+                if (Inventory[index] == nullptr) {                  // find a empty slot of inventory
+                    Inventory[index] = new Item_inventory {*(h->getCorrespondingItem())};
+                    break;
+                }
+            }
         }
     }
 }
@@ -136,14 +147,39 @@ void Survivor::dropItem(Item_inventory *i) {
     }
 }
 
-// bool Survivor::switchTorchState() {
-//     if (selectedItem->item->getID() == Item::ID::TORCH) {
+bool Survivor::switchTorchState() {
+    if (Inventory[selectedItemIndex] == nullptr) return;
 
-//     }
-//     if (selectedItem->item->getID() == Item::ID::TORCH_LIT) {
-//         Item_inventory* i = new Item_inventory{*selectedItem->item};
-//     }
-// }
+    int durability;
+    Item::ID id = Inventory[selectedItemIndex]->item->getID();
+
+    if (id == Item::ID::TORCH || id == Item::ID::TORCH_LIT) {
+        durability = Inventory[selectedItemIndex]->item->getDurability();
+        delete Inventory[selectedItemIndex];
+
+        if (id == Item::ID::TORCH) {
+            Inventory[selectedItemIndex] = new Item_inventory {Item::ID::TORCH_LIT};
+        }else {
+            Inventory[selectedItemIndex] = new Item_inventory {Item::ID::TORCH};
+        }
+        Inventory[selectedItemIndex]->item->setDurability(durability);
+    }
+
+    // if (Inventory[selectedItemIndex]->item->getID() == Item::ID::TORCH) {
+    //     durability = Inventory[selectedItemIndex]->item->getDurability();
+    //     delete Inventory[selectedItemIndex];
+
+    //     Inventory[selectedItemIndex] = new Item_inventory {Item::ID::TORCH_LIT};
+    //     Inventory[selectedItemIndex]->item->setDurability(durability);
+
+    // }else if (Inventory[selectedItemIndex]->item->getID() == Item::ID::TORCH_LIT) {
+    //     durability = Inventory[selectedItemIndex]->item->getDurability();
+    //     delete Inventory[selectedItemIndex];
+
+    //     Inventory[selectedItemIndex] = new Item_inventory {Item::ID::TORCH};
+    //     Inventory[selectedItemIndex]->item->setDurability(durability);
+    // }
+}
 
 
 bool Survivor::turnOnBoat() const {
