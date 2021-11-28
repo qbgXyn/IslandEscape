@@ -154,18 +154,18 @@ void MainWindow::main_loop() {
 }
 
 void MainWindow::load_icons() {
-    TORCH_LIT = new QPixmap [12] {{":/resources/images/item/torch_lit01.png"},
-                                  {":/resources/images/item/torch_lit01.png"},
-                                  {":/resources/images/item/torch_lit02.png"},
-                                  {":/resources/images/item/torch_lit02.png"},
-                                  {":/resources/images/item/torch_lit03.png"},
-                                  {":/resources/images/item/torch_lit03.png"},
-                                  {":/resources/images/item/torch_lit04.png"},
-                                  {":/resources/images/item/torch_lit04.png"},
-                                  {":/resources/images/item/torch_lit05.png"},
-                                  {":/resources/images/item/torch_lit05.png"},
-                                  {":/resources/images/item/torch_lit06.png"},
-                                  {":/resources/images/item/torch_lit06.png"}};
+    TORCH_LIT = new QPixmap [12] {{":/resources/images/Item/torch_lit01.png"},
+                                  {":/resources/images/Item/torch_lit01.png"},
+                                  {":/resources/images/Item/torch_lit02.png"},
+                                  {":/resources/images/Item/torch_lit02.png"},
+                                  {":/resources/images/Item/torch_lit03.png"},
+                                  {":/resources/images/Item/torch_lit03.png"},
+                                  {":/resources/images/Item/torch_lit04.png"},
+                                  {":/resources/images/Item/torch_lit04.png"},
+                                  {":/resources/images/Item/torch_lit05.png"},
+                                  {":/resources/images/Item/torch_lit05.png"},
+                                  {":/resources/images/Item/torch_lit06.png"},
+                                  {":/resources/images/Item/torch_lit06.png"}};
 }
 
 void MainWindow::dealloc_icons() {

@@ -180,7 +180,7 @@ background-image: url(:/resources/images/stripes.png);
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="resources.qrc">:/resources/images/item/torch_lit01.png</pixmap>
+     <pixmap resource="resources.qrc">:/resources/images/Item/torch_lit01.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>

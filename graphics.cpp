@@ -259,22 +259,22 @@ void GameWidget::paintEvent(QPaintEvent* event) {
 }
 
 void GameWidget::load_icons() {
-    ICONS = new QPixmap [4] {{":/resources/images/Grass.png"},
-                             {":/resources/images/Stone.png"},
-                             {":/resources/images/Ocean.png"},
-                             {":/resources/images/Sand.png"}};
-    CAMPFIRE = new QPixmap [12] {{":/resources/images/campfire01.png"},
-                                 {":/resources/images/campfire02.png"},
-                                 {":/resources/images/campfire03.png"},
-                                 {":/resources/images/campfire04.png"},
-                                 {":/resources/images/campfire05.png"},
-                                 {":/resources/images/campfire06.png"},
-                                 {":/resources/images/campfire07.png"},
-                                 {":/resources/images/campfire08.png"},
-                                 {":/resources/images/campfire09.png"},
-                                 {":/resources/images/campfire10.png"},
-                                 {":/resources/images/campfire11.png"},
-                                 {":/resources/images/campfire12.png"}};
+    ICONS = new QPixmap [4] {{":/resources/images/Terrain/Grass.png"},
+                             {":/resources/images/Terrain/Stone.png"},
+                             {":/resources/images/Terrain/Ocean.png"},
+                             {":/resources/images/Terrain/Sand.png"}};
+    CAMPFIRE = new QPixmap [12] {{":/resources/images/Handle/Decoration/campfire01.png"},
+                                 {":/resources/images/Handle/Decoration/campfire02.png"},
+                                 {":/resources/images/Handle/Decoration/campfire03.png"},
+                                 {":/resources/images/Handle/Decoration/campfire04.png"},
+                                 {":/resources/images/Handle/Decoration/campfire05.png"},
+                                 {":/resources/images/Handle/Decoration/campfire06.png"},
+                                 {":/resources/images/Handle/Decoration/campfire07.png"},
+                                 {":/resources/images/Handle/Decoration/campfire08.png"},
+                                 {":/resources/images/Handle/Decoration/campfire09.png"},
+                                 {":/resources/images/Handle/Decoration/campfire10.png"},
+                                 {":/resources/images/Handle/Decoration/campfire11.png"},
+                                 {":/resources/images/Handle/Decoration/campfire12.png"}};
 }
 
 void GameWidget::dealloc_icons() {

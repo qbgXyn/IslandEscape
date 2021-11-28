@@ -20,7 +20,12 @@
         <file>images/Item/potions/pt4.png</file>
         <file>images/Item/short_sword.png</file>
         <file>images/Item/torch_item.png</file>
-        <file>images/Item/torch_item_lit.gif</file>
+        <file>images/Item/torch_lit01.png</file>
+        <file>images/Item/torch_lit02.png</file>
+        <file>images/Item/torch_lit03.png</file>
+        <file>images/Item/torch_lit04.png</file>
+        <file>images/Item/torch_lit05.png</file>
+        <file>images/Item/torch_lit06.png</file>
         <file>images/Terrain/Grass.png</file>
         <file>images/Terrain/Ocean.png</file>
         <file>images/Terrain/Sand.png</file>
@@ -44,14 +49,5 @@
         <file>sound/main_bgm.mp3</file>
         <file>world/Map1.txt</file>
         <file>world/Map2.txt</file>
-        <file>images/inventory.png</file>
-        <file>images/item/potions/pt1.png</file>
-        <file>images/item/potions/pt2.png</file>
-        <file>images/item/potions/pt3.png</file>
-        <file>images/item/potions/pt4.png</file>
-        <file>images/item/short_sword.png</file>
-        <file>images/item/torch.png</file>
-        <file>images/item/torch_lit.gif</file>
-        <file>images/inventory1.png</file>
     </qresource>
 </RCC>
