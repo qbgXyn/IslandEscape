@@ -1,3 +1,4 @@
+//Mainwindow ui for gui. It will call map constructor to build the map and start game loop.
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
@@ -13,8 +14,8 @@ class MainWindow: public QMainWindow
 
 public:
 
-    MainWindow(Map *const map, QWidget *parent = nullptr);
-    ~MainWindow();
+    MainWindow(Map *const map, QWidget *parent = nullptr); //constructor
+    ~MainWindow(); //destructor
 
     MainWindow(const MainWindow&) = delete;
     MainWindow& operator=(const MainWindow&) = delete;

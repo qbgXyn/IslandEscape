@@ -52,7 +52,7 @@ void MenuWindow::start_game(int selected_level, string filename) {
     QString filePath;
     int width, height;
     filename = ":/resources/world/"+filename;
-    switch (selected_level) {
+    switch (selected_level) { //different level will import different map txt file
         case 1: {
             width = 60;
             height = 60;
@@ -71,8 +71,11 @@ void MenuWindow::start_game(int selected_level, string filename) {
             break;
         }
     }
-    map = new Map(width*64, height*64);
-    map->player = reinterpret_cast<Survivor*>(map->createHandle(Handle::Type::SURVIVOR, 0, 0));
+
+    map = new Map(width*64, height*64); //map setting and construct the map
+
+    map->player = reinterpret_cast<Survivor*>(map->createHandle(Handle::Type::SURVIVOR, 0, 0)); //player is here :)
+
     MainWindow *m = new MainWindow{map, nullptr};
     m->setAttribute(Qt::WA_DeleteOnClose);
     m->show();
@@ -81,7 +84,7 @@ void MenuWindow::start_game(int selected_level, string filename) {
     QStringList numlist;
     QString match;
 
-    file.open(QIODevice::ReadOnly | QIODevice::Text);
+    file.open(QIODevice::ReadOnly | QIODevice::Text); //read the file 
     while(!file.atEnd())
     {
         match = file.readLine();
@@ -113,7 +116,7 @@ void MenuWindow::start_game(int selected_level, string filename) {
     close();
 }
 
-void MenuWindow::initialize_level_btn() {
+void MenuWindow::initialize_level_btn() { //connect different level with buttom
     ui->btn_level_1->setStyleSheet(NOT_PASSED_STYLE);
     ui->btn_level_2->setStyleSheet(NOT_PASSED_STYLE);
     ui->btn_level_3->setStyleSheet(NOT_PASSED_STYLE);
@@ -131,11 +134,11 @@ void MenuWindow::initialize_level_btn() {
         ui->btn_level_5->setStyleSheet(PASSED_STYLE);
 }
 
-void MenuWindow::on_btn_start_clicked() {
+void MenuWindow::on_btn_start_clicked() { //run the program with given level
     ui->pages->setCurrentWidget(ui->page_level_selection);
 }
 
-void MenuWindow::on_btn_level_1_clicked() {
+void MenuWindow::on_btn_level_1_clicked() { //set the game level for the program
     selected_level = 1;
     start_game(selected_level, "Map1.txt");
 }

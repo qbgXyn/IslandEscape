@@ -1,4 +1,4 @@
-//This is used to 
+//This is used for setting up terrain types. And this part have very few function because terrains are mainly png and insert in graphic.cpp
 #ifndef TERRAIN_H
 #define TERRAIN_H
 

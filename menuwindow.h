@@ -1,3 +1,4 @@
+//The place where link buttom with functions
 #ifndef MENUWINDOW_H
 #define MENUWINDOW_H
 
@@ -31,13 +32,13 @@ private:
     // Store the selected level in this variable
     int selected_level{0};
 
-    bool level_1{false};
+    bool level_1{false}; //set level to false first so that user need to click a level first before starting game
     bool level_2{false};
     bool level_3{false};
     bool level_4{false};
     bool level_5{false};
 
-private slots:
+private slots: //buttom to click level and start game
 
     void on_btn_start_clicked();
 

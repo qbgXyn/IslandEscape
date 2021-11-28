@@ -12,7 +12,7 @@
 #include <cmath>
 #include <regex>
 
-GameWidget::GameWidget(QWidget* parent) :
+GameWidget::GameWidget(QWidget* parent) : //basic set up
     QWidget(parent),
     map(dynamic_cast<MainWindow *>(parent)->map),
     map_width(map->getMaxWidth()),
@@ -33,7 +33,7 @@ GameWidget::~GameWidget() {
 
 void GameWidget::loop() {
     // Player Movement
-    int horizontal = (int)RIGHT - (int)LEFT;
+    int horizontal = (int)RIGHT - (int)LEFT; 
     int vertical = (int)DOWN - (int)UP;
     if (horizontal != 0 && vertical != 0) {
         map->player->setVelocityX(horizontal*(7.071067));
@@ -54,7 +54,7 @@ void GameWidget::loop() {
 }
 
 void GameWidget::keyPressEvent(QKeyEvent* event) {
-    switch (event->key()) {
+    switch (event->key()) { //connect key with corresponding function
     case Qt::Key::Key_Up:
         UP = true;
         break;
@@ -67,24 +67,19 @@ void GameWidget::keyPressEvent(QKeyEvent* event) {
     case Qt::Key::Key_Right:
         RIGHT = true;
         break;
-    case Qt::Key::Key_C:
-        /*
-        // Pick up function
-        */
+
+    case Qt::Key::Key_C: //key for special functions
         map->player->pickupItem();
         break;
-    case Qt::Key::Key_E:
-        /*
-        // Inventory
-        */
-        break;
     case Qt::Key::Key_Q:
-        //map -> player -> dropItem(selected)
+        map -> player -> dropItem(map -> player -> Inventory[map -> player -> selectedItemIndex]);
         break;
-    case Qt::Key::Key_Space:
+    case Qt::Key::Key_Space: 
+        map -> player -> useItem(map -> player -> Inventory[map -> player -> selectedItemIndex]);
         //map->player->attack()
         break;
-    case Qt::Key::Key_1:
+
+    case Qt::Key::Key_1: //for switching buttom item bar
         map->player->Switch_selectedItem_Index(0);
         break;
     case Qt::Key::Key_2:
@@ -114,7 +109,7 @@ void GameWidget::keyPressEvent(QKeyEvent* event) {
     }
 }
 
-void GameWidget::keyReleaseEvent(QKeyEvent* event) {
+void GameWidget::keyReleaseEvent(QKeyEvent* event) { //used for movement key to stop moving
     switch (event->key()) {
     case Qt::Key::Key_Up:
         UP = false;
@@ -131,7 +126,7 @@ void GameWidget::keyReleaseEvent(QKeyEvent* event) {
     }
 }
 
-void GameWidget::obtain_grid_coordinates_from_real(int rx, int ry, int& x, int& y) {
+void GameWidget::obtain_grid_coordinates_from_real(int rx, int ry, int& x, int& y) { //helper functions to convert between x, y and actual grid position
     x = (rx + map_width * 50) / 100;
     y = (ry + map_height * 50) / 100;
 }
@@ -155,7 +150,7 @@ void GameWidget::to_real_coordinates(int dispx, int dispy, int& x, int& y) {
     y = (int)(fy / scale + scroll_y);
 }
 
-void GameWidget::drawLine(QPainter& paint, int x1, int y1, int x2, int y2) {
+void GameWidget::drawLine(QPainter& paint, int x1, int y1, int x2, int y2) { //draw map coordinate lines
     int dispx1, dispx2, dispy1, dispy2;
 
     to_display_coordinates(x1, y1, dispx1, dispy1);
@@ -164,7 +159,7 @@ void GameWidget::drawLine(QPainter& paint, int x1, int y1, int x2, int y2) {
     paint.drawLine(dispx1, dispy1, dispx2, dispy2);
 }
 
-void GameWidget::fillRect(QPainter& paint, int x, int y, int w, int h, const QBrush& brush) {
+void GameWidget::fillRect(QPainter& paint, int x, int y, int w, int h, const QBrush& brush) { //fill the grid with color
     int dispx1, dispx2, dispy1, dispy2;
 
     to_display_coordinates(x, y, dispx1, dispy1);
@@ -173,7 +168,7 @@ void GameWidget::fillRect(QPainter& paint, int x, int y, int w, int h, const QBr
     paint.fillRect(dispx1, dispy1, dispx2 - dispx1, dispy2 - dispy1, brush);
 }
 
-void GameWidget::drawPixmap(QPainter& paint, int x, int y, int w, int h, const QPixmap& pixmap) {
+void GameWidget::drawPixmap(QPainter& paint, int x, int y, int w, int h, const QPixmap& pixmap) { //put the png onto the grid
     int dispx1, dispx2, dispy1, dispy2;
 
     to_display_coordinates(x, y, dispx1, dispy1);
@@ -212,7 +207,7 @@ void GameWidget::paintEvent(QPaintEvent* event) {
 
 
     // Draw Boat on grid
-    QPixmap boat(":/resources/images/boat.png");
+    QPixmap boat(":/resources/images/Handle/Decoration/boat.png");
     drawPixmap(paint, 320, 64, 128, 256, boat);
 
     // Draw Grid Lines
@@ -224,9 +219,9 @@ void GameWidget::paintEvent(QPaintEvent* event) {
     }
 
     // Draw Player
-    QPixmap player(":/resources/images/player.png");
+    QPixmap player(":/resources/images/Handle/Unit/player.png");
     QMatrix rm;
-    if (LEFT==true) {
+    if (LEFT==true) { //because we use vector to make smooth movement, the player need to rotate
         rm.rotate(-90);
         if (UP==true)
             rm.rotate(45);

@@ -10,7 +10,7 @@ while holding all functions into this class, we don't need to implement same var
 using namespace std;
 class Item {
     public:
-        enum class ID{
+        enum class ID{ //different type of item
             KEY,
             TORCH,
             TORCH_LIT,
@@ -21,7 +21,8 @@ class Item {
             REGEN_INSTANT_POTION,
             EMPTY
         };
-        ID getID() const;
+
+        ID getID() const; //different accessors
         string getName() const;
         string getDescription() const;
         string getTexture() const;
@@ -29,11 +30,13 @@ class Item {
         double getData() const;
         double getDuration() const;
 
-        void setDurability(int durability);
-        explicit Item(ID id, string name, string description, string texture, int durability, double data, double duration);
+        void setDurability(int durability); //mutator
+
+        explicit Item(ID id, string name, string description, string texture, int durability, double data, double duration); //constructor
+
     protected:
         ID id; // the ID of an item
-        string name;
+        string name; //base variable needed for item
         string description;
         string texture;
         int durability;

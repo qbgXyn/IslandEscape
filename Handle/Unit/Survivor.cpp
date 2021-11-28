@@ -113,7 +113,7 @@ void Survivor::useItem(Item_inventory *i) { //use the holding item
 }
 
 
-void Survivor::pickupItem() { //[pick up a item nearby on the ground]
+void Survivor::pickupItem() { //pick up a item nearby on the ground]
     vector<Handle*> list = map->getHandleGroup(location[0], location[1], collisionRadius); // get all surrounding handles
 
     Handle* h;

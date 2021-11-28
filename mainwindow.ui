@@ -73,7 +73,7 @@ background-image: url(:/resources/images/stripes.png);
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="resources.qrc">:/resources/images/heart.png</pixmap>
+     <pixmap resource="resources.qrc">:/resources/images/UI/heart.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -137,7 +137,7 @@ background-image: url(:/resources/images/stripes.png);
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="resources.qrc">:/resources/images/clock.png</pixmap>
+     <pixmap resource="resources.qrc">:/resources/images/UI/clock.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -199,7 +199,7 @@ background-image: url(:/resources/images/stripes.png);
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="resources.qrc">:/resources/images/inventory.png</pixmap>
+     <pixmap resource="resources.qrc">:/resources/images/UI/inventory.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
