@@ -156,3 +156,8 @@ void Handle::setHealth(int newHealth)
 Item* Handle::getCorrespondingItem() const {
     return nullptr;
 }
+
+
+void ChestAddItem(Item::ID id) {
+    return;
+}

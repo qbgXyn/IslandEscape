@@ -13,7 +13,8 @@ class Item {
             BELL,
             SWORD,
             SPEED_POTION,
-            REGEN_INSTANT_POTION
+            REGEN_INSTANT_POTION,
+            EMPTY
         };
         ID getID() const;
         string getName() const;

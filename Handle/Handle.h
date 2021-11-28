@@ -22,8 +22,7 @@ class Handle {
             ITEM,
             BOAT,
             CAMPFIRE,
-            DOOR,
-            HOUSE,
+            CHEST,
             TREE
         };
     protected:
@@ -83,6 +82,8 @@ class Handle {
         bool isCoordinateWalkable(double x, double y) const;
 
         virtual Item* getCorrespondingItem() const;
+
+        virtual void ChestAddItem(Item::ID id);
 
     protected:
         Type type;

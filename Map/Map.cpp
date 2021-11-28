@@ -100,11 +100,8 @@ Handle* Map::createHandle(Handle::Type type, double x, double y) {
         handle = new Ghost{this, x, y};
         break;
 
-    case Handle::Type::HOUSE:
-        handle = new House{this, x, y};
-        break;
-    case Handle::Type::DOOR:
-        handle = new Door{this, x, y};
+    case Handle::Type::CHEST:
+        handle = new Chest{this, x, y};
         break;
     case Handle::Type::TREE:
         handle = new Tree{this, x, y};
