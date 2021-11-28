@@ -19,7 +19,7 @@ class Survivor : public Unit {
         static const int base_visible_size = 3;
 
         static const int maxSlotOfInventory = 9;
-        int selectedItemIndex;
+        int selectedItemIndex = 0;
 
         // void attack();
         Item_inventory* Inventory[maxSlotOfInventory] = {};
