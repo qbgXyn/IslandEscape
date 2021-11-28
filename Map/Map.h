@@ -26,12 +26,11 @@ class Map {
 
         double width; // x
         double height; // y
-        vector<Handle*> List; // all handle
 
-        int game_time {30*50}; //seconds*50
+        int game_time {30*GAME_TICK}; //seconds*50
 
     public:
-        Map(double width, double height, string filename);
+        Map(int width, int height);
         ~Map();
         double getMaxWidth() const;
         double getMaxHeight() const;
@@ -56,10 +55,8 @@ class Map {
         void setGameTime(int time);
        
         Survivor* player;
-        static const int grid_size = 64; // length of a square of a grid on the map, for displaying texture only(grass, sea, etc.)
-
-    private:
+        vector<Handle*> List; // all handle
         Terrain::Type** grid;
-
+        static const int grid_size = 64; // length of a square of a grid on the map, for displaying texture only(grass, sea, etc.)
 };
 #endif // MAP_H

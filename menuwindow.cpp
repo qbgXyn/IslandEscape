@@ -8,6 +8,13 @@
 #include <QFileDialog>
 #include <string>
 
+#include <iostream>
+#include <QTextStream>
+#include <QStringList>
+
+#include <QRegularExpression>
+//#include <QRegularExpressionMatch>
+
 const QString NOT_PASSED_STYLE = "background-color: rgba(168, 50, 50, 255);";
 const QString PASSED_STYLE = "background-color: rgba(50, 127, 50, 255);";
 
@@ -25,7 +32,7 @@ MenuWindow::MenuWindow(QWidget *parent) :
 
     bgm  = new QMediaPlayer();
     bgm->setMedia(QUrl("qrc:/resources/sound/main_bgm.mp3"));
-    bgm->setVolume(100);
+    bgm->setVolume(40);
     bgm->play();
 
     // Set pixmap for increase and decrease size buttons
@@ -42,24 +49,65 @@ MenuWindow::~MenuWindow()
 
 void MenuWindow::start_game(int selected_level, string filename) {
     Map* map;
+    QString filePath;
+    int width, height;
     switch (selected_level) {
         case 1: {
-            map = new Map(60*map->grid_size, 60*map->grid_size, filename);
+            width = 60;
+            height = 60;
+            filePath = ":/resources/world/Map1.txt";
             break;
         }
         case 2: {
-            map = new Map(12*map->grid_size, 10*map->grid_size, filename);
+            width = 12;
+            height = 10;
+            filePath = ":/resources/world/Map2.txt";
             break;
         }
         default: {
-            map = new Map(1*map->grid_size, 1*map->grid_size, filename);
+            width = 1;
+            height = 1;
             break;
         }
     }
+    map = new Map(width, height);
     map->player = reinterpret_cast<Survivor*>(map->createHandle(Handle::Type::SURVIVOR, 0, 0));
     MainWindow *m = new MainWindow{map, nullptr};
     m->setAttribute(Qt::WA_DeleteOnClose);
     m->show();
+
+    QFile file(filePath);
+    QStringList numlist;
+    QString match;
+
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+    while(!file.atEnd())
+    {
+        match = file.readLine();
+//        qDebug() << match;
+        numlist << match.split(' ');
+    }
+    file.close();
+    // qDebug() << numlist;
+    int x = 0, y = 0;
+    foreach(QString num, numlist) {
+        // std::cout << num.toInt();
+        map->grid[y][x] = static_cast<Terrain::Type>(num.toInt());
+        cout << y << " " << x << " " << num.toInt() << endl;
+        ++x;
+        if (x == width) {
+            ++y;
+            x = 0;
+        }
+    }
+
+    // for (int i = 0; i < height; ++i) {
+    //     for (int j = 0; j < width; ++j) {
+    //         cout << array[j][i] << " ";
+    //     }
+    //     cout << endl;
+    // }
+
 
     close();
 }

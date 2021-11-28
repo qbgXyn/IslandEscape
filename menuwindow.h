@@ -7,6 +7,8 @@
 #include <string>
 #include <QMediaPlayer>
 
+#include <QFile>
+
 namespace Ui { class MenuWindow; }
 
 class MenuWindow: public QMainWindow

@@ -1,36 +1,37 @@
 #include <random>
 #include <cstdlib>
 #include <string>
-#include <fstream>
+
 
 #include "Map.h"
 #include "../Handle/Handle.h"
 
 #include "../Item/key.h"
 #include "../Item/regen_instant_potion.h"
+#include "../Item/sword.h"
+#include "../Item/torch.h"
+#include "../Item/torch_lit.h"
+#include "../Item/speed_potion.h"
 
 #include "Terrain.h"
+#include <iostream>
 
-Map::Map(double width, double height, std::string filename) : width(width), height(height) {
-    int i = width/grid_size;  // width = i grids
-    int j = height/grid_size; // height = j grids
-    fstream file; //load and read map txt file
+Map::Map(int width, int height) : width(width), height(height) {
+    // grid = new Terrain::Type* [width];
+    // for (int x = 0; x < width; ++x) {
+    //     grid[x] = new Terrain::Type [height];
+    //     for (int y = 0; y < height; ++y) {
+    //         grid[x][y] = Terrain::Type::GRASS;
+    //         std::cout << "init: " << x << " " << y << " " << std::endl;
+    //     }
+    // }
 
-    file.open(filename);
-    int type = 0;
-    grid = new Terrain::Type* [i];
-    for (int x = 0; x < i; x++) {
-        grid[x] = new Terrain::Type [j];
-        for (int y = 0; y < j; y++) {
-            grid[x][y] = Terrain::Type::GRASS;
-        }
-    }
-    for (int y = 0; y < j; y++) {
-        for (int x = 0; x < i; x++) {
-            file >> type;
-            if (type >= 0 && type <= 3) {
-                grid[x][y] = static_cast<Terrain::Type>(type);
-            }
+    grid = new Terrain::Type* [height];
+    for (int y = 0; y < height; ++y) {
+        grid[y] = new Terrain::Type [width];
+        for (int x = 0; x < width; ++x) {
+            grid[y][x] = Terrain::Type::GRASS;
+            std::cout << "init: " << x << " " << y << " " << std::endl;
         }
     }
 }
@@ -156,7 +157,7 @@ Item* Map::createItem(Item::ID id) {
     case Item::ID::TORCH:
     case Item::ID::TORCH_LIT:
     case Item::ID::SWORD:
-        // initally created in players' inventory, so no need to create it
+        // i = new sword;
         break;
     case Item::ID::ROCK:
         break;
