@@ -1,7 +1,7 @@
 #include "Item.h"
 
 Item::Item(Item::ID id, string name, string description, string texture, int durability, double data, double duration) : 
-                        id(id), name(name), description(description), durability(durability), data(data), duration(duration) {
+                        id(id), name(name), description(description), texture(texture), durability(durability), data(data), duration(duration) {
 
 }
 
@@ -16,6 +16,10 @@ string Item::getName() const {
 }
 string Item::getDescription() const {
     return description;
+}
+
+string Item::getTexture() const {
+    return texture;
 }
 
 int Item::getDurability() const {

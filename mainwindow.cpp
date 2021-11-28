@@ -6,6 +6,8 @@
 #include <QTimer>
 #include <QMainWindow>
 
+#include <iostream>
+
 const QString BACKGROUND = "background-color: rgba(255, 255, 255, 128);";
 
 const QString SELECTED = "background-color: rgba(255, 255, 255, 128);";
@@ -117,10 +119,17 @@ void MainWindow::main_loop() {
     }
 
     // Draw Items in Inventory
-    /*for (int i = 0; i < 9; i++)
+    QLabel* inventory [9] = {
+        ui->label_inventory_1, ui->label_inventory_2, ui->label_inventory_3,
+        ui->label_inventory_4, ui->label_inventory_5, ui->label_inventory_6,
+        ui->label_inventory_7, ui->label_inventory_8, ui->label_inventory_9
+    };
+    for (int i = 0; i < 9; i++) {
         if (map->player->Inventory[i]!=nullptr) {
-            ui->label_inventory_1->setPixmap(map->player->Inventory[i]->item->)
-    }*/
+            QPixmap Item(QString::fromStdString(map->player->Inventory[i]->item->getTexture()));
+            inventory[i]->setPixmap(Item);
+        }
+    }
 
     // Set Selected Item Name to Current Item
     if (map->player->Inventory[map->player->selectedItemIndex]!=nullptr) {
