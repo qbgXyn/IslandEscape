@@ -86,6 +86,10 @@ void GameWidget::keyPressEvent(QKeyEvent* event) {
     case Qt::Key::Key_Space:
         ATTACK = true;
         break;
+    case Qt::Key::Key_1:
+    
+        break;
+
     }
 }
 

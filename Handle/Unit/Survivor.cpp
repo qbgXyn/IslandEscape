@@ -242,3 +242,8 @@ bool Survivor::hasItem(Item::ID id) const {
     }
     return false;
 }
+
+void Survivor::Switch_selectedItem_Index(int index)
+{
+    selectedItemIndex = index;
+}

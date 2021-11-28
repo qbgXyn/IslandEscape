@@ -35,6 +35,7 @@ class Survivor : public Unit {
 
         bool hasItem(Item::ID id) const;
 
+        void Switch_selectedItem_Index(int index);
 
         bool turnOnBoat() const;
 };
