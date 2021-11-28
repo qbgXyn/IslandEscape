@@ -19,8 +19,8 @@
         <file>images/Item/potions/pt3.png</file>
         <file>images/Item/potions/pt4.png</file>
         <file>images/Item/short_sword.png</file>
-        <file>images/Item/torch.png</file>
-        <file>images/Item/torch_lit.gif</file>
+        <file>images/Item/torch_item.png</file>
+        <file>images/Item/torch_item_lit.gif</file>
         <file>images/Terrain/mysteryemwarzone2100textures/CrackedConcreteWithBitsOfStone.png</file>
         <file>images/Terrain/mysteryemwarzone2100textures/Grass1.png</file>
         <file>images/Terrain/mysteryemwarzone2100textures/grassyCliff.png</file>
