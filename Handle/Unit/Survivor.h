@@ -18,25 +18,25 @@ class Survivor : public Unit {
         static const int base_armor = 0;
         static const int base_visible_size = 3;
 
-        static const int maxSlotOfInventory = 9;
-        int selectedItemIndex = 0;
+        static const int maxSlotOfInventory = 9; //the maximum amount of item player can store, like the bag capacbility
+        int selectedItemIndex = 0; //by default the player will have the item on the first left box in the buttom item bar 
 
         // void attack();
-        Item_inventory* Inventory[maxSlotOfInventory] = {};
+        Item_inventory* Inventory[maxSlotOfInventory] = {}; //a array of item which acts like a bag for the player to store the items
 
-        bool isInventoryFull() const;
-        void useItem(Item_inventory *i);
-        void pickupItem();
-        void dropItem(Item_inventory *i);
+        bool isInventoryFull() const; //check if the inventory is full
+        void useItem(Item_inventory *i); //use the currently selected item
+        void pickupItem(); //pick up item on ground
+        void dropItem(Item_inventory *i); //drop the item on ground 
 
-        void switchTorchState();
-        int getTorchTime() const;
-        void setTorchTime(int time);
+        void switchTorchState();  //switch between torch and set a new durability
+        int getTorchTime() const; //return the torch time
+        void setTorchTime(int time);  //set up the torch durability
 
-        bool hasItem(Item::ID id) const;
+        bool hasItem(Item::ID id) const; //check if player has the item
 
-        void Switch_selectedItem_Index(int index);
+        void Switch_selectedItem_Index(int index); //change the index item so that it refer to different item in the item array, so that when press 1-9 key, change the color of the item bar background to show the selection
 
-        bool turnOnBoat() const;
+        bool turnOnBoat() const; //start the boat and end the game
 };
 #endif // SURVIVOR_H

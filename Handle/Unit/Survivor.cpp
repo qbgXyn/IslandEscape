@@ -4,7 +4,7 @@
 #include <chrono>
 
 //#include <bits/stdc++.h>
-const float Survivor::base_collison_radius = 16.0;
+const float Survivor::base_collison_radius = 16.0; 
 const double Survivor::base_max_speed = 20.0;
 const float Survivor::base_attackInterval = 1.0;
 const float Survivor::base_attack_radius = 16.0;
@@ -156,7 +156,7 @@ void Survivor::dropItem(Item_inventory *i) {
     }
 }
 
-void Survivor::switchTorchState() {
+void Survivor::switchTorchState() { //switch between torch and set a new durability
     if (Inventory[selectedItemIndex] == nullptr) return;
 
     int durability;
@@ -193,7 +193,7 @@ void Survivor::switchTorchState() {
 }
 
 
-int Survivor::getTorchTime() const{
+int Survivor::getTorchTime() const{ //return the torch durability
     Item::ID id;
     for (int i = 0; i < maxSlotOfInventory; ++i) {
         if (Inventory[i] != nullptr) {
@@ -207,8 +207,8 @@ int Survivor::getTorchTime() const{
     return 0;
 }
 
-void Survivor::setTorchTime(int time) {
-    Item::ID id;
+void Survivor::setTorchTime(int time) { //set up the torch durability
+    Item::ID id; 
     for (int i = 0; i < maxSlotOfInventory; ++i) {
         if (Inventory[i] != nullptr) {
             id = Inventory[i]->item->getID();
@@ -221,7 +221,7 @@ void Survivor::setTorchTime(int time) {
     }
 }
 
-bool Survivor::turnOnBoat() const {
+bool Survivor::turnOnBoat() const { //if can turnon the boat, end the game
     vector<Handle*> list = map->getHandleGroup(location[0], location[1], collisionRadius); // get all surrounding handle
 
     vector<Handle*>::const_iterator it_end = list.end(); // check if it collide with existing handle
@@ -234,7 +234,7 @@ bool Survivor::turnOnBoat() const {
     return false;
 }
 
-bool Survivor::hasItem(Item::ID id) const {
+bool Survivor::hasItem(Item::ID id) const { //loop through the item array to check the item
     for (int i = 0; i < maxSlotOfInventory; ++i) {
         if (Inventory[i] != nullptr && Inventory[i]->item->getID() == id) {
             return true;
@@ -243,7 +243,7 @@ bool Survivor::hasItem(Item::ID id) const {
     return false;
 }
 
-void Survivor::Switch_selectedItem_Index(int index)
+void Survivor::Switch_selectedItem_Index(int index) //change the index item so that it refer to different item in the item array
 {
     selectedItemIndex = index;
 }
