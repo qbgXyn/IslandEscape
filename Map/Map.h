@@ -1,3 +1,5 @@
+//This is the game map part. It contains basic setting like width and height with some helping functions like distanceBetweenPoint
+//and handle related functions.
 #ifndef MAP_H
 #define MAP_H
 
@@ -29,8 +31,8 @@ class Map {
         int game_time {30*GAME_TICK}; //seconds*50
 
     public:
-        Map(double width, double height);
-        ~Map();
+        Map(double width, double height); //constructor
+        ~Map(); //destructor
         double getMaxWidth() const;
         double getMaxHeight() const;
         bool isCoordinateInMap(double x, double y) const;

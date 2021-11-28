@@ -1,3 +1,4 @@
+//This is used for storing and displaying the item information
 #ifndef ITEM_DATA_H
 #define ITEM_DATA_H
 
