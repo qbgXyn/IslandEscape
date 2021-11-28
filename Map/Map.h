@@ -30,7 +30,7 @@ class Map {
         int game_time {30*GAME_TICK}; //seconds*50
 
     public:
-        Map(int width, int height);
+        Map(double width, double height);
         ~Map();
         double getMaxWidth() const;
         double getMaxHeight() const;

@@ -70,7 +70,7 @@ void MenuWindow::start_game(int selected_level, string filename) {
             break;
         }
     }
-    map = new Map(width, height);
+    map = new Map(width*64, height*64);
     map->player = reinterpret_cast<Survivor*>(map->createHandle(Handle::Type::SURVIVOR, 0, 0));
     MainWindow *m = new MainWindow{map, nullptr};
     m->setAttribute(Qt::WA_DeleteOnClose);
@@ -92,8 +92,8 @@ void MenuWindow::start_game(int selected_level, string filename) {
     int x = 0, y = 0;
     foreach(QString num, numlist) {
         // std::cout << num.toInt();
-        map->grid[y][x] = static_cast<Terrain::Type>(num.toInt());
-        cout << y << " " << x << " " << num.toInt() << endl;
+        map->grid[x][y] = static_cast<Terrain::Type>(num.toInt());
+//        cout << y << " " << x << " " << num.toInt() << endl;
         ++x;
         if (x == width) {
             ++y;
