@@ -12,6 +12,9 @@
 #include <cmath>
 #include <regex>
 
+const QBrush NOT_VISIBLE{ QColor::fromRgb(0,0,0,222) };
+const QBrush VISIBLE{ QColor::fromRgb(0,0,0,100) };
+
 GameWidget::GameWidget(QWidget* parent) : //basic set up
     QWidget(parent),
     map(dynamic_cast<MainWindow *>(parent)->map),
@@ -248,12 +251,12 @@ void GameWidget::paintEvent(QPaintEvent* event) {
 
     // Draw Out of Vision
     int visible_size = map->player->getVisibleSize();
-        paint.fillRect(0, 0, width()/2-map->grid_size*visible_size, height(), QBrush{ QColor::fromRgb(0,0,0) });
-        paint.fillRect(0, 0, width(), height()/2-map->grid_size*visible_size, QBrush{ QColor::fromRgb(0,0,0) });
-        paint.fillRect(width(), height(), -width()/2+map->grid_size*visible_size, -height(), QBrush{ QColor::fromRgb(0,0,0) });
-        paint.fillRect(width(), height(), -width(), -height()/2+map->grid_size*visible_size, QBrush{ QColor::fromRgb(0,0,0) });
-        fillRect(paint, scroll_x-map->grid_size*visible_size, scroll_y-map->grid_size*visible_size, 2*map->grid_size*visible_size, 2*map->grid_size*visible_size,
-                       QBrush{ QColor::fromRgb(0, 0, 0, 64) });
+    int visible_radius = map->grid_size*visible_size;
+        paint.fillRect(0, 0, width()/2-visible_radius, height(), NOT_VISIBLE);
+        paint.fillRect(width(), height(), -(width()/2-visible_radius), -height(), NOT_VISIBLE);
+        paint.fillRect(width()/2-visible_radius, 0, 2*visible_radius, height()/2-visible_radius, NOT_VISIBLE);
+        paint.fillRect(width()/2-visible_radius, height(), 2*visible_radius, -(height()/2-visible_radius), NOT_VISIBLE);
+    fillRect(paint, scroll_x-visible_radius, scroll_y-visible_radius, 2*visible_radius, 2*visible_radius, VISIBLE);
 }
 
 void GameWidget::load_icons() {
