@@ -22,11 +22,6 @@
         <file>images/campfire11.png</file>
         <file>images/campfire12.png</file>
         <file>images/boat.png</file>
-        <file>images/short_sword.png</file>
-        <file>images/potions/pt1.png</file>
-        <file>images/potions/pt2.png</file>
-        <file>images/potions/pt3.png</file>
-        <file>images/potions/pt4.png</file>
         <file>sound/atmoseerie01.mp3</file>
         <file>sound/atmoseerie02.mp3</file>
         <file>sound/atmoseerie03.mp3</file>
@@ -37,5 +32,13 @@
         <file>world/Map1.txt</file>
         <file>world/Map2.txt</file>
         <file>images/inventory.png</file>
+        <file>images/item/potions/pt1.png</file>
+        <file>images/item/potions/pt2.png</file>
+        <file>images/item/potions/pt3.png</file>
+        <file>images/item/potions/pt4.png</file>
+        <file>images/item/short_sword.png</file>
+        <file>images/item/torch.png</file>
+        <file>images/item/torch_lit.gif</file>
+        <file>images/inventory1.png</file>
     </qresource>
 </RCC>
