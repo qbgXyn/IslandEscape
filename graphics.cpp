@@ -20,7 +20,7 @@ GameWidget::GameWidget(QWidget* parent) : //basic set up
     scroll_x(0), scroll_y(0),
     scale(1.0f),
     UP(false), DOWN(false), LEFT(false), RIGHT(false),
-    Player_Rotation(0),
+    Player_Direction(0),
     CAMPFIRE_COUNT(0)
 {
     load_icons();
@@ -34,7 +34,7 @@ GameWidget::~GameWidget() {
 
 void GameWidget::loop() {
     // Player Movement
-    int horizontal = (int)RIGHT - (int)LEFT; 
+    int horizontal = (int)RIGHT - (int)LEFT;
     int vertical = (int)DOWN - (int)UP;
     if (horizontal != 0 && vertical != 0) {
         map->player->setVelocityX(horizontal*(7.071067));
@@ -75,7 +75,7 @@ void GameWidget::keyPressEvent(QKeyEvent* event) {
     case Qt::Key::Key_Q:
         map -> player -> dropItem(map -> player -> Inventory[map -> player -> selectedItemIndex]);
         break;
-    case Qt::Key::Key_Space: 
+    case Qt::Key::Key_Space:
         map -> player -> useItem(map -> player -> Inventory[map -> player -> selectedItemIndex]);
         //map->player->attack()
         break;
@@ -223,24 +223,24 @@ void GameWidget::paintEvent(QPaintEvent* event) {
     QPixmap player(":/resources/images/Handle/Unit/player.png");
     QMatrix rm;
     if (LEFT==true) { //because we use vector to make smooth movement, the player need to rotate
-        Player_Rotation = -90;
+        Player_Direction = -90;
         if (UP==true)
-            Player_Rotation += 45;
+            Player_Direction += 45;
         if (DOWN==true)
-            Player_Rotation += -45;
+            Player_Direction += -45;
     }
     else if (RIGHT==true) {
-        Player_Rotation = 90;
+        Player_Direction = 90;
         if (UP==true)
-            Player_Rotation += -45;
+            Player_Direction += -45;
         if (DOWN==true)
-            Player_Rotation += 45;
+            Player_Direction += 45;
     }
     else if (UP==true)
-        Player_Rotation = 0;
+        Player_Direction = 0;
     else if (DOWN==true)
-        Player_Rotation = 180;
-    rm.rotate(Player_Rotation);
+        Player_Direction = 180;
+    rm.rotate(Player_Direction);
     int w = player.width(), h = player.height();
     player = player.transformed(rm);
     player = player.copy((player.width()-w)/2, (player.height()-h)/2, w, h);
