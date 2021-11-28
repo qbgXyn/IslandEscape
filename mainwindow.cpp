@@ -147,6 +147,9 @@ void MainWindow::main_loop() {
                 inventory[i]->setPixmap(Item);
             }
         }
+        else {
+            inventory[i]->clear();
+        }
     }
 
     // Set Selected Item Name to Current Item

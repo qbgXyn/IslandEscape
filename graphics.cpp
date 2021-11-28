@@ -77,6 +77,7 @@ void GameWidget::keyPressEvent(QKeyEvent* event) {
         break;
     case Qt::Key::Key_Q:
         map -> player -> dropItem(map -> player -> Inventory[map -> player -> selectedItemIndex]);
+        map -> player -> Inventory[map -> player -> selectedItemIndex] = nullptr;
         break;
     case Qt::Key::Key_Space:
         map -> player -> useItem(map -> player -> Inventory[map -> player -> selectedItemIndex]);
