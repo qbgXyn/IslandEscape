@@ -13,7 +13,7 @@
 class Survivor : public Unit { //survivor is the derived class of unit
     public:
         explicit Survivor(Map *map, double x, double y); //player constructor
-        static const int base_max_health = 10; //base maximum health of player
+        static const int base_max_health; //base maximum health of player
         static const float base_collison_radius; //base collision radius of player
         static const double base_max_speed; //base maximum movement speed 
         
