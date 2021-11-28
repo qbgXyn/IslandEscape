@@ -6,13 +6,13 @@
 #include <QTimer>
 #include <QMainWindow>
 
-const QString BACKGROUND = "background-color: rgba(255, 255, 255, 128);";
+const QString BACKGROUND{ "background-color: rgba(255, 255, 255, 128)" };
 
-const QString ITEM_SELECTED = "background-color: rgba(255, 255, 255, 128);";
-const QString ITEM_NOT_SELECTED = "background-color: rgba(85, 85, 85, 128);";
+const QString ITEM_SELECTED{ "background-color: rgba(255, 255, 255, 128);" };
+const QString ITEM_NOT_SELECTED{ "background-color: rgba(85, 85, 85, 128);" };
 
-const QString ITEM_NAME = "color: rgba(255, 255, 255, 255)";
-const QString ITEM_NAME_SHADOW = "color: rgba(0, 128, 255, 255)";
+const QString ITEM_NAME{ "color: rgba(255, 255, 255, 255)" };
+const QString ITEM_NAME_SHADOW{ "color: rgba(0, 128, 255, 255)" };
 
 MainWindow::MainWindow(Map *const map, QMediaPlayer *bgm, QWidget *parent) : //constructor
         QMainWindow(parent), //pass by MIL

@@ -25,9 +25,9 @@ background-image: url(:/resources/images/stripes.png);
    <widget class="QLabel" name="label_instruction">
     <property name="geometry">
      <rect>
-      <x>30</x>
+      <x>190</x>
       <y>50</y>
-      <width>1381</width>
+      <width>1061</width>
       <height>29</height>
      </rect>
     </property>
@@ -48,7 +48,7 @@ background-image: url(:/resources/images/stripes.png);
      <bool>false</bool>
     </property>
     <property name="text">
-     <string>[↑↓←→] - Movement        [c] - Pick Up Items        [e] - Inventory        [q] - Drop Current Item        [Spacebar] - Use Current Item</string>
+     <string>[↑↓←→] - Movement      [c] - Pick Up      [1-9] - Select      [Spacebar] - Use      [q] - Drop</string>
     </property>
     <property name="scaledContents">
      <bool>false</bool>
