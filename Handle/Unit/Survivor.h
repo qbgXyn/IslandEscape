@@ -4,19 +4,19 @@
 #include "Unit.h"
 #include "../Inventory/Item_Inventory.h"
 
-class Survivor : public Unit {
+class Survivor : public Unit { //survivor is the derived class of unit
     public:
-        explicit Survivor(Map *map, double x, double y);
-        static const int base_max_health = 10;
-        static const float base_collison_radius;
-        static const double base_max_speed;
+        explicit Survivor(Map *map, double x, double y); //player constructor
+        static const int base_max_health = 10; //base maximum health of player
+        static const float base_collison_radius; //base collision radius of player
+        static const double base_max_speed; //base maximum movement speed 
         
-        static const int base_damage = 0;
-        static const float base_attackInterval;
-        static const float base_attack_radius;
-        static const double base_attack_sector_angle;
-        static const int base_armor = 0;
-        static const int base_visible_size = 3;
+        static const int base_damage = 0; //base melee damage
+        static const float base_attackInterval; //base melee CD
+        static const float base_attack_radius; //base melee radius
+        static const double base_attack_sector_angle; //base melee sector angle
+        static const int base_armor = 0; //basic armor
+        static const int base_visible_size = 3; //basic visibility of player
 
         static const int maxSlotOfInventory = 9; //the maximum amount of item player can store, like the bag capacbility
         int selectedItemIndex = 0; //by default the player will have the item on the first left box in the buttom item bar 

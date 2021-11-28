@@ -4,13 +4,13 @@
 #include <chrono>
 
 //#include <bits/stdc++.h>
-const float Survivor::base_collison_radius = 16.0; 
-const double Survivor::base_max_speed = 20.0;
-const float Survivor::base_attackInterval = 1.0;
-const float Survivor::base_attack_radius = 16.0;
-const double Survivor::base_attack_sector_angle = 60.0;
+const float Survivor::base_collison_radius = 16.0; //base index for survivor
+const double Survivor::base_max_speed = 20.0; //base index for survivor
+const float Survivor::base_attackInterval = 1.0; //base index for survivor
+const float Survivor::base_attack_radius = 16.0; //base index for survivor
+const double Survivor::base_attack_sector_angle = 60.0; //base index for survivor
 
-Survivor::Survivor(Map *map, double x, double y) : Unit(map, x, y) {
+Survivor::Survivor(Map *map, double x, double y) : Unit(map, x, y) { //constructor
     type = Handle::Type::SURVIVOR;
     pathable += Terrain::Type::GRASS;
     pathable += Terrain::Type::STONE;
@@ -19,10 +19,10 @@ Survivor::Survivor(Map *map, double x, double y) : Unit(map, x, y) {
     visible_size = base_visible_size;
     health = base_max_health;
     damage = base_damage;
-    armor = base_armor;
+    armor = base_armor; //initalize value
 
-    Inventory[0] = new Item_inventory {Item::ID::SWORD};
-    Inventory[1] = new Item_inventory {Item::ID::TORCH};
+    Inventory[0] = new Item_inventory {Item::ID::SWORD}; //by default give a sword to the player at the beginning in the first left item bar and hold it
+    Inventory[1] = new Item_inventory {Item::ID::TORCH}; //by deafult give a torch to the player 
 }
 
 // void Survivor::attack() {
@@ -69,7 +69,7 @@ Survivor::Survivor(Map *map, double x, double y) : Unit(map, x, y) {
 //     }
 // }
 
-bool Survivor::isInventoryFull() const {
+bool Survivor::isInventoryFull() const { //check if the "bag" is full
     int counter = 0;
     for (int i = 0; i < maxSlotOfInventory; ++i) {
         if (Inventory[i] != nullptr) {
@@ -79,13 +79,13 @@ bool Survivor::isInventoryFull() const {
     return counter >= maxSlotOfInventory;
 }
 
-void Survivor::useItem(Item_inventory *i) {
-    if (i == nullptr) return;
+void Survivor::useItem(Item_inventory *i) { //use the holding item
+    if (i == nullptr) return; //check if holding an item
     Item *item = i->item;
     Item::ID id = item->getID();
     int durability = item->getDurability();
     double data = item->getData();
-    double duration = item->getDuration();
+    double duration = item->getDuration(); //get the private data of item
     switch(id) {
         case Item::ID::KEY:
             turnOnBoat();
@@ -127,8 +127,8 @@ void Survivor::useItem(Item_inventory *i) {
 }
 
 
-void Survivor::pickupItem() {
-    vector<Handle*> list = map->getHandleGroup(location[0], location[1], collisionRadius); // get all surrounding handle
+void Survivor::pickupItem() { //[pick up a item nearby on the ground]
+    vector<Handle*> list = map->getHandleGroup(location[0], location[1], collisionRadius); // get all surrounding handles
 
     Handle* h;
 
@@ -148,30 +148,31 @@ void Survivor::pickupItem() {
 
 
 void Survivor::dropItem(Item_inventory *i) {
-    if (i != nullptr) {
+    if (i != nullptr) { //check if holding an item
         map->createItem_Handle(i->item->getID(), location[0], location[1]);
         // Item_Handle* ih = new Item_Handle{map, this->location[0], this->location[1], i->item->getID()};
         // map->List.push_back(ih);
-        delete i;
+        delete i; //when drop the item, remove it from the array but will not move other item positon in the array
     }
 }
 
 void Survivor::switchTorchState() { //switch between torch and set a new durability
-    if (Inventory[selectedItemIndex] == nullptr) return;
+    if (Inventory[selectedItemIndex] == nullptr) return; //chack if not holding any item 
 
     int durability;
     Item::ID id = Inventory[selectedItemIndex]->item->getID();
 
     if (id == Item::ID::TORCH || id == Item::ID::TORCH_LIT) {
         durability = Inventory[selectedItemIndex]->item->getDurability();
-        delete Inventory[selectedItemIndex];
+        delete Inventory[selectedItemIndex]; //used the torch to set the new durability
 
         if (id == Item::ID::TORCH && durability > 0) {
             Inventory[selectedItemIndex] = new Item_inventory {Item::ID::TORCH_LIT};
-            setVisibleSize(getVisibleSize() + Inventory[selectedItemIndex]->item->getData());
-        }else {
+            setVisibleSize(getVisibleSize() + Inventory[selectedItemIndex]->item->getData()); //set durability if using torch_lit
+        }
+        else {
             Inventory[selectedItemIndex] = new Item_inventory {Item::ID::TORCH};
-            setVisibleSize(getVisibleSize() - Inventory[selectedItemIndex]->item->getData());
+            setVisibleSize(getVisibleSize() - Inventory[selectedItemIndex]->item->getData()); // set durability if using torch
         }
         Inventory[selectedItemIndex]->item->setDurability(durability);
     }
@@ -196,7 +197,7 @@ void Survivor::switchTorchState() { //switch between torch and set a new durabil
 int Survivor::getTorchTime() const{ //return the torch durability
     Item::ID id;
     for (int i = 0; i < maxSlotOfInventory; ++i) {
-        if (Inventory[i] != nullptr) {
+        if (Inventory[i] != nullptr) { //check if holding a item
             id = Inventory[i]->item->getID();
             if (id == Item::ID::TORCH || id == Item::ID::TORCH_LIT) {
                 return Inventory[i]->item->getDurability();
