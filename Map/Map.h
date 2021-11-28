@@ -10,8 +10,7 @@
 #include "../Handle/Unit/Survivor.h"
 #include "../Handle/Unit/Ghost.h"
 
-#include "../Handle/Decoration/House.h"
-#include "../Handle/Decoration/Door.h"
+#include "../Handle/Decoration/Chest.h"
 #include "../Handle/Decoration/Tree.h"
 #include "../Handle/Decoration/Campfire.h"
 #include "../Handle/Decoration/Boat.h"
