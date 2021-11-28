@@ -15,9 +15,10 @@ class Unit : public Handle {
         float getDamage() const;
         void setDamage(int damage);
         virtual float getArmor() const;
-        virtual int getVisionRadius() const;
+        virtual int getVisibleSize() const;
         virtual bool isGridVisible(int x, int y) const;
         virtual bool isHandleVisible(Handle *h) const;
+        void setVisibleSize(int visible_size);
         void gainAttributeFromEffect(Effect *e);
         void addEffect(Effect *e);
         void attack(double attackRadius, double sectorAngle, double attackInterval);

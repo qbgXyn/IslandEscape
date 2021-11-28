@@ -19,6 +19,11 @@ float Unit::getArmor() const {
     return armor;
 }
 
+
+void Unit::setVisibleSize(int visible_size) {
+    this->visible_size = visible_size;
+}
+
 void Unit::gainAttributeFromEffect(Effect *e) {
     Effect::Type type = e->getType();
     switch(type) {
@@ -57,7 +62,7 @@ bool Unit::isInsideSector(const Handle *h, double sector_angle) const
 }
 
 
-int Unit::getVisionRadius() const {
+int Unit::getVisibleSize() const {
     return visible_size;
 }
 bool Unit::isGridVisible(int x, int y) const {

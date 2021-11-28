@@ -147,9 +147,13 @@ Item* Map::createItem(Item::ID id) {
         i = new key;
         break;
     case Item::ID::TORCH:
+        i = new torch;
+        break;
     case Item::ID::TORCH_LIT:
+        i = new torch_lit;
+        break;
     case Item::ID::SWORD:
-        // i = new sword;
+        i = new sword;
         break;
     case Item::ID::ROCK:
         break;

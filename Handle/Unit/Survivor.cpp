@@ -168,8 +168,10 @@ void Survivor::switchTorchState() {
 
         if (id == Item::ID::TORCH && durability > 0) {
             Inventory[selectedItemIndex] = new Item_inventory {Item::ID::TORCH_LIT};
+            setVisibleSize(getVisibleSize() + Inventory[selectedItemIndex]->item->getData());
         }else {
             Inventory[selectedItemIndex] = new Item_inventory {Item::ID::TORCH};
+            setVisibleSize(getVisibleSize() - Inventory[selectedItemIndex]->item->getData());
         }
         Inventory[selectedItemIndex]->item->setDurability(durability);
     }

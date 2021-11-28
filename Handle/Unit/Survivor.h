@@ -16,13 +16,13 @@ class Survivor : public Unit {
         static const float base_attack_radius;
         static const double base_attack_sector_angle;
         static const int base_armor = 0;
-        static const int base_visible_size = 2;
+        static const int base_visible_size = 3;
 
         static const int maxSlotOfInventory = 9;
         int selectedItemIndex;
 
         // void attack();
-        Item_inventory* Inventory[maxSlotOfInventory];
+        Item_inventory* Inventory[maxSlotOfInventory] = {};
 
         bool isInventoryFull() const;
         void useItem(Item_inventory *i);

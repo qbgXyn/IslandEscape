@@ -30,22 +30,22 @@ MainWindow::~MainWindow() {
 
 // This is called 50 times per second
 void MainWindow::main_loop() {
-    int game_time = map->getGameTime();
-//    int torch_time = map->player->getTorchTime();
-    int torch_time = 10;
+    game_time = map->getGameTime();
+    torch_time = map->player->getTorchTime();
+//    int torch_time = 10;
     if (game_time > 0)
         map->setGameTime(game_time - 1);
-//    if (torch_time > 0 && map->player->hasItem(Item::ID::TORCH_LIT)) {
-//        if (torch_time - 1 >= 0) {
-//            map->player->setTorchTime(torch_time - 1);
-//        }else {
-//            map->player->switchTorchState();
-//        }
+    if (torch_time > 0 && map->player->hasItem(Item::ID::TORCH_LIT)) {
+        if (torch_time - 1 >= 0) {
+            map->player->setTorchTime(torch_time - 1);
+        }else {
+            map->player->switchTorchState();
+        }
 
-//    }
+    }
     ui->label_health->setText(": 100");
     ui->label_time->setText(": " + QString::number(game_time/GAME_TICK) + "s");
-//    ui->label_torch->setText(": " + QString::number(torch_time/GAME_TICK) + "s");
-    ui->label_torch->setText(": " + QString::number(50/GAME_TICK) + "s");
+    ui->label_torch->setText(": " + QString::number(torch_time/GAME_TICK) + "s");
+//    ui->label_torch->setText(": " + QString::number(50/GAME_TICK) + "s");
     ui->widget->loop();
 }

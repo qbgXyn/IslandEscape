@@ -31,5 +31,8 @@ private:
     QTimer* loop_timer;
 
     friend class GameWidget;
+
+    int game_time;
+    int torch_time;
 };
 #endif // MAINWINDOW_H
