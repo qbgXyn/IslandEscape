@@ -257,6 +257,8 @@ void GameWidget::paintEvent(QPaintEvent* event) {
         paint.fillRect(width(), height(), -(width()/2-visible_radius), -height(), NOT_VISIBLE);
         paint.fillRect(width()/2-visible_radius, 0, 2*visible_radius, height()/2-visible_radius, NOT_VISIBLE);
         paint.fillRect(width()/2-visible_radius, height(), 2*visible_radius, -(height()/2-visible_radius), NOT_VISIBLE);
+
+    // Darken the map
     fillRect(paint, scroll_x-visible_radius, scroll_y-visible_radius, 2*visible_radius, 2*visible_radius, VISIBLE);
 }
 
