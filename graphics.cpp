@@ -77,6 +77,9 @@ void GameWidget::keyPressEvent(QKeyEvent* event) {
         // Inventory
         */
         break;
+    case Qt::Key::Key_Q:
+        //map -> player -> dropItem(selected)
+        break;
     case Qt::Key::Key_Space:
         //map->player->attack()
         break;
