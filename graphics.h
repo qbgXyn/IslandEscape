@@ -26,12 +26,9 @@ protected:
     // Handle drawing
     virtual void paintEvent(QPaintEvent* event) override;
 
-    // Handle WASD keys for navigation
+    // Handle keys
     virtual void keyPressEvent(QKeyEvent* event) override;
     virtual void keyReleaseEvent(QKeyEvent* event) override;
-
-    // Handle mouse scrolling for magnification
-    virtual void wheelEvent(QWheelEvent* event) override;
 
 private:
     // Obtain the display coordinates from the 'real' coordinates
@@ -65,13 +62,7 @@ private:
 
     // Keys pressed
     bool UP, DOWN, LEFT, RIGHT;
-
-    int tick; // City ticks (number of calls of loop function) elapsed since the beginning of the program
-    // Used for animating blinking effects
-
-    // The coordinates of the grid on which the mouse is hovering
-    int hovering_grid_x;
-    int hovering_grid_y;
+    bool ATTACK;
 
     // Icons sorted according to the enum BuildingType
     QPixmap* ICONS;
