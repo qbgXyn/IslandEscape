@@ -1,5 +1,9 @@
 #ifndef ITEM_H
 #define ITEM_H
+/*
+Data-holding class of Item
+while holding all functions into this class, we don't need to implement same variables/functions twice
+*/
 
 #include <string>
 using namespace std;
@@ -24,14 +28,12 @@ class Item {
         double getDuration() const;
 
         void setDurability(int durability);
-    protected:
-        explicit Item(ID id, int durability = 1);
+        explicit Item(ID id, string name, string description, string texture, int durability, double data, double duration);
     protected:
         ID id; // the ID of an item
         string name;
         string description;
-        string texture_handle;
-        string texture_inventory;
+        string texture;
         int durability;
         double data;
         double duration;

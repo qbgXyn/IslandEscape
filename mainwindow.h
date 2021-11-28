@@ -21,6 +21,9 @@ public:
 
 private:
     // Initialization functions, called in constructor
+    void init_Information();
+    void init_Inventory();
+    void init_Current_Item();
 
     void main_loop();
 

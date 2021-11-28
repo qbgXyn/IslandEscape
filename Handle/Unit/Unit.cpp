@@ -22,28 +22,7 @@ void Unit::setVisibleSize(int visible_size) { //mutator
     this->visible_size = visible_size;
 }
 
-void Unit::gainAttributeFromEffect(Effect *e) { //gain effect
-    Effect::Type type = e->getType();
-    switch(type) {
-        case Effect::Type::REGEN_INSTANT:
-            health += e->getData();
-            break;
-        case Effect::Type::SPEED:
-            max_speed += e->getData();
-            break;
-        case Effect::Type::INVULNERABLE:
-            setInvulnerable();
-            break;
-        case Effect::Type::INVISIBLE:
-            setInvisible();
-            break;
-    }
-}
 
-void Unit::addEffect(Effect *e) { //add effect into the vector list
-    gainAttributeFromEffect(e);
-    EffectList.push_back(e);
-}
 
 bool Unit::isInsideSector(const Handle *h, double sector_angle) const //check if the target is within the circular sector
 {

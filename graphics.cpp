@@ -46,6 +46,9 @@ void GameWidget::loop() {
     scroll_x = map->player->getX();
     scroll_y = map->player->getY();
 
+    // Inventory Item Logos
+
+
     repaint(0, 0, width(), height());
 }
 
@@ -78,9 +81,32 @@ void GameWidget::keyPressEvent(QKeyEvent* event) {
         //map->player->attack()
         break;
     case Qt::Key::Key_1:
-    
+        map->player->Switch_selectedItem_Index(0);
         break;
-
+    case Qt::Key::Key_2:
+        map->player->Switch_selectedItem_Index(1);
+        break;
+    case Qt::Key::Key_3:
+        map->player->Switch_selectedItem_Index(2);
+        break;
+    case Qt::Key::Key_4:
+        map->player->Switch_selectedItem_Index(3);
+        break;
+    case Qt::Key::Key_5:
+        map->player->Switch_selectedItem_Index(4);
+        break;
+    case Qt::Key::Key_6:
+        map->player->Switch_selectedItem_Index(5);
+        break;
+    case Qt::Key::Key_7:
+        map->player->Switch_selectedItem_Index(6);
+        break;
+    case Qt::Key::Key_8:
+        map->player->Switch_selectedItem_Index(7);
+        break;
+    case Qt::Key::Key_9:
+        map->player->Switch_selectedItem_Index(8);
+        break;
     }
 }
 

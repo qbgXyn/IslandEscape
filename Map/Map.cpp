@@ -6,12 +6,13 @@
 #include "Map.h"
 #include "../Handle/Handle.h"
 
-#include "../Item/key.h"
-#include "../Item/regen_instant_potion.h"
-#include "../Item/sword.h"
-#include "../Item/torch.h"
-#include "../Item/torch_lit.h"
-#include "../Item/speed_potion.h"
+// #include "../Item/key.h"
+// #include "../Item/regen_instant_potion.h"
+// #include "../Item/sword.h"
+// #include "../Item/torch.h"
+// #include "../Item/torch_lit.h"
+// #include "../Item/speed_potion.h"
+#include "../Item/Item_data.h"
 
 #include "Terrain.h"
 
@@ -141,16 +142,16 @@ Item* Map::createItem(Item::ID id) {
     switch (id)
     {
     case Item::ID::KEY:
-        i = new key;
+        i = new Item {Item::ID::KEY, key::name, key::description, key::texture, key::durability, key::data, key::duration};
         break;
     case Item::ID::TORCH:
-        i = new torch;
+        i = new Item {Item::ID::TORCH, torch::name, torch::description, torch::texture, torch::durability, torch::data, torch::duration};
         break;
     case Item::ID::TORCH_LIT:
-        i = new torch_lit;
+        i = new Item {Item::ID::TORCH_LIT, torch_lit::name, torch_lit::description, torch_lit::texture, torch_lit::durability, torch_lit::data, torch_lit::duration};
         break;
     case Item::ID::SWORD:
-        i = new sword;
+        i = new Item {Item::ID::SWORD, sword::name, sword::description, sword::texture, sword::durability, sword::data, sword::duration};
         break;
     case Item::ID::ROCK:
         break;
@@ -159,7 +160,13 @@ Item* Map::createItem(Item::ID id) {
     case Item::ID::SPEED_POTION:
         break;
     case Item::ID::REGEN_INSTANT_POTION:
-        i = new regen_instant_potion;
+        i = new Item {Item::ID::REGEN_INSTANT_POTION,
+                    regen_instant_potion::name, 
+                    regen_instant_potion::description,
+                    regen_instant_potion::texture,
+                    regen_instant_potion::durability,
+                    regen_instant_potion::data,
+                    regen_instant_potion::duration};
         break;
     }
     return i;

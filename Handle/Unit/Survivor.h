@@ -13,7 +13,7 @@
 class Survivor : public Unit { //survivor is the derived class of unit
     public:
         explicit Survivor(Map *map, double x, double y); //player constructor
-        static const int base_max_health = 10; //base maximum health of player
+        static const int base_max_health; //base maximum health of player
         static const float base_collison_radius; //base collision radius of player
         static const double base_max_speed; //base maximum movement speed 
         
@@ -26,6 +26,10 @@ class Survivor : public Unit { //survivor is the derived class of unit
 
         static const int maxSlotOfInventory = 9; //the maximum amount of item player can store, like the bag capacbility
         int selectedItemIndex = 0; //by default the player will have the item on the first left box in the buttom item bar 
+
+
+        void gainAttributeFromEffect(Effect *e); //effect related functions
+        void addEffect(Effect *e);
 
         Item_inventory* Inventory[maxSlotOfInventory] = {}; //a array of item which acts like a bag for the player to store the items
 

@@ -1,9 +1,13 @@
 #ifndef DECORATION_H
 #define DECORATION_H
+/*
+abstract class
+*/
+
 
 #include "../Handle.h"
 class Decoration : public Handle {
-    public:
+    protected:
         Decoration(Map *map, double x, double y, int inInvulnerable = 1);
 
 

@@ -25,8 +25,7 @@ class Unit : public Handle {
         virtual bool isHandleVisible(Handle *h) const;
         void setVisibleSize(int visible_size); 
 
-        void gainAttributeFromEffect(Effect *e); //effect related functions
-        void addEffect(Effect *e);
+
 
         void attack(double attackRadius, double sectorAngle, double attackInterval); //attack functon for player and ghost
         bool isInsideSector(const Handle *h, double sector_angle) const; //a function to check if the position of the target is inside the circular sector

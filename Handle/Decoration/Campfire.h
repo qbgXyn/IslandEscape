@@ -1,5 +1,11 @@
 #ifndef CAMPFIRE_H
 #define CAMPFIRE_H
+/*
+decoration, while it has two function:
+1. re-gain durability of torch
+2. scare away ghost
+*/
+
 
 #include "Decoration.h"
 
