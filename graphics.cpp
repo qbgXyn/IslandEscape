@@ -19,9 +19,7 @@ GameWidget::GameWidget(QWidget* parent) :
     map_height(map->getMaxHeight()),
     scroll_x(0), scroll_y(0),
     scale(1.0f),
-    UP(false), DOWN(false), LEFT(false), RIGHT(false),
-    tick(0),
-    hovering_grid_x(-1), hovering_grid_y(-1)
+    UP(false), DOWN(false), LEFT(false), RIGHT(false)
 {
     load_icons();
     setMouseTracking(true);
@@ -58,7 +56,6 @@ void GameWidget::loop() {
         ;
 
     repaint(0, 0, width(), height());
-    ++tick;
 }
 
 void GameWidget::keyPressEvent(QKeyEvent* event) {

@@ -64,13 +64,6 @@ private:
     bool UP, DOWN, LEFT, RIGHT;
     bool ATTACK;
 
-    int tick; // City ticks (number of calls of loop function) elapsed since the beginning of the program
-    // Used for animating blinking effects
-
-    // The coordinates of the grid on which the mouse is hovering
-    int hovering_grid_x;
-    int hovering_grid_y;
-
     // Icons sorted according to the enum BuildingType
     QPixmap* ICONS;
     QPixmap* CAMPFIRE_ICONS;
