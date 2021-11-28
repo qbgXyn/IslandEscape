@@ -1,3 +1,9 @@
+//This is the header file of survivor, which is the character which the player controlling. In there, it is designed as the derived
+//class of unit such that it can use some common functions such as attack and find handles within the radius. In survivor class, 
+//it has pick up, switch, use and drop item function which only the player can use but ghost cannot. It also contain the components 
+//for the inventory array which acts as a "bag" for the player to store picked item and it will be display as a item bar in the 
+//buttom of the mainwindow like Minecraft. This part will be linked to the 1-9 key press in graphic to display and switch between
+//the holding object.
 #ifndef SURVIVOR_H
 #define SURVIVOR_H
 
@@ -21,7 +27,6 @@ class Survivor : public Unit { //survivor is the derived class of unit
         static const int maxSlotOfInventory = 9; //the maximum amount of item player can store, like the bag capacbility
         int selectedItemIndex = 0; //by default the player will have the item on the first left box in the buttom item bar 
 
-        // void attack();
         Item_inventory* Inventory[maxSlotOfInventory] = {}; //a array of item which acts like a bag for the player to store the items
 
         bool isInventoryFull() const; //check if the inventory is full
