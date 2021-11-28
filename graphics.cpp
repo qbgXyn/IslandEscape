@@ -33,25 +33,6 @@ GameWidget::~GameWidget() {
 }
 
 void GameWidget::loop() {
-    /* const int x_min = 0;
-    const int x_max = map_width;
-    const int y_min = 0;
-    const int y_max = map_height;
-    if (scroll_x >= x_min && scroll_x <= x_max) {
-        scroll_x += (int) (5.0f * ((int) RIGHT - (int) LEFT));
-    }
-    if (scroll_x < x_min)
-        scroll_x = x_min;
-    if (scroll_x > x_max)
-        scroll_x = x_max;
-    if (scroll_y >= y_min && scroll_y <= y_max) {
-        scroll_y += (int) (5.0f * ((int) DOWN - (int) UP));
-    }
-    if (scroll_y < y_min)
-        scroll_y = y_min;
-    if (scroll_y > y_max)
-        scroll_y = y_max;
-    */
     // Player Movement
     int horizontal = (int)RIGHT - (int)LEFT;
     int vertical = (int)DOWN - (int)UP;
@@ -138,17 +119,6 @@ void GameWidget::keyReleaseEvent(QKeyEvent* event) {
         ATTACK = false;
         break;
     }
-}
-
-void GameWidget::wheelEvent(QWheelEvent* event) {
-    /* scale = (float) (scale * exp(event->angleDelta().y() / 720.0));
-    if (scale > 10.0f) {
-        scale = 10.0f;
-    }
-    if (scale < 0.1f) {
-        scale = 0.1f;
-    }
-    */
 }
 
 void GameWidget::obtain_grid_coordinates_from_real(int rx, int ry, int& x, int& y) {
@@ -304,108 +274,3 @@ void GameWidget::dealloc_icons() {
     delete [] ICONS;
     delete [] CAMPFIRE_ICONS;
 }
-
-// Set green background
-//paint.fillRect(0, 0, width(), height(), QBrush{ QColor::fromRgb(119,158,203) });
-
-/*
-for (int x = 0; x < grid_size; x++) {
-    for (int y = 0; y < grid_size; y++) {
-        drawPixmap(paint, (x - grid_size / 2) * 100, (y - grid_size / 2) * 100, 100, 100,
-                   ICONS[0]);
-
-    }
-}*/
-
-/* QFont ft;
-ft.setPixelSize(25);
-ft.setBold(true);
-ft.setFamily("Comic Sans MS");
-paint.setFont(ft); */
-
-/* const int min = -grid_size * 50;
-const int max = grid_size * 50;
-// Draw special overlays on the grid
-switch (dynamic_cast<MainWindow *>(window())->get_selected_overlay_button()) {
-    case MainWindow::OverlayButton::NORMAL:
-        break;
-    case MainWindow::OverlayButton::TYPE: {
-        for (int x = 0; x < grid_size; x++) {
-            for (int y = 0; y < grid_size; y++) {
-                if (!city->is_empty_at(x, y)) {
-                    QBrush brush;
-                    switch (city->get_at(x, y)->get_category()) {
-                        case Building::Category::RESIDENTIAL:
-                            brush.setColor(QColor::fromRgbF(0, 0, 1, 0.8f));
-                            break;
-                        case Building::Category::REVENUE:
-                            brush.setColor(QColor::fromRgbF(1, 1, 0, 0.8f));
-                            break;
-                        case Building::Category::HEALTH:
-                            brush.setColor(QColor::fromRgbF(1, 0, 0, 0.8f));
-                            break;
-                    }
-                    brush.setStyle(Qt::SolidPattern);
-                    fillRect(paint, (x - grid_size / 2) * 100, (y - grid_size / 2) * 100, 100, 100, brush);
-                }
-            }
-        }
-        break;
-    }
-    case MainWindow::OverlayButton::NEIGHBOR: {
-        QPen original = paint.pen();
-        for (int x = 0; x < grid_size; x++) {
-            for (int y = 0; y < grid_size; y++) {
-                // With bottom
-                int dcolor = contains_type(city->get_at(x, y), city->get_at(x, y + 1));
-                if (dcolor != -2) {
-                    tsetColor(paint, dcolor);
-                    drawLine(paint, (x - grid_size / 2) * 100 + 50, (y - grid_size / 2) * 100 + 50,
-                             (x - grid_size / 2) * 100 + 50, (y + 1 - grid_size / 2) * 100 + 50);
-                }
-
-                // With left
-                dcolor = contains_type(city->get_at(x, y), city->get_at(x + 1, y));
-                if (dcolor != -2) {
-                    tsetColor(paint, dcolor);
-                    drawLine(paint, (x - grid_size / 2) * 100 + 50, (y - grid_size / 2) * 100 + 50,
-                             (x + 1 - grid_size / 2) * 100 + 50, (y - grid_size / 2) * 100 + 50);
-                }
-            }
-        }
-        paint.setPen(original);
-        break;
-    }
-} */
-/*
-// Render extra effects on the grid, depending on the build mode
-if (hovering_grid_x >= 0 && hovering_grid_y >= 0 && hovering_grid_x < grid_size && hovering_grid_y < grid_size)
-    if ((tick / 10) % 2 == 0) {
-        MainWindow::SideMenuButton button_selected = dynamic_cast<MainWindow *>(window())->get_selected_side_menu_button();
-        if (button_selected != MainWindow::SideMenuButton::DEMOLISH &&
-            button_selected != MainWindow::SideMenuButton::NAVIGATE &&
-            city->is_empty_at(hovering_grid_x, hovering_grid_y)) {
-            drawPixmap(paint, (hovering_grid_x - grid_size / 2) * 100, (hovering_grid_y - grid_size / 2) * 100, 100,
-                       100, ICONS[static_cast<int>(button_selected) - 1]);
-        }else if (button_selected == MainWindow::SideMenuButton::DEMOLISH &&
-                  !city->is_empty_at(hovering_grid_x, hovering_grid_y)) {
-            fillRect(paint, (hovering_grid_x - grid_size / 2) * 100, (hovering_grid_y - grid_size / 2) * 100, 100,
-                    100, QBrush{QColor::fromRgbF(1.0f, 0, 0, 0.5f)});
-    }
-} */
-/*
-// Draw player statistics
-#define STAT_WIDTH 500
-#define HEIGHT 40
-paint.drawText(10, 10 + HEIGHT, STAT_WIDTH, 50, Qt::AlignTop,
-               "Turn " + QString::number(city->get_turn()) + ": $" + QString::number(city->get_budget()));
-paint.drawText(10, 60 + HEIGHT, STAT_WIDTH, 50, Qt::AlignTop, "Revenue: " + QString::number(city->get_revenue()));
-paint.drawText(10, 110 + HEIGHT, STAT_WIDTH, 50, Qt::AlignTop,
-               "Max Population: " + QString::number(city->get_max_population()));
-paint.drawText(10, 160 + HEIGHT, STAT_WIDTH, 50, Qt::AlignTop,
-               "Population: " + QString::number(city->get_population()));
-paint.drawText(10, 210 + HEIGHT, STAT_WIDTH, 50, Qt::AlignTop,
-               "Population Change: " + QString::number(city->get_population_growth()));
-paint.drawText(10, 260 + HEIGHT, STAT_WIDTH, 50, Qt::AlignTop,
-               "Population Growth Rate: " + QString::number(city->get_population_growth_rate()));
-*/

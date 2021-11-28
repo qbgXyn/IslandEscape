@@ -26,12 +26,9 @@ protected:
     // Handle drawing
     virtual void paintEvent(QPaintEvent* event) override;
 
-    // Handle WASD keys for navigation
+    // Handle keys
     virtual void keyPressEvent(QKeyEvent* event) override;
     virtual void keyReleaseEvent(QKeyEvent* event) override;
-
-    // Handle mouse scrolling for magnification
-    virtual void wheelEvent(QWheelEvent* event) override;
 
 private:
     // Obtain the display coordinates from the 'real' coordinates
