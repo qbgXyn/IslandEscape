@@ -108,7 +108,7 @@ void GameWidget::keyPressEvent(QKeyEvent* event) {
     }
 }
 
-void GameWidget::keyReleaseEvent(QKeyEvent* event) { //used for movement key
+void GameWidget::keyReleaseEvent(QKeyEvent* event) { //used for movement key to stop moving
     switch (event->key()) {
     case Qt::Key::Key_Up:
         UP = false;
@@ -125,7 +125,7 @@ void GameWidget::keyReleaseEvent(QKeyEvent* event) { //used for movement key
     }
 }
 
-void GameWidget::obtain_grid_coordinates_from_real(int rx, int ry, int& x, int& y) { //helper function to convert between x, y and actual grid position
+void GameWidget::obtain_grid_coordinates_from_real(int rx, int ry, int& x, int& y) { //helper functions to convert between x, y and actual grid position
     x = (rx + map_width * 50) / 100;
     y = (ry + map_height * 50) / 100;
 }
@@ -149,7 +149,7 @@ void GameWidget::to_real_coordinates(int dispx, int dispy, int& x, int& y) {
     y = (int)(fy / scale + scroll_y);
 }
 
-void GameWidget::drawLine(QPainter& paint, int x1, int y1, int x2, int y2) {
+void GameWidget::drawLine(QPainter& paint, int x1, int y1, int x2, int y2) { //draw map coordinate lines
     int dispx1, dispx2, dispy1, dispy2;
 
     to_display_coordinates(x1, y1, dispx1, dispy1);
@@ -158,7 +158,7 @@ void GameWidget::drawLine(QPainter& paint, int x1, int y1, int x2, int y2) {
     paint.drawLine(dispx1, dispy1, dispx2, dispy2);
 }
 
-void GameWidget::fillRect(QPainter& paint, int x, int y, int w, int h, const QBrush& brush) {
+void GameWidget::fillRect(QPainter& paint, int x, int y, int w, int h, const QBrush& brush) { //fill the grid with color
     int dispx1, dispx2, dispy1, dispy2;
 
     to_display_coordinates(x, y, dispx1, dispy1);
@@ -167,7 +167,7 @@ void GameWidget::fillRect(QPainter& paint, int x, int y, int w, int h, const QBr
     paint.fillRect(dispx1, dispy1, dispx2 - dispx1, dispy2 - dispy1, brush);
 }
 
-void GameWidget::drawPixmap(QPainter& paint, int x, int y, int w, int h, const QPixmap& pixmap) {
+void GameWidget::drawPixmap(QPainter& paint, int x, int y, int w, int h, const QPixmap& pixmap) { //put the png onto the grid
     int dispx1, dispx2, dispy1, dispy2;
 
     to_display_coordinates(x, y, dispx1, dispy1);
@@ -219,7 +219,7 @@ void GameWidget::paintEvent(QPaintEvent* event) {
     // Draw Player
     QPixmap player(":/resources/images/Handle/Unit/player.png");
     QMatrix rm;
-    if (LEFT==true) {
+    if (LEFT==true) { //because we use vector to make smooth movement, the player need to rotate
         rm.rotate(-90);
         if (UP==true)
             rm.rotate(45);
@@ -256,7 +256,7 @@ void GameWidget::paintEvent(QPaintEvent* event) {
 //    }
 }
 
-void GameWidget::load_icons() {
+void GameWidget::load_icons() { //to store the png into exe
     ICONS = new QPixmap [4] {{":/resources/images/Terrain/Grass.png"},
                              {":/resources/images/Terrain/Stone.png"},
                              {":/resources/images/Terrain/Ocean.png"},
