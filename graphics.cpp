@@ -249,6 +249,8 @@ void GameWidget::paintEvent(QPaintEvent* event) {
         paint.fillRect(0, 0, width(), height()/2-map->grid_size*visible_size, QBrush{ QColor::fromRgb(0,0,0) });
         paint.fillRect(width(), height(), -width()/2+map->grid_size*visible_size, -height(), QBrush{ QColor::fromRgb(0,0,0) });
         paint.fillRect(width(), height(), -width(), -height()/2+map->grid_size*visible_size, QBrush{ QColor::fromRgb(0,0,0) });
+        fillRect(paint, scroll_x-map->grid_size*visible_size, scroll_y-map->grid_size*visible_size, 2*map->grid_size*visible_size, 2*map->grid_size*visible_size,
+                       QBrush{ QColor::fromRgb(0, 0, 0, 64) });
 //    }
 //    else {
 //        paint.fillRect(0, 0, width()/2-64*3, height(), QBrush{ QColor::fromRgb(0,0,0) });
