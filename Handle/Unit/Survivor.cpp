@@ -143,40 +143,47 @@ void Survivor::dropItem(Item_inventory *i) {
 }
 
 void Survivor::switchTorchState() { //switch between torch and set a new durability
-    if (Inventory[selectedItemIndex] == nullptr) return; //chack if not holding any item 
+    if (Inventory[selectedItemIndex] == nullptr) return; //check if not holding any item 
 
     int durability;
     Item::ID id = Inventory[selectedItemIndex]->item->getID();
 
     if (id == Item::ID::TORCH || id == Item::ID::TORCH_LIT) { // if used item is torch
         durability = Inventory[selectedItemIndex]->item->getDurability();
-        delete Inventory[selectedItemIndex]; //remove the old one
 
-        if (id == Item::ID::TORCH && durability > 0) { // only able to switch to lit state when durability > 0
-            Inventory[selectedItemIndex] = new Item_inventory {Item::ID::TORCH_LIT};
-            setVisibleSize(getVisibleSize() + Inventory[selectedItemIndex]->item->getData()); //add visible size
+        if (id == Item::ID::TORCH) { // only able to switch to lit state when durability > 0
+            if (durability > 0) {
+                delete Inventory[selectedItemIndex]; //remove the old one
+                Inventory[selectedItemIndex] = new Item_inventory {Item::ID::TORCH_LIT};
+                setVisibleSize(getVisibleSize() + Inventory[selectedItemIndex]->item->getData()); //add visible size
+            }
         }
         else {
+            delete Inventory[selectedItemIndex]; //remove the old one
             Inventory[selectedItemIndex] = new Item_inventory {Item::ID::TORCH};
             setVisibleSize(getVisibleSize() - Inventory[selectedItemIndex]->item->getData()); // shrink visible size
         }
         Inventory[selectedItemIndex]->item->setDurability(durability);
     }
+}
+void Survivor::torchRunOutOfTime() { //torch is run out of time
+    Item_inventory *torch = nullptr;
+    int i;
+    for (i = 0; i < maxSlotOfInventory; ++i) {
+        if (Inventory[i] != nullptr && Inventory[i]->item->getID() == Item::ID::TORCH_LIT) { //search item name
+            torch = Inventory[i];
+            break;
+        }
+    }
+    std::cout << torch << endl;
+    if (torch == nullptr) return; // if torch is not present
 
-    // if (Inventory[selectedItemIndex]->item->getID() == Item::ID::TORCH) {
-    //     durability = Inventory[selectedItemIndex]->item->getDurability();
-    //     delete Inventory[selectedItemIndex];
-
-    //     Inventory[selectedItemIndex] = new Item_inventory {Item::ID::TORCH_LIT};
-    //     Inventory[selectedItemIndex]->item->setDurability(durability);
-
-    // }else if (Inventory[selectedItemIndex]->item->getID() == Item::ID::TORCH_LIT) {
-    //     durability = Inventory[selectedItemIndex]->item->getDurability();
-    //     delete Inventory[selectedItemIndex];
-
-    //     Inventory[selectedItemIndex] = new Item_inventory {Item::ID::TORCH};
-    //     Inventory[selectedItemIndex]->item->setDurability(durability);
-    // }
+    int durability = torch->item->getDurability();
+    delete torch; //remove the old one
+    torch = new Item_inventory {Item::ID::TORCH};
+    setVisibleSize(getVisibleSize() - torch->item->getData()); // shrink visible size
+    torch->item->setDurability(durability);
+    Inventory[i] = torch; // put the torch back to the inventory
 }
 
 

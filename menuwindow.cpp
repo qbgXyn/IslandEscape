@@ -12,9 +12,6 @@
 #include <QTextStream>
 #include <QStringList>
 
-#include <QRegularExpression>
-//#include <QRegularExpressionMatch>
-
 const QString NOT_PASSED_STYLE = "background-color: rgba(168, 50, 50, 255);";
 const QString PASSED_STYLE = "background-color: rgba(50, 127, 50, 255);";
 
@@ -30,8 +27,13 @@ MenuWindow::MenuWindow(QWidget *parent) :
     ui->label_logo->setPixmap(p->scaled(p->width() * SCALE, p->height() * SCALE)); */
     initialize_level_btn();
 
-    bgm  = new QMediaPlayer();
-    bgm->setMedia(QUrl("qrc:/resources/sound/main_bgm.mp3"));
+    bgmList = new QMediaPlaylist();
+    bgm = new QMediaPlayer();
+    bgm->setPlaylist(bgmList);
+    bgmList->addMedia(QUrl("qrc:/resources/sound/main_bgm.mp3"));
+    bgmList->setPlaybackMode(QMediaPlaylist::CurrentItemInLoop);
+
+    bgmList->setCurrentIndex(0);
     bgm->setVolume(40);
     bgm->play();
 
@@ -45,6 +47,8 @@ MenuWindow::MenuWindow(QWidget *parent) :
 MenuWindow::~MenuWindow()
 {
     delete ui;
+    delete bgm;
+    delete bgmList;
 }
 
 void MenuWindow::start_game(int selected_level, string filename) {
@@ -52,7 +56,7 @@ void MenuWindow::start_game(int selected_level, string filename) {
     QString filePath;
     int width, height;
     filename = ":/resources/world/"+filename;
-    switch (selected_level) { //different level will import different map txt file
+    switch (selected_level) {
         case 1: {
             width = 60;
             height = 60;
@@ -71,12 +75,9 @@ void MenuWindow::start_game(int selected_level, string filename) {
             break;
         }
     }
-
-    map = new Map(width*64, height*64); //map setting and construct the map
-
-    map->player = reinterpret_cast<Survivor*>(map->createHandle(Handle::Type::SURVIVOR, 0, 0)); //player is here :)
-
-    MainWindow *m = new MainWindow{map, nullptr};
+    map = new Map(width*64, height*64);
+    map->player = reinterpret_cast<Survivor*>(map->createHandle(Handle::Type::SURVIVOR, 0, 0));
+    MainWindow *m = new MainWindow{map, bgm, nullptr};
     m->setAttribute(Qt::WA_DeleteOnClose);
     m->show();
 
@@ -84,7 +85,7 @@ void MenuWindow::start_game(int selected_level, string filename) {
     QStringList numlist;
     QString match;
 
-    file.open(QIODevice::ReadOnly | QIODevice::Text); //read the file 
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
     while(!file.atEnd())
     {
         match = file.readLine();
@@ -112,11 +113,12 @@ void MenuWindow::start_game(int selected_level, string filename) {
     //     cout << endl;
     // }
 
+    bgm->stop();
 
     close();
 }
 
-void MenuWindow::initialize_level_btn() { //connect different level with buttom
+void MenuWindow::initialize_level_btn() {
     ui->btn_level_1->setStyleSheet(NOT_PASSED_STYLE);
     ui->btn_level_2->setStyleSheet(NOT_PASSED_STYLE);
     ui->btn_level_3->setStyleSheet(NOT_PASSED_STYLE);
@@ -134,11 +136,11 @@ void MenuWindow::initialize_level_btn() { //connect different level with buttom
         ui->btn_level_5->setStyleSheet(PASSED_STYLE);
 }
 
-void MenuWindow::on_btn_start_clicked() { //run the program with given level
+void MenuWindow::on_btn_start_clicked() {
     ui->pages->setCurrentWidget(ui->page_level_selection);
 }
 
-void MenuWindow::on_btn_level_1_clicked() { //set the game level for the program
+void MenuWindow::on_btn_level_1_clicked() {
     selected_level = 1;
     start_game(selected_level, "Map1.txt");
 }

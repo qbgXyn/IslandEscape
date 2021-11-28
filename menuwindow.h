@@ -7,7 +7,7 @@
 #include <QMainWindow>
 #include <string>
 #include <QMediaPlayer>
-
+#include <QMediaPlaylist>
 #include <QFile>
 
 namespace Ui { class MenuWindow; }
@@ -28,6 +28,7 @@ private:
     Ui::MenuWindow *ui;
 
     QMediaPlayer *bgm;
+    QMediaPlaylist *bgmList;
 
     // Store the selected level in this variable
     int selected_level{0};

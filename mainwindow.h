@@ -5,6 +5,8 @@
 #include "Map/Map.h"
 
 #include <QMainWindow>
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
 
 namespace Ui { class MainWindow; }
 
@@ -14,7 +16,7 @@ class MainWindow: public QMainWindow
 
 public:
 
-    MainWindow(Map *const map, QWidget *parent = nullptr); //constructor
+    MainWindow(Map *const map, QMediaPlayer *bgm, QWidget *parent = nullptr); //constructor
     ~MainWindow(); //destructor
 
     MainWindow(const MainWindow&) = delete;
@@ -35,6 +37,8 @@ private:
     QTimer* loop_timer;
 
     friend class GameWidget;
+    QMediaPlayer *bgm;
+    QMediaPlaylist *bgmList;
 
     int game_time;
     int torch_time;

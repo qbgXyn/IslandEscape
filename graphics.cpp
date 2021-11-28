@@ -242,18 +242,10 @@ void GameWidget::paintEvent(QPaintEvent* event) {
 
     // Draw Out of Vision
     int visible_size = map->player->getVisibleSize();
-//    if (map->player->getTorchTime() > 0 && map->player->hasItem(Item::ID::TORCH_LIT)) {
-        paint.fillRect(0, 0, width()/2-map->grid_size*visible_size, height(), QBrush{ QColor::fromRgb(0,0,0) });
-        paint.fillRect(0, 0, width(), height()/2-map->grid_size*visible_size, QBrush{ QColor::fromRgb(0,0,0) });
-        paint.fillRect(width(), height(), -width()/2+map->grid_size*visible_size, -height(), QBrush{ QColor::fromRgb(0,0,0) });
-        paint.fillRect(width(), height(), -width(), -height()/2+map->grid_size*visible_size, QBrush{ QColor::fromRgb(0,0,0) });
-//    }
-//    else {
-//        paint.fillRect(0, 0, width()/2-64*3, height(), QBrush{ QColor::fromRgb(0,0,0) });
-//        paint.fillRect(0, 0, width(), height()/2-64*3, QBrush{ QColor::fromRgb(0,0,0) });
-//        paint.fillRect(width(), height(), -width()/2+64*3, -height(), QBrush{ QColor::fromRgb(0,0,0) });
-//        paint.fillRect(width(), height(), -width(), -height()/2+64*3, QBrush{ QColor::fromRgb(0,0,0) });
-//    }
+    paint.fillRect(0, 0, width()/2-map->grid_size*visible_size, height(), QBrush{ QColor::fromRgb(0,0,0) });
+    paint.fillRect(0, 0, width(), height()/2-map->grid_size*visible_size, QBrush{ QColor::fromRgb(0,0,0) });
+    paint.fillRect(width(), height(), -width()/2+map->grid_size*visible_size, -height(), QBrush{ QColor::fromRgb(0,0,0) });
+    paint.fillRect(width(), height(), -width(), -height()/2+map->grid_size*visible_size, QBrush{ QColor::fromRgb(0,0,0) });
 }
 
 void GameWidget::load_icons() { //to store the png into exe

@@ -8,6 +8,8 @@
 
 #include <iostream>
 
+#include <QDebug>
+
 const QString BACKGROUND = "background-color: rgba(255, 255, 255, 128);";
 
 const QString SELECTED = "background-color: rgba(255, 255, 255, 128);";
@@ -16,10 +18,11 @@ const QString NOT_SELECTED = "background-color: rgba(85, 85, 85, 128);";
 const QString WORD = "color: rgba(255, 255, 255, 255)";
 const QString SHADOW = "color: rgba(0, 128, 255, 255)";
 
-MainWindow::MainWindow(Map *const map, QWidget *parent) : //constructor
+MainWindow::MainWindow(Map *const map, QMediaPlayer *bgm, QWidget *parent) : //constructor
         QMainWindow(parent), //pass by MIL
         ui(new Ui::MainWindow),
-        map(map)
+        map(map),
+        bgm(bgm)
 {
     ui->setupUi(this);
 
@@ -27,6 +30,13 @@ MainWindow::MainWindow(Map *const map, QWidget *parent) : //constructor
     init_Information();
     init_Inventory();
     init_Current_Item();
+
+    // Initialize sound
+
+
+//    bgmList->setCurrentIndex(1);
+//    bgm->setVolume(60);
+//    bgm->play();
 
     // Run main loop
     loop_timer = new QTimer{this};
@@ -64,6 +74,8 @@ MainWindow::~MainWindow() {
     loop_timer->stop();
     delete loop_timer;
     delete map;
+    delete bgm;
+    delete bgmList;
 }
 
 // This is called 50 times per second
@@ -73,11 +85,11 @@ void MainWindow::main_loop() {
 //    int torch_time = 10;
     if (game_time > 0)
         map->setGameTime(game_time - 1);
-    if (torch_time > 0 && map->player->hasItem(Item::ID::TORCH_LIT)) {
+    if (map->player->hasItem(Item::ID::TORCH_LIT)) {
         if (torch_time - 1 >= 0) {
             map->player->setTorchTime(torch_time - 1);
         }else {
-            map->player->switchTorchState();
+            map->player->torchRunOutOfTime();
         }
 
     }

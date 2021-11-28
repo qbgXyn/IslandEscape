@@ -39,6 +39,7 @@ class Survivor : public Unit { //survivor is the derived class of unit
         void dropItem(Item_inventory *i); //drop the item on ground 
 
         void switchTorchState();  //switch between torch and set a new durability
+        void torchRunOutOfTime(); //torch is run out of time
         int getTorchTime() const; //return the torch time
         void setTorchTime(int time);  //set up the torch durability
 
