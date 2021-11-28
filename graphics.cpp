@@ -20,6 +20,7 @@ GameWidget::GameWidget(QWidget* parent) : //basic set up
     scroll_x(0), scroll_y(0),
     scale(1.0f),
     UP(false), DOWN(false), LEFT(false), RIGHT(false),
+    Player_Rotation(0),
     CAMPFIRE_COUNT(0)
 {
     load_icons();
@@ -222,21 +223,24 @@ void GameWidget::paintEvent(QPaintEvent* event) {
     QPixmap player(":/resources/images/Handle/Unit/player.png");
     QMatrix rm;
     if (LEFT==true) { //because we use vector to make smooth movement, the player need to rotate
-        rm.rotate(-90);
+        Player_Rotation = -90;
         if (UP==true)
-            rm.rotate(45);
+            Player_Rotation += 45;
         if (DOWN==true)
-            rm.rotate(-45);
+            Player_Rotation += -45;
     }
     else if (RIGHT==true) {
-        rm.rotate(90);
+        Player_Rotation = 90;
         if (UP==true)
-            rm.rotate(-45);
+            Player_Rotation += -45;
         if (DOWN==true)
-            rm.rotate(45);
+            Player_Rotation += 45;
     }
+    else if (UP==true)
+        Player_Rotation = 0;
     else if (DOWN==true)
-        rm.rotate(180);
+        Player_Rotation = 180;
+    rm.rotate(Player_Rotation);
     int w = player.width(), h = player.height();
     player = player.transformed(rm);
     player = player.copy((player.width()-w)/2, (player.height()-h)/2, w, h);

@@ -62,6 +62,7 @@ private:
 
     // Keys pressed
     bool UP, DOWN, LEFT, RIGHT;
+    int Player_Rotation;
 
     // Icons sorted according to the enum BuildingType
     QPixmap* ICONS;
