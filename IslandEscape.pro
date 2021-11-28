@@ -11,52 +11,10 @@ CONFIG += c++11
 DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
-    Effect/Effect.cpp \
-    graphics.cpp \
-    Handle/Decoration/Boat.cpp \
-    Handle/Decoration/Campfire.cpp \
-    Handle/Decoration/Decoration.cpp \
-    Handle/Decoration/Door.cpp \
-    Handle/Decoration/House.cpp \
-    Handle/Decoration/Item_Handle.cpp \
-    Handle/Decoration/Tree.cpp \
-    Handle/Handle.cpp \
-    Handle/Inventory/Item_Inventory.cpp \
-    Handle/Unit/Ghost.cpp \
-    Handle/Unit/Survivor.cpp \
-    Handle/Unit/Unit.cpp \
-    Item/Item.cpp \
-    Item/key.cpp \
-    Item/regen_instant_potion.cpp \
-    Main.cpp \
-    mainwindow.cpp \
-    Map/Map.cpp \
-    Map/Terrain.cpp \
-    menuwindow.cpp
+    $$files("*.cpp", true)
 
 HEADERS += \
-    Effect/Effect.h \
-    graphics.h \
-    Handle/Decoration/Boat.h \
-    Handle/Decoration/Campfire.h \
-    Handle/Decoration/Decoration.h \
-    Handle/Decoration/Door.h \
-    Handle/Decoration/House.h \
-    Handle/Decoration/Item_Handle.h \
-    Handle/Decoration/Tree.h \
-    Handle/Handle.h \
-    Handle/Inventory/Item_Inventory.h \
-    Handle/Unit/Ghost.h \
-    Handle/Unit/Survivor.h \
-    Handle/Unit/Unit.h \
-    Item/Item.h \
-    Item/key.h \
-    Item/regen_instant_potion.h \
-    mainwindow.h \
-    Map/Map.h \
-    Map/Terrain.h \
-    menuwindow.h \
-    util.h
+    $$files("*.h", true)
 
 FORMS += \
     mainwindow.ui \
