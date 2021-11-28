@@ -1,6 +1,7 @@
 #include "Item.h"
 
-Item::Item(Item::ID id, int durability) : id(id), durability(durability) {
+Item::Item(Item::ID id, string name, string description, string texture, int durability, double data, double duration) : 
+                        id(id), name(name), description(description), durability(durability), data(data), duration(duration) {
 
 }
 

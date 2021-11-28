@@ -26,6 +26,32 @@ Survivor::Survivor(Map *map, double x, double y) : Unit(map, x, y) { //construct
 }
 
 
+void Survivor::gainAttributeFromEffect(Effect *e) { //gain effect
+    Effect::Type type = e->getType();
+    switch(type) {
+        case Effect::Type::REGEN_INSTANT:
+            health += e->getData();
+            health = min(base_max_health, health);
+            break;
+        case Effect::Type::SPEED:
+            max_speed += e->getData();
+            break;
+        case Effect::Type::INVULNERABLE:
+            setInvulnerable();
+            break;
+        case Effect::Type::INVISIBLE:
+            setInvisible();
+            break;
+    }
+}
+
+void Survivor::addEffect(Effect *e) { //add effect into the vector list
+    gainAttributeFromEffect(e);
+    if (e->getDuration() > 0.0) // if duration > 0, add it to list and set-up timer
+        EffectList.push_back(e);
+}
+
+
 bool Survivor::isInventoryFull() const { //check if the "bag" is full
     int counter = 0;
     for (int i = 0; i < maxSlotOfInventory; ++i) {
@@ -70,6 +96,8 @@ void Survivor::useItem(Item_inventory *i) { //use the holding item
         case Item::ID::SWORD:
             setDamage(item->getData());
             attack(base_attack_radius, base_attack_sector_angle, base_attackInterval);
+            break;
+        default:
             break;
     }
 
@@ -123,7 +151,7 @@ void Survivor::switchTorchState() { //switch between torch and set a new durabil
         durability = Inventory[selectedItemIndex]->item->getDurability();
         delete Inventory[selectedItemIndex]; //remove the old one
 
-        if (id == Item::ID::TORCH && durability > 0) {
+        if (id == Item::ID::TORCH && durability > 0) { // only able to switch to lit state when durability > 0
             Inventory[selectedItemIndex] = new Item_inventory {Item::ID::TORCH_LIT};
             setVisibleSize(getVisibleSize() + Inventory[selectedItemIndex]->item->getData()); //add visible size
         }
