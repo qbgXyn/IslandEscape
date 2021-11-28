@@ -1,3 +1,4 @@
+//This part is the main game running part. Nothing special. :)
 #include "mainwindow.h"
 #include "menuwindow.h"
 

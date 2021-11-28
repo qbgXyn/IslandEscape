@@ -16,8 +16,8 @@ const QString NOT_SELECTED = "background-color: rgba(85, 85, 85, 128);";
 const QString WORD = "color: rgba(255, 255, 255, 255)";
 const QString SHADOW = "color: rgba(0, 128, 255, 255)";
 
-MainWindow::MainWindow(Map *const map, QWidget *parent) :
-        QMainWindow(parent),
+MainWindow::MainWindow(Map *const map, QWidget *parent) : //constructor
+        QMainWindow(parent), //pass by MIL
         ui(new Ui::MainWindow),
         map(map)
 {
@@ -43,7 +43,7 @@ void MainWindow::init_Information() {
 }
 
 void MainWindow::init_Inventory() {
-    ui->label_inventory_1->setStyleSheet(NOT_SELECTED);
+    ui->label_inventory_1->setStyleSheet(NOT_SELECTED); //this area set the buttom item bar color such that it will be not selected color
     ui->label_inventory_2->setStyleSheet(NOT_SELECTED);
     ui->label_inventory_3->setStyleSheet(NOT_SELECTED);
     ui->label_inventory_4->setStyleSheet(NOT_SELECTED);
@@ -88,7 +88,7 @@ void MainWindow::main_loop() {
 
     // Set Selected Item in Inventory
     init_Inventory();
-    switch (map->player->selectedItemIndex) {
+    switch (map->player->selectedItemIndex) { //when player press 1-9, graphic.cpp will change the selected item, and here will change the background color of that item bar box
         case 0:
             ui->label_inventory_1->setStyleSheet(SELECTED);
             break;
@@ -119,12 +119,12 @@ void MainWindow::main_loop() {
     }
 
     // Draw Items in Inventory
-    QLabel* inventory [9] = {
+    QLabel* inventory [9] = { //make the array of qlabel
         ui->label_inventory_1, ui->label_inventory_2, ui->label_inventory_3,
         ui->label_inventory_4, ui->label_inventory_5, ui->label_inventory_6,
         ui->label_inventory_7, ui->label_inventory_8, ui->label_inventory_9
     };
-    for (int i = 0; i < 9; i++) {
+    for (int i = 0; i < 9; i++) { //set up the png in the bar
         if (map->player->Inventory[i]!=nullptr) {
             QPixmap Item(QString::fromStdString(map->player->Inventory[i]->item->getTexture()));
             inventory[i]->setPixmap(Item);
@@ -136,7 +136,7 @@ void MainWindow::main_loop() {
         ui->label_current_item->setText(QString::fromStdString(map->player->Inventory[map->player->selectedItemIndex]->item->getName()));
         ui->label_current_item_shadow->setText(QString::fromStdString(map->player->Inventory[map->player->selectedItemIndex]->item->getName()));
     }
-    else {
+    else { //if selected area has no item, still have return something
         ui->label_current_item->setText("");
         ui->label_current_item_shadow->setText("");
     }
