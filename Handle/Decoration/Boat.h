@@ -1,6 +1,8 @@
 #ifndef BOAT_H
 #define BOAT_H
-
+/*
+when survivor turns on the boat(using a key searched on the island), game wins
+*/
 #include "Decoration.h"
 
 class Boat : public Decoration {

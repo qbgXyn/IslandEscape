@@ -119,17 +119,17 @@ void Survivor::switchTorchState() { //switch between torch and set a new durabil
     int durability;
     Item::ID id = Inventory[selectedItemIndex]->item->getID();
 
-    if (id == Item::ID::TORCH || id == Item::ID::TORCH_LIT) {
+    if (id == Item::ID::TORCH || id == Item::ID::TORCH_LIT) { // if used item is torch
         durability = Inventory[selectedItemIndex]->item->getDurability();
-        delete Inventory[selectedItemIndex]; //used the torch to set the new durability
+        delete Inventory[selectedItemIndex]; //remove the old one
 
         if (id == Item::ID::TORCH && durability > 0) {
             Inventory[selectedItemIndex] = new Item_inventory {Item::ID::TORCH_LIT};
-            setVisibleSize(getVisibleSize() + Inventory[selectedItemIndex]->item->getData()); //set durability if using torch_lit
+            setVisibleSize(getVisibleSize() + Inventory[selectedItemIndex]->item->getData()); //add visible size
         }
         else {
             Inventory[selectedItemIndex] = new Item_inventory {Item::ID::TORCH};
-            setVisibleSize(getVisibleSize() - Inventory[selectedItemIndex]->item->getData()); // set durability if using torch
+            setVisibleSize(getVisibleSize() - Inventory[selectedItemIndex]->item->getData()); // shrink visible size
         }
         Inventory[selectedItemIndex]->item->setDurability(durability);
     }

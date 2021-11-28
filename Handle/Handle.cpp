@@ -84,10 +84,10 @@ float Handle::getArmor() const { //accessor
 int Handle::getVisionRadius() const { //accessor
     return 0;
 }
-bool Handle::isGridVisible(int x, int y) const { //check if grid visible
+bool Handle::isGridVisible(int x, int y) const { //check if grid visible, only valid for Unit and it's derived class
     return false;
 }
-bool Handle::isHandleVisible(Handle *h) const { //check if handle visible
+bool Handle::isHandleVisible(Handle *h) const { //check if handle visible, only valid for Unit and it's derived class
     return false;
 }
 
@@ -122,7 +122,7 @@ bool Handle::isCoordinatePathable(double x, double y) const { //check if pathabl
         return false;
     }
 
-    Terrain::Type terrain = map->getTerrainOfGrid(x, y); //check if the terrain element is walkable, becasue player cannot walk on the ocean
+    Terrain::Type terrain = map->getTerrainOfGrid(x, y); //check if the terrain element is pathable, becasue player cannot walk on the ocean
     return pathable(terrain);
 }
 
