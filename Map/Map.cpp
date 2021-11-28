@@ -16,6 +16,8 @@
 
 #include "Terrain.h"
 
+#include <iostream>
+
 Map::Map(double width, double height) : width(width), height(height) {
     int i = width/grid_size;  // width = i grids
     int j = height/grid_size; // height = j grids

@@ -6,6 +6,7 @@ while holding all functions into this class, we don't need to implement same var
 */
 
 #include <string>
+
 using namespace std;
 class Item {
     public:
@@ -23,6 +24,7 @@ class Item {
         ID getID() const;
         string getName() const;
         string getDescription() const;
+        string getTexture() const;
         int getDurability() const;
         double getData() const;
         double getDuration() const;
