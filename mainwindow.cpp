@@ -4,13 +4,12 @@
 
 #include <QString>
 #include <QTimer>
-#include <QFileDialog>
 #include <QMainWindow>
 
-const QString BACKGROUND = "background-color: rgba(255, 255, 255, 64);";
+const QString BACKGROUND = "background-color: rgba(255, 255, 255, 128);";
 
-const QString SELECTED_STYLE = "background-color: rgba(255, 255, 255, 128);";
-const QString NOT_SELECTED_STYLE = "background-color: rgba(85, 85, 85, 128);";
+const QString SELECTED = "background-color: rgba(255, 255, 255, 128);";
+const QString NOT_SELECTED = "background-color: rgba(85, 85, 85, 128);";
 
 const QString WORD = "color: rgba(255, 255, 255, 255)";
 const QString SHADOW = "color: rgba(0, 128, 255, 255)";
@@ -42,15 +41,15 @@ void MainWindow::init_Information() {
 }
 
 void MainWindow::init_Inventory() {
-    ui->label_inventory_1->setStyleSheet(NOT_SELECTED_STYLE);
-    ui->label_inventory_2->setStyleSheet(NOT_SELECTED_STYLE);
-    ui->label_inventory_3->setStyleSheet(NOT_SELECTED_STYLE);
-    ui->label_inventory_4->setStyleSheet(NOT_SELECTED_STYLE);
-    ui->label_inventory_5->setStyleSheet(NOT_SELECTED_STYLE);
-    ui->label_inventory_6->setStyleSheet(NOT_SELECTED_STYLE);
-    ui->label_inventory_7->setStyleSheet(NOT_SELECTED_STYLE);
-    ui->label_inventory_8->setStyleSheet(NOT_SELECTED_STYLE);
-    ui->label_inventory_9->setStyleSheet(NOT_SELECTED_STYLE);
+    ui->label_inventory_1->setStyleSheet(NOT_SELECTED);
+    ui->label_inventory_2->setStyleSheet(NOT_SELECTED);
+    ui->label_inventory_3->setStyleSheet(NOT_SELECTED);
+    ui->label_inventory_4->setStyleSheet(NOT_SELECTED);
+    ui->label_inventory_5->setStyleSheet(NOT_SELECTED);
+    ui->label_inventory_6->setStyleSheet(NOT_SELECTED);
+    ui->label_inventory_7->setStyleSheet(NOT_SELECTED);
+    ui->label_inventory_8->setStyleSheet(NOT_SELECTED);
+    ui->label_inventory_9->setStyleSheet(NOT_SELECTED);
 }
 
 void MainWindow::init_Current_Item() {
@@ -89,31 +88,31 @@ void MainWindow::main_loop() {
     init_Inventory();
     switch (map->player->selectedItemIndex) {
         case 0:
-            ui->label_inventory_1->setStyleSheet(SELECTED_STYLE);
+            ui->label_inventory_1->setStyleSheet(SELECTED);
             break;
         case 1:
-            ui->label_inventory_2->setStyleSheet(SELECTED_STYLE);
+            ui->label_inventory_2->setStyleSheet(SELECTED);
             break;
         case 2:
-            ui->label_inventory_3->setStyleSheet(SELECTED_STYLE);
+            ui->label_inventory_3->setStyleSheet(SELECTED);
             break;
         case 3:
-            ui->label_inventory_4->setStyleSheet(SELECTED_STYLE);
+            ui->label_inventory_4->setStyleSheet(SELECTED);
             break;
         case 4:
-            ui->label_inventory_5->setStyleSheet(SELECTED_STYLE);
+            ui->label_inventory_5->setStyleSheet(SELECTED);
             break;
         case 5:
-            ui->label_inventory_6->setStyleSheet(SELECTED_STYLE);
+            ui->label_inventory_6->setStyleSheet(SELECTED);
             break;
         case 6:
-            ui->label_inventory_7->setStyleSheet(SELECTED_STYLE);
+            ui->label_inventory_7->setStyleSheet(SELECTED);
             break;
         case 7:
-            ui->label_inventory_8->setStyleSheet(SELECTED_STYLE);
+            ui->label_inventory_8->setStyleSheet(SELECTED);
             break;
         case 8:
-            ui->label_inventory_9->setStyleSheet(SELECTED_STYLE);
+            ui->label_inventory_9->setStyleSheet(SELECTED);
             break;
     }
 

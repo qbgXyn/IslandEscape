@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1528</width>
-    <height>948</height>
+    <width>1440</width>
+    <height>805</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -190,7 +190,7 @@ background-image: url(:/resources/images/stripes.png);
     <property name="geometry">
      <rect>
       <x>270</x>
-      <y>664</y>
+      <y>650</y>
       <width>900</width>
       <height>131</height>
      </rect>
@@ -209,12 +209,12 @@ background-image: url(:/resources/images/stripes.png);
     <property name="geometry">
      <rect>
       <x>330</x>
-      <y>690</y>
+      <y>676</y>
       <width>771</width>
       <height>91</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QHBoxLayout" name="Inventory">
      <property name="bottomMargin">
       <number>10</number>
      </property>
@@ -287,7 +287,7 @@ background-image: url(:/resources/images/stripes.png);
     <property name="geometry">
      <rect>
       <x>560</x>
-      <y>630</y>
+      <y>610</y>
       <width>311</width>
       <height>41</height>
      </rect>
@@ -314,7 +314,7 @@ background-image: url(:/resources/images/stripes.png);
     <property name="geometry">
      <rect>
       <x>558</x>
-      <y>628</y>
+      <y>608</y>
       <width>311</width>
       <height>41</height>
      </rect>
