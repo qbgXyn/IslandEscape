@@ -19,7 +19,8 @@ GameWidget::GameWidget(QWidget* parent) : //basic set up
     map_height(map->getMaxHeight()),
     scroll_x(0), scroll_y(0),
     scale(1.0f),
-    UP(false), DOWN(false), LEFT(false), RIGHT(false)
+    UP(false), DOWN(false), LEFT(false), RIGHT(false),
+    CAMPFIRE_COUNT(0)
 {
     load_icons();
     setMouseTracking(true);
@@ -201,8 +202,9 @@ void GameWidget::paintEvent(QPaintEvent* event) {
     */
 
     // Draw CampFire on grid
-    drawPixmap(paint, 64, 64, 64, 64, CAMPFIRE_ICONS[campfire_number]);
-    campfire_number = (campfire_number+1)%12;
+    drawPixmap(paint, 64, 64, 64, 64, CAMPFIRE[CAMPFIRE_COUNT]);
+    CAMPFIRE_COUNT = (CAMPFIRE_COUNT+1)%12;
+
 
     // Draw Boat on grid
     QPixmap boat(":/resources/images/Handle/Decoration/boat.png");
@@ -242,34 +244,34 @@ void GameWidget::paintEvent(QPaintEvent* event) {
 
     // Draw Out of Vision
     int visible_size = map->player->getVisibleSize();
-    paint.fillRect(0, 0, width()/2-map->grid_size*visible_size, height(), QBrush{ QColor::fromRgb(0,0,0) });
-    paint.fillRect(0, 0, width(), height()/2-map->grid_size*visible_size, QBrush{ QColor::fromRgb(0,0,0) });
-    paint.fillRect(width(), height(), -width()/2+map->grid_size*visible_size, -height(), QBrush{ QColor::fromRgb(0,0,0) });
-    paint.fillRect(width(), height(), -width(), -height()/2+map->grid_size*visible_size, QBrush{ QColor::fromRgb(0,0,0) });
+        paint.fillRect(0, 0, width()/2-map->grid_size*visible_size, height(), QBrush{ QColor::fromRgb(0,0,0) });
+        paint.fillRect(0, 0, width(), height()/2-map->grid_size*visible_size, QBrush{ QColor::fromRgb(0,0,0) });
+        paint.fillRect(width(), height(), -width()/2+map->grid_size*visible_size, -height(), QBrush{ QColor::fromRgb(0,0,0) });
+        paint.fillRect(width(), height(), -width(), -height()/2+map->grid_size*visible_size, QBrush{ QColor::fromRgb(0,0,0) });
+        fillRect(paint, scroll_x-map->grid_size*visible_size, scroll_y-map->grid_size*visible_size, 2*map->grid_size*visible_size, 2*map->grid_size*visible_size,
+                       QBrush{ QColor::fromRgb(0, 0, 0, 64) });
 }
 
-void GameWidget::load_icons() { //to store the png into exe
+void GameWidget::load_icons() {
     ICONS = new QPixmap [4] {{":/resources/images/Terrain/Grass.png"},
                              {":/resources/images/Terrain/Stone.png"},
                              {":/resources/images/Terrain/Ocean.png"},
                              {":/resources/images/Terrain/Sand.png"}};
-    CAMPFIRE_ICONS = new QPixmap [12] {{":/resources/images/Handle/Decoration/campfire01.png"},
-                                       {":/resources/images/Handle/Decoration/campfire02.png"},
-                                       {":/resources/images/Handle/Decoration/campfire03.png"},
-                                       {":/resources/images/Handle/Decoration/campfire04.png"},
-                                       {":/resources/images/Handle/Decoration/campfire05.png"},
-                                       {":/resources/images/Handle/Decoration/campfire06.png"},
-                                       {":/resources/images/Handle/Decoration/campfire07.png"},
-                                       {":/resources/images/Handle/Decoration/campfire08.png"},
-                                       {":/resources/images/Handle/Decoration/campfire09.png"},
-                                       {":/resources/images/Handle/Decoration/campfire10.png"},
-                                       {":/resources/images/Handle/Decoration/campfire11.png"},
-                                       {":/resources/images/Handle/Decoration/campfire12.png"}};
-    ITEMS = new QPixmap [2] {{":/resources/images/Item/short_sword.png"},
-                             {":/resources/images/Item/torch_item.png"}};
+    CAMPFIRE = new QPixmap [12] {{":/resources/images/Handle/Decoration/campfire01.png"},
+                                 {":/resources/images/Handle/Decoration/campfire02.png"},
+                                 {":/resources/images/Handle/Decoration/campfire03.png"},
+                                 {":/resources/images/Handle/Decoration/campfire04.png"},
+                                 {":/resources/images/Handle/Decoration/campfire05.png"},
+                                 {":/resources/images/Handle/Decoration/campfire06.png"},
+                                 {":/resources/images/Handle/Decoration/campfire07.png"},
+                                 {":/resources/images/Handle/Decoration/campfire08.png"},
+                                 {":/resources/images/Handle/Decoration/campfire09.png"},
+                                 {":/resources/images/Handle/Decoration/campfire10.png"},
+                                 {":/resources/images/Handle/Decoration/campfire11.png"},
+                                 {":/resources/images/Handle/Decoration/campfire12.png"}};
 }
 
 void GameWidget::dealloc_icons() {
     delete [] ICONS;
-    delete [] CAMPFIRE_ICONS;
+    delete [] CAMPFIRE;
 }

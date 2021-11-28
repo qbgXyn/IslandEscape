@@ -28,7 +28,11 @@ private:
     void init_Inventory();
     void init_Current_Item();
 
-    void main_loop(); //basic settings
+    // Load and unload icons
+    void load_icons();
+    void dealloc_icons();
+
+    void main_loop();
 
     Ui::MainWindow* ui;
 
@@ -42,5 +46,9 @@ private:
 
     int game_time;
     int torch_time;
+
+    QPixmap* TORCH_LIT;
+    int TORCH_LIT_COUNT;
+
 };
 #endif // MAINWINDOW_H

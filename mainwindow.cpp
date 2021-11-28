@@ -6,23 +6,20 @@
 #include <QTimer>
 #include <QMainWindow>
 
-#include <iostream>
-
-#include <QDebug>
-
 const QString BACKGROUND = "background-color: rgba(255, 255, 255, 128);";
 
-const QString SELECTED = "background-color: rgba(255, 255, 255, 128);";
-const QString NOT_SELECTED = "background-color: rgba(85, 85, 85, 128);";
+const QString ITEM_SELECTED = "background-color: rgba(255, 255, 255, 128);";
+const QString ITEM_NOT_SELECTED = "background-color: rgba(85, 85, 85, 128);";
 
-const QString WORD = "color: rgba(255, 255, 255, 255)";
-const QString SHADOW = "color: rgba(0, 128, 255, 255)";
+const QString ITEM_NAME = "color: rgba(255, 255, 255, 255)";
+const QString ITEM_NAME_SHADOW = "color: rgba(0, 128, 255, 255)";
 
 MainWindow::MainWindow(Map *const map, QMediaPlayer *bgm, QWidget *parent) : //constructor
         QMainWindow(parent), //pass by MIL
         ui(new Ui::MainWindow),
         map(map),
-        bgm(bgm)
+        bgm(bgm),
+        TORCH_LIT_COUNT(0)
 {
     ui->setupUi(this);
 
@@ -37,6 +34,8 @@ MainWindow::MainWindow(Map *const map, QMediaPlayer *bgm, QWidget *parent) : //c
 //    bgmList->setCurrentIndex(1);
 //    bgm->setVolume(60);
 //    bgm->play();
+    // Load Icons
+    load_icons();
 
     // Run main loop
     loop_timer = new QTimer{this};
@@ -53,23 +52,24 @@ void MainWindow::init_Information() {
 }
 
 void MainWindow::init_Inventory() {
-    ui->label_inventory_1->setStyleSheet(NOT_SELECTED); //this area set the buttom item bar color such that it will be not selected color
-    ui->label_inventory_2->setStyleSheet(NOT_SELECTED);
-    ui->label_inventory_3->setStyleSheet(NOT_SELECTED);
-    ui->label_inventory_4->setStyleSheet(NOT_SELECTED);
-    ui->label_inventory_5->setStyleSheet(NOT_SELECTED);
-    ui->label_inventory_6->setStyleSheet(NOT_SELECTED);
-    ui->label_inventory_7->setStyleSheet(NOT_SELECTED);
-    ui->label_inventory_8->setStyleSheet(NOT_SELECTED);
-    ui->label_inventory_9->setStyleSheet(NOT_SELECTED);
+    ui->label_inventory_1->setStyleSheet(ITEM_NOT_SELECTED); //this area set the buttom item bar color such that it will be not selected color
+    ui->label_inventory_2->setStyleSheet(ITEM_NOT_SELECTED);
+    ui->label_inventory_3->setStyleSheet(ITEM_NOT_SELECTED);
+    ui->label_inventory_4->setStyleSheet(ITEM_NOT_SELECTED);
+    ui->label_inventory_5->setStyleSheet(ITEM_NOT_SELECTED);
+    ui->label_inventory_6->setStyleSheet(ITEM_NOT_SELECTED);
+    ui->label_inventory_7->setStyleSheet(ITEM_NOT_SELECTED);
+    ui->label_inventory_8->setStyleSheet(ITEM_NOT_SELECTED);
+    ui->label_inventory_9->setStyleSheet(ITEM_NOT_SELECTED);
 }
 
 void MainWindow::init_Current_Item() {
-    ui->label_current_item->setStyleSheet(WORD);
-    ui->label_current_item_shadow->setStyleSheet(SHADOW);
+    ui->label_current_item->setStyleSheet(ITEM_NAME);
+    ui->label_current_item_shadow->setStyleSheet(ITEM_NAME_SHADOW);
 }
 
 MainWindow::~MainWindow() {
+    dealloc_icons();
     delete ui;
     loop_timer->stop();
     delete loop_timer;
@@ -102,31 +102,31 @@ void MainWindow::main_loop() {
     init_Inventory();
     switch (map->player->selectedItemIndex) { //when player press 1-9, graphic.cpp will change the selected item, and here will change the background color of that item bar box
         case 0:
-            ui->label_inventory_1->setStyleSheet(SELECTED);
+            ui->label_inventory_1->setStyleSheet(ITEM_SELECTED);
             break;
         case 1:
-            ui->label_inventory_2->setStyleSheet(SELECTED);
+            ui->label_inventory_2->setStyleSheet(ITEM_SELECTED);
             break;
         case 2:
-            ui->label_inventory_3->setStyleSheet(SELECTED);
+            ui->label_inventory_3->setStyleSheet(ITEM_SELECTED);
             break;
         case 3:
-            ui->label_inventory_4->setStyleSheet(SELECTED);
+            ui->label_inventory_4->setStyleSheet(ITEM_SELECTED);
             break;
         case 4:
-            ui->label_inventory_5->setStyleSheet(SELECTED);
+            ui->label_inventory_5->setStyleSheet(ITEM_SELECTED);
             break;
         case 5:
-            ui->label_inventory_6->setStyleSheet(SELECTED);
+            ui->label_inventory_6->setStyleSheet(ITEM_SELECTED);
             break;
         case 6:
-            ui->label_inventory_7->setStyleSheet(SELECTED);
+            ui->label_inventory_7->setStyleSheet(ITEM_SELECTED);
             break;
         case 7:
-            ui->label_inventory_8->setStyleSheet(SELECTED);
+            ui->label_inventory_8->setStyleSheet(ITEM_SELECTED);
             break;
         case 8:
-            ui->label_inventory_9->setStyleSheet(SELECTED);
+            ui->label_inventory_9->setStyleSheet(ITEM_SELECTED);
             break;
     }
 
@@ -138,8 +138,14 @@ void MainWindow::main_loop() {
     };
     for (int i = 0; i < 9; i++) { //set up the png in the bar
         if (map->player->Inventory[i]!=nullptr) {
-            QPixmap Item(QString::fromStdString(map->player->Inventory[i]->item->getTexture()));
-            inventory[i]->setPixmap(Item);
+            if (map->player->Inventory[i]->item->getName()=="torch (lit)") {
+                inventory[i]->setPixmap(TORCH_LIT[TORCH_LIT_COUNT]);
+                TORCH_LIT_COUNT = (TORCH_LIT_COUNT+1)%12;
+            }
+            else {
+                QPixmap Item(QString::fromStdString(map->player->Inventory[i]->item->getTexture()));
+                inventory[i]->setPixmap(Item);
+            }
         }
     }
 
@@ -154,6 +160,23 @@ void MainWindow::main_loop() {
     }
 
     ui->widget->loop();
+}
 
+void MainWindow::load_icons() {
+    TORCH_LIT = new QPixmap [12] {{":/resources/images/Item/torch_lit01.png"},
+                                  {":/resources/images/Item/torch_lit01.png"},
+                                  {":/resources/images/Item/torch_lit02.png"},
+                                  {":/resources/images/Item/torch_lit02.png"},
+                                  {":/resources/images/Item/torch_lit03.png"},
+                                  {":/resources/images/Item/torch_lit03.png"},
+                                  {":/resources/images/Item/torch_lit04.png"},
+                                  {":/resources/images/Item/torch_lit04.png"},
+                                  {":/resources/images/Item/torch_lit05.png"},
+                                  {":/resources/images/Item/torch_lit05.png"},
+                                  {":/resources/images/Item/torch_lit06.png"},
+                                  {":/resources/images/Item/torch_lit06.png"}};
+}
 
+void MainWindow::dealloc_icons() {
+    delete [] TORCH_LIT;
 }

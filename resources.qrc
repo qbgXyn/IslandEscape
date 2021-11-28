@@ -20,7 +20,12 @@
         <file>images/Item/potions/pt4.png</file>
         <file>images/Item/short_sword.png</file>
         <file>images/Item/torch_item.png</file>
-        <file>images/Item/torch_item_lit.gif</file>
+        <file>images/Item/torch_lit01.png</file>
+        <file>images/Item/torch_lit02.png</file>
+        <file>images/Item/torch_lit03.png</file>
+        <file>images/Item/torch_lit04.png</file>
+        <file>images/Item/torch_lit05.png</file>
+        <file>images/Item/torch_lit06.png</file>
         <file>images/Terrain/Grass.png</file>
         <file>images/Terrain/Ocean.png</file>
         <file>images/Terrain/Sand.png</file>

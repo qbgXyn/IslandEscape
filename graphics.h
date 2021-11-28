@@ -65,9 +65,8 @@ private:
 
     // Icons sorted according to the enum BuildingType
     QPixmap* ICONS;
-    QPixmap* ITEMS;
-    QPixmap* CAMPFIRE_ICONS;
-    int campfire_number=0;
+    QPixmap* CAMPFIRE;
+    int CAMPFIRE_COUNT;
 };
 
 #endif // GRAPHICS_H
