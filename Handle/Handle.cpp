@@ -158,6 +158,6 @@ Item* Handle::getCorrespondingItem() const {
 }
 
 
-void ChestAddItem(Item::ID id) {
+void Handle::ChestAddItem(Item::ID id) {
     return;
 }

@@ -62,7 +62,6 @@ private:
 
     // Keys pressed
     bool UP, DOWN, LEFT, RIGHT;
-    bool ATTACK;
 
     // Icons sorted according to the enum BuildingType
     QPixmap* ICONS;
