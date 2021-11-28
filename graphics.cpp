@@ -76,6 +76,7 @@ void GameWidget::keyPressEvent(QKeyEvent* event) {
         /*
         // Pick up function
         */
+       map -> player->pickupItem();
         break;
     case Qt::Key::Key_E:
         /*
