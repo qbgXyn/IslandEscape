@@ -33,11 +33,11 @@ GameWidget::~GameWidget() {
 }
 
 void GameWidget::loop() {
-    const int x_min = 0;
+    /* const int x_min = 0;
     const int x_max = map_width;
     const int y_min = 0;
     const int y_max = map_height;
-    /*if (scroll_x >= x_min && scroll_x <= x_max) {
+    if (scroll_x >= x_min && scroll_x <= x_max) {
         scroll_x += (int) (5.0f * ((int) RIGHT - (int) LEFT));
     }
     if (scroll_x < x_min)
