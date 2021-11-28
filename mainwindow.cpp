@@ -136,7 +136,7 @@ void MainWindow::main_loop() {
         ui->label_current_item->setText(QString::fromStdString(map->player->Inventory[map->player->selectedItemIndex]->item->getName()));
         ui->label_current_item_shadow->setText(QString::fromStdString(map->player->Inventory[map->player->selectedItemIndex]->item->getName()));
     }
-    else { //if selected area has no item, still have return something
+    else { //if selected area has no item, still return something
         ui->label_current_item->setText("");
         ui->label_current_item_shadow->setText("");
     }
