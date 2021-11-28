@@ -8,21 +8,22 @@
 
 class Unit : public Handle {
     protected:
+        explicit Unit(Map *map, double x, double y); //constructor
+
         int damage; //created as the inital variable for the functions to use. Survivor and ghost function will input their own value
         float attackInterval; //put it here so that survivor and ghost can use it
         vector<Effect*> EffectList; //vector contain of effect
         int visible_size; // base on grid && is a square for simplicity
-        explicit Unit(Map *map, double x, double y); //constructor
 
     public:
-        float getDamage() const; 
+        float getDamage() const;  //different accessors
         void setDamage(int damage);
         virtual float getArmor() const;
-        virtual int getVisibleSize() const; //different accessors
+        virtual int getVisibleSize() const; 
 
-        virtual bool isGridVisible(int x, int y) const;
+        virtual bool isGridVisible(int x, int y) const; //visibility related funcitons
         virtual bool isHandleVisible(Handle *h) const;
-        void setVisibleSize(int visible_size); //visibility related funcitons
+        void setVisibleSize(int visible_size); 
 
         void gainAttributeFromEffect(Effect *e); //effect related functions
         void addEffect(Effect *e);

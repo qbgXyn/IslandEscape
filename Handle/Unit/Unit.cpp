@@ -6,7 +6,6 @@ Unit::Unit(Map *map, double x, double y) : Handle(map, x, y) { //constructor and
     category = Handle::Category::UNIT;
 }
 
-
 float Unit::getDamage() const { //accessor
     return damage;
 }
@@ -18,7 +17,6 @@ void Unit::setDamage(int damage) { //mutator
 float Unit::getArmor() const { //accessor
     return armor;
 }
-
 
 void Unit::setVisibleSize(int visible_size) { //mutator
     this->visible_size = visible_size;
