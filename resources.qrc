@@ -4,23 +4,10 @@
         <file>images/clock.png</file>
         <file>images/heart.png</file>
         <file>images/player.png</file>
-        <file>images/torch.png</file>
         <file>images/Grass.png</file>
         <file>images/Ocean.png</file>
         <file>images/Sand.png</file>
         <file>images/Stone.png</file>
-        <file>images/campfire01.png</file>
-        <file>images/campfire02.png</file>
-        <file>images/campfire03.png</file>
-        <file>images/campfire04.png</file>
-        <file>images/campfire05.png</file>
-        <file>images/campfire06.png</file>
-        <file>images/campfire07.png</file>
-        <file>images/campfire08.png</file>
-        <file>images/campfire09.png</file>
-        <file>images/campfire10.png</file>
-        <file>images/campfire11.png</file>
-        <file>images/campfire12.png</file>
         <file>images/boat.png</file>
         <file>sound/atmoseerie01.mp3</file>
         <file>sound/atmoseerie02.mp3</file>
@@ -38,7 +25,24 @@
         <file>images/item/potions/pt4.png</file>
         <file>images/item/short_sword.png</file>
         <file>images/item/torch.png</file>
-        <file>images/item/torch_lit.gif</file>
         <file>images/inventory1.png</file>
+        <file>images/campfire01.png</file>
+        <file>images/campfire02.png</file>
+        <file>images/campfire03.png</file>
+        <file>images/campfire04.png</file>
+        <file>images/campfire05.png</file>
+        <file>images/campfire06.png</file>
+        <file>images/campfire07.png</file>
+        <file>images/campfire08.png</file>
+        <file>images/campfire09.png</file>
+        <file>images/campfire10.png</file>
+        <file>images/campfire11.png</file>
+        <file>images/campfire12.png</file>
+        <file>images/item/torch_lit01.png</file>
+        <file>images/item/torch_lit02.png</file>
+        <file>images/item/torch_lit03.png</file>
+        <file>images/item/torch_lit04.png</file>
+        <file>images/item/torch_lit05.png</file>
+        <file>images/item/torch_lit06.png</file>
     </qresource>
 </RCC>

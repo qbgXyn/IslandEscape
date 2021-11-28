@@ -124,7 +124,7 @@ background-image: url(:/resources/images/stripes.png);
    <widget class="QLabel" name="logo_time">
     <property name="geometry">
      <rect>
-      <x>610</x>
+      <x>620</x>
       <y>110</y>
       <width>64</width>
       <height>64</height>
@@ -167,9 +167,9 @@ background-image: url(:/resources/images/stripes.png);
    <widget class="QLabel" name="logo_torch">
     <property name="geometry">
      <rect>
-      <x>960</x>
+      <x>950</x>
       <y>110</y>
-      <width>36</width>
+      <width>64</width>
       <height>64</height>
      </rect>
     </property>
@@ -180,7 +180,7 @@ background-image: url(:/resources/images/stripes.png);
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="resources.qrc">:/resources/images/torch.png</pixmap>
+     <pixmap resource="resources.qrc">:/resources/images/item/torch_lit01.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>

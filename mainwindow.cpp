@@ -6,8 +6,6 @@
 #include <QTimer>
 #include <QMainWindow>
 
-#include <iostream>
-
 const QString BACKGROUND = "background-color: rgba(255, 255, 255, 128);";
 
 const QString SELECTED = "background-color: rgba(255, 255, 255, 128);";
@@ -16,10 +14,13 @@ const QString NOT_SELECTED = "background-color: rgba(85, 85, 85, 128);";
 const QString WORD = "color: rgba(255, 255, 255, 255)";
 const QString SHADOW = "color: rgba(0, 128, 255, 255)";
 
+#include <iostream>
+
 MainWindow::MainWindow(Map *const map, QWidget *parent) :
         QMainWindow(parent),
         ui(new Ui::MainWindow),
-        map(map)
+        map(map),
+        TORCH_LIT_COUNT(0)
 {
     ui->setupUi(this);
 
@@ -27,6 +28,9 @@ MainWindow::MainWindow(Map *const map, QWidget *parent) :
     init_Information();
     init_Inventory();
     init_Current_Item();
+
+    // Load Icons
+    load_icons();
 
     // Run main loop
     loop_timer = new QTimer{this};
@@ -60,6 +64,7 @@ void MainWindow::init_Current_Item() {
 }
 
 MainWindow::~MainWindow() {
+    dealloc_icons();
     delete ui;
     loop_timer->stop();
     delete loop_timer;
@@ -126,8 +131,14 @@ void MainWindow::main_loop() {
     };
     for (int i = 0; i < 9; i++) {
         if (map->player->Inventory[i]!=nullptr) {
-            QPixmap Item(QString::fromStdString(map->player->Inventory[i]->item->getTexture()));
-            inventory[i]->setPixmap(Item);
+            if (map->player->Inventory[i]->item->getName()=="torch (lit)") {
+                inventory[i]->setPixmap(TORCH_LIT[TORCH_LIT_COUNT]);
+                TORCH_LIT_COUNT = (TORCH_LIT_COUNT+1)%12;
+            }
+            else {
+                QPixmap Item(QString::fromStdString(map->player->Inventory[i]->item->getTexture()));
+                inventory[i]->setPixmap(Item);
+            }
         }
     }
 
@@ -142,6 +153,23 @@ void MainWindow::main_loop() {
     }
 
     ui->widget->loop();
+}
 
+void MainWindow::load_icons() {
+    TORCH_LIT = new QPixmap [12] {{":/resources/images/item/torch_lit01.png"},
+                                  {":/resources/images/item/torch_lit01.png"},
+                                  {":/resources/images/item/torch_lit02.png"},
+                                  {":/resources/images/item/torch_lit02.png"},
+                                  {":/resources/images/item/torch_lit03.png"},
+                                  {":/resources/images/item/torch_lit03.png"},
+                                  {":/resources/images/item/torch_lit04.png"},
+                                  {":/resources/images/item/torch_lit04.png"},
+                                  {":/resources/images/item/torch_lit05.png"},
+                                  {":/resources/images/item/torch_lit05.png"},
+                                  {":/resources/images/item/torch_lit06.png"},
+                                  {":/resources/images/item/torch_lit06.png"}};
+}
 
+void MainWindow::dealloc_icons() {
+    delete [] TORCH_LIT;
 }

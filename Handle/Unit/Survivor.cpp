@@ -23,7 +23,7 @@ Survivor::Survivor(Map *map, double x, double y) : Unit(map, x, y) { //construct
     armor = base_armor; //initalize value
 
     Inventory[0] = new Item_inventory {Item::ID::SWORD}; //by default give a sword to the player at the beginning in the first left item bar and hold it
-    Inventory[1] = new Item_inventory {Item::ID::TORCH}; //by deafult give a torch to the player 
+    Inventory[1] = new Item_inventory {Item::ID::TORCH_LIT}; //by deafult give a torch to the player
 }
 
 
