@@ -36,5 +36,6 @@
         <file>sound/main_bgm.mp3</file>
         <file>world/Map1.txt</file>
         <file>world/Map2.txt</file>
+        <file>images/inventory.png</file>
     </qresource>
 </RCC>

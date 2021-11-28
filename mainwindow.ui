@@ -25,7 +25,7 @@ background-image: url(:/resources/images/stripes.png);
    <widget class="QLabel" name="label_instruction">
     <property name="geometry">
      <rect>
-      <x>200</x>
+      <x>210</x>
       <y>50</y>
       <width>1021</width>
       <height>29</height>
@@ -45,7 +45,7 @@ background-image: url(:/resources/images/stripes.png);
      <enum>Qt::LeftToRight</enum>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="text">
      <string>[↑↓←→] - Movement        [c] - Pick Up Items        [e] - Inventory        [Spacebar] - Attack</string>
@@ -60,7 +60,7 @@ background-image: url(:/resources/images/stripes.png);
    <widget class="QLabel" name="logo_health">
     <property name="geometry">
      <rect>
-      <x>280</x>
+      <x>260</x>
       <y>110</y>
       <width>64</width>
       <height>64</height>
@@ -73,7 +73,7 @@ background-image: url(:/resources/images/stripes.png);
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>:/resources/images/heart.png</pixmap>
+     <pixmap resource="resources.qrc">:/resources/images/heart.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -82,7 +82,7 @@ background-image: url(:/resources/images/stripes.png);
    <widget class="QLabel" name="label_health">
     <property name="geometry">
      <rect>
-      <x>360</x>
+      <x>340</x>
       <y>110</y>
       <width>151</width>
       <height>64</height>
@@ -94,7 +94,7 @@ background-image: url(:/resources/images/stripes.png);
      </font>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="text">
      <string/>
@@ -103,7 +103,7 @@ background-image: url(:/resources/images/stripes.png);
    <widget class="QLabel" name="label_time">
     <property name="geometry">
      <rect>
-      <x>710</x>
+      <x>690</x>
       <y>110</y>
       <width>151</width>
       <height>64</height>
@@ -115,7 +115,7 @@ background-image: url(:/resources/images/stripes.png);
      </font>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="text">
      <string/>
@@ -124,7 +124,7 @@ background-image: url(:/resources/images/stripes.png);
    <widget class="QLabel" name="logo_time">
     <property name="geometry">
      <rect>
-      <x>630</x>
+      <x>610</x>
       <y>110</y>
       <width>64</width>
       <height>64</height>
@@ -137,7 +137,7 @@ background-image: url(:/resources/images/stripes.png);
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>:/resources/images/clock.png</pixmap>
+     <pixmap resource="resources.qrc">:/resources/images/clock.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -146,7 +146,7 @@ background-image: url(:/resources/images/stripes.png);
    <widget class="QLabel" name="label_torch">
     <property name="geometry">
      <rect>
-      <x>1030</x>
+      <x>1010</x>
       <y>110</y>
       <width>151</width>
       <height>64</height>
@@ -158,7 +158,7 @@ background-image: url(:/resources/images/stripes.png);
      </font>
     </property>
     <property name="autoFillBackground">
-     <bool>true</bool>
+     <bool>false</bool>
     </property>
     <property name="text">
      <string/>
@@ -167,7 +167,7 @@ background-image: url(:/resources/images/stripes.png);
    <widget class="QLabel" name="logo_torch">
     <property name="geometry">
      <rect>
-      <x>980</x>
+      <x>960</x>
       <y>110</y>
       <width>36</width>
       <height>64</height>
@@ -180,11 +180,108 @@ background-image: url(:/resources/images/stripes.png);
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>:/resources/images/torch.png</pixmap>
+     <pixmap resource="resources.qrc">:/resources/images/torch.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
     </property>
+   </widget>
+   <widget class="QLabel" name="logo_inventory">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>650</y>
+      <width>900</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="resources.qrc">:/resources/images/inventory.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>676</y>
+      <width>771</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="bottomMargin">
+      <number>10</number>
+     </property>
+     <item>
+      <widget class="QLabel" name="label_inventory_1">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_inventory_2">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_inventory_3">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_inventory_4">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_inventory_5">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_inventory_6">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_inventory_7">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_inventory_8">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_inventory_9">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
  </widget>
@@ -196,6 +293,8 @@ background-image: url(:/resources/images/stripes.png);
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
