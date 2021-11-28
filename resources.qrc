@@ -1,27 +1,73 @@
 <RCC>
     <qresource prefix="/resources">
-        <file>images/island.png</file>
-        <file>images/clock.png</file>
-        <file>images/heart.png</file>
-        <file>images/player.png</file>
-        <file>images/torch.png</file>
-        <file>images/Grass.png</file>
-        <file>images/Ocean.png</file>
-        <file>images/Sand.png</file>
-        <file>images/Stone.png</file>
-        <file>images/campfire01.png</file>
-        <file>images/campfire02.png</file>
-        <file>images/campfire03.png</file>
-        <file>images/campfire04.png</file>
-        <file>images/campfire05.png</file>
-        <file>images/campfire06.png</file>
-        <file>images/campfire07.png</file>
-        <file>images/campfire08.png</file>
-        <file>images/campfire09.png</file>
-        <file>images/campfire10.png</file>
-        <file>images/campfire11.png</file>
-        <file>images/campfire12.png</file>
-        <file>images/boat.png</file>
+        <file>images/Handle/Decoration/boat.png</file>
+        <file>images/Handle/Decoration/campfire01.png</file>
+        <file>images/Handle/Decoration/campfire02.png</file>
+        <file>images/Handle/Decoration/campfire03.png</file>
+        <file>images/Handle/Decoration/campfire04.png</file>
+        <file>images/Handle/Decoration/campfire05.png</file>
+        <file>images/Handle/Decoration/campfire06.png</file>
+        <file>images/Handle/Decoration/campfire07.png</file>
+        <file>images/Handle/Decoration/campfire08.png</file>
+        <file>images/Handle/Decoration/campfire09.png</file>
+        <file>images/Handle/Decoration/campfire10.png</file>
+        <file>images/Handle/Decoration/campfire11.png</file>
+        <file>images/Handle/Decoration/campfire12.png</file>
+        <file>images/Handle/Unit/player.png</file>
+        <file>images/Item/potions/pt1.png</file>
+        <file>images/Item/potions/pt2.png</file>
+        <file>images/Item/potions/pt3.png</file>
+        <file>images/Item/potions/pt4.png</file>
+        <file>images/Item/short_sword.png</file>
+        <file>images/Item/torch_item.png</file>
+        <file>images/Item/torch_item_lit.gif</file>
+        <file>images/Terrain/mysteryemwarzone2100textures/CrackedConcreteWithBitsOfStone.png</file>
+        <file>images/Terrain/mysteryemwarzone2100textures/Grass1.png</file>
+        <file>images/Terrain/mysteryemwarzone2100textures/grassyCliff.png</file>
+        <file>images/Terrain/mysteryemwarzone2100textures/GravelTarmac.png</file>
+        <file>images/Terrain/mysteryemwarzone2100textures/Ocean.png</file>
+        <file>images/Terrain/mysteryemwarzone2100textures/Oldsandbags.png</file>
+        <file>images/Terrain/mysteryemwarzone2100textures/Pavement.png</file>
+        <file>images/Terrain/mysteryemwarzone2100textures/PebbledWall.png</file>
+        <file>images/Terrain/mysteryemwarzone2100textures/Pebbles.png</file>
+        <file>images/Terrain/mysteryemwarzone2100textures/Pebbles2.png</file>
+        <file>images/Terrain/mysteryemwarzone2100textures/Rock1.png</file>
+        <file>images/Terrain/mysteryemwarzone2100textures/Rock2(bad).png</file>
+        <file>images/Terrain/mysteryemwarzone2100textures/Rock3.png</file>
+        <file>images/Terrain/mysteryemwarzone2100textures/Rock4.png</file>
+        <file>images/Terrain/mysteryemwarzone2100textures/Rock5.png</file>
+        <file>images/Terrain/mysteryemwarzone2100textures/Rock6.png</file>
+        <file>images/Terrain/mysteryemwarzone2100textures/Rock7.png</file>
+        <file>images/Terrain/mysteryemwarzone2100textures/Rock8(algae).png</file>
+        <file>images/Terrain/mysteryemwarzone2100textures/Rock9.png</file>
+        <file>images/Terrain/mysteryemwarzone2100textures/SmallRocks.png</file>
+        <file>images/Terrain/mysteryemwarzone2100textures/snowRocks.png</file>
+        <file>images/Terrain/mysteryemwarzone2100textures/SpeckledStone.png</file>
+        <file>images/Terrain/mysteryemwarzone2100textures/TiledConcrete.png</file>
+        <file>images/Terrain/mysteryemwarzone2100textures/UndergroundEarth(bidirectionallyseamless).png</file>
+        <file>images/Terrain/mysteryemwarzone2100textures/UndergroundEarth(horizontallyseamless).png</file>
+        <file>images/Terrain/mysteryemwarzone2100textures/violetRocks.png</file>
+        <file>images/Terrain/mysteryemwarzone2100textures/WallLargeRocks.png</file>
+        <file>images/Terrain/mysteryemwarzone2100textures/water.png</file>
+        <file>images/Terrain/mysteryemwarzone2100textures/WierdTexture(no idea of what it is).png</file>
+        <file>images/Terrain/mysteryemwarzone2100textures/WierdTexture2.png</file>
+        <file>images/Terrain/Grass.png</file>
+        <file>images/Terrain/Ocean.png</file>
+        <file>images/Terrain/Sand.png</file>
+        <file>images/Terrain/Stone.png</file>
+        <file>images/UI/clock.png</file>
+        <file>images/UI/heart.png</file>
+        <file>images/UI/inventory.png</file>
+        <file>images/UI/inventory1.png</file>
+        <file>images/UI/island.png</file>
+        <file>images/UI/island1.png</file>
+        <file>images/UI/misland.png</file>
+        <file>images/UI/mmisland.png</file>
+        <file>images/UI/myisland.png</file>
+        <file>images/UI/pixel-art-island-tropical-palm-trees-bungalows-85535999.jpeg</file>
+        <file>images/UI/torch.png</file>
+        <file>images/UI/vector-pixel-art-island-isolated-105449061.jpeg</file>
+        <file>images/UI/—Pngtree—isometric islands event design_6055709.png</file>
         <file>sound/atmoseerie01.mp3</file>
         <file>sound/atmoseerie02.mp3</file>
         <file>sound/atmoseerie03.mp3</file>
@@ -31,14 +77,5 @@
         <file>sound/main_bgm.mp3</file>
         <file>world/Map1.txt</file>
         <file>world/Map2.txt</file>
-        <file>images/inventory.png</file>
-        <file>images/item/potions/pt1.png</file>
-        <file>images/item/potions/pt2.png</file>
-        <file>images/item/potions/pt3.png</file>
-        <file>images/item/potions/pt4.png</file>
-        <file>images/item/short_sword.png</file>
-        <file>images/item/torch.png</file>
-        <file>images/item/torch_lit.gif</file>
-        <file>images/inventory1.png</file>
     </qresource>
 </RCC>

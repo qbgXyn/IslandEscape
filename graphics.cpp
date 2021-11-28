@@ -210,7 +210,7 @@ void GameWidget::paintEvent(QPaintEvent* event) {
     campfire_number = (campfire_number+1)%12;
 
     // Draw Boat on grid
-    QPixmap boat(":/resources/images/boat.png");
+    QPixmap boat(":/resources/images/Handle/Decoration/boat.png");
     drawPixmap(paint, 320, 64, 128, 256, boat);
 
     // Draw Grid Lines
@@ -222,7 +222,7 @@ void GameWidget::paintEvent(QPaintEvent* event) {
     }
 
     // Draw Player
-    QPixmap player(":/resources/images/player.png");
+    QPixmap player(":/resources/images/Handle/Unit/player.png");
     QMatrix rm;
     if (LEFT==true) {
         rm.rotate(-90);
@@ -262,24 +262,24 @@ void GameWidget::paintEvent(QPaintEvent* event) {
 }
 
 void GameWidget::load_icons() {
-    ICONS = new QPixmap [4] {{":/resources/images/Grass.png"},
-                             {":/resources/images/Stone.png"},
-                             {":/resources/images/Ocean.png"},
-                             {":/resources/images/Sand.png"}};
-    CAMPFIRE_ICONS = new QPixmap [12] {{":/resources/images/campfire01.png"},
-                                       {":/resources/images/campfire02.png"},
-                                       {":/resources/images/campfire03.png"},
-                                       {":/resources/images/campfire04.png"},
-                                       {":/resources/images/campfire05.png"},
-                                       {":/resources/images/campfire06.png"},
-                                       {":/resources/images/campfire07.png"},
-                                       {":/resources/images/campfire08.png"},
-                                       {":/resources/images/campfire09.png"},
-                                       {":/resources/images/campfire10.png"},
-                                       {":/resources/images/campfire11.png"},
-                                       {":/resources/images/campfire12.png"}};
-    ITEMS = new QPixmap [2] {{":/resources/images/short_sword.png"},
-                             {":/resources/images/torch_item.png"}};
+    ICONS = new QPixmap [4] {{":/resources/images/terrain/Grass.png"},
+                             {":/resources/images/terrain/Stone.png"},
+                             {":/resources/images/terrain/Ocean.png"},
+                             {":/resources/images/terrain/Sand.png"}};
+    CAMPFIRE_ICONS = new QPixmap [12] {{":/resources/images/Handle/Decoration/campfire01.png"},
+                                       {":/resources/images/Decoration/campfire02.png"},
+                                       {":/resources/images/Decoration/campfire03.png"},
+                                       {":/resources/images/Decoration/campfire04.png"},
+                                       {":/resources/images/Decoration/campfire05.png"},
+                                       {":/resources/images/Decoration/campfire06.png"},
+                                       {":/resources/images/Decoration/campfire07.png"},
+                                       {":/resources/images/Decoration/campfire08.png"},
+                                       {":/resources/images/Decoration/campfire09.png"},
+                                       {":/resources/images/Decoration/campfire10.png"},
+                                       {":/resources/images/Decoration/campfire11.png"},
+                                       {":/resources/images/Decoration/campfire12.png"}};
+    ITEMS = new QPixmap [2] {{":/resources/images/Item/short_sword.png"},
+                             {":/resources/images/Item/torch_item.png"}};
 }
 
 void GameWidget::dealloc_icons() {
