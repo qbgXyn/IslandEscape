@@ -52,6 +52,7 @@ void GameWidget::loop() {
     if (scroll_y > y_max)
         scroll_y = y_max;
     */
+    // Player Movement
     int horizontal = (int)RIGHT - (int)LEFT;
     int vertical = (int)DOWN - (int)UP;
     if (horizontal != 0 && vertical != 0) {
@@ -65,6 +66,15 @@ void GameWidget::loop() {
     map->player->update();
     scroll_x = map->player->getX();
     scroll_y = map->player->getY();
+
+    // Pickup
+
+    // Iventory
+
+    // Attack
+    if (ATTACK)
+        //map->player->attack()
+        ;
 
     repaint(0, 0, width(), height());
     ++tick;
@@ -89,10 +99,13 @@ void GameWidget::keyPressEvent(QKeyEvent* event) {
         // Pick up function
         */
         break;
-    case Qt::Key::Key_Space:
+    case Qt::Key::Key_E:
         /*
-        // Attack function
+        // Inventory
         */
+        break;
+    case Qt::Key::Key_Space:
+        ATTACK = true;
         break;
     }
 }
@@ -110,6 +123,19 @@ void GameWidget::keyReleaseEvent(QKeyEvent* event) {
         break;
     case Qt::Key::Key_Right:
         RIGHT = false;
+        break;
+    case Qt::Key::Key_C:
+        /*
+        // Pick up function
+        */
+        break;
+    case Qt::Key::Key_E:
+        /*
+        // Inventory
+        */
+        break;
+    case Qt::Key::Key_Space:
+        ATTACK = false;
         break;
     }
 }

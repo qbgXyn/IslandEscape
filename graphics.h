@@ -65,6 +65,7 @@ private:
 
     // Keys pressed
     bool UP, DOWN, LEFT, RIGHT;
+    bool ATTACK;
 
     int tick; // City ticks (number of calls of loop function) elapsed since the beginning of the program
     // Used for animating blinking effects
