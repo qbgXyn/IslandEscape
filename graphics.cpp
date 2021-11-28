@@ -262,22 +262,22 @@ void GameWidget::paintEvent(QPaintEvent* event) {
 }
 
 void GameWidget::load_icons() {
-    ICONS = new QPixmap [4] {{":/resources/images/terrain/Grass.png"},
-                             {":/resources/images/terrain/Stone.png"},
-                             {":/resources/images/terrain/Ocean.png"},
-                             {":/resources/images/terrain/Sand.png"}};
+    ICONS = new QPixmap [4] {{":/resources/images/Terrain/Grass.png"},
+                             {":/resources/images/Terrain/Stone.png"},
+                             {":/resources/images/Terrain/Ocean.png"},
+                             {":/resources/images/Terrain/Sand.png"}};
     CAMPFIRE_ICONS = new QPixmap [12] {{":/resources/images/Handle/Decoration/campfire01.png"},
-                                       {":/resources/images/Decoration/campfire02.png"},
-                                       {":/resources/images/Decoration/campfire03.png"},
-                                       {":/resources/images/Decoration/campfire04.png"},
-                                       {":/resources/images/Decoration/campfire05.png"},
-                                       {":/resources/images/Decoration/campfire06.png"},
-                                       {":/resources/images/Decoration/campfire07.png"},
-                                       {":/resources/images/Decoration/campfire08.png"},
-                                       {":/resources/images/Decoration/campfire09.png"},
-                                       {":/resources/images/Decoration/campfire10.png"},
-                                       {":/resources/images/Decoration/campfire11.png"},
-                                       {":/resources/images/Decoration/campfire12.png"}};
+                                       {":/resources/images/Handle/Decoration/campfire02.png"},
+                                       {":/resources/images/Handle/Decoration/campfire03.png"},
+                                       {":/resources/images/Handle/Decoration/campfire04.png"},
+                                       {":/resources/images/Handle/Decoration/campfire05.png"},
+                                       {":/resources/images/Handle/Decoration/campfire06.png"},
+                                       {":/resources/images/Handle/Decoration/campfire07.png"},
+                                       {":/resources/images/Handle/Decoration/campfire08.png"},
+                                       {":/resources/images/Handle/Decoration/campfire09.png"},
+                                       {":/resources/images/Handle/Decoration/campfire10.png"},
+                                       {":/resources/images/Handle/Decoration/campfire11.png"},
+                                       {":/resources/images/Handle/Decoration/campfire12.png"}};
     ITEMS = new QPixmap [2] {{":/resources/images/Item/short_sword.png"},
                              {":/resources/images/Item/torch_item.png"}};
 }
