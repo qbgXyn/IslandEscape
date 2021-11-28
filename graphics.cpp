@@ -275,6 +275,8 @@ void GameWidget::load_icons() {
                                        {":/resources/images/campfire10.png"},
                                        {":/resources/images/campfire11.png"},
                                        {":/resources/images/campfire12.png"}};
+    ITEMS = new QPixmap [2] {{":/resources/images/short_sword.png"},
+                             {":/resources/images/torch.png"}};
 }
 
 void GameWidget::dealloc_icons() {
