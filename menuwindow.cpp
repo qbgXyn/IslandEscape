@@ -51,17 +51,18 @@ void MenuWindow::start_game(int selected_level, string filename) {
     Map* map;
     QString filePath;
     int width, height;
+    filename = ":/resources/world/"+filename;
     switch (selected_level) {
         case 1: {
             width = 60;
             height = 60;
-            filePath = ":/resources/world/Map1.txt";
+            filePath = QString::fromStdString(filename);
             break;
         }
         case 2: {
             width = 12;
             height = 10;
-            filePath = ":/resources/world/Map2.txt";
+            filePath = QString::fromStdString(filename);
             break;
         }
         default: {

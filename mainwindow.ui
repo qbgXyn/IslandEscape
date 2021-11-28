@@ -73,7 +73,7 @@ background-image: url(:/resources/images/stripes.png);
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="images.qrc">:/resources/images/heart.png</pixmap>
+     <pixmap resource="resources.qrc">:/resources/images/heart.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -84,7 +84,7 @@ background-image: url(:/resources/images/stripes.png);
      <rect>
       <x>360</x>
       <y>110</y>
-      <width>128</width>
+      <width>151</width>
       <height>64</height>
      </rect>
     </property>
@@ -105,7 +105,7 @@ background-image: url(:/resources/images/stripes.png);
      <rect>
       <x>710</x>
       <y>110</y>
-      <width>128</width>
+      <width>151</width>
       <height>64</height>
      </rect>
     </property>
@@ -137,7 +137,7 @@ background-image: url(:/resources/images/stripes.png);
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="images.qrc">:/resources/images/clock.png</pixmap>
+     <pixmap resource="resources.qrc">:/resources/images/clock.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -148,7 +148,7 @@ background-image: url(:/resources/images/stripes.png);
      <rect>
       <x>1030</x>
       <y>110</y>
-      <width>128</width>
+      <width>151</width>
       <height>64</height>
      </rect>
     </property>
@@ -180,7 +180,7 @@ background-image: url(:/resources/images/stripes.png);
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="images.qrc">:/resources/images/torch.png</pixmap>
+     <pixmap resource="resources.qrc">:/resources/images/torch.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -197,7 +197,7 @@ background-image: url(:/resources/images/stripes.png);
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="images.qrc"/>
+  <include location="resources.qrc"/>
  </resources>
  <connections/>
 </ui>

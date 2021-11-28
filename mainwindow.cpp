@@ -7,9 +7,6 @@
 #include <QFileDialog>
 #include <QMainWindow>
 
-const QString BTN_RELEASED_STYLE = "background-color: rgba(50, 127, 127, 255);";
-const QString BTN_SELECTED_STYLE = "background-color: rgba(255, 255, 255, 255);";
-
 MainWindow::MainWindow(Map *const map, QWidget *parent) :
         QMainWindow(parent),
         ui(new Ui::MainWindow),
