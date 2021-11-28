@@ -1,7 +1,7 @@
 #ifndef CHEST_H
 #define CHEST_H
 
-#include "Decoration.h"\
+#include "Decoration.h"
 #include "../../Item/Item.h"
 
 class Chest : public Decoration {
