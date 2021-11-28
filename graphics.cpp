@@ -12,7 +12,7 @@
 #include <cmath>
 #include <regex>
 
-GameWidget::GameWidget(QWidget* parent) :
+GameWidget::GameWidget(QWidget* parent) : //basic set up
     QWidget(parent),
     map(dynamic_cast<MainWindow *>(parent)->map),
     map_width(map->getMaxWidth()),
@@ -32,7 +32,7 @@ GameWidget::~GameWidget() {
 
 void GameWidget::loop() {
     // Player Movement
-    int horizontal = (int)RIGHT - (int)LEFT;
+    int horizontal = (int)RIGHT - (int)LEFT; 
     int vertical = (int)DOWN - (int)UP;
     if (horizontal != 0 && vertical != 0) {
         map->player->setVelocityX(horizontal*(7.071067));
@@ -53,7 +53,7 @@ void GameWidget::loop() {
 }
 
 void GameWidget::keyPressEvent(QKeyEvent* event) {
-    switch (event->key()) {
+    switch (event->key()) { //connect key with corresponding function
     case Qt::Key::Key_Up:
         UP = true;
         break;
@@ -66,24 +66,19 @@ void GameWidget::keyPressEvent(QKeyEvent* event) {
     case Qt::Key::Key_Right:
         RIGHT = true;
         break;
-    case Qt::Key::Key_C:
-        /*
-        // Pick up function
-        */
+
+    case Qt::Key::Key_C: //key for special functions
         map->player->pickupItem();
-        break;
-    case Qt::Key::Key_E:
-        /*
-        // Inventory
-        */
         break;
     case Qt::Key::Key_Q:
         map -> player -> dropItem(map -> player -> Inventory[map -> player -> selectedItemIndex]);
         break;
-    case Qt::Key::Key_Space:
+    case Qt::Key::Key_Space: 
+        map -> player -> useItem(map -> player -> Inventory[map -> player -> selectedItemIndex]);
         //map->player->attack()
         break;
-    case Qt::Key::Key_1:
+
+    case Qt::Key::Key_1: //for switching buttom item bar
         map->player->Switch_selectedItem_Index(0);
         break;
     case Qt::Key::Key_2:
@@ -113,7 +108,7 @@ void GameWidget::keyPressEvent(QKeyEvent* event) {
     }
 }
 
-void GameWidget::keyReleaseEvent(QKeyEvent* event) {
+void GameWidget::keyReleaseEvent(QKeyEvent* event) { //used for movement key
     switch (event->key()) {
     case Qt::Key::Key_Up:
         UP = false;
@@ -130,7 +125,7 @@ void GameWidget::keyReleaseEvent(QKeyEvent* event) {
     }
 }
 
-void GameWidget::obtain_grid_coordinates_from_real(int rx, int ry, int& x, int& y) {
+void GameWidget::obtain_grid_coordinates_from_real(int rx, int ry, int& x, int& y) { //helper function to convert between x, y and actual grid position
     x = (rx + map_width * 50) / 100;
     y = (ry + map_height * 50) / 100;
 }
