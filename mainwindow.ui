@@ -25,9 +25,9 @@ background-image: url(:/resources/images/stripes.png);
    <widget class="QLabel" name="label_instruction">
     <property name="geometry">
      <rect>
-      <x>210</x>
+      <x>30</x>
       <y>50</y>
-      <width>1021</width>
+      <width>1381</width>
       <height>29</height>
      </rect>
     </property>
@@ -48,7 +48,7 @@ background-image: url(:/resources/images/stripes.png);
      <bool>false</bool>
     </property>
     <property name="text">
-     <string>[↑↓←→] - Movement        [c] - Pick Up Items        [e] - Inventory        [Spacebar] - Attack</string>
+     <string>[↑↓←→] - Movement        [c] - Pick Up Items        [e] - Inventory        [q] - Drop Current Item        [Spacebar] - Use Current Item</string>
     </property>
     <property name="scaledContents">
      <bool>false</bool>
@@ -190,7 +190,7 @@ background-image: url(:/resources/images/stripes.png);
     <property name="geometry">
      <rect>
       <x>270</x>
-      <y>650</y>
+      <y>664</y>
       <width>900</width>
       <height>131</height>
      </rect>
@@ -209,7 +209,7 @@ background-image: url(:/resources/images/stripes.png);
     <property name="geometry">
      <rect>
       <x>330</x>
-      <y>676</y>
+      <y>690</y>
       <width>771</width>
       <height>91</height>
      </rect>
@@ -282,6 +282,60 @@ background-image: url(:/resources/images/stripes.png);
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QLabel" name="label_current_item_shadow">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>630</y>
+      <width>311</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>24</pointsize>
+      <weight>75</weight>
+      <italic>true</italic>
+      <bold>true</bold>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+      <kerning>true</kerning>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_current_item">
+    <property name="geometry">
+     <rect>
+      <x>558</x>
+      <y>628</y>
+      <width>311</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>24</pointsize>
+      <weight>75</weight>
+      <italic>true</italic>
+      <bold>true</bold>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+      <kerning>true</kerning>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
   </widget>
  </widget>

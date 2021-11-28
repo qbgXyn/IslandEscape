@@ -12,6 +12,9 @@ const QString BACKGROUND = "background-color: rgba(255, 255, 255, 64);";
 const QString SELECTED_STYLE = "background-color: rgba(255, 255, 255, 128);";
 const QString NOT_SELECTED_STYLE = "background-color: rgba(85, 85, 85, 128);";
 
+const QString WORD = "color: rgba(255, 255, 255, 255)";
+const QString SHADOW = "color: rgba(0, 128, 255, 255)";
+
 MainWindow::MainWindow(Map *const map, QWidget *parent) :
         QMainWindow(parent),
         ui(new Ui::MainWindow),
@@ -22,6 +25,7 @@ MainWindow::MainWindow(Map *const map, QWidget *parent) :
     // Initialize Information, Inventory
     init_Information();
     init_Inventory();
+    init_Current_Item();
 
     // Run main loop
     loop_timer = new QTimer{this};
@@ -47,6 +51,11 @@ void MainWindow::init_Inventory() {
     ui->label_inventory_7->setStyleSheet(NOT_SELECTED_STYLE);
     ui->label_inventory_8->setStyleSheet(NOT_SELECTED_STYLE);
     ui->label_inventory_9->setStyleSheet(NOT_SELECTED_STYLE);
+}
+
+void MainWindow::init_Current_Item() {
+    ui->label_current_item->setStyleSheet(WORD);
+    ui->label_current_item_shadow->setStyleSheet(SHADOW);
 }
 
 MainWindow::~MainWindow() {
@@ -106,6 +115,22 @@ void MainWindow::main_loop() {
         case 8:
             ui->label_inventory_9->setStyleSheet(SELECTED_STYLE);
             break;
+    }
+
+    // Draw Items in Inventory
+    /*for (int i = 0; i < 9; i++)
+        if (map->player->Inventory[i]!=nullptr) {
+            ui->label_inventory_1->setPixmap(map->player->Inventory[i]->item->)
+    }*/
+
+    // Set Selected Item Name to Current Item
+    if (map->player->Inventory[map->player->selectedItemIndex]!=nullptr) {
+        ui->label_current_item->setText(QString::fromStdString(map->player->Inventory[map->player->selectedItemIndex]->item->getName()));
+        ui->label_current_item_shadow->setText(QString::fromStdString(map->player->Inventory[map->player->selectedItemIndex]->item->getName()));
+    }
+    else {
+        ui->label_current_item->setText("");
+        ui->label_current_item_shadow->setText("");
     }
 
     ui->widget->loop();
