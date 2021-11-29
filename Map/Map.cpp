@@ -101,6 +101,10 @@ Handle* Map::createHandle(Handle::Type type, double x, double y) { //create hand
         break;
     case Handle::Type::GHOST:
         handle = new Ghost{this, x, y};
+        if (handle -> isCoordinateWalkable(x, y))
+        {
+            ghostList.push_back(*handle);
+        }
         break;
 
     case Handle::Type::CHEST:

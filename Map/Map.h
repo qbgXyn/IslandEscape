@@ -60,7 +60,7 @@ class Map {
        
         Survivor* player; //construct player
 
-        //vector<Handle::Type::GHOST> ghostList;
+        vector<Ghost*> ghostList; //a list of ghosts so it can call the ghost ai function and move in every game loop
 
         vector<Handle*> List; // vector container of all handle
 
