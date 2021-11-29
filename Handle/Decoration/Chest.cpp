@@ -1,7 +1,7 @@
 #include "Chest.h"
 #include "../../Map/Map.h"
 
-const float Chest::base_collison_radius = 32.0;
+const float Chest::base_collision_radius = 32.0;
 const double Chest::base_max_speed = 0.0;
 
 

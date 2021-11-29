@@ -2,7 +2,7 @@
 #include "../../Map/Map.h"
 
 // for simplicity, no collsion means we don't need any algorithm for path finding
-const float Ghost::base_collison_radius = 0.0;
+const float Ghost::base_collision_radius = 0.0;
 
 const double Ghost::base_max_speed = 20.0; //base maximum speed
 const int Ghost::base_attackInterval = 3*GAME_TICK; //base attack CD

@@ -92,8 +92,6 @@ MainWindow::~MainWindow() {
     delete bgmList;
 }
 
-#include <iostream>
-
 // This is called 50 times per second
 void MainWindow::main_loop() {
     int index;
@@ -165,7 +163,6 @@ void MainWindow::main_loop() {
                 TORCH_LIT_COUNT = (TORCH_LIT_COUNT+1)%12;
             }
             else {
-                cout << survivor->Inventory[i]->item->getName() << endl;
                 QPixmap Item(QString::fromStdString(survivor->Inventory[i]->item->getTexture()));
                 inventory[i]->setPixmap(Item);
             }

@@ -1,7 +1,7 @@
 #include "Item_Handle.h"
 #include "../../Map/Map.h"
 
-const float Item_Handle::base_collison_radius = 0.0;
+const float Item_Handle::base_collision_radius = 0.0;
 const double Item_Handle::base_max_speed = 0.0;
 
 Item_Handle::Item_Handle(Map *map, double x, double y, Item::ID id, int inInvulnerable, int inCollisionless) : Decoration(map, x, y, inInvulnerable) {

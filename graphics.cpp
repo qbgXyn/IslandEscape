@@ -90,10 +90,10 @@ void GameWidget::keyPressEvent(QKeyEvent* event) {
         survivor->pickupItem();
         break;
     case Qt::Key::Key_Q:
-        survivor -> dropItem();
+        survivor->dropItem();
         break;
     case Qt::Key::Key_Space:
-        survivor -> useItem(map -> player -> Inventory[map -> player -> selectedItemIndex]);
+        survivor->useItem(map->player->Inventory[map->player->selectedItemIndex]);
         //map->player->attack()
         break;
 
@@ -295,8 +295,8 @@ void GameWidget::paintEvent(QPaintEvent* event) {
 
     // Draw Decoration on grid
     for (int i = 0; i < (int)map->List.size(); ++i)
-        if (map->List[i]->getCategory() == Handle::Category::DECORATION)
-            drawDecoration(paint, map->List[i]);
+        //if (map->List[i]->getCategory() == Handle::Category::DECORATION)
+        drawDecoration(paint, map->List[i]);
 
     // Draw Player
     drawPlayer(paint);

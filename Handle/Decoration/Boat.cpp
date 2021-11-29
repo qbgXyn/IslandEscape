@@ -1,6 +1,6 @@
 #include "Boat.h"
 
-const float Boat::base_collison_radius = 32.0;
+const float Boat::base_collision_radius = 32.0;
 const double Boat::base_max_speed = 0.0;
 
 
