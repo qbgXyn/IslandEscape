@@ -12,7 +12,7 @@ namespace key
     const string texture;
     const int durability = -1;
     const double data = 0.0;
-    const int duration = 0.0;
+    const int duration = 0;
 };
 
 namespace regen_instant_potion
@@ -42,7 +42,7 @@ namespace sword
     const string texture = ":/resources/images/Item/short_sword.png";
     const int durability = 150*GAME_TICK;
     const double data = 1.0;
-    const int duration = 0.0;
+    const int duration = 1*GAME_TICK; // attack cooldown
 };
 
 namespace sword_cooldown
@@ -52,7 +52,7 @@ namespace sword_cooldown
     const string texture = ":/resources/images/Item/short_sword_cooldown.png";
     const int durability = sword::durability;
     const double data = sword::data;
-    const int duration = 0.0;
+    const int duration = sword::duration;
 };
 
 namespace torch
@@ -62,7 +62,7 @@ namespace torch
     const string texture = ":/resources/images/Item/torch_item.png";
     const int durability = 4*GAME_TICK;
     const double data = 3.0;
-    const int duration = 0.0;
+    const int duration = 0;
 };
 
 namespace torch_lit
@@ -72,7 +72,7 @@ namespace torch_lit
     const string texture = ":/resources/images/Item/torch_lit01.png";
     const int durability = torch::durability;
     const double data = torch::data;
-    const int duration = 0.0;
+    const int duration = 0;
 };
 
 

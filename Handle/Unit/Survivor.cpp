@@ -2,6 +2,8 @@
 #include "../Decoration/Item_Handle.h"
 #include "../../Map/Map.h"
 
+#include "../../Item/Item_data.h"
+
 #include <iostream>
 
 //#include <bits/stdc++.h>
@@ -41,7 +43,7 @@ void Survivor::infoUpdate() {
             int durability = Inventory[index]->item->getDurability();
             --durability;
             Inventory[index]->item->setDurability(durability);
-            if (durability % GAME_TICK == 0) { // cooldown finished
+            if (durability % sword::duration == 0) { // cooldown finished
                 if (durability == 0) { // run out of durability
                     deleteItem(index);
                 }else {

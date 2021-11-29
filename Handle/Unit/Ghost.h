@@ -24,7 +24,7 @@ class Ghost : public Unit {
         static const double base_max_speed; //ghost basic index
 
         static const int base_damage = 1; //ghost basic index
-        static const float base_attackInterval; //ghost basic index
+        static const int base_attackInterval; //ghost basic index
         static const float base_attack_radius; //ghost basic index
         static const double base_attack_sector_angle; //ghost basic index
         static const int base_armor = 1; //ghost basic index
@@ -34,6 +34,9 @@ class Ghost : public Unit {
         static const double detectRadius; //setting for ghost detect area
         static const double chasingRadius; //setting for following the player
 
+        int attack_cooldown;
+
+        virtual void infoUpdate() override;
 
         void patrol(); //patrol function for the ghost
         void move_AI(double x, double y); //movement function

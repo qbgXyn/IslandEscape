@@ -5,7 +5,7 @@
 const float Ghost::base_collison_radius = 0.0;
 
 const double Ghost::base_max_speed = 20.0; //base maximum speed
-const float Ghost::base_attackInterval = 3.0; //base attack CD
+const int Ghost::base_attackInterval = 3*GAME_TICK; //base attack CD
 const float Ghost::base_attack_radius = 16.0; //base attack radius
 const double Ghost::base_attack_sector_angle = 60.0; //base attack circular angle sector
 
@@ -19,11 +19,16 @@ Ghost::Ghost(Map *map, double x, double y, Handle *chasing_target) : Unit(map, x
     this->chasing_target = chasing_target;
     patrolCenterLocation[0] = x;
     patrolCenterLocation[1] = y;
+    //ghost can walk on all area of the map, include the ocean which player cannot
+    // so in this way we don't need any algorithm for path finding
     pathable += Terrain::Type::GRASS;
     pathable += Terrain::Type::STONE;
     pathable += Terrain::Type::SHOAL;
     pathable += Terrain::Type::OCEAN;
-    pathable += Terrain::Type::VOID; //ghost can walk on all area of the map, include the ocean which player cannot
+    pathable += Terrain::Type::VOID; 
+
+    // initially no attack cooldown
+    attack_cooldown = 0;
 
     visible_size = base_visible_size;
     health = base_max_health;
@@ -31,7 +36,11 @@ Ghost::Ghost(Map *map, double x, double y, Handle *chasing_target) : Unit(map, x
     armor = base_armor; //initalise base value
 }
 
-
+void Ghost::infoUpdate() {
+    if (attack_cooldown > 0) {
+        --attack_cooldown;
+    }
+}
 
 void Ghost::patrol() {
     double x;
@@ -83,7 +92,10 @@ void Ghost::chase(Handle* u) {
         chasing_target = nullptr;
     }else {
         if (map->distanceBetweenPoints(location[0], location[1], u->getX(), u->getY()) < base_attack_radius /* add is attack cooldown finished condition */) {
-            attack(base_attack_radius, base_attack_sector_angle, base_attackInterval);
+            if (attack_cooldown == 0) {
+                attack(base_attack_radius, base_attack_sector_angle, base_attackInterval);
+                attack_cooldown = base_attackInterval;
+            }
         }
         move_AI(u->getX(), u->getY());
     }

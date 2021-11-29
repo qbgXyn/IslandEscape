@@ -24,6 +24,8 @@ class Unit : public Handle {
         virtual bool isHandleVisible(Handle *h) const;
         void setVisibleSize(int visible_size); 
 
+        virtual void infoUpdate();
+
 
 
         void attack(double attackRadius, double sectorAngle, double attackInterval); //attack functon for player and ghost

@@ -55,17 +55,13 @@ bool Unit::isHandleVisible(Handle *h) const { //check if the handle is visible f
 }
 
 void Unit::attack(double attackRadius, double sectorAngle, double attackInterval) {
-    //set attack interval of survivor
-     auto t_start = std::chrono::high_resolution_clock::now(); //timer begin no matter attack success or not
-
     /*get all Handle that within radius (60 degree of the circle(radius = attack_radius, center = Coordinate(Survivor)) in front of Survivor) 
     This part is break down into two functions, one check handle in a given radius circle. And isInside sector function further check if the handles 
     within the circule is inside the attack sector
 
     if :
         1. Handle is not invulnerable
-        2. Handle is Unit
-        3. attack(Survivor) > armor(Unit)
+        2. attack(Survivor) > armor(Unit)
     then
     deal (attack(Survivor) - armor(Unit)) amount of attack to Unit
     */
@@ -89,13 +85,5 @@ void Unit::attack(double attackRadius, double sectorAngle, double attackInterval
             }
         }
 
-    }
-    while (true)
-    {
-    auto t_end = std::chrono::high_resolution_clock::now(); //get current time constantly until the required cooldown time is reached
-    if (std::chrono::duration<float, milli>(t_end - t_start).count() > 1 / attackInterval)
-    {
-        break; //break the loop when time up and end the function
-    }
     }
 }
