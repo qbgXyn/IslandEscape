@@ -30,6 +30,9 @@ MainWindow::MainWindow(Map *const map, QWidget *parent) : //constructor
     //store the survivor address
     survivor = map->player;
 
+    //creation for testing only
+    map->createHandle(Handle::Type::CAMPFIRE, 64, 64);
+
     // Initialize sound
     bgm = new QMediaPlayer();
     bgmList = new QMediaPlaylist();

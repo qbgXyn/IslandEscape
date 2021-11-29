@@ -107,7 +107,7 @@ void Survivor::infoUpdate() {
             if (Inventory[index] != nullptr) {
                 id = Inventory[index]->item->getID();
                 if (id == Item::ID::TORCH_LIT || id == Item::ID::TORCH) {
-                    Inventory[index]->item->setDurability(Inventory[index]->item->getDurability() + 1);
+                    Inventory[index]->item->setDurability(Inventory[index]->item->getDurability() + 2);
                     break;
                 }
             }

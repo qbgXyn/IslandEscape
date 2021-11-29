@@ -119,7 +119,7 @@ void MenuWindow::start_game(int selected_level, string filename) {
         }
     }
 
-    map.handleLoading();
+    map->handleLoading();
     // for (int i = 0; i < height; ++i) {
     //     for (int j = 0; j < width; ++j) {
     //         cout << array[j][i] << " ";

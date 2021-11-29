@@ -12,6 +12,8 @@
 #include <cmath>
 #include <regex>
 
+#include <QDebug>
+
 const QBrush NOT_VISIBLE{ QColor::fromRgb(0,0,0,222) };
 const QBrush VISIBLE{ QColor::fromRgb(0,0,0,100) };
 
