@@ -11,6 +11,8 @@
 #include "../Inventory/Item_Inventory.h"
 
 class Survivor : public Unit { //survivor is the derived class of unit
+    private:
+        vector<Effect*> EffectList; //vector contain of effect
     public:
         explicit Survivor(Map *map, double x, double y); //player constructor
         static const int base_max_health; //base maximum health of player

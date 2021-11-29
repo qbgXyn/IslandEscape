@@ -174,7 +174,10 @@ Item* Map::createItem(Item::ID id) { //create item
                     regen_instant_potion::data,
                     regen_instant_potion::duration};
         break;
+    default:
+        break;
     }
+
     return i;
 }
 
@@ -188,7 +191,7 @@ void Map::removeHandle(Handle *h) { //remove handle from the handle list
             cout << "handle founded" << endl;
             delete (*it);
             List.erase(it);
-            return;
+            return; //assuming handle is unique
         }
     }
 

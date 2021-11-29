@@ -33,6 +33,7 @@ MenuWindow::MenuWindow(QWidget *parent) :
     bgm = new QMediaPlayer();
     bgm->setPlaylist(bgmList);
     bgmList->addMedia(QUrl("qrc:/resources/sound/main_bgm.wav"));
+    bgmList->setPlaybackMode(QMediaPlaylist::CurrentItemInLoop);
 
     bgmList->setCurrentIndex(0);
     bgm->setVolume(40);
