@@ -15,7 +15,7 @@
 #include <QDebug>
 
 const QBrush NOT_VISIBLE{ QColor::fromRgb(0,0,0,222) };
-const QBrush VISIBLE{ QColor::fromRgb(0,0,0,100) };
+const QBrush VISIBLE{ QColor::fromRgb(0,0,0,130) };
 
 GameWidget::GameWidget(QWidget* parent) : //basic set up
     QWidget(parent),

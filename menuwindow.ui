@@ -13,10 +13,16 @@
   <property name="windowTitle">
    <string>Island Escape</string>
   </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
   <property name="styleSheet">
-   <string notr="true">background-image: url(:/resources/images/UI/dark_background.png);</string>
+   <string notr="true">background: url(:/resources/images/UI/dark_background.png)</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
    <widget class="QLabel" name="label_logo">
     <property name="geometry">
      <rect>
@@ -48,6 +54,9 @@
       <height>261</height>
      </rect>
     </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
     <property name="currentIndex">
      <number>0</number>
     </property>
@@ -62,6 +71,9 @@
           <weight>75</weight>
           <bold>true</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255,255,255)</string>
         </property>
         <property name="text">
          <string>Island Escape</string>
@@ -89,7 +101,8 @@
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+            <string notr="true">background-color: rgba(255, 255, 255, 0);
+color: rgb(255,255,255)</string>
            </property>
            <property name="text">
             <string>Start</string>
@@ -111,6 +124,9 @@
           <pointsize>30</pointsize>
          </font>
         </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255,255,255)</string>
+        </property>
         <property name="text">
          <string>Select Level</string>
         </property>
@@ -121,13 +137,16 @@
       </item>
       <item>
        <widget class="QWidget" name="widget_2" native="true">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255,255,255)</string>
+        </property>
         <widget class="QPushButton" name="btn_level_1">
          <property name="geometry">
           <rect>
            <x>10</x>
-           <y>-30</y>
-           <width>141</width>
-           <height>221</height>
+           <y>0</y>
+           <width>135</width>
+           <height>115</height>
           </rect>
          </property>
          <property name="sizePolicy">
@@ -142,8 +161,8 @@
            <pointsize>20</pointsize>
           </font>
          </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+         <property name="autoFillBackground">
+          <bool>false</bool>
          </property>
          <property name="text">
           <string>Trial</string>
@@ -156,12 +175,15 @@
          </property>
         </widget>
         <widget class="QPushButton" name="btn_level_5">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
          <property name="geometry">
           <rect>
            <x>610</x>
-           <y>-30</y>
-           <width>141</width>
-           <height>221</height>
+           <y>0</y>
+           <width>135</width>
+           <height>115</height>
           </rect>
          </property>
          <property name="sizePolicy">
@@ -175,9 +197,6 @@
            <family>Comic Sans MS</family>
            <pointsize>20</pointsize>
           </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
          </property>
          <property name="text">
           <string>4</string>
@@ -193,9 +212,9 @@
          <property name="geometry">
           <rect>
            <x>460</x>
-           <y>-30</y>
-           <width>141</width>
-           <height>221</height>
+           <y>0</y>
+           <width>135</width>
+           <height>115</height>
           </rect>
          </property>
          <property name="sizePolicy">
@@ -209,9 +228,6 @@
            <family>Comic Sans MS</family>
            <pointsize>20</pointsize>
           </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
          </property>
          <property name="text">
           <string>3</string>
@@ -227,9 +243,9 @@
          <property name="geometry">
           <rect>
            <x>160</x>
-           <y>-30</y>
-           <width>141</width>
-           <height>221</height>
+           <y>0</y>
+           <width>135</width>
+           <height>115</height>
           </rect>
          </property>
          <property name="sizePolicy">
@@ -243,9 +259,6 @@
            <family>Comic Sans MS</family>
            <pointsize>20</pointsize>
           </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
          </property>
          <property name="text">
           <string>1</string>
@@ -261,9 +274,9 @@
          <property name="geometry">
           <rect>
            <x>310</x>
-           <y>-30</y>
-           <width>141</width>
-           <height>221</height>
+           <y>0</y>
+           <width>135</width>
+           <height>115</height>
           </rect>
          </property>
          <property name="sizePolicy">
@@ -277,9 +290,6 @@
            <family>Comic Sans MS</family>
            <pointsize>20</pointsize>
           </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
          </property>
          <property name="text">
           <string>2</string>
@@ -305,6 +315,12 @@
       <height>16</height>
      </rect>
     </property>
+    <property name="layoutDirection">
+     <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color:  rgb(255, 255, 255)</string>
+    </property>
     <property name="text">
      <string>Code and UI design by COMP2012H H16 ( QIU Zhijian,  LEUNG Chun Kit,  LIU Ming Hay )</string>
     </property>
@@ -317,6 +333,9 @@
       <width>717</width>
       <height>16</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255)</string>
     </property>
     <property name="text">
      <string>Building icons / images / sound by pngtree ( https://zh.pngtree.com ) &amp; OpenGameArt (https://opengameart.org)</string>
