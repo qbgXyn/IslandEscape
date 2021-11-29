@@ -36,7 +36,7 @@ class Survivor : public Unit { //survivor is the derived class of unit
         bool isInventoryFull() const; //check if the inventory is full
         void useItem(Item_inventory *i); //use the currently selected item
         void pickupItem(); //pick up item on ground
-        void dropItem(Item_inventory *i); //drop the item on ground 
+        void dropItem(); //drop the item on ground 
 
         void switchTorchState();  //switch between torch and set a new durability
         void torchRunOutOfTime(); //torch is run out of time

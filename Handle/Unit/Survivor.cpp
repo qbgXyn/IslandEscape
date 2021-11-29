@@ -4,7 +4,7 @@
 #include <chrono>
 
 //#include <bits/stdc++.h>
-const float Survivor::base_collison_radius = 16.0; 
+const float Survivor::base_collison_radius = 48.0; 
 const double Survivor::base_max_speed = 20.0; 
 const float Survivor::base_attackInterval = 1.0; 
 const float Survivor::base_attack_radius = 16.0; 
@@ -113,20 +113,36 @@ void Survivor::useItem(Item_inventory *i) { //use the holding item
     }
 }
 
-
+#include <iostream>
 void Survivor::pickupItem() { //pick up a item nearby on the ground]
     vector<Handle*> list = map->getHandleGroup(location[0], location[1], collisionRadius); // get all surrounding handles
+    cout << "pickup()" << endl;
 
     Handle* h;
+    Item_Handle* ih;
 
     vector<Handle*>::const_iterator it_end = list.end(); // check if it collide with existing handle
     for(vector<Handle*>::const_iterator it = list.begin(); it != it_end; ++it) { // iterate all handle
+        cout << "iterating handle" << endl;
+        if (isInventoryFull()) { // no need to search more if inventory is full
+            cout << "inventory full" << endl;
+            return;
+        }
         h = *it;
-        if (h->getType() == Handle::Type::ITEM && !isInventoryFull()) { // if it's item
+        cout << h << endl;
+        if (h->getType() == Handle::Type::ITEM) { // if it's item
+            cout << "get an item" << endl;
             for(int index = 0; index < maxSlotOfInventory; ++index) { // iterate all slot in inventory
-                if (Inventory[index] == nullptr) {                  // find a empty slot of inventory
-                    Inventory[index] = new Item_inventory {*(h->getCorrespondingItem())};
-                    break;
+                cout << "searching for empty slot" << endl;
+                if (Inventory[index] == nullptr) {                  // find an empty slot of inventory
+                    cout << "find a empty slot: " << index << endl;
+                    ih = reinterpret_cast<Item_Handle*> (h);
+                    cout << "creating new item inventory" << endl;
+                    Inventory[index] = new Item_inventory {*ih->item};
+                    cout << "new item inventory created" << endl;
+                    map->removeHandle(h);
+                    cout << "item removed" << endl;
+                    break; // back to iterating handle
                 }
             }
         }
@@ -134,16 +150,18 @@ void Survivor::pickupItem() { //pick up a item nearby on the ground]
 }
 
 
-void Survivor::dropItem(Item_inventory *i) {
-    if (i != nullptr) { //check if holding an item
-        if (i->item->getID() == Item::ID::TORCH_LIT) // drop torch lit is not allowed
+void Survivor::dropItem() {
+    Item_inventory *Item = Inventory[selectedItemIndex];
+    if (Item != nullptr) { //check if holding an item
+        if (Item->item->getID() == Item::ID::TORCH_LIT) // drop torch lit is not allowed
             return;
 
-        map->createItem_Handle(i->item->getID(), location[0], location[1]);
-        // Item_Handle* ih = new Item_Handle{map, this->location[0], this->location[1], i->item->getID()};
-        // map->List.push_back(ih);
-        delete i; //when drop the item, remove it from the array but will not move other item positon in the array
+        map->createItem_Handle(Item->item->getID(), location[0], location[1]);
+        delete Item; //when drop the item, remove it from the array but will not move other item positon in the array
+        Inventory[selectedItemIndex] = nullptr;
+        return;
     }
+    return;
 }
 
 void Survivor::switchTorchState() { //switch between torch and set a new durability

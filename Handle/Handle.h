@@ -90,8 +90,6 @@ class Handle {
         bool isCoordinatePathable(double x, double y) const; //two functions to check if the new position from adding direction and velocity vectors is walkable 
         bool isCoordinateWalkable(double x, double y) const;
 
-        virtual Item* getCorrespondingItem() const; //accessor for item array "bag"
-
         virtual void ChestAddItem(Item::ID id); //to add new item
 
     protected:

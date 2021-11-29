@@ -156,11 +156,6 @@ void Handle::setHealth(int newHealth) //mutator
     health = newHealth;
 }
 
-Item* Handle::getCorrespondingItem() const { //accessor
-    return nullptr;
-}
-
-
 void Handle::ChestAddItem(Item::ID id) { //add item
     return;
 }

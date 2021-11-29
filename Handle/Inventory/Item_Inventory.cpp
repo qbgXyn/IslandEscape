@@ -1,13 +1,14 @@
 #include "Item_Inventory.h"
 #include "../../Map/Map.h"
+#include <iostream>
 
-Item_inventory::Item_inventory(Item item) { //a constructor :)
+Item_inventory::Item_inventory(Item &item) { //a constructor :)
+    std::cout << "insided item_inventory contor" << std::endl;
     this->item = &item;
 }
 
 Item_inventory::Item_inventory(Item::ID id) { //a overload constructor :)
-    Item* i = Map::createItem(id);
-    item = i;
+    item = Map::createItem(id);
 }
 
 Item_inventory::~Item_inventory() { //destrcutor

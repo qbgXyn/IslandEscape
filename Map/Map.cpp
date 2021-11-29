@@ -101,9 +101,7 @@ Handle* Map::createHandle(Handle::Type type, double x, double y) { //create hand
         break;
     case Handle::Type::GHOST:
         handle = new Ghost{this, x, y};
-
         break;
-
     case Handle::Type::CHEST:
         handle = new Chest{this, x, y};
         break;
@@ -122,7 +120,7 @@ Handle* Map::createHandle(Handle::Type type, double x, double y) { //create hand
 
     if (handle->isCoordinateWalkable(x, y)) {
         List.push_back(handle);
-        if (handle->getType() == Handle::Type::GHOST) {
+        if (handle->getType() == Handle::Type::GHOST) { // also add ghost into ghostList for calling ai(), in this way we don't need to search ghost every tick
             ghostList.push_back(reinterpret_cast<Ghost*> (handle));
         }
         return handle;
@@ -145,6 +143,7 @@ bool Map::createItem_Handle(Item::ID id, double x, double y) { //create the hand
 
 Item* Map::createItem(Item::ID id) { //create item
     Item * i = nullptr;
+    cout << "inside createItem()" << endl;
     switch (id) //there have the constructor input of different type of item
     {
     case Item::ID::KEY:
@@ -157,6 +156,7 @@ Item* Map::createItem(Item::ID id) { //create item
         i = new Item {Item::ID::TORCH_LIT, torch_lit::name, torch_lit::description, torch_lit::texture, torch_lit::durability, torch_lit::data, torch_lit::duration};
         break;
     case Item::ID::SWORD:
+        cout << "sword founded" << endl;
         i = new Item {Item::ID::SWORD, sword::name, sword::description, sword::texture, sword::durability, sword::data, sword::duration};
         break;
     case Item::ID::ROCK:
@@ -180,11 +180,15 @@ Item* Map::createItem(Item::ID id) { //create item
 
 
 void Map::removeHandle(Handle *h) { //remove handle from the handle list
+    cout << "remove handle()" << endl;
     vector<Handle*>::const_iterator it_end = List.end();
     for(vector<Handle*>::const_iterator it = List.begin(); it != it_end; ++it) { //search and remove the handle
+        cout << "iterating remove handle" << endl;
         if ((*it) == h) {
+            cout << "handle founded" << endl;
             delete (*it);
             List.erase(it);
+            return;
         }
     }
 

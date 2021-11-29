@@ -58,6 +58,7 @@ void GameWidget::loop() {
 }
 
 void GameWidget::keyPressEvent(QKeyEvent* event) {
+    Survivor* survivor = map->player;
     switch (event->key()) { //connect key with corresponding function
     case Qt::Key::Key_Up:
         UP = true;
@@ -73,43 +74,42 @@ void GameWidget::keyPressEvent(QKeyEvent* event) {
         break;
 
     case Qt::Key::Key_C: //key for special functions
-        map->player->pickupItem();
+        survivor->pickupItem();
         break;
     case Qt::Key::Key_Q:
-        map -> player -> dropItem(map -> player -> Inventory[map -> player -> selectedItemIndex]);
-        map -> player -> Inventory[map -> player -> selectedItemIndex] = nullptr;
+        survivor -> dropItem();
         break;
     case Qt::Key::Key_Space:
-        map -> player -> useItem(map -> player -> Inventory[map -> player -> selectedItemIndex]);
+        survivor -> useItem(map -> player -> Inventory[map -> player -> selectedItemIndex]);
         //map->player->attack()
         break;
 
     case Qt::Key::Key_1: //for switching buttom item bar
-        map->player->Switch_selectedItem_Index(0);
+        survivor->Switch_selectedItem_Index(0);
         break;
     case Qt::Key::Key_2:
-        map->player->Switch_selectedItem_Index(1);
+        survivor->Switch_selectedItem_Index(1);
         break;
     case Qt::Key::Key_3:
-        map->player->Switch_selectedItem_Index(2);
+        survivor->Switch_selectedItem_Index(2);
         break;
     case Qt::Key::Key_4:
-        map->player->Switch_selectedItem_Index(3);
+        survivor->Switch_selectedItem_Index(3);
         break;
     case Qt::Key::Key_5:
-        map->player->Switch_selectedItem_Index(4);
+        survivor->Switch_selectedItem_Index(4);
         break;
     case Qt::Key::Key_6:
-        map->player->Switch_selectedItem_Index(5);
+        survivor->Switch_selectedItem_Index(5);
         break;
     case Qt::Key::Key_7:
-        map->player->Switch_selectedItem_Index(6);
+        survivor->Switch_selectedItem_Index(6);
         break;
     case Qt::Key::Key_8:
-        map->player->Switch_selectedItem_Index(7);
+        survivor->Switch_selectedItem_Index(7);
         break;
     case Qt::Key::Key_9:
-        map->player->Switch_selectedItem_Index(8);
+        survivor->Switch_selectedItem_Index(8);
         break;
     }
 }
