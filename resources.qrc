@@ -40,14 +40,11 @@
         <file>images/UI/mmisland.png</file>
         <file>images/UI/myisland.png</file>
         <file>images/UI/torch.png</file>
-        <file>sound/atmoseerie01.mp3</file>
-        <file>sound/atmoseerie02.mp3</file>
-        <file>sound/atmoseerie03.mp3</file>
-        <file>sound/atmoseerie04.mp3</file>
         <file>sound/ghost_chasing.mp3</file>
-        <file>sound/horror_ambient.mp3</file>
-        <file>sound/main_bgm.mp3</file>
         <file>world/Map1.txt</file>
         <file>world/Map2.txt</file>
+        <file>sound/main_bgm.wav</file>
+        <file>sound/ingame_bgm.mp3</file>
+        <file>images/UI/dark_background.png</file>
     </qresource>
 </RCC>

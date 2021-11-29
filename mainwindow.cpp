@@ -14,11 +14,10 @@ const QString ITEM_NOT_SELECTED{ "background-color: rgba(85, 85, 85, 128);" };
 const QString ITEM_NAME{ "color: rgba(255, 255, 255, 255)" };
 const QString ITEM_NAME_SHADOW{ "color: rgba(0, 128, 255, 255)" };
 
-MainWindow::MainWindow(Map *const map, QMediaPlayer *bgm, QWidget *parent) : //constructor
+MainWindow::MainWindow(Map *const map, QWidget *parent) : //constructor
         QMainWindow(parent), //pass by MIL
         ui(new Ui::MainWindow),
         map(map),
-        bgm(bgm),
         TORCH_LIT_COUNT(0)
 {
     ui->setupUi(this);
@@ -29,11 +28,20 @@ MainWindow::MainWindow(Map *const map, QMediaPlayer *bgm, QWidget *parent) : //c
     init_Current_Item();
 
     // Initialize sound
+    bgm = new QMediaPlayer();
+    bgmList = new QMediaPlaylist();
+    bgm->setPlaylist(bgmList);
 
+    bgmList->addMedia(QUrl("qrc:/resources/sound/ingame_bgm.mp3"));
+    bgmList->addMedia(QUrl("qrc:/resources/sound/ghost_chasing.mp3"));
+    bgmList->setPlaybackMode(QMediaPlaylist::CurrentItemInLoop);
 
-//    bgmList->setCurrentIndex(1);
-//    bgm->setVolume(60);
-//    bgm->play();
+    bgmList->setCurrentIndex(0);
+//    qDebug() << bgmList->currentIndex();
+//    bgmList->setCurrentIndex(2);
+
+    bgm->setVolume(100);
+    bgm->play();
     // Load Icons
     load_icons();
 

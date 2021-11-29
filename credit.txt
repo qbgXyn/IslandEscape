@@ -1,0 +1,16 @@
+music:
+title screen - Music by Cleyton Kauffman - https://soundcloud.com/cleytonkauffman
+ghost chaing - Alexandr Zhelanov https://soundcloud.com/alexandr-zhelanov
+ingame bgm - Juhani Junkala https://opengameart.org/content/horror-atmosphere
+"i see you" - Vinrax https://opengameart.org/content/i-see-you-voice
+high-pitched ghost Fupi https://opengameart.org/content/scary-high-pitched-ghost
+
+image:
+sword - bevouliin.com https://opengameart.org/content/short-sword-game-item
+torch - XLIVE99 https://opengameart.org/content/animated-pixel-torch
+potion - Rafaelchm https://opengameart.org/content/potion-bottles
+title background - IndieSquid https://opengameart.org/content/dark-night-full-moon-background
+
+terrain:
+ocean - qubodup https://opengameart.org/content/3-live-proceduraly-generated-tiling-water-textures-512px-running-brushes
+grass, stone, sand - Mysteryem https://opengameart.org/content/29-grounds-and-walls-and-water-1024x1024

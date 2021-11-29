@@ -12,6 +12,8 @@
 #include <QTextStream>
 #include <QStringList>
 
+//#include <QPainter>
+
 const QString NOT_PASSED_STYLE = "background-color: rgba(168, 50, 50, 255);";
 const QString PASSED_STYLE = "background-color: rgba(50, 127, 50, 255);";
 
@@ -30,12 +32,20 @@ MenuWindow::MenuWindow(QWidget *parent) :
     bgmList = new QMediaPlaylist();
     bgm = new QMediaPlayer();
     bgm->setPlaylist(bgmList);
-    bgmList->addMedia(QUrl("qrc:/resources/sound/main_bgm.mp3"));
-    bgmList->setPlaybackMode(QMediaPlaylist::CurrentItemInLoop);
+    bgmList->addMedia(QUrl("qrc:/resources/sound/main_bgm.wav"));
 
     bgmList->setCurrentIndex(0);
     bgm->setVolume(40);
     bgm->play();
+
+//    QPixmap pixmap;
+//    QPainter paint(this);
+//    pixmap.load(":/resources/images/UI/dark_background.png");
+//    int w = ui->centralwidget->width();
+//    int h = ui->centralwidget->height();
+//    pixmap = pixmap.scaled(w, h, Qt::KeepAspectRatioByExpanding);
+//    paint.drawPixmap(0, 0, pixmap);
+
 
     // Set pixmap for increase and decrease size buttons
     /* QPixmap increase {":/resources/images/next.png"};
@@ -77,7 +87,7 @@ void MenuWindow::start_game(int selected_level, string filename) {
     }
     map = new Map(width*64, height*64);
     map->player = reinterpret_cast<Survivor*>(map->createHandle(Handle::Type::SURVIVOR, 0, 0));
-    MainWindow *m = new MainWindow{map, bgm, nullptr};
+    MainWindow *m = new MainWindow{map, nullptr};
     m->setAttribute(Qt::WA_DeleteOnClose);
     m->show();
 

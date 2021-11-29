@@ -16,7 +16,7 @@ class MainWindow: public QMainWindow
 
 public:
 
-    MainWindow(Map *const map, QMediaPlayer *bgm, QWidget *parent = nullptr); //constructor
+    MainWindow(Map *const map, QWidget *parent = nullptr); //constructor
     ~MainWindow(); //destructor
 
     MainWindow(const MainWindow&) = delete;

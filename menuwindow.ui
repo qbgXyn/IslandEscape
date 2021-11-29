@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Island Escape</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-image: url(:/resources/images/UI/dark_background.png);</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QLabel" name="label_logo">
     <property name="geometry">
