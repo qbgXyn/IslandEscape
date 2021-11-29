@@ -8,7 +8,7 @@
 
 //#include <bits/stdc++.h>
 const float Survivor::base_collision_radius = 64.0;
-const double Survivor::base_max_speed = 20.0; 
+const double Survivor::base_max_speed = 10.0;
 const int Survivor::base_attackInterval = 1; 
 const float Survivor::base_attack_radius = 96.0; 
 const double Survivor::base_attack_sector_angle = 60.0; // set base index for survivor
@@ -118,6 +118,42 @@ void Survivor::update() {
 
 }
 
+double Survivor::getDirection() const {
+    return direction;
+}
+
+void Survivor::setMoveDirection(bool move, double direction) {
+    if (!move) {
+        setVelocityX(0);
+        setVelocityY(0);
+        return;
+    }
+    this->direction = direction;
+    if (direction == 0 || direction == 180) {
+        setVelocityX(0);
+        setVelocityY((direction-90)*base_max_speed/90);
+    }
+    if (direction == -90 || direction == 90) {
+        setVelocityX((direction)*base_max_speed/90);
+        setVelocityY(0);
+    }
+    if (direction == 45) {
+        setVelocityX(sqrt(base_max_speed*base_max_speed/2));
+        setVelocityY(-sqrt(base_max_speed*base_max_speed/2));
+    }
+    if (direction == 135) {
+        setVelocityX(sqrt(base_max_speed*base_max_speed/2));
+        setVelocityY(sqrt(base_max_speed*base_max_speed/2));
+    }
+    if (direction == -135) {
+        setVelocityX(-sqrt(base_max_speed*base_max_speed/2));
+        setVelocityY(sqrt(base_max_speed*base_max_speed/2));
+    }
+    if (direction == -45) {
+        setVelocityX(-sqrt(base_max_speed*base_max_speed/2));
+        setVelocityY(-sqrt(base_max_speed*base_max_speed/2));
+    }
+}
 
 void Survivor::gainAttributeFromEffect(Effect *e) { //gain effect
     cout << "gain effect" << endl;

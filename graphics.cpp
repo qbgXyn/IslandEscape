@@ -25,6 +25,9 @@
 #include "Item/Item.h"
 #include "Item/Item_data.h"
 
+#include "util.h"
+#include <math.h>
+
 const QBrush NOT_VISIBLE{ QColor::fromRgb(0,0,0,222) };
 const QBrush VISIBLE{ QColor::fromRgb(0,0,0,130) };
 
@@ -36,7 +39,6 @@ GameWidget::GameWidget(QWidget* parent) : //basic set up
     scroll_x(0), scroll_y(0),
     scale(1.0f),
     UP(false), DOWN(false), LEFT(false), RIGHT(false),
-    Player_Direction(0),
     CAMPFIRE_COUNT(0)
 {
     load_icons();
@@ -50,22 +52,32 @@ GameWidget::~GameWidget() {
 
 void GameWidget::loop() {
     // Player Movement
-    int horizontal = (int)RIGHT - (int)LEFT;
-    int vertical = (int)DOWN - (int)UP;
-    if (horizontal != 0 && vertical != 0) {
-        map->player->setVelocityX(horizontal*(7.071067));
-        map->player->setVelocityY(vertical*(7.071067));
+    double direction = 0;
+    if (LEFT==true) { //because we use vector to make smooth movement, the player need to rotate
+        direction = -90;
+        if (UP==true)
+            direction += 45;
+        if (DOWN==true)
+            direction += -45;
     }
-    else {
-        map->player->setVelocityX(horizontal*10);
-        map->player->setVelocityY(vertical*10);
+    else if (RIGHT==true) {
+        direction = 90;
+        if (UP==true)
+            direction += -45;
+        if (DOWN==true)
+            direction += 45;
     }
+    else if (UP==true)
+        direction = 0;
+    else if (DOWN==true)
+        direction = 180;
+
+    map->player->setMoveDirection( (UP||DOWN||LEFT||RIGHT), direction );
+
     map->player->update();
+
     scroll_x = map->player->getX();
     scroll_y = map->player->getY();
-
-    // Inventory Item Logos
-
 
     repaint(0, 0, width(), height());
 }
@@ -240,7 +252,13 @@ void GameWidget::drawHandle(QPainter& paint, Handle* Handle) {
             break;
         }
         case Handle::Type::GHOST: {
-            drawPixmap(paint, Handle->getX()-64, Handle->getY()-64, 128, 128, GHOST[Handle->getSpecies()]);
+            QPixmap ghost = GHOST[Handle->getSpecies()];
+            QMatrix rm;
+            rm.rotate(Handle->getDirection());
+            int w = ghost.width(), h = ghost.height();
+            ghost = ghost.transformed(rm);
+            ghost = ghost.copy((ghost.width()-w)/2, (ghost.height()-h)/2, w, h);
+            drawPixmap(paint, Handle->getX()-64, Handle->getY()-64, 128, 128, ghost);
             break;
         }
     }
@@ -249,25 +267,7 @@ void GameWidget::drawHandle(QPainter& paint, Handle* Handle) {
 void GameWidget::drawPlayer(QPainter& paint) {
     QPixmap player(":/resources/images/Handle/Unit/player.png");
     QMatrix rm;
-    if (LEFT==true) { //because we use vector to make smooth movement, the player need to rotate
-        Player_Direction = -90;
-        if (UP==true)
-            Player_Direction += 45;
-        if (DOWN==true)
-            Player_Direction += -45;
-    }
-    else if (RIGHT==true) {
-        Player_Direction = 90;
-        if (UP==true)
-            Player_Direction += -45;
-        if (DOWN==true)
-            Player_Direction += 45;
-    }
-    else if (UP==true)
-        Player_Direction = 0;
-    else if (DOWN==true)
-        Player_Direction = 180;
-    rm.rotate(Player_Direction);
+    rm.rotate(map->player->getDirection());
     int w = player.width(), h = player.height();
     player = player.transformed(rm);
     player = player.copy((player.width()-w)/2, (player.height()-h)/2, w, h);

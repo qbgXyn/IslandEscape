@@ -59,6 +59,8 @@ class Handle {
         double getX() const; //accessor for location and velocity
         double getY() const;
         double getVelocity() const;
+        double getVelocityX() const;
+        double getVelocityY() const;
         double getDirection() const;
 
         float getCollisionRadius() const; //accessor for collision radius
@@ -74,8 +76,8 @@ class Handle {
         void setInvisible(bool state); 
         void setinCollisionless(bool state);
         void setHealth (int newHealth);
-        void setVelocityX(double speed) {velocity[0] = speed;}
-        void setVelocityY(double speed) {velocity[1] = speed;}
+        void setVelocityX(double speed);
+        void setVelocityY(double speed);
 
         virtual void update(); // every tick, we call this function for every handle to update the info
 

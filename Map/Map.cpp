@@ -301,8 +301,10 @@ void Map::handleLoading()
             {
                 randomLocationX = getRandomDouble(0, getMaxWidth());
                 randomLocationY = getRandomDouble(0, getMaxHeight());
-                if (createHandle(Handle::Type::GHOST, randomLocationX, randomLocationY) != nullptr)
+                if (Ghost* ghost = reinterpret_cast<Ghost*>(createHandle(Handle::Type::GHOST, randomLocationX, randomLocationY)))
                 {
+                    //ghost->patrol();
+                    //ghost->ai();
                     break;
                 }
             }

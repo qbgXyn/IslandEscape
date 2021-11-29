@@ -36,8 +36,16 @@ double Handle::getVelocity() const { //accessor
     return hypot(velocity[0], velocity[1]); //make a vector from x and y
 }
 
+double Handle::getVelocityX() const { //accessor
+    return velocity[0];
+}
+
+double Handle::getVelocityY() const { //accessor
+    return velocity[1];
+}
+
 double Handle::getDirection() const { //accessor
-    return atan2(velocity[1], velocity[0]) * 180.0 / PI; //return the angle of the direction
+    return atan2(velocity[0], -velocity[1]) * 180.0 / PI; //return the angle of the direction
 }
 
 float Handle::getCollisionRadius() const { //accessor
@@ -88,6 +96,20 @@ void Handle::setinCollisionless(bool state) { //mutator
     }
 }
 
+void Handle::setHealth(int newHealth) //mutator
+{
+    health = newHealth;
+}
+
+void Handle::setVelocityX(double speed) {
+    velocity[0] = speed;
+}
+
+void Handle::setVelocityY(double speed) {
+    velocity[1] = speed;
+}
+
+
 bool Handle::hasCollision(const Handle *h) const { //check collision
     // if one of them is collisionless
     if (h->isCollisionless() || isCollisionless()) {
@@ -110,6 +132,8 @@ bool Handle::isGridVisible(int x, int y) const { //check if grid visible, only v
 bool Handle::isHandleVisible(Handle *h) const { //check if handle visible, only valid for Unit and it's derived class
     return false;
 }
+
+#include <iostream>
 
 void Handle::update() {
     /*
@@ -135,6 +159,7 @@ void Handle::update() {
 
    else if (isCoordinateWalkable(location[0], newPosition[1]) == true) //if only vertical is walkable
         location[1] = newPosition[1];
+
 }
 
 bool Handle::isCoordinatePathable(double x, double y) const { //check if pathable
@@ -169,11 +194,6 @@ bool Handle::isCoordinateWalkable(double x, double y) const{
 
     return true; //else can walk
 
-}
-
-void Handle::setHealth(int newHealth) //mutator
-{
-    health = newHealth;
 }
 
 void Handle::ChestAddItem(Item::ID id) { //add item

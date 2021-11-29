@@ -30,8 +30,12 @@ class Survivor : public Unit { //survivor is the derived class of unit
         static const int maxSlotOfInventory = 9; //the maximum amount of item player can store, like the bag capacbility
         int selectedItemIndex = 0; //by default the player will have the item on the first left box in the buttom item bar 
 
+        double direction;
 
         virtual void update() override;
+
+        double getDirection() const;
+        void setMoveDirection(bool move, double direction);
 
         void gainAttributeFromEffect(Effect *e); //effect related functions
         void addEffect(Effect *e);
