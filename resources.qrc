@@ -13,12 +13,26 @@
         <file>images/Handle/Decoration/campfire10.png</file>
         <file>images/Handle/Decoration/campfire11.png</file>
         <file>images/Handle/Decoration/campfire12.png</file>
+        <file>images/Handle/Unit/ghost1.png</file>
+        <file>images/Handle/Unit/ghost1_walk1.png</file>
+        <file>images/Handle/Unit/ghost1_walk2.png</file>
+        <file>images/Handle/Unit/ghost1_walk3.png</file>
+        <file>images/Handle/Unit/ghost1_walk4.png</file>
+        <file>images/Handle/Unit/ghost2.png</file>
+        <file>images/Handle/Unit/ghost2_walk1.png</file>
+        <file>images/Handle/Unit/ghost2_walk2.png</file>
+        <file>images/Handle/Unit/ghost3.png</file>
+        <file>images/Handle/Unit/ghost3_walk1.png</file>
+        <file>images/Handle/Unit/ghost3_walk2.png</file>
+        <file>images/Handle/Unit/ghost3_walk3.png</file>
+        <file>images/Handle/Unit/ghost3_walk4.png</file>
         <file>images/Handle/Unit/player.png</file>
         <file>images/Item/potions/pt1.png</file>
         <file>images/Item/potions/pt2.png</file>
         <file>images/Item/potions/pt3.png</file>
         <file>images/Item/potions/pt4.png</file>
         <file>images/Item/short_sword.png</file>
+        <file>images/Item/short_sword_cooldown.png</file>
         <file>images/Item/torch_item.png</file>
         <file>images/Item/torch_lit01.png</file>
         <file>images/Item/torch_lit02.png</file>
@@ -31,21 +45,15 @@
         <file>images/Terrain/Sand.png</file>
         <file>images/Terrain/Stone.png</file>
         <file>images/UI/clock.png</file>
+        <file>images/UI/dark_background.png</file>
         <file>images/UI/heart.png</file>
         <file>images/UI/inventory.png</file>
-        <file>images/UI/inventory1.png</file>
         <file>images/UI/island.png</file>
-        <file>images/UI/island1.png</file>
-        <file>images/UI/misland.png</file>
-        <file>images/UI/mmisland.png</file>
-        <file>images/UI/myisland.png</file>
         <file>images/UI/torch.png</file>
         <file>sound/ghost_chasing.mp3</file>
         <file>world/Map1.txt</file>
         <file>world/Map2.txt</file>
         <file>sound/main_bgm.wav</file>
         <file>sound/ingame_bgm.mp3</file>
-        <file>images/UI/dark_background.png</file>
-        <file>images/Item/short_sword_cooldown.png</file>
     </qresource>
 </RCC>
