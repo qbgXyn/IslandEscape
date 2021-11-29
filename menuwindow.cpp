@@ -9,6 +9,7 @@
 #include <string>
 
 #include <iostream>
+#include <vector>
 #include <QTextStream>
 #include <QStringList>
 
@@ -96,6 +97,8 @@ void MenuWindow::start_game(int selected_level, string filename) {
     QStringList numlist;
     QString match;
 
+    vector<int> readInt;
+
     file.open(QIODevice::ReadOnly | QIODevice::Text);
     while(!file.atEnd())
     {
@@ -109,6 +112,7 @@ void MenuWindow::start_game(int selected_level, string filename) {
     foreach(QString num, numlist) {
         // std::cout << num.toInt();
         map->grid[x][y] = static_cast<Terrain::Type>(num.toInt());
+        readInt.push_back(num.toInt());
 //        cout << y << " " << x << " " << num.toInt() << endl;
         ++x;
         if (x == width) {
