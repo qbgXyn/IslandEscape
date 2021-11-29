@@ -31,7 +31,7 @@ class Survivor : public Unit { //survivor is the derived class of unit
         int selectedItemIndex = 0; //by default the player will have the item on the first left box in the buttom item bar 
 
 
-        virtual void infoUpdate() override;
+        virtual void update() override;
 
         void gainAttributeFromEffect(Effect *e); //effect related functions
         void addEffect(Effect *e);

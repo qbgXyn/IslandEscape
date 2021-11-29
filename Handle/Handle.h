@@ -77,7 +77,7 @@ class Handle {
         void setVelocityX(double speed) {velocity[0] = speed;}
         void setVelocityY(double speed) {velocity[1] = speed;}
 
-        void update(); // every tick, we call this function for every handle to update the info
+        virtual void update(); // every tick, we call this function for every handle to update the info
 
         bool hasCollision(const Handle *h) const;
 

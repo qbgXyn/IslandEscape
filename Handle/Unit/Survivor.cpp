@@ -35,8 +35,9 @@ Survivor::Survivor(Map *map, double x, double y) : Unit(map, x, y) { //construct
 }
 
 
-void Survivor::infoUpdate() {
+void Survivor::update() {
 
+    Handle::update();
 
     // attack interval section
     if (attackInterval > 0) {

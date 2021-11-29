@@ -41,7 +41,7 @@ class Ghost : public Unit {
         static const double detectRadius; //setting for ghost detect area
         static const double chasingRadius; //setting for following the player
 
-        virtual void infoUpdate() override;
+        virtual void update() override;
 
         void patrol(); //patrol function for the ghost
         void move_AI(double x, double y); //movement function

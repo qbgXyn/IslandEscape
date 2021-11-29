@@ -111,8 +111,8 @@ void MainWindow::main_loop() {
         }
 
     }
-
-    survivor->infoUpdate();
+    // testing call
+    survivor->update();
 
     ui->label_health->setText(": " + QString::number(survivor->getHealth()));
     ui->label_time->setText(": " + QString::number(game_time/GAME_TICK) + "s");

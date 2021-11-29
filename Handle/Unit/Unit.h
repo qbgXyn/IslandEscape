@@ -23,9 +23,6 @@ class Unit : public Handle {
         bool isHandleVisible(Handle *h) const;
         void setVisibleSize(int visible_size); 
 
-        virtual void infoUpdate() = 0;
-
-
 
         void attack(double attackRadius, double sectorAngle); //attack functon for player and ghost
         bool isInsideSector(const Handle *h, double sector_angle) const; //a function to check if the position of the target is inside the circular sector

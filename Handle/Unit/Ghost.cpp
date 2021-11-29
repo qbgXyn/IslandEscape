@@ -35,7 +35,10 @@ Ghost::Ghost(Map *map, double x, double y, Handle *chasing_target) : Unit(map, x
     armor = base_armor; //initalise base value
 }
 
-void Ghost::infoUpdate() {
+void Ghost::update() {
+
+    Handle::update();    
+    
     // attack interval section
     if (attackInterval > 0) {
         --attackInterval;
