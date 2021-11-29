@@ -30,6 +30,7 @@ class Map {
 
         int game_time {30*GAME_TICK}; //seconds*50
 
+
     public:
         Map(double width, double height); //constructor
         ~Map(); //destructor
@@ -55,7 +56,7 @@ class Map {
         Handle* createHandle(Handle::Type type, double x, double y); //create and remove handle in handle list
         void removeHandle(Handle *h);
 
-        void handleLoading(vector<int> mapInt);
+        void handleLoading();
 
         int getGameTime() const; //accessor and mutator of game time
         void setGameTime(int time);
