@@ -40,12 +40,12 @@ private:
 
     QTimer* loop_timer;
 
+    Survivor *survivor;
+
     friend class GameWidget;
     QMediaPlayer *bgm;
     QMediaPlaylist *bgmList;
 
-    int game_time;
-    int torch_time;
 
     QPixmap* TORCH_LIT;
     int TORCH_LIT_COUNT;

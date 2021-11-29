@@ -30,8 +30,12 @@ class Survivor : public Unit { //survivor is the derived class of unit
         int selectedItemIndex = 0; //by default the player will have the item on the first left box in the buttom item bar 
 
 
+        void infoUpdate();
+
         void gainAttributeFromEffect(Effect *e); //effect related functions
         void addEffect(Effect *e);
+        void removeAttributeFromEffect(Effect *e);
+        void removeEffect(Effect *e);
 
         Item_inventory* Inventory[maxSlotOfInventory] = {}; //a array of item which acts like a bag for the player to store the items
 
@@ -41,11 +45,12 @@ class Survivor : public Unit { //survivor is the derived class of unit
         void dropItem(); //drop the item on ground 
 
         void switchTorchState();  //switch between torch and set a new durability
-        void torchRunOutOfTime(); //torch is run out of time
+        void itemSwitchState(Item::ID oldID, Item::ID newID = Item::ID::EMPTY); //item is run out of time
         int getTorchTime() const; //return the torch time
-        void setTorchTime(int time);  //set up the torch durability
 
-        bool hasItem(Item::ID id) const; //check if player has the item
+        void deleteItem(int index);
+
+        int getItemIndex(Item::ID id) const; //check if player has the item, if yes, return the index, if no, return -1
 
         void Switch_selectedItem_Index(int index); //change the index item so that it refer to different item in the item array, so that when press 1-9 key, change the color of the item bar background to show the selection
 

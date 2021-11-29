@@ -56,16 +56,28 @@ bool Handle::isInvisible() const { //check if visible
     return (inInvisible > 0);
 }
 
-void Handle::setInvulnerable() { //mutator
-    ++inInvulnerable;
+void Handle::setInvulnerable(bool state) { //mutator
+    if (state) {
+        ++inInvulnerable;
+    }else {
+        --inInvulnerable;
+    }
 }
 
-void Handle::setInvisible() { //mutator
-    ++inInvisible;
+void Handle::setInvisible(bool state) { //mutator
+    if (state) {
+        ++inInvisible;
+    }else {
+        --inInvisible;
+    }
 }
 
-void Handle::setinCollisionless() { //mutator
-    ++inCollisionless;
+void Handle::setinCollisionless(bool state) { //mutator
+    if (state) {
+        ++inCollisionless;
+    }else {
+        --inCollisionless;
+    }
 }
 
 bool Handle::hasCollision(const Handle *h) const { //check collision

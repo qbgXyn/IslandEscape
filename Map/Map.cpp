@@ -147,23 +147,63 @@ Item* Map::createItem(Item::ID id) { //create item
     switch (id) //there have the constructor input of different type of item
     {
     case Item::ID::KEY:
-        i = new Item {Item::ID::KEY, key::name, key::description, key::texture, key::durability, key::data, key::duration};
+        i = new Item {Item::ID::KEY,
+                    key::name,
+                    key::description,
+                    key::texture,
+                    key::durability,
+                    key::data,
+                    key::duration};
         break;
     case Item::ID::TORCH:
-        i = new Item {Item::ID::TORCH, torch::name, torch::description, torch::texture, torch::durability, torch::data, torch::duration};
+        i = new Item {Item::ID::TORCH,
+                    torch::name,
+                    torch::description,
+                    torch::texture,
+                    torch::durability,
+                    torch::data,
+                    torch::duration};
         break;
     case Item::ID::TORCH_LIT:
-        i = new Item {Item::ID::TORCH_LIT, torch_lit::name, torch_lit::description, torch_lit::texture, torch_lit::durability, torch_lit::data, torch_lit::duration};
+        i = new Item {Item::ID::TORCH_LIT,
+                    torch_lit::name,
+                    torch_lit::description,
+                    torch_lit::texture,
+                    torch_lit::durability,
+                    torch_lit::data,
+                    torch_lit::duration};
         break;
     case Item::ID::SWORD:
         cout << "sword founded" << endl;
-        i = new Item {Item::ID::SWORD, sword::name, sword::description, sword::texture, sword::durability, sword::data, sword::duration};
+        i = new Item {Item::ID::SWORD,
+                    sword::name,
+                    sword::description,
+                    sword::texture,
+                    sword::durability,
+                    sword::data,
+                    sword::duration};
+        break;
+    case Item::ID::SWORD_COOLDOWN:
+        i = new Item {Item::ID::SWORD_COOLDOWN,
+                    sword_cooldown::name,
+                    sword_cooldown::description,
+                    sword_cooldown::texture,
+                    sword_cooldown::durability,
+                    sword_cooldown::data,
+                    sword_cooldown::duration};
         break;
     case Item::ID::ROCK:
         break;
     case Item::ID::BELL:
         break;
     case Item::ID::SPEED_POTION:
+        i = new Item {Item::ID::SPEED_POTION,
+                    speed_potion::name, 
+                    speed_potion::description,
+                    speed_potion::texture,
+                    speed_potion::durability,
+                    speed_potion::data,
+                    speed_potion::duration};
         break;
     case Item::ID::REGEN_INSTANT_POTION:
         i = new Item {Item::ID::REGEN_INSTANT_POTION,
@@ -177,7 +217,7 @@ Item* Map::createItem(Item::ID id) { //create item
     default:
         break;
     }
-
+    cout << "item created" << endl;
     return i;
 }
 
@@ -189,7 +229,7 @@ void Map::removeHandle(Handle *h) { //remove handle from the handle list
         cout << "iterating remove handle" << endl;
         if ((*it) == h) {
             cout << "handle founded" << endl;
-            delete (*it);
+            delete h;
             List.erase(it);
             return; //assuming handle is unique
         }

@@ -11,13 +11,14 @@ class Effect {
             INVISIBLE
             // for simplicity, only part of the attribute can be buffed by potion
         };
-        explicit Effect(Type type, double data, double duration);
+        explicit Effect(Type type, double data, int duration);
         Type getType() const;
         double getData() const;
-        double getDuration() const;
+        int getDuration() const;
+        void setDuration(int duration);
     private:
         Type type;
         double data;
-        double duration;
+        int duration;
 };
 #endif // EFFECT_H

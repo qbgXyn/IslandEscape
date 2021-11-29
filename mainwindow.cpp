@@ -27,6 +27,9 @@ MainWindow::MainWindow(Map *const map, QWidget *parent) : //constructor
     init_Inventory();
     init_Current_Item();
 
+    //store the survivor address
+    survivor = map->player;
+
     // Initialize sound
     bgm = new QMediaPlayer();
     bgmList = new QMediaPlaylist();
@@ -88,19 +91,26 @@ MainWindow::~MainWindow() {
 
 // This is called 50 times per second
 void MainWindow::main_loop() {
-    game_time = map->getGameTime();
-    torch_time = map->player->getTorchTime();
-//    int torch_time = 10;
+    int index;
+
+    int game_time = map->getGameTime();
     if (game_time > 0)
         map->setGameTime(game_time - 1);
-    if (map->player->hasItem(Item::ID::TORCH_LIT)) {
-        if (torch_time - 1 >= 0) {
-            map->player->setTorchTime(torch_time - 1);
+
+    int torch_time = survivor->getTorchTime();
+    index = survivor->getItemIndex(Item::ID::TORCH_LIT);
+    if (index != ITEM_NOT_EXIST) {
+        --torch_time;
+        if (torch_time >= 0) {
+            survivor->Inventory[index]->item->setDurability(torch_time);
         }else {
-            map->player->torchRunOutOfTime();
+            survivor->itemSwitchState(Item::ID::TORCH_LIT, Item::ID::TORCH);
         }
 
     }
+
+    survivor->infoUpdate();
+
     ui->label_health->setText(": 100");
     ui->label_time->setText(": " + QString::number(game_time/GAME_TICK) + "s");
     ui->label_torch->setText(": " + QString::number(torch_time/GAME_TICK) + "s");
@@ -108,7 +118,7 @@ void MainWindow::main_loop() {
 
     // Set Selected Item in Inventory
     init_Inventory();
-    switch (map->player->selectedItemIndex) { //when player press 1-9, graphic.cpp will change the selected item, and here will change the background color of that item bar box
+    switch (survivor->selectedItemIndex) { //when player press 1-9, graphic.cpp will change the selected item, and here will change the background color of that item bar box
         case 0:
             ui->label_inventory_1->setStyleSheet(ITEM_SELECTED);
             break;
@@ -145,13 +155,13 @@ void MainWindow::main_loop() {
         ui->label_inventory_7, ui->label_inventory_8, ui->label_inventory_9
     };
     for (int i = 0; i < 9; i++) { //set up the png in the bar
-        if (map->player->Inventory[i]!=nullptr) {
-            if (map->player->Inventory[i]->item->getName()=="torch (lit)") {
+        if (survivor->Inventory[i]!=nullptr) {
+            if (survivor->Inventory[i]->item->getID()==Item::ID::TORCH_LIT) {
                 inventory[i]->setPixmap(TORCH_LIT[TORCH_LIT_COUNT]);
                 TORCH_LIT_COUNT = (TORCH_LIT_COUNT+1)%12;
             }
             else {
-                QPixmap Item(QString::fromStdString(map->player->Inventory[i]->item->getTexture()));
+                QPixmap Item(QString::fromStdString(survivor->Inventory[i]->item->getTexture()));
                 inventory[i]->setPixmap(Item);
             }
         }
@@ -161,9 +171,9 @@ void MainWindow::main_loop() {
     }
 
     // Set Selected Item Name to Current Item
-    if (map->player->Inventory[map->player->selectedItemIndex]!=nullptr) {
-        ui->label_current_item->setText(QString::fromStdString(map->player->Inventory[map->player->selectedItemIndex]->item->getName()));
-        ui->label_current_item_shadow->setText(QString::fromStdString(map->player->Inventory[map->player->selectedItemIndex]->item->getName()));
+    if (survivor->Inventory[survivor->selectedItemIndex]!=nullptr) {
+        ui->label_current_item->setText(QString::fromStdString(survivor->Inventory[survivor->selectedItemIndex]->item->getName()));
+        ui->label_current_item_shadow->setText(QString::fromStdString(survivor->Inventory[survivor->selectedItemIndex]->item->getName()));
     }
     else { //if selected area has no item, still return something
         ui->label_current_item->setText("");

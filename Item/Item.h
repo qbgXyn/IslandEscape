@@ -17,6 +17,7 @@ class Item {
             ROCK,
             BELL,
             SWORD,
+            SWORD_COOLDOWN,
             SPEED_POTION,
             REGEN_INSTANT_POTION,
             EMPTY

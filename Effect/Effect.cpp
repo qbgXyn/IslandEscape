@@ -1,11 +1,11 @@
 #include "Effect.h"
 
-Effect::Effect(Type type, double data, double duration) : type(type), data(data), duration(duration) {
+Effect::Effect(Type type, double data, int duration) : type(type), data(data), duration(duration) {
     
 }
 
 
-double Effect::getDuration() const {
+int Effect::getDuration() const {
     return duration;
 }
 
@@ -15,4 +15,8 @@ double Effect::getData() const {
 
 Effect::Type Effect::getType() const {
     return type;
+}
+
+void Effect::setDuration(int duration) {
+    this->duration = duration;
 }

@@ -46,5 +46,6 @@
         <file>sound/main_bgm.wav</file>
         <file>sound/ingame_bgm.mp3</file>
         <file>images/UI/dark_background.png</file>
+        <file>images/Item/short_sword_cooldown.png</file>
     </qresource>
 </RCC>

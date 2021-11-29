@@ -70,9 +70,9 @@ class Handle {
         bool isCollisionless() const; //check if it can collision
         bool isInvisible() const; //check if visible
 
-        void setInvulnerable(); //mutator
-        void setInvisible(); 
-        void setinCollisionless();
+        void setInvulnerable(bool state); //mutator
+        void setInvisible(bool state); 
+        void setinCollisionless(bool state);
         void setHealth (int newHealth);
         void setVelocityX(double speed) {velocity[0] = speed;}
         void setVelocityY(double speed) {velocity[1] = speed;}
