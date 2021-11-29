@@ -242,6 +242,36 @@ void Map::removeHandle(Handle *h) { //remove handle from the handle list
     //                             [h](Handle *i) { return i && (i == h); }));
 }
 
+void Map::handleLoading()
+{ 
+    double randomLocationX;
+    double randomLocationY;
+    for (int i = 0; i < 8; i++)
+    {
+        if (i >= 0 && i <= 3)
+        {
+            while (true)
+            {
+                randomLocationX = getRandomLocation(0, getMaxWidth());
+                randomLocationY = getRandomLocation(0, getMaxHeight());
+                if (createHandle(Handle::Type::GHOST, randomLocationX, randomLocationY) != nullptr)
+                {
+                    break;
+                }
+            }
+        }
+
+        if (i >= 4)
+        {
+            /*while (true)
+            {
+                randomLocationX = getRandomLocation(0, getMaxWidth());
+                randomLocationY = getRandomLocation(0, getMaxHeight());          
+            }*/
+        }
+
+    }
+}
 
 int Map::getGameTime() const { //accesor
     return game_time;
