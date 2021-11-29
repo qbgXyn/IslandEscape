@@ -4,6 +4,8 @@
 
 Unit::Unit(Map *map, double x, double y) : Handle(map, x, y) { //constructor and pass value to handle constructor
     category = Handle::Category::UNIT;
+    // initially no attack cooldown
+    attackInterval = 0;
 }
 
 float Unit::getDamage() const { //accessor
@@ -12,10 +14,6 @@ float Unit::getDamage() const { //accessor
 
 void Unit::setDamage(int damage) { //mutator
     this->damage = damage;
-}
-
-float Unit::getArmor() const { //accessor
-    return armor;
 }
 
 void Unit::setVisibleSize(int visible_size) { //mutator

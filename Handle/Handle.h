@@ -81,7 +81,7 @@ class Handle {
 
         bool hasCollision(const Handle *h) const;
 
-        virtual float getArmor() const; //accessor
+        int getArmor() const; //accessor
         virtual int getVisionRadius() const;
 
         virtual bool isGridVisible(int x, int y) const; //check if grid is visible

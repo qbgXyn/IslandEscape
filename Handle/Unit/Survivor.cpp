@@ -9,7 +9,7 @@
 //#include <bits/stdc++.h>
 const float Survivor::base_collison_radius = 48.0; 
 const double Survivor::base_max_speed = 20.0; 
-const float Survivor::base_attackInterval = 1.0; 
+const int Survivor::base_attackInterval = 1; 
 const float Survivor::base_attack_radius = 16.0; 
 const double Survivor::base_attack_sector_angle = 60.0; // set base index for survivor
 const int Survivor::base_max_health = 10.0;
@@ -36,6 +36,11 @@ Survivor::Survivor(Map *map, double x, double y) : Unit(map, x, y) { //construct
 
 
 void Survivor::infoUpdate() {
+
+    if (attackInterval > 0) {
+        --attackInterval;
+    }
+
     // sword section
     {
         int index = getItemIndex(Item::ID::SWORD_COOLDOWN);
@@ -180,9 +185,11 @@ void Survivor::useItem(Item_inventory *i) { //use the holding item
             cout << "add regen potion" << endl;
             break;
         }
-        case Item::ID::SWORD:
+        case Item::ID::SWORD: // if sword is not in cooldown
+            if (attackInterval > 0) return; // if survivor itself is in attack cooldown, so as to support multiple weapon
             setDamage(item->getData());
             attack(base_attack_radius, base_attack_sector_angle, base_attackInterval);
+            attackInterval = sword::duration;
             itemSwitchState(Item::ID::SWORD, Item::ID::SWORD_COOLDOWN);
             return;
         case Item::ID::SWORD_COOLDOWN:

@@ -27,8 +27,6 @@ Ghost::Ghost(Map *map, double x, double y, Handle *chasing_target) : Unit(map, x
     pathable += Terrain::Type::OCEAN;
     pathable += Terrain::Type::VOID; 
 
-    // initially no attack cooldown
-    attack_cooldown = 0;
 
     visible_size = base_visible_size;
     health = base_max_health;
@@ -37,8 +35,8 @@ Ghost::Ghost(Map *map, double x, double y, Handle *chasing_target) : Unit(map, x
 }
 
 void Ghost::infoUpdate() {
-    if (attack_cooldown > 0) {
-        --attack_cooldown;
+    if (attackInterval > 0) {
+        --attackInterval;
     }
 }
 
@@ -92,9 +90,9 @@ void Ghost::chase(Handle* u) {
         chasing_target = nullptr;
     }else {
         if (map->distanceBetweenPoints(location[0], location[1], u->getX(), u->getY()) < base_attack_radius /* add is attack cooldown finished condition */) {
-            if (attack_cooldown == 0) {
+            if (attackInterval == 0) {
                 attack(base_attack_radius, base_attack_sector_angle, base_attackInterval);
-                attack_cooldown = base_attackInterval;
+                attackInterval = base_attackInterval;
             }
         }
         move_AI(u->getX(), u->getY());

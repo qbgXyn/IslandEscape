@@ -20,7 +20,7 @@ class Survivor : public Unit { //survivor is the derived class of unit
         static const double base_max_speed; //base maximum movement speed 
         
         static const int base_damage = 0; //base melee damage
-        static const float base_attackInterval; //base melee CD
+        static const int base_attackInterval; //base melee CD
         static const float base_attack_radius; //base melee radius
         static const double base_attack_sector_angle; //base melee sector angle
         static const int base_armor = 0; //basic armor

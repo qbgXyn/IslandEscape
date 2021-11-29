@@ -34,8 +34,6 @@ class Ghost : public Unit {
         static const double detectRadius; //setting for ghost detect area
         static const double chasingRadius; //setting for following the player
 
-        int attack_cooldown;
-
         virtual void infoUpdate() override;
 
         void patrol(); //patrol function for the ghost

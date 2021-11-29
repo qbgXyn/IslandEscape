@@ -6,6 +6,14 @@ Handle::Handle(Map *map, double x, double y) { //constructor which put handles o
     this->map = map;
     location[0] = x;
     location[1] = y;
+    armor = 0;
+    health = 1;
+    int inInvulnerable = 0;
+    int inInvisible = 0;
+    int inCollisionless = 0;
+    float collisionRadius = 0;
+
+    string texture = "";
 } 
 
 // Handle::~Handle() {
@@ -89,8 +97,8 @@ bool Handle::hasCollision(const Handle *h) const { //check collision
     return ( (d - this->collisionRadius - h->collisionRadius) < 0);
 }
 
-float Handle::getArmor() const { //accessor
-    return 0;
+int Handle::getArmor() const { //accessor
+    return armor;
 }
 
 int Handle::getVisionRadius() const { //accessor
