@@ -22,6 +22,9 @@
 #include "Handle/Decoration/Item_Handle.h"
 #include "Handle/Decoration/Tree.h"
 
+#include "Item/Item.h"
+#include "Item/Item_data.h"
+
 const QBrush NOT_VISIBLE{ QColor::fromRgb(0,0,0,222) };
 const QBrush VISIBLE{ QColor::fromRgb(0,0,0,130) };
 
@@ -214,26 +217,30 @@ void GameWidget::drawDecoration(QPainter& paint, Handle* Decoration) {
     switch(Decoration->getType()) {
         case Handle::Type::BOAT: {
             QPixmap boat(":/resources/images/Handle/Decoration/boat.png");
-            drawPixmap(paint, Decoration->getX(), Decoration->getY(), 2*64, 3*64, boat);
+            drawPixmap(paint, Decoration->getX()-64, Decoration->getY()-3*64/2, 2*64, 3*64, boat);
             break;
         }
         case Handle::Type::CAMPFIRE: {
-            drawPixmap(paint, 64, 64, 64, 64, CAMPFIRE[CAMPFIRE_COUNT]);
+            drawPixmap(paint, Decoration->getX()-32, Decoration->getY()-32, 64, 64, CAMPFIRE[CAMPFIRE_COUNT]);
             CAMPFIRE_COUNT = (CAMPFIRE_COUNT+1)%12;
             break;
         }
         case Handle::Type::CHEST: {
-            ;
+            QPixmap chest(":/resources/images/Handle/Decoration/chest.png");
+            drawPixmap(paint, Decoration->getX()-32, Decoration->getY()-32, 64, 64, chest);
             break;
         }
         case Handle::Type::ITEM: {
-            ;
+            QPixmap Item(QString::fromStdString(Decoration->getCorrespondingItem()->getTexture()));
+            drawPixmap(paint, Decoration->getX()-32, Decoration->getY()-32, 64, 64, Item);
             break;
         }
         case Handle::Type::TREE: {
-            ;
+            drawPixmap(paint, Decoration->getX()-64, Decoration->getY()-64, 128, 128, TREE[Decoration->getSpecies()]);
             break;
         }
+        default:
+            break;
     }
 }
 
@@ -286,13 +293,10 @@ void GameWidget::paintEvent(QPaintEvent* event) {
     // Draw Terrain and Grid lines on the grid
     drawMap(paint);
 
-    // Draw Handle(Decoration,Unit) on grid
+    // Draw Decoration on grid
     for (int i = 0; i < (int)map->List.size(); ++i)
         if (map->List[i]->getCategory() == Handle::Category::DECORATION)
             drawDecoration(paint, map->List[i]);
-
-    // Draw CampFire on grid
-
 
     // Draw Player
     drawPlayer(paint);
@@ -306,6 +310,7 @@ void GameWidget::load_icons() {
                              {":/resources/images/Terrain/Stone.png"},
                              {":/resources/images/Terrain/Ocean.png"},
                              {":/resources/images/Terrain/Sand.png"}};
+
     CAMPFIRE = new QPixmap [12] {{":/resources/images/Handle/Decoration/campfire01.png"},
                                  {":/resources/images/Handle/Decoration/campfire02.png"},
                                  {":/resources/images/Handle/Decoration/campfire03.png"},
@@ -318,9 +323,15 @@ void GameWidget::load_icons() {
                                  {":/resources/images/Handle/Decoration/campfire10.png"},
                                  {":/resources/images/Handle/Decoration/campfire11.png"},
                                  {":/resources/images/Handle/Decoration/campfire12.png"}};
+
+    TREE = new QPixmap [4] {{":/resources/images/Handle/Decoration/tree1.png"},
+                            {":/resources/images/Handle/Decoration/tree2.png"},
+                            {":/resources/images/Handle/Decoration/tree3.png"},
+                            {":/resources/images/Handle/Decoration/tree4.png"}};
 }
 
 void GameWidget::dealloc_icons() {
     delete [] ICONS;
     delete [] CAMPFIRE;
+    delete [] TREE;
 }

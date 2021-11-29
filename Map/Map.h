@@ -73,5 +73,7 @@ class Map {
         Terrain::Type** grid; //map gird which store terrain type in every grid
 
         static const int grid_size = 64; // length of a square of a grid on the map, for displaying texture only(grass, sea, etc.)
+
+        int tree_species = 0;
 };
 #endif // MAP_H

@@ -75,6 +75,7 @@ private:
     QPixmap* ICONS;
     QPixmap* CAMPFIRE;
     int CAMPFIRE_COUNT;
+    QPixmap* TREE;
 };
 
 #endif // GRAPHICS_H

@@ -209,17 +209,23 @@ background-image: url(:/resources/images/stripes.png);
     <property name="geometry">
      <rect>
       <x>330</x>
-      <y>670</y>
+      <y>680</y>
       <width>771</width>
-      <height>101</height>
+      <height>91</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="Inventory">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <property name="leftMargin">
+      <number>17</number>
+     </property>
      <property name="topMargin">
-      <number>12</number>
+      <number>0</number>
      </property>
      <property name="bottomMargin">
-      <number>9</number>
+      <number>7</number>
      </property>
      <item>
       <widget class="QLabel" name="label_inventory_1">

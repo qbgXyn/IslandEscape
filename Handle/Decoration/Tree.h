@@ -12,9 +12,12 @@ class Tree : public Decoration {
         static const int base_max_health = 10;
         static const float base_collison_radius;
         static const double base_max_speed;
-    public:
-        explicit Tree(Map *map, double x, double y, int inInvulnerable = 1);
 
+        int species;
+    public:
+        explicit Tree(Map *map, double x, double y, int type, int inInvulnerable = 1);
+
+        int getSpecies() const {return species;}
 
 };
 #endif // TREE_H

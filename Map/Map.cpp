@@ -145,7 +145,8 @@ Handle* Map::createHandle(Handle::Type type, double x, double y) { //create hand
         handle = new Chest{this, x, y};
         break;
     case Handle::Type::TREE:
-        handle = new Tree{this, x, y};
+        handle = new Tree{this, x, y, tree_species};
+        tree_species = (tree_species+1)%4;
         break;
     case Handle::Type::CAMPFIRE:
         handle = new Campfire{this, x, y};

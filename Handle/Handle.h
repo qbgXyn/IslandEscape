@@ -92,6 +92,10 @@ class Handle {
 
         virtual void ChestAddItem(Item::ID id); //to add new item
 
+        virtual Item* getCorrespondingItem() const; //get item
+
+        virtual int getSpecies() const; //get species for tree
+
     protected:
         Type type; //type and catoregy classes
         Category category;

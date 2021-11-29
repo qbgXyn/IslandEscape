@@ -179,3 +179,11 @@ void Handle::setHealth(int newHealth) //mutator
 void Handle::ChestAddItem(Item::ID id) { //add item
     return;
 }
+
+Item* Handle::getCorrespondingItem() const{ //get item
+    return nullptr;
+}
+
+int Handle::getSpecies() const { //get species for tree
+    return 0;
+}
