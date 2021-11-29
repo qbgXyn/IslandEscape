@@ -101,10 +101,7 @@ Handle* Map::createHandle(Handle::Type type, double x, double y) { //create hand
         break;
     case Handle::Type::GHOST:
         handle = new Ghost{this, x, y};
-        if (handle -> isCoordinateWalkable(x, y))
-        {
-            ghostList.push_back(*handle);
-        }
+
         break;
 
     case Handle::Type::CHEST:
@@ -125,6 +122,9 @@ Handle* Map::createHandle(Handle::Type type, double x, double y) { //create hand
 
     if (handle->isCoordinateWalkable(x, y)) {
         List.push_back(handle);
+        if (handle->getType() == Handle::Type::GHOST) {
+            ghostList.push_back(reinterpret_cast<Ghost*> (handle));
+        }
         return handle;
     }
     delete handle;

@@ -136,6 +136,9 @@ void Survivor::pickupItem() { //pick up a item nearby on the ground]
 
 void Survivor::dropItem(Item_inventory *i) {
     if (i != nullptr) { //check if holding an item
+        if (i->item->getID() == Item::ID::TORCH_LIT) // drop torch lit is not allowed
+            return;
+
         map->createItem_Handle(i->item->getID(), location[0], location[1]);
         // Item_Handle* ih = new Item_Handle{map, this->location[0], this->location[1], i->item->getID()};
         // map->List.push_back(ih);
