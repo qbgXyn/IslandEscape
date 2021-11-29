@@ -9,6 +9,13 @@
 class Ghost : public Unit {
     private:
         Handle *chasing_target;
+        enum class State {
+            STATIC,
+            PATROL,
+            CHASE,
+            RETURN
+            };
+        State state;
 
         // given a coordinate, randomly pick a coordinate within a radius centered at patrolCenter
         // once reach that random coordinate, pick another coordinate and move to that point

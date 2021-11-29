@@ -7,10 +7,10 @@
 #include <iostream>
 
 //#include <bits/stdc++.h>
-const float Survivor::base_collison_radius = 48.0; 
+const float Survivor::base_collison_radius = 64.0; 
 const double Survivor::base_max_speed = 20.0; 
 const int Survivor::base_attackInterval = 1; 
-const float Survivor::base_attack_radius = 16.0; 
+const float Survivor::base_attack_radius = 96.0; 
 const double Survivor::base_attack_sector_angle = 60.0; // set base index for survivor
 const int Survivor::base_max_health = 10.0;
 
@@ -37,6 +37,8 @@ Survivor::Survivor(Map *map, double x, double y) : Unit(map, x, y) { //construct
 
 void Survivor::infoUpdate() {
 
+
+    // attack interval section
     if (attackInterval > 0) {
         --attackInterval;
     }
@@ -75,6 +77,43 @@ void Survivor::infoUpdate() {
             }
         }
     }
+
+    // campfire section
+    vector<Handle*> nearbyList = map->getHandleGroup(location[0], location[1], 2*base_collison_radius);
+    vector<Handle*>::const_iterator it_end = nearbyList.end();
+    bool isNearCampfire = false;
+    for(vector<Handle*>::const_iterator it = nearbyList.begin(); it != it_end; ++it) { // search for campfire
+        if ((*it)->getType() == Handle::Type::CAMPFIRE) {
+            isNearCampfire = true;
+            break;
+        }
+    }
+
+    if (!isNearCampfire && invulerableByCampfire) { // not near a campfire but invulerable by campfire
+        invulerableByCampfire = false;
+        setInvulnerable(false);
+    }
+
+    if (isNearCampfire) { // if near a campfire
+        if (!invulerableByCampfire) { // near a campfire but not invulerable by campfire
+            invulerableByCampfire = true;
+            setInvulnerable(true);
+        }
+
+        //gain torchtime 
+        int index;
+        Item::ID id;
+        for (index = 0; index < maxSlotOfInventory; ++index) {
+            if (Inventory[index] != nullptr) {
+                id = Inventory[index]->item->getID();
+                if (id == Item::ID::TORCH_LIT || id == Item::ID::TORCH) {
+                    Inventory[index]->item->setDurability(Inventory[index]->item->getDurability() + 1);
+                    break;
+                }
+            }
+        }
+    }
+
 
 }
 

@@ -13,6 +13,7 @@
 class Survivor : public Unit { //survivor is the derived class of unit
     private:
         vector<Effect*> EffectList; //vector contain of effect
+        bool invulerableByCampfire;
     public:
         explicit Survivor(Map *map, double x, double y); //player constructor
         static const int base_max_health; //base maximum health of player

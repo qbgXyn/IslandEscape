@@ -62,7 +62,7 @@ Terrain::Type Map::getTerrainOfGrid(double x, double y) const { //a convertor
 
 }
 
-double Map::getRandomLocation(double minValue, double maxValue) const { //generate random locartion
+double Map::getRandomDouble(double minValue, double maxValue) const { //generate random locartion
     double value = (double)rand() / RAND_MAX;
     return minValue + value * (maxValue - minValue);
 }   

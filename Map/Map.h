@@ -41,7 +41,7 @@ class Map {
 
         Terrain::Type getTerrainOfGrid(double x, double y) const; //convert x and y coordinate into corresponding grid
 
-        double getRandomLocation(double minValue, double maxValue) const; //create random location
+        double getRandomDouble(double minValue, double maxValue) const; //create random double
 
         double distanceBetweenPoints(double x1, double y1, double x2, double y2) const; //function to calculate distance between two points
 

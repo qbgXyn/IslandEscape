@@ -19,8 +19,8 @@ class Unit : public Handle {
         void setDamage(int damage);
         virtual int getVisibleSize() const; 
 
-        virtual bool isGridVisible(int x, int y) const; //visibility related funcitons
-        virtual bool isHandleVisible(Handle *h) const;
+        bool isGridVisible(int x, int y) const; //visibility related funcitons
+        bool isHandleVisible(Handle *h) const;
         void setVisibleSize(int visible_size); 
 
         virtual void infoUpdate() = 0;
