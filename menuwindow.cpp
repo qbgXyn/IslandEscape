@@ -97,7 +97,7 @@ void MenuWindow::start_game(int selected_level, string filename) {
     QStringList numlist;
     QString match;
 
-    vector<int> readInt;
+    vector<int> mapInt;
 
     file.open(QIODevice::ReadOnly | QIODevice::Text);
     while(!file.atEnd())
@@ -112,7 +112,7 @@ void MenuWindow::start_game(int selected_level, string filename) {
     foreach(QString num, numlist) {
         // std::cout << num.toInt();
         map->grid[x][y] = static_cast<Terrain::Type>(num.toInt());
-        readInt.push_back(num.toInt());
+        mapInt.push_back(num.numInt());
 //        cout << y << " " << x << " " << num.toInt() << endl;
         ++x;
         if (x == width) {
@@ -121,6 +121,7 @@ void MenuWindow::start_game(int selected_level, string filename) {
         }
     }
 
+    map.handleLoading(mapInt);
     // for (int i = 0; i < height; ++i) {
     //     for (int j = 0; j < width; ++j) {
     //         cout << array[j][i] << " ";
