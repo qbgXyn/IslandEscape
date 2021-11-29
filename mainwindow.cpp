@@ -111,10 +111,9 @@ void MainWindow::main_loop() {
 
     survivor->infoUpdate();
 
-    ui->label_health->setText(": 100");
+    ui->label_health->setText(": " + QString::number(survivor->getHealth()));
     ui->label_time->setText(": " + QString::number(game_time/GAME_TICK) + "s");
     ui->label_torch->setText(": " + QString::number(torch_time/GAME_TICK) + "s");
-//    ui->label_torch->setText(": " + QString::number(50/GAME_TICK) + "s");
 
     // Set Selected Item in Inventory
     init_Inventory();

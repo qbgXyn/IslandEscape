@@ -219,7 +219,7 @@ void Survivor::pickupItem() { //pick up a item nearby on the ground]
         h = *it;
         cout << h << endl;
         if (h->getType() == Handle::Type::ITEM) { // if it's item
-            cout << "get an item" << endl;
+            cout << "get an item_handle" << endl;
             for(int index = 0; index < maxSlotOfInventory; ++index) { // iterate all slot in inventory
                 cout << "searching for empty slot" << endl;
                 if (Inventory[index] == nullptr) {                  // find an empty slot of inventory
@@ -227,14 +227,16 @@ void Survivor::pickupItem() { //pick up a item nearby on the ground]
                     ih = reinterpret_cast<Item_Handle*> (h);
                     cout << "creating new item inventory" << endl;
                     Inventory[index] = new Item_inventory {*ih->item};
+                    cout << "name: " << Inventory[index]->item->getName() << endl;
                     cout << "new item inventory created" << endl;
                     map->removeHandle(h);
-                    cout << "item removed" << endl;
+                    cout << "item_handle removed" << endl;
                     break; // back to iterating handle
                 }
             }
         }
     }
+    cout << "pickup() finished" << endl;
 }
 
 
