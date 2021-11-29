@@ -188,8 +188,8 @@ void Survivor::useItem(Item_inventory *i) { //use the holding item
         case Item::ID::SWORD: // if sword is not in cooldown
             if (attackInterval > 0) return; // if survivor itself is in attack cooldown, so as to support multiple weapon
             setDamage(item->getData());
-            attack(base_attack_radius, base_attack_sector_angle, base_attackInterval);
-            attackInterval = sword::duration;
+            attack(base_attack_radius, base_attack_sector_angle);
+            attackInterval = base_attackInterval;
             itemSwitchState(Item::ID::SWORD, Item::ID::SWORD_COOLDOWN);
             return;
         case Item::ID::SWORD_COOLDOWN:

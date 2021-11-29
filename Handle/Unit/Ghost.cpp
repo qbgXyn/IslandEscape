@@ -91,7 +91,7 @@ void Ghost::chase(Handle* u) {
     }else {
         if (map->distanceBetweenPoints(location[0], location[1], u->getX(), u->getY()) < base_attack_radius /* add is attack cooldown finished condition */) {
             if (attackInterval == 0) {
-                attack(base_attack_radius, base_attack_sector_angle, base_attackInterval);
+                attack(base_attack_radius, base_attack_sector_angle);
                 attackInterval = base_attackInterval;
             }
         }

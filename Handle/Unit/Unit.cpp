@@ -51,7 +51,7 @@ bool Unit::isHandleVisible(Handle *h) const { //check if the handle is visible f
     return isGridVisible(h->getX() / map->grid_size, h->getY() / map->grid_size);
 }
 
-void Unit::attack(double attackRadius, double sectorAngle, double attackInterval) {
+void Unit::attack(double attackRadius, double sectorAngle) {
     /*get all Handle that within radius (60 degree of the circle(radius = attack_radius, center = Coordinate(Survivor)) in front of Survivor) 
     This part is break down into two functions, one check handle in a given radius circle. And isInside sector function further check if the handles 
     within the circule is inside the attack sector

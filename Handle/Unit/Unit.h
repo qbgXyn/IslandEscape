@@ -27,7 +27,7 @@ class Unit : public Handle {
 
 
 
-        void attack(double attackRadius, double sectorAngle, double attackInterval); //attack functon for player and ghost
+        void attack(double attackRadius, double sectorAngle); //attack functon for player and ghost
         bool isInsideSector(const Handle *h, double sector_angle) const; //a function to check if the position of the target is inside the circular sector
 
 };
