@@ -314,6 +314,7 @@ void Survivor::pickupItem() { //pick up a item nearby on the ground]
                     cout << "new item inventory created" << endl;
                     map->removeHandle(h);
                     cout << "item_handle removed" << endl;
+                    cout << Inventory[index]->item->getName() << endl;
                     break; // back to iterating handle
                 }
             }

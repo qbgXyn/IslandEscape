@@ -282,7 +282,6 @@ void Map::removeHandle(Handle *h) { //remove handle from the handle list
         cout << "iterating remove handle" << endl;
         if ((*it) == h) {
             cout << "handle founded" << endl;
-            delete h;
             List.erase(it);
             return; //assuming handle is unique
         }
