@@ -8,6 +8,8 @@
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
 
+#include "menuwindow.h"
+
 namespace Ui { class MainWindow; }
 
 class MainWindow: public QMainWindow
@@ -16,7 +18,7 @@ class MainWindow: public QMainWindow
 
 public:
 
-    MainWindow(Map *const map, QWidget *parent = nullptr); //constructor
+    MainWindow(Map *const map, MenuWindow* menuwindow, QWidget *parent = nullptr); //constructor
     ~MainWindow(); //destructor
 
     MainWindow(const MainWindow&) = delete;
@@ -35,6 +37,8 @@ private:
     void main_loop();
 
     Ui::MainWindow* ui;
+
+    MenuWindow* menuwindow;
 
     Map *const map;
 

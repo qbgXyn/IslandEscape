@@ -4,6 +4,7 @@
 
 #include <QString>
 #include <QTimer>
+#include <QMessageBox>
 #include <QMainWindow>
 
 const QString BACKGROUND{ "background-color: rgba(255, 255, 255, 128)" };
@@ -14,9 +15,10 @@ const QString ITEM_NOT_SELECTED{ "background-color: rgba(85, 85, 85, 128);" };
 const QString ITEM_NAME{ "color: rgba(255, 255, 255, 255)" };
 const QString ITEM_NAME_SHADOW{ "color: rgba(0, 128, 255, 255)" };
 
-MainWindow::MainWindow(Map *const map, QWidget *parent) : //constructor
+MainWindow::MainWindow(Map *const map, MenuWindow* menuwindow, QWidget *parent) : //constructor
         QMainWindow(parent), //pass by MIL
         ui(new Ui::MainWindow),
+        menuwindow(menuwindow),
         map(map),
         TORCH_LIT_COUNT(0)
 {
@@ -106,7 +108,6 @@ void MainWindow::main_loop() {
         }else {
             survivor->itemSwitchState(Item::ID::TORCH_LIT, Item::ID::TORCH);
         }
-
     }
     // testing call
     survivor->update();
@@ -180,6 +181,37 @@ void MainWindow::main_loop() {
     }
 
     ui->widget->loop();
+
+    // Check End game
+    if (map->win) {
+        loop_timer->stop();
+
+        menuwindow->clear_level();
+        menuwindow->initialize_level_btn();
+
+        QMessageBox *mb = new QMessageBox{window()};
+        mb->setWindowTitle("Simple City");
+        mb->setStyleSheet("font: 14pt \"Comic Sans MS\";");
+        mb->setText(QString::fromStdString("You WIN!!! HAHA :)"));
+
+        mb->setAttribute(Qt::WA_DeleteOnClose, true);
+        mb->exec();
+
+        close();
+    }
+    if (map->game_time <= 0) {
+        loop_timer->stop();
+
+        QMessageBox *mb = new QMessageBox{window()};
+        mb->setWindowTitle("Simple City");
+        mb->setStyleSheet("font: 14pt \"Comic Sans MS\";");
+        mb->setText(QString::fromStdString("You LOSE!!! Bad Guy >_<"));
+
+        mb->setAttribute(Qt::WA_DeleteOnClose, true);
+        mb->exec();
+
+        close();
+    }
 }
 
 void MainWindow::load_icons() {

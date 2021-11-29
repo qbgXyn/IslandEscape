@@ -102,9 +102,8 @@ void Survivor::update() {
         }
 
         //gain torchtime 
-        int index;
         Item::ID id;
-        for (index = 0; index < maxSlotOfInventory; ++index) {
+        for (int index = 0; index < maxSlotOfInventory; ++index) {
             if (Inventory[index] != nullptr) {
                 id = Inventory[index]->item->getID();
                 if (id == Item::ID::TORCH_LIT || id == Item::ID::TORCH) {
@@ -114,8 +113,6 @@ void Survivor::update() {
             }
         }
     }
-
-
 }
 
 double Survivor::getDirection() const {
@@ -314,7 +311,6 @@ void Survivor::pickupItem() { //pick up a item nearby on the ground]
                     cout << "new item inventory created" << endl;
                     map->removeHandle(h);
                     cout << "item_handle removed" << endl;
-                    cout << Inventory[index]->item->getName() << endl;
                     break; // back to iterating handle
                 }
             }
@@ -415,7 +411,7 @@ bool Survivor::turnOnBoat() const { //if can turnon the boat, end the game
     vector<Handle*>::const_iterator it_end = list.end(); // check if it collide with existing handle
     for(vector<Handle*>::const_iterator it = list.begin(); it != it_end; ++it) {
         if ((*it)->getType() == Handle::Type::BOAT) {
-            // game win!
+            map->end_game(); // game win!
             return true;
         }
     }

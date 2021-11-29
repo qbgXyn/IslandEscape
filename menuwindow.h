@@ -20,10 +20,12 @@ public:
     explicit MenuWindow(QWidget *parent = nullptr);
     ~MenuWindow();
 
+    void initialize_level_btn();
+
+    void clear_level();
+
 private:
     void start_game(int selected_level, string filename);
-
-    void initialize_level_btn();
 
     Ui::MenuWindow *ui;
 

@@ -90,6 +90,10 @@ Map::~Map() { //destructor coz that is pointer array
     delete [] grid;
 }
 
+void Map::end_game() {
+    win = true;
+}
+
 
 double Map::getMaxWidth() const { //accessor
     return width;

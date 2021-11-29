@@ -85,13 +85,11 @@ void MenuWindow::start_game(int selected_level, string filename) {
         }
     }
     map = new Map(width*64, height*64, filePath);
-    MainWindow *m = new MainWindow{map, nullptr};
+    MainWindow *m = new MainWindow{map, this, nullptr};
     m->setAttribute(Qt::WA_DeleteOnClose);
     m->show();
 
     bgm->stop();
-
-    close();
 }
 
 void MenuWindow::initialize_level_btn() {
@@ -110,6 +108,26 @@ void MenuWindow::initialize_level_btn() {
         ui->btn_level_4->setStyleSheet(PASSED_STYLE);
     if (level_5 == true)
         ui->btn_level_5->setStyleSheet(PASSED_STYLE);
+}
+
+void MenuWindow::clear_level() {
+    switch(selected_level) {
+        case 1:
+            level_1 = true;
+            break;
+        case 2:
+            level_2 = true;
+            break;
+        case 3:
+            level_3 = true;
+            break;
+        case 4:
+            level_4 = true;
+            break;
+        case 5:
+            level_5 = true;
+            break;
+    }
 }
 
 void MenuWindow::on_btn_start_clicked() {

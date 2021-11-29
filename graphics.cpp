@@ -42,7 +42,6 @@ GameWidget::GameWidget(QWidget* parent) : //basic set up
     CAMPFIRE_COUNT(0)
 {
     load_icons();
-    setMouseTracking(true);
     grabKeyboard();
 }
 
