@@ -234,12 +234,6 @@ void Map::removeHandle(Handle *h) { //remove handle from the handle list
             return; //assuming handle is unique
         }
     }
-
-
-    // List.erase(remove(List.begin(), List.end(), h), List.end());
-
-    // List.erase(std::remove_if(List.begin(), List.end(),
-    //                             [h](Handle *i) { return i && (i == h); }));
 }
 
 void Map::handleLoading()
@@ -252,8 +246,8 @@ void Map::handleLoading()
         {
             while (true)
             {
-                randomLocationX = getRandomLocation(0, getMaxWidth());
-                randomLocationY = getRandomLocation(0, getMaxHeight());
+                randomLocationX = getRandomDouble(0, getMaxWidth());
+                randomLocationY = getRandomDouble(0, getMaxHeight());
                 if (createHandle(Handle::Type::GHOST, randomLocationX, randomLocationY) != nullptr)
                 {
                     break;
@@ -265,8 +259,8 @@ void Map::handleLoading()
         {
             /*while (true)
             {
-                randomLocationX = getRandomLocation(0, getMaxWidth());
-                randomLocationY = getRandomLocation(0, getMaxHeight());          
+                randomLocationX = getRandomDouble(0, getMaxWidth());
+                randomLocationY = getRandomDouble(0, getMaxHeight());          
             }*/
         }
 
