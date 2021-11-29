@@ -14,6 +14,14 @@
 
 #include <QDebug>
 
+#include "Handle/Handle.h"
+#include "Handle/Decoration/Boat.h"
+#include "Handle/Decoration/Campfire.h"
+#include "Handle/Decoration/Chest.h"
+#include "Handle/Decoration/Decoration.h"
+#include "Handle/Decoration/Item_Handle.h"
+#include "Handle/Decoration/Tree.h"
+
 const QBrush NOT_VISIBLE{ QColor::fromRgb(0,0,0,222) };
 const QBrush VISIBLE{ QColor::fromRgb(0,0,0,130) };
 
@@ -184,48 +192,52 @@ void GameWidget::drawPixmap(QPainter& paint, int x, int y, int w, int h, const Q
     paint.drawPixmap(dispx1, dispy1, dispx2 - dispx1, dispy2 - dispy1, pixmap);
 }
 
-void GameWidget::paintEvent(QPaintEvent* event) {
-    QPainter paint{this};
-
-    // Make the Map Background
-    paint.drawPixmap(0, 0, width(), height(), ICONS[2]);
-
-    const int min = 0;
-    const int max = map_width;
-    const int minn = 0;
-    const int maxx = map_height;
-
-    // Draw Terrain on the grid
-    for (int x = min; x < max; x+=map->grid_size) {
-        for (int y = minn; y < maxx; y+=map->grid_size) {
+void GameWidget::drawMap(QPainter& paint) {
+    // Draw Terrain
+    for (int x = 0; x < map_width; x+=map->grid_size) {
+        for (int y = 0; y < map_height; y+=map->grid_size) {
             drawPixmap(paint, x, y, map->grid_size, map->grid_size,
                        ICONS[static_cast<int>(map->getTerrainOfGrid(x,y))]);
         }
     }
 
-    // Draw Decoration on grid
-    /*
-    // Draw Draw Draw Draw Draw Draw Draw Draw Draw Draw Draw Draw Draw Draw Draw
-    */
-
-    // Draw CampFire on grid
-    drawPixmap(paint, 64, 64, 64, 64, CAMPFIRE[CAMPFIRE_COUNT]);
-    CAMPFIRE_COUNT = (CAMPFIRE_COUNT+1)%12;
-
-
-    // Draw Boat on grid
-    QPixmap boat(":/resources/images/Handle/Decoration/boat.png");
-    drawPixmap(paint, 320, 64, 128, 256, boat);
-
     // Draw Grid Lines
-    for (int x = min; x <= max; x+=map->grid_size) {
-        drawLine(paint, x, minn, x, maxx);
+    for (int x = 0; x <= map_width; x+=map->grid_size) {
+        drawLine(paint, x, 0, x, map_height);
     }
-    for (int y = minn; y <= maxx; y+=map->grid_size) {
-        drawLine(paint, min, y, max, y);
+    for (int y = 0; y <= map_height; y+=map->grid_size) {
+        drawLine(paint, 0, y, map_width, y);
     }
+}
 
-    // Draw Player
+void GameWidget::drawDecoration(QPainter& paint, Handle* Decoration) {
+    switch(Decoration->getType()) {
+        case Handle::Type::BOAT: {
+            QPixmap boat(":/resources/images/Handle/Decoration/boat.png");
+            drawPixmap(paint, Decoration->getX(), Decoration->getY(), 2*64, 3*64, boat);
+            break;
+        }
+        case Handle::Type::CAMPFIRE: {
+            drawPixmap(paint, 64, 64, 64, 64, CAMPFIRE[CAMPFIRE_COUNT]);
+            CAMPFIRE_COUNT = (CAMPFIRE_COUNT+1)%12;
+            break;
+        }
+        case Handle::Type::CHEST: {
+            ;
+            break;
+        }
+        case Handle::Type::ITEM: {
+            ;
+            break;
+        }
+        case Handle::Type::TREE: {
+            ;
+            break;
+        }
+    }
+}
+
+void GameWidget::drawPlayer(QPainter& paint) {
     QPixmap player(":/resources/images/Handle/Unit/player.png");
     QMatrix rm;
     if (LEFT==true) { //because we use vector to make smooth movement, the player need to rotate
@@ -251,17 +263,42 @@ void GameWidget::paintEvent(QPaintEvent* event) {
     player = player.transformed(rm);
     player = player.copy((player.width()-w)/2, (player.height()-h)/2, w, h);
     drawPixmap(paint, scroll_x-64, scroll_y-64, 128, 128, player);
+}
 
-    // Draw Out of Vision
+void GameWidget::drawVision(QPainter& paint) {
     int visible_size = map->player->getVisibleSize();
     int visible_radius = map->grid_size*visible_size;
-        paint.fillRect(0, 0, width()/2-visible_radius, height(), NOT_VISIBLE);
-        paint.fillRect(width(), height(), -(width()/2-visible_radius), -height(), NOT_VISIBLE);
-        paint.fillRect(width()/2-visible_radius, 0, 2*visible_radius, height()/2-visible_radius, NOT_VISIBLE);
-        paint.fillRect(width()/2-visible_radius, height(), 2*visible_radius, -(height()/2-visible_radius), NOT_VISIBLE);
 
-    // Darken the map
+    paint.fillRect(0, 0, width()/2-visible_radius, height(), NOT_VISIBLE);
+    paint.fillRect(width(), height(), -(width()/2-visible_radius), -height(), NOT_VISIBLE);
+    paint.fillRect(width()/2-visible_radius, 0, 2*visible_radius, height()/2-visible_radius, NOT_VISIBLE);
+    paint.fillRect(width()/2-visible_radius, height(), 2*visible_radius, -(height()/2-visible_radius), NOT_VISIBLE);
+
     fillRect(paint, scroll_x-visible_radius, scroll_y-visible_radius, 2*visible_radius, 2*visible_radius, VISIBLE);
+}
+
+void GameWidget::paintEvent(QPaintEvent* event) {
+    QPainter paint{this};
+
+    // Make the Map Background
+    paint.drawPixmap(0, 0, width(), height(), ICONS[2]);
+
+    // Draw Terrain and Grid lines on the grid
+    drawMap(paint);
+
+    // Draw Handle(Decoration,Unit) on grid
+    for (int i = 0; i < (int)map->List.size(); ++i)
+        if (map->List[i]->getCategory() == Handle::Category::DECORATION)
+            drawDecoration(paint, map->List[i]);
+
+    // Draw CampFire on grid
+
+
+    // Draw Player
+    drawPlayer(paint);
+
+    // Draw Vision
+    drawVision(paint);
 }
 
 void GameWidget::load_icons() {

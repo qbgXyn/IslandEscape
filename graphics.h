@@ -47,6 +47,13 @@ private:
     void drawPixmap(QPainter& paint, int x, int y, int w, int h, const QPixmap&);
     void fillRect(QPainter& paint, int x, int y, int w, int h, const QBrush&);
 
+    // Draw functions
+    void drawMap(QPainter& paint);
+    void drawDecoration(QPainter& paint, Handle* Decoration);
+
+    void drawPlayer(QPainter& paint);
+    void drawVision(QPainter& paint);
+
     // Load and unload icons
     void load_icons();
     void dealloc_icons();
