@@ -23,7 +23,6 @@ void Unit::setVisibleSize(int visible_size) { //mutator
 }
 
 
-
 bool Unit::isInsideSector(const Handle *h, double sector_angle) const //check if the target is within the circular sector
 {
     double half_angle = sector_angle / 2;

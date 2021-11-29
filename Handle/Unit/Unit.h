@@ -24,7 +24,7 @@ class Unit : public Handle {
         virtual bool isHandleVisible(Handle *h) const;
         void setVisibleSize(int visible_size); 
 
-        virtual void infoUpdate();
+        virtual void infoUpdate() = 0;
 
 
 
