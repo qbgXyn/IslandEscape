@@ -60,6 +60,8 @@ class Map {
        
         Survivor* player; //construct player
 
+        //vector<Handle::Type::GHOST> ghostList;
+
         vector<Handle*> List; // vector container of all handle
 
         Terrain::Type** grid; //map gird which store terrain type in every grid
