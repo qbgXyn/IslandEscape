@@ -20,6 +20,7 @@
 #include "../Handle/Decoration/Item_Handle.h"
 
 #include <string>
+#include <QString>
 
 class Map {
 
@@ -32,7 +33,7 @@ class Map {
 
 
     public:
-        Map(double width, double height); //constructor
+        Map(double width, double height, QString filePath); //constructor
         ~Map(); //destructor
 
         double getMaxWidth() const; //accessor 

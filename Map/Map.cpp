@@ -16,9 +16,13 @@
 
 #include "Terrain.h"
 
+#include <QFileDialog>
+#include <QTextStream>
+#include <QStringList>
+
 #include <iostream>
 
-Map::Map(double width, double height) : width(width), height(height) { //constructor:)
+Map::Map(double width, double height, QString filePath) : width(width), height(height) { //constructor:)
     int i = width/grid_size;  // width = i grids 
     int j = height/grid_size; // height = j grids
 
@@ -29,6 +33,41 @@ Map::Map(double width, double height) : width(width), height(height) { //constru
             grid[x][y] = Terrain::Type::GRASS;
         }
     }
+
+    player = reinterpret_cast<Survivor*>(createHandle(Handle::Type::SURVIVOR, 0, 0));
+
+    QFile file(filePath);
+    QStringList numlist;
+    QString match;
+
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+    while(!file.atEnd())
+    {
+        match = file.readLine();
+//        qDebug() << match;
+        numlist << match.split(' ');
+    }
+    file.close();
+    // qDebug() << numlist;
+    int x = 0, y = 0;
+    foreach(QString num, numlist) {
+        // std::cout << num.toInt();
+        grid[x][y] = static_cast<Terrain::Type>(num.toInt());
+//        cout << y << " " << x << " " << num.toInt() << endl;
+        ++x;
+        if (x == i) {
+            ++y;
+            x = 0;
+        }
+    }
+
+    handleLoading();
+    // for (int i = 0; i < height; ++i) {
+    //     for (int j = 0; j < width; ++j) {
+    //         cout << array[j][i] << " ";
+    //     }
+    //     cout << endl;
+    // }
 }
 
 Map::~Map() { //destructor coz that is pointer array
