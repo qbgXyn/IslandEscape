@@ -34,8 +34,7 @@ Map::Map(double width, double height, QString filePath) : width(width), height(h
         }
     }
 
-    player = reinterpret_cast<Survivor*>(createHandle(Handle::Type::SURVIVOR, 0, 0));
-
+    // Load file to create Terrain for Map
     QFile file(filePath);
     QStringList numlist;
     QString match;
@@ -60,6 +59,19 @@ Map::Map(double width, double height, QString filePath) : width(width), height(h
             x = 0;
         }
     }
+
+    // Create Player
+    player = reinterpret_cast<Survivor*>(createHandle(Handle::Type::SURVIVOR, 0, 0));
+
+    // Create Decorations
+    createHandle(Handle::Type::BOAT, 2*64, 11*64/2);
+    createHandle(Handle::Type::CAMPFIRE, 10*64-32, 10*64-32);
+    createHandle(Handle::Type::CHEST, 7*64-32, 5*64-32);
+    createHandle(Handle::Type::TREE, 2*64-32, 2*64-32);
+    createHandle(Handle::Type::TREE, 4*64-32, 2*64-32);
+    createHandle(Handle::Type::TREE, 2*64-32, 4*64-32);
+    createHandle(Handle::Type::TREE, 4*64-32, 4*64-32);
+    createItem_Handle(Item::ID::KEY, 12*64-32, 12*64-32);
 
     handleLoading();
     // for (int i = 0; i < height; ++i) {
@@ -139,7 +151,8 @@ Handle* Map::createHandle(Handle::Type type, double x, double y) { //create hand
         handle = new Survivor{this, x, y};
         break;
     case Handle::Type::GHOST:
-        handle = new Ghost{this, x, y};
+        handle = new Ghost{this, x, y, ghost_species};
+        ghost_species = (ghost_species+1)%4;
         break;
     case Handle::Type::CHEST:
         handle = new Chest{this, x, y};
@@ -170,7 +183,7 @@ Handle* Map::createHandle(Handle::Type type, double x, double y) { //create hand
 }
 
 
-bool Map::createItem_Handle(Item::ID id, double x, double y) { //create the handle list of the map
+bool Map::createItem_Handle(Item::ID id, double x, double y) { //create the handle list of the map)
     Handle* handle = new Item_Handle{this, x, y, id};
 
     if (handle->isCoordinateWalkable(x, y)) { //double check to ensure that the coordinate is reasonable to put handles
@@ -183,7 +196,7 @@ bool Map::createItem_Handle(Item::ID id, double x, double y) { //create the hand
 
 Item* Map::createItem(Item::ID id) { //create item
     Item * i = nullptr;
-    cout << "inside createItem()" << endl;
+    //cout << "inside createItem()" << endl;
     switch (id) //there have the constructor input of different type of item
     {
     case Item::ID::KEY:
@@ -214,7 +227,7 @@ Item* Map::createItem(Item::ID id) { //create item
                     torch_lit::duration};
         break;
     case Item::ID::SWORD:
-        cout << "sword founded" << endl;
+        //cout << "sword founded" << endl;
         i = new Item {Item::ID::SWORD,
                     sword::name,
                     sword::description,
@@ -257,7 +270,7 @@ Item* Map::createItem(Item::ID id) { //create item
     default:
         break;
     }
-    cout << "item created" << endl;
+    //cout << "item created" << endl;
     return i;
 }
 
@@ -280,9 +293,9 @@ void Map::handleLoading()
 { 
     double randomLocationX;
     double randomLocationY;
-    for (int i = 0; i < 8; i++)
+    for (int i = 0; i < 108; i++)
     {
-        if (i >= 0 && i <= 3)
+        if (i >= 0 && i <= 99)
         {
             while (true)
             {

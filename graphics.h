@@ -49,7 +49,7 @@ private:
 
     // Draw functions
     void drawMap(QPainter& paint);
-    void drawDecoration(QPainter& paint, Handle* Decoration);
+    void drawHandle(QPainter& paint, Handle* Decoration);
 
     void drawPlayer(QPainter& paint);
     void drawVision(QPainter& paint);
@@ -76,6 +76,7 @@ private:
     QPixmap* CAMPFIRE;
     int CAMPFIRE_COUNT;
     QPixmap* TREE;
+    QPixmap* GHOST;
 };
 
 #endif // GRAPHICS_H

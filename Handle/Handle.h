@@ -94,7 +94,7 @@ class Handle {
 
         virtual Item* getCorrespondingItem() const; //get item
 
-        virtual int getSpecies() const; //get species for tree
+        virtual int getSpecies() const; //get species for tree and ghost
 
     protected:
         Type type; //type and catoregy classes

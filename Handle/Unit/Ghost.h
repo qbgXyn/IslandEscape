@@ -17,6 +17,8 @@ class Ghost : public Unit {
             };
         State state;
 
+        int species;
+
         // given a coordinate, randomly pick a coordinate within a radius centered at patrolCenter
         // once reach that random coordinate, pick another coordinate and move to that point
         // if survivor get into visible range, chase that unit
@@ -25,7 +27,7 @@ class Ghost : public Unit {
         double patrolCenterLocation[2]; // coordinate of center
         double randomTargetLocation[2];
     public:
-        explicit Ghost(Map *map, double x, double y, Handle *chasing_target = nullptr); //ghost constructor
+        explicit Ghost(Map *map, double x, double y, int species, Handle *chasing_target = nullptr); //ghost constructor
         static const int base_max_health = 5; //ghost basic index
         static const float base_collision_radius; //ghost basic index
         static const double base_max_speed; //ghost basic index
@@ -42,6 +44,8 @@ class Ghost : public Unit {
         static const double chasingRadius; //setting for following the player
 
         virtual void update() override;
+
+        virtual int getSpecies() const override {return species;}
 
         void patrol(); //patrol function for the ghost
         void move_AI(double x, double y); //movement function

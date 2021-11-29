@@ -65,15 +65,14 @@ class Map {
         Survivor* player; //construct player
 
         vector<Ghost*> ghostList; //a list of ghosts so it can call the ghost ai function and move in every game loop
-        vector<Ghost*>::iterator ghostList_p;
 
         vector<Handle*> List; // vector container of all handle
-        vector<Handle*>::iterator List_p;
 
         Terrain::Type** grid; //map gird which store terrain type in every grid
 
         static const int grid_size = 64; // length of a square of a grid on the map, for displaying texture only(grass, sea, etc.)
 
         int tree_species = 0;
+        int ghost_species = 0;
 };
 #endif // MAP_H

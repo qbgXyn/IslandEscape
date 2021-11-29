@@ -17,7 +17,7 @@ class Tree : public Decoration {
     public:
         explicit Tree(Map *map, double x, double y, int type, int inInvulnerable = 1);
 
-        int getSpecies() const {return species;}
+        virtual int getSpecies() const override {return species;}
 
 };
 #endif // TREE_H

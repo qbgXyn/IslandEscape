@@ -14,7 +14,7 @@ const double Ghost::detectRadius = 400.0; //detect player radius
 const double Ghost::chasingRadius = 800.0; //chasing radius
 
 
-Ghost::Ghost(Map *map, double x, double y, Handle *chasing_target) : Unit(map, x, y) { //ghost constructor
+Ghost::Ghost(Map *map, double x, double y, int species, Handle *chasing_target) : Unit(map, x, y), species(species) { //ghost constructor
     type = Handle::Type::GHOST;
     this->chasing_target = chasing_target;
     patrolCenterLocation[0] = x;

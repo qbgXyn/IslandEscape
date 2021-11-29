@@ -184,6 +184,6 @@ Item* Handle::getCorrespondingItem() const{ //get item
     return nullptr;
 }
 
-int Handle::getSpecies() const { //get species for tree
+int Handle::getSpecies() const { //get species for tree and ghost
     return 0;
 }

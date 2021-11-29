@@ -9,7 +9,7 @@ namespace key
 {
     const string name = "key";
     const string description = "a key for turn on the boat";
-    const string texture;
+    const string texture = ":/resources/images/Item/key.png";
     const int durability = -1;
     const double data = 0.0;
     const int duration = 0;
@@ -60,7 +60,7 @@ namespace torch
     const string name = "torch";
     const string description = "a torch lighten up the surronding environments. Lit it up to increase your visibility by 3.";
     const string texture = ":/resources/images/Item/torch_item.png";
-    const int durability = 4*GAME_TICK;
+    const int durability = 90*GAME_TICK;
     const double data = 3.0;
     const int duration = 0;
 };

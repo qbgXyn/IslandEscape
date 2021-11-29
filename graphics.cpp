@@ -213,34 +213,36 @@ void GameWidget::drawMap(QPainter& paint) {
     }
 }
 
-void GameWidget::drawDecoration(QPainter& paint, Handle* Decoration) {
-    switch(Decoration->getType()) {
+void GameWidget::drawHandle(QPainter& paint, Handle* Handle) {
+    switch(Handle->getType()) {
         case Handle::Type::BOAT: {
             QPixmap boat(":/resources/images/Handle/Decoration/boat.png");
-            drawPixmap(paint, Decoration->getX()-64, Decoration->getY()-3*64/2, 2*64, 3*64, boat);
+            drawPixmap(paint, Handle->getX()-64, Handle->getY()-3*64/2, 2*64, 3*64, boat);
             break;
         }
         case Handle::Type::CAMPFIRE: {
-            drawPixmap(paint, Decoration->getX()-32, Decoration->getY()-32, 64, 64, CAMPFIRE[CAMPFIRE_COUNT]);
+            drawPixmap(paint, Handle->getX()-32, Handle->getY()-32, 64, 64, CAMPFIRE[CAMPFIRE_COUNT]);
             CAMPFIRE_COUNT = (CAMPFIRE_COUNT+1)%12;
             break;
         }
         case Handle::Type::CHEST: {
             QPixmap chest(":/resources/images/Handle/Decoration/chest.png");
-            drawPixmap(paint, Decoration->getX()-32, Decoration->getY()-32, 64, 64, chest);
+            drawPixmap(paint, Handle->getX()-32, Handle->getY()-32, 64, 64, chest);
             break;
         }
         case Handle::Type::ITEM: {
-            QPixmap Item(QString::fromStdString(Decoration->getCorrespondingItem()->getTexture()));
-            drawPixmap(paint, Decoration->getX()-32, Decoration->getY()-32, 64, 64, Item);
+            QPixmap Item(QString::fromStdString(Handle->getCorrespondingItem()->getTexture()));
+            drawPixmap(paint, Handle->getX()-32, Handle->getY()-32, 64, 64, Item);
             break;
         }
         case Handle::Type::TREE: {
-            drawPixmap(paint, Decoration->getX()-64, Decoration->getY()-64, 128, 128, TREE[Decoration->getSpecies()]);
+            drawPixmap(paint, Handle->getX()-64, Handle->getY()-64, 128, 128, TREE[Handle->getSpecies()]);
             break;
         }
-        default:
+        case Handle::Type::GHOST: {
+            drawPixmap(paint, Handle->getX()-64, Handle->getY()-64, 128, 128, GHOST[Handle->getSpecies()]);
             break;
+        }
     }
 }
 
@@ -294,9 +296,9 @@ void GameWidget::paintEvent(QPaintEvent* event) {
     drawMap(paint);
 
     // Draw Decoration on grid
-    for (int i = 0; i < (int)map->List.size(); ++i)
+    for (vector<Handle*>::const_iterator p = map->List.begin(); p != map->List.end(); ++p)
         //if (map->List[i]->getCategory() == Handle::Category::DECORATION)
-        drawDecoration(paint, map->List[i]);
+        drawHandle(paint, *p);
 
     // Draw Player
     drawPlayer(paint);
@@ -328,10 +330,14 @@ void GameWidget::load_icons() {
                             {":/resources/images/Handle/Decoration/tree2.png"},
                             {":/resources/images/Handle/Decoration/tree3.png"},
                             {":/resources/images/Handle/Decoration/tree4.png"}};
+
+    GHOST = new QPixmap [4] {{":/resources/images/Handle/Unit/ghost1.png"}, {":/resources/images/Handle/Unit/ghost2.png"},
+                       {":/resources/images/Handle/Unit/ghost1.png"}, {":/resources/images/Handle/Unit/ghost3.png"}};
 }
 
 void GameWidget::dealloc_icons() {
     delete [] ICONS;
     delete [] CAMPFIRE;
     delete [] TREE;
+    delete [] GHOST;
 }
