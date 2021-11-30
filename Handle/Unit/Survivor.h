@@ -34,7 +34,7 @@ class Survivor : public Unit { //survivor is the derived class of unit
 
         virtual void update() override;
 
-        double getDirection() const;
+        virtual double getDirection() const override;
         void setMoveDirection(bool move, double direction);
 
         void gainAttributeFromEffect(Effect *e); //effect related functions

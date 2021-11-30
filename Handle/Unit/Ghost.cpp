@@ -4,15 +4,14 @@
 // for simplicity, no collsion means we don't need any algorithm for path finding
 const float Ghost::base_collision_radius = 0.0;
 
-const double Ghost::base_max_speed = 20.0; //base maximum speed
+const double Ghost::base_max_speed = 8.0; //base maximum speed
 const int Ghost::base_attackInterval = 3*GAME_TICK; //base attack CD
-const float Ghost::base_attack_radius = 32.0; //base attack radius
-const double Ghost::base_attack_sector_angle = 60.0; //base attack circular angle sector
+const float Ghost::base_attack_radius = 128.0; //base attack radius
+const double Ghost::base_attack_sector_angle = 120.0; //base attack circular angle sector
 
-const double Ghost::patrolRadius = 256.0; //patrol radius of ghost 
+const double Ghost::patrolRadius = 472.0; //patrol radius of ghost
 const double Ghost::detectRadius = 400.0; //detect player radius
 const double Ghost::chasingRadius = 800.0; //chasing radius
-
 
 Ghost::Ghost(Map *map, double x, double y, int species, Handle *chasing_target) : Unit(map, x, y), species(species) { //ghost constructor
     type = Handle::Type::GHOST;

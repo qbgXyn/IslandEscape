@@ -20,14 +20,13 @@ void Unit::setVisibleSize(int visible_size) { //mutator
     this->visible_size = visible_size;
 }
 
-
 bool Unit::isInsideSector(const Handle *h, double sector_angle) const //check if the target is within the circular sector
 {
     double half_angle = sector_angle / 2;
-    double current_direction = this -> getDirection();
+    double current_direction = this->getDirection();
     double start_angle = current_direction - half_angle; //the start angle of the radius
     double end_angle = current_direction + half_angle; //end angle of the radius
-    double target_handle_angle = atan(h -> getY() / h -> getX());
+    double target_handle_angle = atan2(-(h->getY()-this->getY()), (h->getX()-this->getX()))*180/PI;
     if (target_handle_angle >= start_angle && target_handle_angle <= end_angle) //return true if it is within the radius sector
     {
         return true;
@@ -75,8 +74,8 @@ void Unit::attack(double attackRadius, double sectorAngle) {
                 {
                     if (this -> getDamage() >= (*it) -> getArmor()) // check if attack > armor
                     {
-                        int newHealth = this -> getHealth() - (this -> getDamage() - (*it) -> getArmor());
-                        this -> setHealth(newHealth);
+                        int newHealth = (*it)->getHealth() - (this->getDamage() - (*it)->getArmor());
+                        (*it) -> setHealth(newHealth);
                     }
                 }
             }

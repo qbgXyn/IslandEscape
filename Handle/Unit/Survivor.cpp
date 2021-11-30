@@ -5,7 +5,7 @@
 #include "../../Item/Item_data.h"
 
 //#include <bits/stdc++.h>
-const float Survivor::base_collision_radius = 64.0;
+const float Survivor::base_collision_radius = 128.0;
 const double Survivor::base_max_speed = 8.0;
 const int Survivor::base_attackInterval = 1; 
 const float Survivor::base_attack_radius = 128.0;
@@ -78,7 +78,7 @@ void Survivor::update() {
     }
 
     // campfire section
-    vector<Handle*> nearbyList = map->getHandleGroup(location[0], location[1], 2*base_collision_radius);
+    vector<Handle*> nearbyList = map->getHandleGroup(location[0], location[1], base_collision_radius);
     vector<Handle*>::const_iterator it_end = nearbyList.end();
     bool isNearCampfire = false;
     for(vector<Handle*>::const_iterator it = nearbyList.begin(); it != it_end; ++it) { // search for campfire
@@ -118,18 +118,18 @@ double Survivor::getDirection() const {
 }
 
 void Survivor::setMoveDirection(bool move, double direction) {
+    this->direction = direction;
     if (!move) {
         setVelocityX(0);
         setVelocityY(0);
         return;
     }
-    this->direction = direction;
-    if (direction == 0 || direction == 180) {
+    if (direction == 90 || direction == -90) {
         setVelocityX(0);
-        setVelocityY((direction-90)*base_max_speed/90);
+        setVelocityY(-(direction)*base_max_speed/90);
     }
-    if (direction == -90 || direction == 90) {
-        setVelocityX((direction)*base_max_speed/90);
+    if (direction == 180 || direction == 0) {
+        setVelocityX((90-direction)*base_max_speed/90);
         setVelocityY(0);
     }
     if (direction == 45) {
@@ -137,16 +137,16 @@ void Survivor::setMoveDirection(bool move, double direction) {
         setVelocityY(-sqrt(base_max_speed*base_max_speed/2));
     }
     if (direction == 135) {
-        setVelocityX(sqrt(base_max_speed*base_max_speed/2));
-        setVelocityY(sqrt(base_max_speed*base_max_speed/2));
+        setVelocityX(-sqrt(base_max_speed*base_max_speed/2));
+        setVelocityY(-sqrt(base_max_speed*base_max_speed/2));
     }
     if (direction == -135) {
         setVelocityX(-sqrt(base_max_speed*base_max_speed/2));
         setVelocityY(sqrt(base_max_speed*base_max_speed/2));
     }
     if (direction == -45) {
-        setVelocityX(-sqrt(base_max_speed*base_max_speed/2));
-        setVelocityY(-sqrt(base_max_speed*base_max_speed/2));
+        setVelocityX(sqrt(base_max_speed*base_max_speed/2));
+        setVelocityY(sqrt(base_max_speed*base_max_speed/2));
     }
 }
 
@@ -280,7 +280,7 @@ void Survivor::useItem(Item_inventory *i) { //use the holding item
 }
 
 void Survivor::pickupItem() { //pick up a item nearby on the ground]
-    vector<Handle*> list = map->getHandleGroup(location[0], location[1], 2*base_collision_radius); // get all surrounding handles
+    vector<Handle*> list = map->getHandleGroup(location[0], location[1], base_collision_radius); // get all surrounding handles
     //cout << "pickup()" << endl;
 
     Handle* h;
@@ -403,7 +403,7 @@ int Survivor::getTorchTime() const{ //return the torch durability
 }
 
 bool Survivor::turnOnBoat() const { //if can turnon the boat, end the game
-    vector<Handle*> list = map->getHandleGroup(location[0], location[1], 2*base_collision_radius); // get all surrounding handle
+    vector<Handle*> list = map->getHandleGroup(location[0], location[1], base_collision_radius); // get all surrounding handle
 
     vector<Handle*>::const_iterator it_end = list.end(); // check if it collide with existing handle
     for(vector<Handle*>::const_iterator it = list.begin(); it != it_end; ++it) {
