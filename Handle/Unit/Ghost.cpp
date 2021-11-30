@@ -6,7 +6,7 @@ const int Ghost::base_collision_radius = 0;
 
 const double Ghost::base_max_speed = 8.0; //base maximum speed
 const int Ghost::base_attackInterval = 2*GAME_TICK; //base attack CD
-const float Ghost::base_attack_radius = 128.0; //base attack radius
+const float Ghost::base_attack_radius = 64.0; //base attack radius
 const double Ghost::base_attack_sector_angle = 120.0; //base attack circular angle sector
 
 const double Ghost::patrolRadius = 472.0; //patrol radius of ghost
