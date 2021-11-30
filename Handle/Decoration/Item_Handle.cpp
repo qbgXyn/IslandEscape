@@ -11,6 +11,7 @@ Item_Handle::Item_Handle(Map *map, double x, double y, Item::ID id, int inInvuln
     pathable += Terrain::Type::GRASS;
     pathable += Terrain::Type::STONE;
     pathable += Terrain::Type::SHOAL;
+    collisionRadius = base_collision_radius;
 
 }
 

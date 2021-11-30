@@ -9,6 +9,7 @@ Chest::Chest(Map *map, double x, double y, int inInvulnerable) : Decoration(map,
     type = Handle::Type::CHEST;
     pathable += Terrain::Type::GRASS;
     pathable += Terrain::Type::STONE;
+    collisionRadius = base_collision_radius;
     for(int i = 0; i < maxSlotOfInventory; ++i) {
         Inventory[i] = Item::ID::EMPTY;
     }

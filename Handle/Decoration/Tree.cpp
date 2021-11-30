@@ -8,4 +8,5 @@ Tree::Tree(Map *map, double x, double y, int species, int inInvulnerable) : Deco
     type = Handle::Type::TREE;
     pathable += Terrain::Type::GRASS;
     pathable += Terrain::Type::STONE;
+    collisionRadius = base_collision_radius;
 }

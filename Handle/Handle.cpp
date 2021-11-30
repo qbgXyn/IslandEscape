@@ -108,13 +108,19 @@ void Handle::setVelocityY(double speed) {
     velocity[1] = speed;
 }
 
-
+#include <iostream>
 bool Handle::hasCollision(const Handle *h) const { //check collision
     // if one of them is collisionless
     if (h->isCollisionless() || isCollisionless()) {
         return false;
     }
+    cout << "going to check collision::" << endl;
     double d = map->distanceBetweenPoints(this->location[0], this->location[1], h->location[0], h->location[1]); //check distance between
+    cout << location[0] << " " << location[1] << endl;
+    cout << h->location[0] << " " << h->location[1] << endl;
+    cout << "d: " << d << endl;
+    cout << collisionRadius << " " << h->collisionRadius << endl;
+    cout << d - this->collisionRadius - h->collisionRadius << endl;
     return ( (d - this->collisionRadius - h->collisionRadius) < 0);
 }
 
@@ -132,7 +138,7 @@ bool Handle::isHandleVisible(Handle *h) const { //check if handle visible, only 
     return false;
 }
 
-#include <iostream>
+
 void Handle::update() {
     /*
     1. get new position
@@ -142,27 +148,34 @@ void Handle::update() {
     4. if velocity > 0, and move button released, decrease velocity
     5. if max speed not reached, and move button pressed, increase velocity
     */
-   double newPosition[2]; //temp array for new position
+    double newPosition[2]; //temp array for new position
 
 //    cout << "handle update:" << static_cast<int> (this->type) << endl;
    
-   if (map->isDoubleZero(getVelocity())) { 
-       return; // no need to update position since no velocity
-   }
+    if (map->isDoubleZero(getVelocity())) { 
+        return; // no need to update position since no velocity
+    }
 
-   newPosition[0] = location[0] + velocity[0]; //new position
-   newPosition[1] = location[1] + velocity[1];
+    newPosition[0] = location[0] + velocity[0]; //new position
+    newPosition[1] = location[1] + velocity[1];
 
-   if (isCoordinateWalkable(newPosition[0], newPosition[1]) == true)
-   {
-        location[0] = newPosition[0];
-        location[1] = newPosition[1]; //if new position x and y both walkable then walk to the new position
-   }
-   else if (isCoordinateWalkable(newPosition[0], location[1]) == true) //if horizontal is walkable only
-        location[0] = newPosition[0];
+    // if (type == Type::SURVIVOR) {
+    // cout << "position: " << location[0] << " " << location[1] << endl;
+    // cout << "velocity: " << velocity[0] << " " << velocity[1] << endl;
+    // cout << "newPosition: " << newPosition[0] << " " << newPosition[1] << endl;
+    // }
 
-   else if (isCoordinateWalkable(location[0], newPosition[1]) == true) //if only vertical is walkable
-        location[1] = newPosition[1];
+
+    if (isCoordinateWalkable(newPosition[0], newPosition[1]) == true)
+    {
+            location[0] = newPosition[0];
+            location[1] = newPosition[1]; //if new position x and y both walkable then walk to the new position
+    }
+    else if (isCoordinateWalkable(newPosition[0], location[1]) == true) //if horizontal is walkable only
+            location[0] = newPosition[0];
+
+    else if (isCoordinateWalkable(location[0], newPosition[1]) == true) //if only vertical is walkable
+            location[1] = newPosition[1];
 
 }
 
@@ -191,7 +204,7 @@ bool Handle::isCoordinateWalkable(double x, double y) const{
 
     vector<Handle*>::const_iterator it_end = list.end(); // check if it collide with existing handle
     for(vector<Handle*>::const_iterator it = list.begin(); it != it_end; ++it) {
-        if (hasCollision(*it)) { //if collide, then cannot walk
+        if (this != *it && hasCollision(*it)) { //if collide, then cannot walk
             return false;
         }
     }

@@ -5,7 +5,7 @@
 #include "../../Item/Item_data.h"
 
 //#include <bits/stdc++.h>
-const float Survivor::base_collision_radius = 128.0;
+const float Survivor::base_collision_radius = 16.0;
 const double Survivor::base_max_speed = 8.0;
 const int Survivor::base_attackInterval = 1; 
 const float Survivor::base_attack_radius = 128.0;
@@ -18,6 +18,7 @@ Survivor::Survivor(Map *map, double x, double y) : Unit(map, x, y) { //construct
     pathable += Terrain::Type::STONE;
     pathable += Terrain::Type::SHOAL; //player can walk through grass, stone and shoal ground but not ocean
 
+    collisionRadius = base_collision_radius;
     visible_size = base_visible_size;
     health = base_max_health;
     damage = base_damage;
@@ -36,7 +37,6 @@ Survivor::Survivor(Map *map, double x, double y) : Unit(map, x, y) { //construct
 void Survivor::update() {
 
     Handle::update();
-
     // attack interval section
     if (attackInterval > 0) {
         --attackInterval;
@@ -101,11 +101,13 @@ void Survivor::update() {
 
         //gain torchtime 
         Item::ID id;
+        int durability;
         for (int index = 0; index < maxSlotOfInventory; ++index) {
             if (Inventory[index] != nullptr) {
                 id = Inventory[index]->item->getID();
                 if (id == Item::ID::TORCH_LIT || id == Item::ID::TORCH) {
-                    Inventory[index]->item->setDurability(Inventory[index]->item->getDurability() + 2);
+                    durability = Inventory[index]->item->getDurability();
+                    Inventory[index]->item->setDurability(min(torch::durability+1, durability + 2));
                     break;
                 }
             }
@@ -294,26 +296,16 @@ void Survivor::pickupItem() { //pick up a item nearby on the ground]
 
     vector<Handle*>::const_iterator it_end = list.end(); // check if it collide with existing handle
     for(vector<Handle*>::const_iterator it = list.begin(); it != it_end; ++it) { // iterate all handle
-        //cout << "iterating handle" << endl;
         if (isInventoryFull()) { // no need to search more if inventory is full
-            //cout << "inventory full" << endl;
             return;
         }
         h = *it;
-        //cout << h << endl;
         if (h->getType() == Handle::Type::ITEM) { // if it's item
-            //cout << "get an item_handle" << endl;
             for(int index = 0; index < maxSlotOfInventory; ++index) { // iterate all slot in inventory
-                //cout << "searching for empty slot" << endl;
                 if (Inventory[index] == nullptr) {                  // find an empty slot of inventory
-                    //cout << "find a empty slot: " << index << endl;
                     ih = reinterpret_cast<Item_Handle*> (h);
-                    //cout << "creating new item inventory" << endl;
                     Inventory[index] = new Item_inventory {ih->item};
-                    //cout << "name: " << Inventory[index]->item->getName() << endl;
-                    //cout << "new item inventory created" << endl;
                     map->removeHandle(h);
-                    //cout << "item_handle removed" << endl;
                     break; // back to iterating handle
                 }
             }

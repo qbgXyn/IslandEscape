@@ -27,7 +27,7 @@ Ghost::Ghost(Map *map, double x, double y, int species, Handle *chasing_target) 
     pathable += Terrain::Type::OCEAN;
     pathable += Terrain::Type::VOID; 
 
-
+    collisionRadius = base_collision_radius;
     visible_size = base_visible_size;
     health = base_max_health;
     damage = base_damage;
@@ -57,13 +57,13 @@ void Ghost::update() {
         }
         state = State::PATROL;
     }else if (state == State::PATROL) {
-        cout << "ghost update - ai - patrol" << endl;
+        // cout << "ghost update - ai - patrol" << endl;
         patrol();
     }else if (state == State::CHASE) {
         cout << "ghost update - ai - chase" << endl;
         chase(chasing_target);
     }else if (state == State::RETURN) {
-        cout << "ghost update - ai - return" << endl;
+        // cout << "ghost update - ai - return" << endl;
         move_AI(patrolCenterLocation[0], patrolCenterLocation[1]);
     }else if (map->isDoubleZero(getVelocity())) {     // if velocity is 0, i.e ghost is static
         cout << "ghost update - ai - reach start point" << endl;

@@ -59,7 +59,7 @@ Map::Map(double width, double height, QString filePath) : width(width), height(h
     }
 
     // Create Player
-    player = reinterpret_cast<Survivor*>(createHandle(Handle::Type::SURVIVOR, 0, 0));
+    player = reinterpret_cast<Survivor*>(createHandle(Handle::Type::SURVIVOR, 320, 320));
 
     // Create Decorations
     createHandle(Handle::Type::BOAT, 2*64, 11*64/2);
