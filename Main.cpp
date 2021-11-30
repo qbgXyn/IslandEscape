@@ -12,6 +12,7 @@ int main(int argc, char* argv[])
     */
     MenuWindow m;
     m.show();
+    a.setWindowIcon(QIcon(":/resources/images/UI/icon.ico"));
 
     return a.exec();
 }

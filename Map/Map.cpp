@@ -72,7 +72,7 @@ Map::Map(double width, double height, QString filePath) : width(width), height(h
     createItem_Handle(Item::ID::KEY, 12*64-32, 12*64-32);
     createHandle(Handle::Type::GHOST, 400, 400);
 
-    handleLoading();
+    // handleLoading();
     // for (int i = 0; i < height; ++i) {
     //     for (int j = 0; j < width; ++j) {
     //         cout << array[j][i] << " ";
