@@ -466,18 +466,12 @@ void Map::loadHandleList(QString filePath)
         type = static_cast<Handle::Type>(num.toInt());
         switch(type)
         {
+            case Handle::Type::SURVIVOR:
+                map->player = createHandle(type, num.toInt(), num.toInt());
+                break;
             case Handle::Type::GHOST:
-            createHandle(type, num.toInt(), num.toInt());
-            break;
-
             case Handle::Type::BOAT:
-            createHandle(type, num.toInt(), num.toInt());
-            break;
-
             case Handle::Type::TREE:
-            createHandle(type, num.toInt(), num.toInt());
-            break;
-
             case Handle::Type::CAMPFIRE:
             createHandle(type, num.toInt(), num.toInt());
             break;
@@ -488,26 +482,11 @@ void Map::loadHandleList(QString filePath)
             for (int i = 0; i < 9; i++)
             {
                 Item::ID itemType = static_cast<Item::ID>(num.toInt());
-                switch(itemType)
-                {
-                    case Item::ID::KEY:
-                    Chest->ChestAddItem(Item::ID::KEY);
-                    break;
-
-                    case Item::ID::SPEED_POTION:
-                    Chest->ChestAddItem(Item::ID::SPEED_POTION);
-                    break;
-
-                    case Item::ID::REGEN_INSTANT_POTION:
-                    Chest->ChestAddItem(Item::ID::REGEN_INSTANT_POTION);
-                    break;
-
-                    default:
-                    Chest->ChestAddItem(Item::ID::EMPTY);
-
-                }
+                Chest->ChestAddItem(itemType);
             }
             break;
+            default:
+                break;
         }
     }
 }
