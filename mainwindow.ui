@@ -34,7 +34,7 @@ background-image: url(:/resources/images/stripes.png);
     <property name="font">
      <font>
       <family>Luminari</family>
-      <pointsize>24</pointsize>
+      <pointsize>14</pointsize>
       <weight>75</weight>
       <italic>false</italic>
       <bold>true</bold>
@@ -49,7 +49,7 @@ background-image: url(:/resources/images/stripes.png);
      <bool>false</bool>
     </property>
     <property name="text">
-     <string>[↑↓←→] - Movement      [c] - Pick Up      [1-9] - Select      [Spacebar] - Use      [q] - Drop</string>
+     <string>[↑↓←→] - Movement    [c] - Pick Up    [1-9] - Select    [Spacebar] - Use    [q] - Drop</string>
     </property>
     <property name="scaledContents">
      <bool>false</bool>

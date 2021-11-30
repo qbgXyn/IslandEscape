@@ -140,9 +140,8 @@ void MenuWindow::on_btn_start_clicked() {
 }
 
 void MenuWindow::on_btn_level_1_clicked() {
-    selected_level = 1;
-    start_game(selected_level, "Map2.txt", "HandleList2.txt");
-//    QMessageBox::about(this, "Island escape", "hello");
+//    selected_level = 1;
+//    start_game(selected_level, "Map2.txt", "HandleList2.txt");
     QMessageBox *mb = new QMessageBox{window()};
     mb->setWindowTitle("Island escape");
     mb->setStyleSheet("font: 14pt \"Comic Sans MS\"; color : gray");
@@ -155,7 +154,6 @@ void MenuWindow::on_btn_level_1_clicked() {
 
 }
 void MenuWindow::on_btn_level_2_clicked() {
-    return; // not finished, so cannot click
     selected_level = 2;
     start_game(selected_level, "Map1.txt", "HandleList1.txt");
 }
