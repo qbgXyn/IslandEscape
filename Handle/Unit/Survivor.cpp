@@ -6,10 +6,10 @@
 
 //#include <bits/stdc++.h>
 const float Survivor::base_collision_radius = 64.0;
-const double Survivor::base_max_speed = 10.0;
+const double Survivor::base_max_speed = 8.0;
 const int Survivor::base_attackInterval = 1; 
 const float Survivor::base_attack_radius = 128.0;
-const double Survivor::base_attack_sector_angle = 60.0; // set base index for survivor
+const double Survivor::base_attack_sector_angle = 120.0; // set base index for survivor
 const int Survivor::base_max_health = 10.0;
 
 Survivor::Survivor(Map *map, double x, double y) : Unit(map, x, y) { //constructor
