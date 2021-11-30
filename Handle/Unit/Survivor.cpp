@@ -57,10 +57,11 @@ void Survivor::update() {
     // effect section
     int duration;
     Effect *e;
-    for(vector<Effect*>::const_iterator it = EffectList.begin(); it != EffectList.end(); ++it) { // iterate all effect
+    for(vector<Effect*>::const_iterator it = EffectList.begin(); it != EffectList.end();) { // iterate all effect
         e = *it;
         duration = (*it)->getDuration();
         --duration;
+        ++it;
         if (duration > 0) {
             e->setDuration(duration);
         }
@@ -190,8 +191,8 @@ void Survivor::removeEffect(Effect *e) {
     vector<Effect*>::const_iterator it_end = EffectList.end();
     for(vector<Effect*>::const_iterator it = EffectList.begin(); it != it_end; ++it) { //search and remove the Effect
         if ((*it) == e) {
-            delete e;
             EffectList.erase(it);
+            delete e;
             return; //assuming Effect is unique
         }
     }
