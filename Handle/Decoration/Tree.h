@@ -13,7 +13,7 @@ class Tree : public Decoration {
     public:
         explicit Tree(Map *map, double x, double y, int type, int inInvulnerable = 1);
         static const int base_max_health = 10;
-        static const float base_collision_radius;
+        static const int base_collision_radius;
         static const double base_max_speed;
 
         virtual int getSpecies() const override {return species;}

@@ -29,7 +29,7 @@ class Ghost : public Unit {
     public:
         explicit Ghost(Map *map, double x, double y, int species, Handle *chasing_target = nullptr); //ghost constructor
         static const int base_max_health = 5; //ghost basic index
-        static const float base_collision_radius; //ghost basic index
+        static const int base_collision_radius; //ghost basic index
         static const double base_max_speed; //ghost basic index
 
         static const int base_damage = 1; //ghost basic index

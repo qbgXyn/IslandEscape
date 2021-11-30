@@ -2,7 +2,7 @@
 #include "../../Map/Map.h"
 
 // for simplicity, no collsion means we don't need any algorithm for path finding
-const float Ghost::base_collision_radius = 0.0;
+const int Ghost::base_collision_radius = 0;
 
 const double Ghost::base_max_speed = 8.0; //base maximum speed
 const int Ghost::base_attackInterval = 3*GAME_TICK; //base attack CD
@@ -27,11 +27,13 @@ Ghost::Ghost(Map *map, double x, double y, int species, Handle *chasing_target) 
     pathable += Terrain::Type::OCEAN;
     pathable += Terrain::Type::VOID; 
 
+    max_speed = base_max_speed;
     collisionRadius = base_collision_radius;
     visible_size = base_visible_size;
     health = base_max_health;
     damage = base_damage;
     armor = base_armor; //initalise base value
+
 }
 
 #include <iostream>
@@ -43,7 +45,7 @@ void Ghost::update() {
     if (attackInterval > 0) {
         --attackInterval;
     }
-
+    return;
     // ai section
     if (state == State::STATIC) {
         while(true) {
@@ -87,15 +89,16 @@ void Ghost::patrol() {
 
 }
 
-
+#include <iostream>
 void Ghost::move_AI(double x, double y) {
-    double dx = abs(x - location[0]);
-    double dy = abs(y - location[1]);
-    double total = dx+dy;
+    double dx = x - location[0];
+    double dy = y - location[1];
+    double total = abs(dx+dy);
 
     // separate max_speed to x and y components by ratio
     velocity[0] = dx/total * max_speed;
     velocity[1] = dy/total * max_speed;
+    cout << velocity[0] << " " << velocity[1] << endl;
 }
 
 void Ghost::chase(Handle* u) {

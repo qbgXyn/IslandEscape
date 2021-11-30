@@ -5,9 +5,10 @@
 #include "../../Item/Item_data.h"
 
 //#include <bits/stdc++.h>
-const float Survivor::base_collision_radius = 16.0;
+const int Survivor::base_collision_radius = 16;
 const int Survivor::base_pickup_radius = 64;
-const double Survivor::base_max_speed = 8.0;
+const double Survivor::base_max_speed = 40.0;
+// const double Survivor::base_max_speed = 8.0; for testing set a higher speed
 const int Survivor::base_attackInterval = 1; 
 const float Survivor::base_attack_radius = 128.0;
 const double Survivor::base_attack_sector_angle = 120.0; // set base index for survivor
@@ -39,6 +40,7 @@ Survivor::Survivor(Map *map, double x, double y) : Unit(map, x, y) { //construct
 void Survivor::update() {
 
     Handle::update();
+    // cout << location[0] << " " << location[1] << endl;
     // attack interval section
     if (attackInterval > 0) {
         --attackInterval;
@@ -394,7 +396,7 @@ int Survivor::getTorchTime() const{ //return the torch durability
 }
 
 bool Survivor::turnOnBoat() const { //if can turnon the boat, end the game
-    vector<Handle*> list = map->getHandleGroup(location[0], location[1], base_collision_radius); // get all surrounding handle
+    vector<Handle*> list = map->getHandleGroup(location[0], location[1], Boat::base_turnOn_radius); // get all surrounding handle
 
     vector<Handle*>::const_iterator it_end = list.end(); // check if it collide with existing handle
     for(vector<Handle*>::const_iterator it = list.begin(); it != it_end; ++it) {

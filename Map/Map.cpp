@@ -70,6 +70,7 @@ Map::Map(double width, double height, QString filePath) : width(width), height(h
     createHandle(Handle::Type::TREE, 2*64-32, 4*64-32);
     createHandle(Handle::Type::TREE, 4*64-32, 4*64-32);
     createItem_Handle(Item::ID::KEY, 12*64-32, 12*64-32);
+    createHandle(Handle::Type::GHOST, 400, 400);
 
     handleLoading();
     // for (int i = 0; i < height; ++i) {

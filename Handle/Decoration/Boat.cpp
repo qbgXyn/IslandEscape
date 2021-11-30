@@ -1,7 +1,8 @@
 #include "Boat.h"
 
-const float Boat::base_collision_radius = 16.0;
+const int Boat::base_collision_radius = 16;
 const double Boat::base_max_speed = 0.0;
+const int Boat::base_turnOn_radius = 96;
 
 
 Boat::Boat(Map *map, double x, double y, int inInvulnerable) : Decoration(map, x, y, inInvulnerable) {

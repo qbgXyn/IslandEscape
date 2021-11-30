@@ -40,7 +40,7 @@ class Handle {
         int inInvulnerable; // instead of bool, also use it as counter, i.e. if > 0, is true
         int inInvisible;    // to prevent unintended behaviour, e.g. double invisible potion with last one run out of duration
         int inCollisionless;    // for each effect run out of duration we reduce the counter by 1
-        float collisionRadius;
+        int collisionRadius;
 
 
         Terrain pathable;
@@ -63,7 +63,7 @@ class Handle {
         double getVelocityY() const;
         virtual double getDirection() const;
 
-        float getCollisionRadius() const; //accessor for collision radius
+        int getCollisionRadius() const; //accessor for collision radius
 
         Type getType() const; //accessor
         Category getCategory() const; 

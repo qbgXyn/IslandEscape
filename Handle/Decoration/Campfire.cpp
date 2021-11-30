@@ -1,6 +1,6 @@
 #include "Campfire.h"
 
-const float Campfire::base_collision_radius = 32.0;
+const int Campfire::base_collision_radius = 32.0;
 const int Campfire::base_buff_radius = 128;
 const double Campfire::base_max_speed = 0.0;
 

@@ -56,7 +56,7 @@ double Handle::getDirection() const { //accessor
     return angle; //return the angle of the direction
 }
 
-float Handle::getCollisionRadius() const { //accessor
+int Handle::getCollisionRadius() const { //accessor
     return collisionRadius;
 }
 

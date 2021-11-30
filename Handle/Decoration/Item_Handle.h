@@ -11,7 +11,7 @@ class Item_Handle : public Decoration {
         explicit Item_Handle(Map *map, double x, double y, Item *item, int inInvulnerable = 1, int inCollisionless = 1);
         ~Item_Handle();
         static const int base_max_health = 1;
-        static const float base_collision_radius;
+        static const int base_collision_radius;
         static const double base_max_speed;
         Item *item;
         virtual Item* getCorrespondingItem() const;

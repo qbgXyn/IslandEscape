@@ -1,6 +1,6 @@
 #include "Tree.h"
 
-const float Tree::base_collision_radius = 32.0;
+const int Tree::base_collision_radius = 32;
 const double Tree::base_max_speed = 0.0;
 
 
