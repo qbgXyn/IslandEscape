@@ -110,7 +110,7 @@ void MainWindow::main_loop() {
             survivor->switchTorchState();
         }
     }
-    // testing call
+
     map->mapUpdate();
 
     ui->label_health->setText(": " + QString::number(survivor->getHealth()));

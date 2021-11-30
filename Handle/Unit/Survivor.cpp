@@ -259,6 +259,7 @@ void Survivor::useItem(Item_inventory *i) { //use the holding item
             break;
         }
         case Item::ID::REGEN_INSTANT_POTION: {
+            if (health == base_max_health) return; // forbid player waste potion
             Effect *e = new Effect(Effect::Type::REGEN_INSTANT, data, duration);
             addEffect(e);
             //cout << "add regen potion" << endl;

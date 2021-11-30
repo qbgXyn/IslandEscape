@@ -74,8 +74,6 @@ void GameWidget::loop() {
 
     map->player->setMoveDirection( (UP||DOWN||LEFT||RIGHT), direction );
 
-    map->player->update();
-
     scroll_x = map->player->getX();
     scroll_y = map->player->getY();
 
