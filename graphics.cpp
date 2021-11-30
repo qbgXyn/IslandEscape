@@ -52,24 +52,24 @@ GameWidget::~GameWidget() {
 void GameWidget::loop() {
     // Player Movement
     double direction = map->player->getDirection();
-    if (LEFT==true) { //because we use vector to make smooth movement, the player need to rotate
-        direction = 180;
-        if (UP==true)
-            direction += -45;
-        if (DOWN==true)
-            direction += +45;
-    }
-    else if (RIGHT==true) {
-        direction = 0;
-        if (UP==true)
-            direction += 45;
-        if (DOWN==true)
-            direction += -45;
-    }
-    else if (UP==true)
+    if (UP==true) { //because we use vector to make smooth movement, the player need to rotate
         direction = 90;
-    else if (DOWN==true)
+        if (LEFT==true)
+            direction += 45;
+        if (RIGHT==true)
+            direction += -45;
+    }
+    else if (DOWN==true) {
         direction = -90;
+        if (LEFT==true)
+            direction += -45;
+        if (RIGHT==true)
+            direction += 45;
+    }
+    else if (LEFT==true)
+        direction = 180;
+    else if (RIGHT==true)
+        direction = 0;
 
     map->player->setMoveDirection( (UP||DOWN||LEFT||RIGHT), direction );
 
