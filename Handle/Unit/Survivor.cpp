@@ -29,10 +29,6 @@ Survivor::Survivor(Map *map, double x, double y) : Unit(map, x, y) { //construct
 
     Inventory[0] = new Item_inventory {Item::ID::SWORD}; //by default give a sword to the player at the beginning in the first left item bar and hold it
     Inventory[1] = new Item_inventory {Item::ID::TORCH_LIT}; //by deafult give a torch to the player
-    // 2-4 for testing only
-    Inventory[2] = new Item_inventory {Item::ID::REGEN_INSTANT_POTION};
-    Inventory[3] = new Item_inventory {Item::ID::REGEN_INSTANT_POTION};
-    Inventory[4] = new Item_inventory {Item::ID::SPEED_POTION};
     visible_size += Inventory[1]->item->getData(); //add visibility given by torch (lit) given
 }
 

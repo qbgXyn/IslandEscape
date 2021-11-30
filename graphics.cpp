@@ -263,17 +263,23 @@ void GameWidget::drawHandle(QPainter& paint, Handle* Handle) {
 }
 
 void GameWidget::drawPlayer(QPainter& paint) {
+    Survivor * survivor = map->player;
     // Draw attack sector
-    int radius = map->player->base_attack_radius;
-    int span = map->player->base_attack_sector_angle;
+    int radius = survivor->base_attack_radius;
+    int span = survivor->base_attack_sector_angle;
     int dispx1, dispx2, dispy1, dispy2;
     to_display_coordinates(-radius, -radius, dispx1, dispy1);
     to_display_coordinates(radius, radius, dispx2, dispy2);
     QRect rect(scroll_x+dispx1, scroll_y+dispy1, dispx2-dispx1, dispy2-dispy1);
     QBrush previous_brush = paint.brush();
     paint.setBrush(QBrush{ QColor::fromRgb(100,100,100,100) });
-    paint.drawPie( rect, (map->player->getDirection()-span/2)*16, span*16);
-    paint.setBrush(previous_brush);
+
+    Item_inventory* Item = survivor->Inventory[survivor->selectedItemIndex];
+    if(Item != nullptr && Item->item->getID() == Item::ID::SWORD) {
+        paint.drawPie( rect, (map->player->getDirection()-span/2)*16, span*16);
+        paint.setBrush(previous_brush);
+    }
+
 
     // Draw player
     QPixmap player(":/resources/images/Handle/Unit/player.png");
