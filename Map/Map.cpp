@@ -461,16 +461,23 @@ void Map::loadHandleList(QString filePath)
                 //map->player = createHandle(type, x, y);
                 break;
             case Handle::Type::GHOST:
+                break;
             case Handle::Type::BOAT:
+                break;
             case Handle::Type::TREE:
+                x = numlist.at(i).toInt();
+                ++i;
+                y = numlist.at(i).toInt();
+                ++i;
+                createHandle(type, x, y);
+                break;
             case Handle::Type::CAMPFIRE:
                 x = numlist.at(i).toInt();
                 ++i;
                 y = numlist.at(i).toInt();
                 ++i;
                 createHandle(type, x, y);
-            break;
-
+                break;
             case Handle::Type::CHEST:
                 Handle* Chest;
                 x = numlist.at(i).toInt();
