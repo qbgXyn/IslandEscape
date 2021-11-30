@@ -19,6 +19,7 @@ Survivor::Survivor(Map *map, double x, double y) : Unit(map, x, y) { //construct
     pathable += Terrain::Type::STONE;
     pathable += Terrain::Type::SHOAL; //player can walk through grass, stone and shoal ground but not ocean
 
+    max_speed = base_max_speed;
     collisionRadius = base_collision_radius;
     visible_size = base_visible_size;
     health = base_max_health;
@@ -130,27 +131,27 @@ void Survivor::setMoveDirection(bool move, double direction) {
     }
     if (direction == 90 || direction == -90) {
         setVelocityX(0);
-        setVelocityY(-(direction)*base_max_speed/90);
+        setVelocityY(-(direction)*max_speed/90);
     }
     if (direction == 180 || direction == 0) {
-        setVelocityX((90-direction)*base_max_speed/90);
+        setVelocityX((90-direction)*max_speed/90);
         setVelocityY(0);
     }
     if (direction == 45) {
-        setVelocityX(sqrt(base_max_speed*base_max_speed/2));
-        setVelocityY(-sqrt(base_max_speed*base_max_speed/2));
+        setVelocityX(sqrt(max_speed*max_speed/2));
+        setVelocityY(-sqrt(max_speed*max_speed/2));
     }
     if (direction == 135) {
-        setVelocityX(-sqrt(base_max_speed*base_max_speed/2));
-        setVelocityY(-sqrt(base_max_speed*base_max_speed/2));
+        setVelocityX(-sqrt(max_speed*max_speed/2));
+        setVelocityY(-sqrt(max_speed*max_speed/2));
     }
     if (direction == -135) {
-        setVelocityX(-sqrt(base_max_speed*base_max_speed/2));
-        setVelocityY(sqrt(base_max_speed*base_max_speed/2));
+        setVelocityX(-sqrt(max_speed*max_speed/2));
+        setVelocityY(sqrt(max_speed*max_speed/2));
     }
     if (direction == -45) {
-        setVelocityX(sqrt(base_max_speed*base_max_speed/2));
-        setVelocityY(sqrt(base_max_speed*base_max_speed/2));
+        setVelocityX(sqrt(max_speed*max_speed/2));
+        setVelocityY(sqrt(max_speed*max_speed/2));
     }
 }
 

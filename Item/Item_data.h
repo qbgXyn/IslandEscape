@@ -31,8 +31,8 @@ namespace speed_potion
     const string description = "increse your speed by 20";
     const string texture = ":/resources/images/Item/potions/pt3.png";
     const int durability = 1;
-    const double data = 20.0;
-    const int duration = 30*GAME_TICK;
+    const double data = 5.0;
+    const int duration = 10*GAME_TICK;
 };
 
 namespace sword
