@@ -81,7 +81,7 @@ class Handle {
 
         virtual void update(); // every tick, we call this function for every handle to update the info
 
-        bool hasCollision(const Handle *h) const;
+        bool hasCollision(const Handle *h, double x, double y) const;
 
         int getArmor() const; //accessor
         virtual int getVisionRadius() const;
