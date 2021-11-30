@@ -88,6 +88,21 @@ Map::~Map() { //destructor coz that is pointer array
     delete [] grid;
 }
 
+
+
+void Map::mapUpdate() {
+    Handle *h;
+    vector<Handle*>::const_iterator it_end = List.end(); 
+    for(vector<Handle*>::const_iterator it = List.begin(); it != it_end; ++it) { //loop through all existing handles, check if the distance is within the radius, if yes then add it into the vector container
+        h = *it;
+       h->update();
+        if (h->getHealth() <= 0) {
+            removeHandle(h);
+        }
+    }
+}
+
+
 void Map::end_game() {
     win = true;
 }
@@ -123,6 +138,10 @@ double Map::getRandomDouble(double minValue, double maxValue) const { //generate
 
 double Map::distanceBetweenPoints(double x1, double y1, double x2, double y2) const { //distance function
     return std::hypot(x2-x1, y2-y1);
+}
+
+bool Map::isDoubleZero(double d) const {
+    return (d <= ECLIPSE && d >= -ECLIPSE);
 }
 
 vector<Handle*> Map::getHandleGroup(double x, double y, double radius) { //function to detect all surrounding handle and return a vector container

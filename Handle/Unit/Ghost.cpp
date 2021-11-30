@@ -34,6 +34,7 @@ Ghost::Ghost(Map *map, double x, double y, int species, Handle *chasing_target) 
     armor = base_armor; //initalise base value
 }
 
+#include <iostream>
 void Ghost::update() {
 
     Handle::update();    
@@ -46,20 +47,26 @@ void Ghost::update() {
     // ai section
     if (state == State::STATIC) {
         while(true) {
+            cout << "ghost update - ai - selecting location" << endl;
             randomTargetLocation[0] = map->getRandomDouble(location[0] - patrolRadius, location[0] + patrolRadius);
             randomTargetLocation[1] = map->getRandomDouble(location[1] - patrolRadius, location[1] + patrolRadius);
-            if (std::hypot(randomTargetLocation[0], randomTargetLocation[1]) <= patrolRadius) { //randomly walk within the patrol radius
+            cout << "ghost update - picking location: " << randomTargetLocation[0] <<  " " << randomTargetLocation[1] << " " << map->distanceBetweenPoints(randomTargetLocation[0], randomTargetLocation[1], location[0], location[1]) << " " << patrolRadius << endl;
+            if (map->distanceBetweenPoints(randomTargetLocation[0], randomTargetLocation[1], location[0], location[1]) <= patrolRadius) { //randomly walk within the patrol radius
                 break;
             }
         }
         state = State::PATROL;
     }else if (state == State::PATROL) {
+        cout << "ghost update - ai - patrol" << endl;
         patrol();
     }else if (state == State::CHASE) {
+        cout << "ghost update - ai - chase" << endl;
         chase(chasing_target);
     }else if (state == State::RETURN) {
+        cout << "ghost update - ai - return" << endl;
         move_AI(patrolCenterLocation[0], patrolCenterLocation[1]);
-    }else if (velocity[0] <= ECLIPSE && velocity[0] >= -ECLIPSE && velocity[1] <= ECLIPSE && velocity[1] >= -ECLIPSE) {     // if velocity is 0, i.e ghost is static
+    }else if (map->isDoubleZero(getVelocity())) {     // if velocity is 0, i.e ghost is static
+        cout << "ghost update - ai - reach start point" << endl;
         state = State::STATIC;
     }
 }

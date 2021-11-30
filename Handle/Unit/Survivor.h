@@ -53,9 +53,9 @@ class Survivor : public Unit { //survivor is the derived class of unit
         void itemSwitchState(Item::ID oldID, Item::ID newID = Item::ID::EMPTY); //item is run out of time
         int getTorchTime() const; //return the torch time
 
-        void deleteItem(int index);
+        void deleteItemInventory(int index);
 
-        int getItemIndex(Item::ID id) const; //check if player has the item, if yes, return the index, if no, return -1
+        int getItemInventoryIndex(Item::ID id) const; //check if player has the item, if yes, return the index, if no, return -1
 
         void Switch_selectedItem_Index(int index); //change the index item so that it refer to different item in the item array, so that when press 1-9 key, change the color of the item bar background to show the selection
 

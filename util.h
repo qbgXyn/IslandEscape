@@ -9,3 +9,6 @@ const double GAME_INTERVAL = 1.0/GAME_TICK * 1000;
 const int ITEM_NOT_EXIST = -1;
 
 #endif // UTIL_H
+
+
+

@@ -32,7 +32,7 @@ Survivor::Survivor(Map *map, double x, double y) : Unit(map, x, y) { //construct
     visible_size += Inventory[1]->item->getData(); //add visibility given by torch (lit) given
 }
 
-
+#include <iostream>
 void Survivor::update() {
 
     Handle::update();
@@ -44,14 +44,14 @@ void Survivor::update() {
 
     // sword section
     {
-        int index = getItemIndex(Item::ID::SWORD_COOLDOWN);
+        int index = getItemInventoryIndex(Item::ID::SWORD_COOLDOWN);
         if (index != ITEM_NOT_EXIST) { // sword in cooldown
             int durability = Inventory[index]->item->getDurability();
             --durability;
             Inventory[index]->item->setDurability(durability);
             if (durability % sword::duration == 0) { // cooldown finished
                 if (durability == 0) { // run out of durability
-                    deleteItem(index);
+                    deleteItemInventory(index);
                 }else {
                     itemSwitchState(Item::ID::SWORD_COOLDOWN, Item::ID::SWORD);
                 }
@@ -236,7 +236,13 @@ void Survivor::useItem(Item_inventory *i) { //use the holding item
             turnOnBoat();
             return; // no need to reduce durability
         case Item::ID::TORCH:
+            if (durability > 0) {
+                itemSwitchState(Item::ID::TORCH, Item::ID::TORCH_LIT);
+                switchTorchState();
+            }
+            return; // no need to reduce durability
         case Item::ID::TORCH_LIT:
+            itemSwitchState(Item::ID::TORCH_LIT, Item::ID::TORCH);
             switchTorchState();
             return; // no need to reduce durability
         case Item::ID::ROCK:
@@ -272,14 +278,13 @@ void Survivor::useItem(Item_inventory *i) { //use the holding item
     if (durability > 0) {
         --durability;
         if (durability == 0) {
-            deleteItem(selectedItemIndex);
+            deleteItemInventory(selectedItemIndex);
         }else {
             item->setDurability(durability);
         }
     }
 }
 
-#include <iostream>
 void Survivor::pickupItem() { //pick up a item nearby on the ground]
     vector<Handle*> list = map->getHandleGroup(location[0], location[1], base_collision_radius); // get all surrounding handles
     //cout << "pickup()" << endl;
@@ -331,28 +336,22 @@ void Survivor::dropItem() {
     }
 }
 
+
 void Survivor::switchTorchState() { //switch between torch and set a new durability
-    if (Inventory[selectedItemIndex] == nullptr) return; //check if not holding any item 
 
-    int durability;
-    Item::ID id = Inventory[selectedItemIndex]->item->getID();
-
-    if (id == Item::ID::TORCH || id == Item::ID::TORCH_LIT) { // if used item is torch
-        durability = Inventory[selectedItemIndex]->item->getDurability();
-
-        if (id == Item::ID::TORCH) { // only able to switch to lit state when durability > 0
-            if (durability > 0) {
-                delete Inventory[selectedItemIndex]; //remove the old one
-                Inventory[selectedItemIndex] = new Item_inventory {Item::ID::TORCH_LIT};
+    Item::ID id;
+    for (int index = 0; index < maxSlotOfInventory; ++index) {
+        if (Inventory[index] != nullptr) {
+            id = Inventory[index]->item->getID();
+            if (id == Item::ID::TORCH_LIT) {
                 setVisibleSize(getVisibleSize() + Inventory[selectedItemIndex]->item->getData()); //add visible size
+                break;
+            }
+            if (id == Item::ID::TORCH) {
+                setVisibleSize(getVisibleSize() - Inventory[selectedItemIndex]->item->getData()); // shrink visible size
+                break;
             }
         }
-        else {
-            delete Inventory[selectedItemIndex]; //remove the old one
-            Inventory[selectedItemIndex] = new Item_inventory {Item::ID::TORCH};
-            setVisibleSize(getVisibleSize() - Inventory[selectedItemIndex]->item->getData()); // shrink visible size
-        }
-        Inventory[selectedItemIndex]->item->setDurability(durability);
     }
 }
 
@@ -368,21 +367,17 @@ void Survivor::itemSwitchState(Item::ID oldID, Item::ID newID) { //item is run o
     if (ih == nullptr) return; // if item is not present
 
     int durability = ih->item->getDurability();
-    deleteItem(i);
+    deleteItemInventory(i);
     if (newID != Item::ID::EMPTY) { // check if no need to create new item
         ih = new Item_inventory {newID};
         ih->item->setDurability(durability);
         Inventory[i] = ih; // put the item back to the inventory
-
-        if (newID == Item::ID::TORCH) { // in the case of torch
-            setVisibleSize(getVisibleSize() - ih->item->getData()); // shrink visible size
-        }
     }
 
 }
 
 
-void Survivor::deleteItem(int index) {
+void Survivor::deleteItemInventory(int index) {
     delete Inventory[index];
     Inventory[index] = nullptr;
 }
@@ -415,7 +410,7 @@ bool Survivor::turnOnBoat() const { //if can turnon the boat, end the game
     return false;
 }
 
-int Survivor::getItemIndex(Item::ID id) const { //loop through the item array to check the item
+int Survivor::getItemInventoryIndex(Item::ID id) const { //loop through the item array to check the item
     for (int i = 0; i < maxSlotOfInventory; ++i) {
         if (Inventory[i] != nullptr && Inventory[i]->item->getID() == id) { //search item name
             return i;

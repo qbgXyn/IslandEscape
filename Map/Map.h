@@ -35,6 +35,8 @@ class Map {
 
         void end_game();
 
+        void mapUpdate();
+
         double getMaxWidth() const; //accessor 
         double getMaxHeight() const;
 
@@ -45,6 +47,7 @@ class Map {
         double getRandomDouble(double minValue, double maxValue) const; //create random double
 
         double distanceBetweenPoints(double x1, double y1, double x2, double y2) const; //function to calculate distance between two points
+        bool isDoubleZero(double d) const; //function to calculate whether a double is zero (due to it's imprecision)
 
         vector<Handle*> getHandleGroup(double x, double y, double radius); //a frequently called function which check all handles that exist within the circle with input radius
 

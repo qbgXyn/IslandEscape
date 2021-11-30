@@ -100,17 +100,18 @@ void MainWindow::main_loop() {
         map->setGameTime(game_time - 1);
 
     int torch_time = survivor->getTorchTime();
-    index = survivor->getItemIndex(Item::ID::TORCH_LIT);
+    index = survivor->getItemInventoryIndex(Item::ID::TORCH_LIT);
     if (index != ITEM_NOT_EXIST) {
         --torch_time;
         if (torch_time >= 0) {
             survivor->Inventory[index]->item->setDurability(torch_time);
         }else {
             survivor->itemSwitchState(Item::ID::TORCH_LIT, Item::ID::TORCH);
+            survivor->switchTorchState();
         }
     }
     // testing call
-    survivor->update();
+    map->mapUpdate();
 
     ui->label_health->setText(": " + QString::number(survivor->getHealth()));
     ui->label_time->setText(": " + QString::number(game_time/GAME_TICK) + "s");
@@ -182,12 +183,13 @@ void MainWindow::main_loop() {
 
     ui->widget->loop();
 
-    // Check Handle Health
-    for (vector<Handle*>::iterator p = map->List.begin(); p != map->List.end(); ++p) {
-        if ((*p)->getHealth() <= 0) {
-            map->removeHandle(reinterpret_cast<Handle*>(*p));
-        }
-    }
+     // shifted to map->mapUpdate()
+//    // Check Handle Health
+//    for (vector<Handle*>::iterator p = map->List.begin(); p != map->List.end(); ++p) {
+//        if ((*p)->getHealth() <= 0) {
+//            map->removeHandle(reinterpret_cast<Handle*>(*p));
+//        }
+//    }
 
     // Check End game
     if (map->win) {

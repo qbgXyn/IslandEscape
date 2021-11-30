@@ -1,6 +1,5 @@
 //#include "Handle.h"
 #include "../Map/Map.h"
-#include "../util.h"
 
 Handle::Handle(Map *map, double x, double y) { //constructor which put handles on the location in the map
     this->map = map;
@@ -133,6 +132,7 @@ bool Handle::isHandleVisible(Handle *h) const { //check if handle visible, only 
     return false;
 }
 
+#include <iostream>
 void Handle::update() {
     /*
     1. get new position
@@ -143,6 +143,12 @@ void Handle::update() {
     5. if max speed not reached, and move button pressed, increase velocity
     */
    double newPosition[2]; //temp array for new position
+
+//    cout << "handle update:" << static_cast<int> (this->type) << endl;
+   
+   if (map->isDoubleZero(getVelocity())) { 
+       return; // no need to update position since no velocity
+   }
 
    newPosition[0] = location[0] + velocity[0]; //new position
    newPosition[1] = location[1] + velocity[1];
