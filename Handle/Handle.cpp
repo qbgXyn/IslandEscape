@@ -44,7 +44,16 @@ double Handle::getVelocityY() const { //accessor
 }
 
 double Handle::getDirection() const { //accessor
-    return atan2(-velocity[1], velocity[0])*180.0/PI; //return the angle of the direction
+    double angle = atan2(abs(velocity[1]), abs(velocity[0]))*180/PI;
+    if (velocity[0] <= 0 && velocity[1] <= 0)       //vector points at left top
+        angle = 180-angle;
+    else if (velocity[0] <= 0 && velocity[1] >= 0)  //vector points at left bottom
+        angle -= 180;
+    else if (velocity[0] >= 0 && velocity[1] >= 0)  //vector points at right bottom
+        angle = -angle;
+    else if (velocity[0] <= 0 && velocity[1] <= 0); //vector points at left top
+
+    return angle; //return the angle of the direction
 }
 
 float Handle::getCollisionRadius() const { //accessor
