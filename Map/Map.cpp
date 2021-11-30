@@ -460,7 +460,6 @@ void Map::loadHandleList(QString filePath)
     }
     file.close();
     // qDebug() << numlist;
-    int x = 0, y = 0;
     foreach(QString num, numlist) {
         Handle::Type type;
         // std::cout << num.toInt();
