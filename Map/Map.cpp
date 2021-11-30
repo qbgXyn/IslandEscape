@@ -478,7 +478,7 @@ void Map::loadHandleList(QString filePath)
                 y = numlist.at(i).toInt();
                 ++i;
                 Chest = createHandle(type, x, y);
-                for (int i = 0; i < 9; i++) {
+                for (int j = 0; j < 9; j++) {
                     Item::ID itemType = static_cast<Item::ID>(numlist.at(i).toInt());
                     ++i;
                     Chest->ChestAddItem(itemType);
