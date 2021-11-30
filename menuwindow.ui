@@ -66,7 +66,7 @@
        <widget class="QLabel" name="label_island_escape">
         <property name="font">
          <font>
-          <family>Comic Sans MS</family>
+          <family>Luminari</family>
           <pointsize>40</pointsize>
           <weight>75</weight>
           <bold>true</bold>
@@ -96,13 +96,13 @@
            </property>
            <property name="font">
             <font>
-             <family>Comic Sans MS</family>
+             <family>Luminari</family>
              <pointsize>30</pointsize>
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color: rgba(255, 255, 255, 0);
-color: rgb(255,255,255)</string>
+            <string notr="true">color: rgb(255,255,255);
+background-color: rgb(125,125,125)</string>
            </property>
            <property name="text">
             <string>Start</string>
@@ -120,7 +120,7 @@ color: rgb(255,255,255)</string>
        <widget class="QLabel" name="label_select_level">
         <property name="font">
          <font>
-          <family>Comic Sans MS</family>
+          <family>Luminari</family>
           <pointsize>30</pointsize>
          </font>
         </property>
@@ -157,7 +157,7 @@ color: rgb(255,255,255)</string>
          </property>
          <property name="font">
           <font>
-           <family>Comic Sans MS</family>
+           <family>Luminari</family>
            <pointsize>20</pointsize>
           </font>
          </property>
@@ -194,7 +194,7 @@ color: rgb(255,255,255)</string>
          </property>
          <property name="font">
           <font>
-           <family>Comic Sans MS</family>
+           <family>Luminari</family>
            <pointsize>20</pointsize>
           </font>
          </property>
@@ -225,7 +225,7 @@ color: rgb(255,255,255)</string>
          </property>
          <property name="font">
           <font>
-           <family>Comic Sans MS</family>
+           <family>Luminari</family>
            <pointsize>20</pointsize>
           </font>
          </property>
@@ -256,7 +256,7 @@ color: rgb(255,255,255)</string>
          </property>
          <property name="font">
           <font>
-           <family>Comic Sans MS</family>
+           <family>Luminari</family>
            <pointsize>20</pointsize>
           </font>
          </property>
@@ -287,7 +287,7 @@ color: rgb(255,255,255)</string>
          </property>
          <property name="font">
           <font>
-           <family>Comic Sans MS</family>
+           <family>Luminari</family>
            <pointsize>20</pointsize>
           </font>
          </property>
@@ -315,11 +315,16 @@ color: rgb(255,255,255)</string>
       <height>16</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="layoutDirection">
      <enum>Qt::LeftToRight</enum>
     </property>
     <property name="styleSheet">
-     <string notr="true">color:  rgb(255, 255, 255)</string>
+     <string notr="true">color: rgb(125, 125, 125)</string>
     </property>
     <property name="text">
      <string>Code and UI design by COMP2012H H16 ( QIU Zhijian,  LEUNG Chun Kit,  LIU Ming Hay )</string>
@@ -334,8 +339,13 @@ color: rgb(255,255,255)</string>
       <height>16</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(255, 255, 255)</string>
+     <string notr="true">color: rgb(125, 125, 125)</string>
     </property>
     <property name="text">
      <string>Building icons / images / sound by pngtree ( https://zh.pngtree.com ) &amp; OpenGameArt (https://opengameart.org)</string>
