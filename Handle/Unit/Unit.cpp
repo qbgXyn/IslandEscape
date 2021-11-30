@@ -26,8 +26,16 @@ bool Unit::isInsideSector(const Handle *h, double sector_angle) const //check if
     double current_direction = this->getDirection();
     double start_angle = current_direction - half_angle; //the start angle of the radius
     double end_angle = current_direction + half_angle; //end angle of the radius
-    double target_handle_angle = atan2(-(h->getY()-this->getY()), (h->getX()-this->getX()))*180/PI;
-    if (target_handle_angle >= start_angle && target_handle_angle <= end_angle) //return true if it is within the radius sector
+    double target_handle_angle = atan2(abs(h->getY()-this->getY()), abs(h->getX()-this->getX()))*180/PI;
+    if (this->getX() >= h->getX() && this->getY() >= h->getY())       //h is at left top
+        target_handle_angle = 180-target_handle_angle;
+    else if (this->getX() >= h->getX() && this->getY() <= h->getY())  //h is at left bottom
+        target_handle_angle -= 180;
+    else if (this->getX() <= h->getX() && this->getY() <= h->getY())  //h is at right bottom
+        target_handle_angle = -target_handle_angle;
+    else if (this->getX() <= h->getX() && this->getY() >= h->getY()); //h is at right top
+    if ((target_handle_angle >= start_angle && target_handle_angle <= end_angle) ||
+        (target_handle_angle+360 >= start_angle && target_handle_angle+360 <= end_angle)) //return true if it is within the radius sector
     {
         return true;
     }
