@@ -10,6 +10,7 @@
 #include <iostream>
 #include <vector>
 
+#include <QMessageBox>
 //#include <QPainter>
 
 const QString NOT_PASSED_STYLE = "background-color: rgba(168, 50, 50, 255);";
@@ -139,22 +140,36 @@ void MenuWindow::on_btn_start_clicked() {
 }
 
 void MenuWindow::on_btn_level_1_clicked() {
-    selected_level = 1;
-    start_game(selected_level, "Map2.txt", "HandleList2");
+//    selected_level = 1;
+//    start_game(selected_level, "Map2.txt", "HandleList2");
+//    QMessageBox::about(this, "Island escape", "hello");
+    QMessageBox *mb = new QMessageBox{window()};
+    mb->setWindowTitle("Island escape");
+    mb->setStyleSheet("font: 14pt \"Comic Sans MS\"; color : gray");
+    mb->setText(QString::fromStdString("BACKGROUND:\n"
+                                       "you're lost on an island\n"
+                                       "but you realized that the island is not that \"normal\"...\n"
+                                       "Be a survivor, find a boat and a key to turn it on in order to escape from the ghostly island."));
+    mb->setAttribute(Qt::WA_DeleteOnClose, true);
+    mb->exec();
 }
 void MenuWindow::on_btn_level_2_clicked() {
+    return; // not finished, so cannot click
     selected_level = 2;
     start_game(selected_level, "Map1.txt", "HandleList1");
 }
 void MenuWindow::on_btn_level_3_clicked() {
+    return; // not finished, so cannot click
     selected_level = 3;
     start_game(selected_level, "Map3.txt", "HandleList3");
 }
 void MenuWindow::on_btn_level_4_clicked() {
+    return; // not finished, so cannot click
     selected_level = 4;
     start_game(selected_level, "Map4.txt", "HandleList4");
 }
 void MenuWindow::on_btn_level_5_clicked() {
+    return; // not finished, so cannot click
     selected_level = 5;
     start_game(selected_level, "Map5.txt", "HandleList5");
 }

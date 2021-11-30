@@ -58,7 +58,7 @@
      <enum>Qt::LeftToRight</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="page_main">
      <layout class="QVBoxLayout" name="verticalLayout">
@@ -165,7 +165,7 @@ background-color: rgb(125,125,125)</string>
           <bool>false</bool>
          </property>
          <property name="text">
-          <string>Trial</string>
+          <string>Tutorial</string>
          </property>
          <property name="iconSize">
           <size>
@@ -199,7 +199,7 @@ background-color: rgb(125,125,125)</string>
           </font>
          </property>
          <property name="text">
-          <string>4</string>
+          <string/>
          </property>
          <property name="iconSize">
           <size>
@@ -230,7 +230,7 @@ background-color: rgb(125,125,125)</string>
           </font>
          </property>
          <property name="text">
-          <string>3</string>
+          <string/>
          </property>
          <property name="iconSize">
           <size>
@@ -292,7 +292,7 @@ background-color: rgb(125,125,125)</string>
           </font>
          </property>
          <property name="text">
-          <string>2</string>
+          <string/>
          </property>
          <property name="iconSize">
           <size>
