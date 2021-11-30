@@ -66,19 +66,16 @@ void Unit::attack(double attackRadius, double sectorAngle) {
     vector<Handle*>::const_iterator it_end = list.end(); 
     for(vector<Handle*>::const_iterator it = list.begin(); it != it_end; ++it) 
     {
-        if ((*it)->getType()!=Handle::Type::ITEM) // check if it is item
+        if (isInsideSector(*it, sectorAngle) == true) // check if it within attack sector range
         {
-            if (isInsideSector(*it, sectorAngle) == true) // check if it within attack sector range
+            if (!(*it)->isInvulnerable()) //check if it is vulnerable
             {
-                if (!isInvulnerable()) //check if it is vulnerable
+                if ((*it) -> getType() != this -> getType() && this != (*it)) // check if it is the same type
                 {
-                    if ((*it) -> getType() != this -> getType() && this != (*it)) // check if it is the same type
+                    if (this -> getDamage() >= (*it) -> getArmor()) // check if attack > armor
                     {
-                        if (this -> getDamage() >= (*it) -> getArmor()) // check if attack > armor
-                        {
-                            int newHealth = (*it)->getHealth() - (this->getDamage() - (*it)->getArmor());
-                            (*it) -> setHealth(newHealth);
-                        }
+                        int newHealth = (*it)->getHealth() - (this->getDamage() - (*it)->getArmor());
+                        (*it) -> setHealth(newHealth);
                     }
                 }
             }
