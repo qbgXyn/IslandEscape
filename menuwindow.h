@@ -25,7 +25,7 @@ public:
     void clear_level();
 
 private:
-    void start_game(int selected_level, string filename);
+    void start_game(int selected_level, string filename, string handleFilename);
 
     Ui::MenuWindow *ui;
 

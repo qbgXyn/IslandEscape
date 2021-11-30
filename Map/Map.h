@@ -30,7 +30,7 @@ class Map {
         double height; // y
 
     public:
-        Map(double width, double height, QString filePath); //constructor
+        Map(double width, double height, QString filePath, QString HandleFilePath); //constructor
         ~Map(); //destructor
 
         void end_game();

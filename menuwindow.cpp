@@ -60,22 +60,26 @@ MenuWindow::~MenuWindow()
     delete bgmList;
 }
 
-void MenuWindow::start_game(int selected_level, string filename) {
+void MenuWindow::start_game(int selected_level, string filename, string handleFilename) {
     Map* map;
     QString filePath;
+    QString HandleFilePath;
     int width, height;
     filename = ":/resources/world/"+filename;
+    handleFilename = ":/resources/world/"+handlefilename;
     switch (selected_level) {
         case 1: {
             width = 60;
             height = 60;
             filePath = QString::fromStdString(filename);
+            HandleFilePath = QString::fromStdString(handleFilename);
             break;
         }
         case 2: {
             width = 60;
             height = 60;
             filePath = QString::fromStdString(filename);
+            HandleFilePath = QString::fromStdString(handleFilename);
             break;
         }
         default: {
@@ -84,7 +88,7 @@ void MenuWindow::start_game(int selected_level, string filename) {
             break;
         }
     }
-    map = new Map(width*64, height*64, filePath);
+    map = new Map(width*64, height*64, filePath, HandleFilePath);
     MainWindow *m = new MainWindow{map, this, nullptr};
     m->setAttribute(Qt::WA_DeleteOnClose);
     m->show();
@@ -136,21 +140,21 @@ void MenuWindow::on_btn_start_clicked() {
 
 void MenuWindow::on_btn_level_1_clicked() {
     selected_level = 1;
-    start_game(selected_level, "Map2.txt");
+    start_game(selected_level, "Map2.txt", "HandleList2");
 }
 void MenuWindow::on_btn_level_2_clicked() {
     selected_level = 2;
-    start_game(selected_level, "Map1.txt");
+    start_game(selected_level, "Map1.txt", "HandleList1");
 }
 void MenuWindow::on_btn_level_3_clicked() {
     selected_level = 3;
-    start_game(selected_level, "Map3.txt");
+    start_game(selected_level, "Map3.txt", "HandleList3");
 }
 void MenuWindow::on_btn_level_4_clicked() {
     selected_level = 4;
-    start_game(selected_level, "Map4.txt");
+    start_game(selected_level, "Map4.txt", "HandleList4");
 }
 void MenuWindow::on_btn_level_5_clicked() {
     selected_level = 5;
-    start_game(selected_level, "Map5.txt");
+    start_game(selected_level, "Map5.txt", "HandleList5");
 }

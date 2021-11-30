@@ -20,7 +20,7 @@
 #include <QTextStream>
 #include <QStringList>
 
-Map::Map(double width, double height, QString filePath) : width(width), height(height) { //constructor:)
+Map::Map(double width, double height, QString filePath, QString HandleFilePath) : width(width), height(height) { //constructor:)
     int i = width/grid_size;  // width = i grids 
     int j = height/grid_size; // height = j grids
 
@@ -62,7 +62,7 @@ Map::Map(double width, double height, QString filePath) : width(width), height(h
     player = reinterpret_cast<Survivor*>(createHandle(Handle::Type::SURVIVOR, 320, 320));
 
     // Create Decorations
-    createHandle(Handle::Type::BOAT, 2*64, 11*64/2);
+    /*createHandle(Handle::Type::BOAT, 2*64, 11*64/2);
     createHandle(Handle::Type::CAMPFIRE, 10*64-32, 10*64-32);
     createHandle(Handle::Type::CHEST, 7*64-32, 5*64-32);
     createHandle(Handle::Type::TREE, 2*64-32, 2*64-32);
@@ -70,9 +70,9 @@ Map::Map(double width, double height, QString filePath) : width(width), height(h
     createHandle(Handle::Type::TREE, 2*64-32, 4*64-32);
     createHandle(Handle::Type::TREE, 4*64-32, 4*64-32);
     createItem_Handle(Item::ID::KEY, 12*64-32, 12*64-32);
-    createHandle(Handle::Type::GHOST, 400, 400);
+    createHandle(Handle::Type::GHOST, 400, 400);*/
 
-    handleLoading();
+    loadHandleList(HandleFilePath);
     // for (int i = 0; i < height; ++i) {
     //     for (int j = 0; j < width; ++j) {
     //         cout << array[j][i] << " ";
