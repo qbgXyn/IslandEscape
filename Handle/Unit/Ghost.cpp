@@ -46,6 +46,8 @@ void Ghost::update() {
         --attackInterval;
     }
 
+    cout << "update: " << location[0] << " " << location[1] << endl;
+
     // ai section
     if (state == State::STATIC) {
         while(true) {
@@ -114,14 +116,27 @@ void Ghost::move_AI(double x, double y) {
     velocity[0] = dx/total * max_speed;
     velocity[1] = dy/total * max_speed;
 
+    cout << "location[0]: " << location[0] << endl;
+    cout << "location[1]: " << location[1] << endl;
+    cout << "patrolCenterLocation[0]: " << patrolCenterLocation[0] << endl;
+    cout << "patrolCenterLocation[1]: " << patrolCenterLocation[1] << endl;
+    cout << "randomTargetLocation[0]: " << randomTargetLocation[0] << endl;
+    cout << "randomTargetLocation[1]: " << randomTargetLocation[1] << endl;
+    cout << "x: " << x << endl;
+    cout << "y: " << y << endl;
+    cout << "dx: " << dx << endl;
+    cout << "dy: " << dy << endl;
+    cout << "total: " << total << endl;
+    cout << "v0: " << velocity[0] << endl;
+    cout << "v1: " << velocity[1] << endl;
+
     //if overshot
-    if (abs(velocity[0]) > dx) {
+    if (abs(velocity[0]) > dx && abs(velocity[1]) > dy) {
         location[0] = x;
         velocity[0] = 0;
-    }
-    if (abs(velocity[1]) > dy) {
         location[1] = y;
         velocity[1] = 0;
+        cout << "overshot" << endl;
     }
 }
 
