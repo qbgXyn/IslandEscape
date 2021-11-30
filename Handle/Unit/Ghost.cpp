@@ -68,6 +68,7 @@ void Ghost::update() {
         cout << "ghost update - ai - return" << endl;
         move_AI(patrolCenterLocation[0], patrolCenterLocation[1]);
         double d = std::hypot(location[0] - patrolCenterLocation[0], location[1] - patrolCenterLocation[1]); // distance between itself and patrol center
+        cout << d << endl;
         if (map->isDoubleZero(d)) {
             state = State::STATIC;
         }
@@ -85,6 +86,7 @@ void Ghost::patrol() {
 
         // if reach the target point
         d = std::hypot(location[0] - randomTargetLocation[0], location[1] - randomTargetLocation[1]);
+        cout << d << endl;
         if (map->isDoubleZero(d)) {
             state = State::STATIC; // directly go to next random point
             return;
@@ -111,6 +113,16 @@ void Ghost::move_AI(double x, double y) {
     // separate max_speed to x and y components by ratio
     velocity[0] = dx/total * max_speed;
     velocity[1] = dy/total * max_speed;
+
+    //if overshot
+    if (abs(velocity[0]) > dx) {
+        location[0] = x;
+        velocity[0] = 0;
+    }
+    if (abs(velocity[1]) > dy) {
+        location[1] = y;
+        velocity[1] = 0;
+    }
 }
 
 void Ghost::chase(Handle* u) {
