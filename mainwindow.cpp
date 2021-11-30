@@ -201,7 +201,7 @@ void MainWindow::main_loop() {
         QMessageBox *mb = new QMessageBox{window()};
         mb->setWindowTitle("Island escape");
         mb->setStyleSheet("font: 14pt \"Comic Sans MS\";");
-        mb->setText(QString::fromStdString("You WIN!!! HAHA :)"));
+        mb->setText(QString::fromStdString("You WIN!!!\n HAHA :)"));
 
         mb->setAttribute(Qt::WA_DeleteOnClose, true);
         mb->exec();
@@ -214,7 +214,7 @@ void MainWindow::main_loop() {
         QMessageBox *mb = new QMessageBox{window()};
         mb->setWindowTitle("Island escape");
         mb->setStyleSheet("font: 14pt \"Comic Sans MS\";");
-        mb->setText(QString::fromStdString("You LOSE!!! Bad Guy >_<"));
+        mb->setText(QString::fromStdString("You LOSE!!!\n Bad Guy >_<"));
 
         mb->setAttribute(Qt::WA_DeleteOnClose, true);
         mb->exec();

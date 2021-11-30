@@ -33,6 +33,7 @@ background-image: url(:/resources/images/stripes.png);
     </property>
     <property name="font">
      <font>
+      <family>Luminari</family>
       <pointsize>24</pointsize>
       <weight>75</weight>
       <italic>false</italic>
@@ -90,6 +91,7 @@ background-image: url(:/resources/images/stripes.png);
     </property>
     <property name="font">
      <font>
+      <family>Luminari</family>
       <pointsize>48</pointsize>
      </font>
     </property>
@@ -111,6 +113,7 @@ background-image: url(:/resources/images/stripes.png);
     </property>
     <property name="font">
      <font>
+      <family>Luminari</family>
       <pointsize>48</pointsize>
      </font>
     </property>
@@ -154,6 +157,7 @@ background-image: url(:/resources/images/stripes.png);
     </property>
     <property name="font">
      <font>
+      <family>Luminari</family>
       <pointsize>48</pointsize>
      </font>
     </property>
@@ -384,6 +388,7 @@ background-image: url(:/resources/images/stripes.png);
     </property>
     <property name="font">
      <font>
+      <family>Luminari</family>
       <pointsize>24</pointsize>
       <weight>75</weight>
       <italic>true</italic>
@@ -411,6 +416,7 @@ background-image: url(:/resources/images/stripes.png);
     </property>
     <property name="font">
      <font>
+      <family>Luminari</family>
       <pointsize>24</pointsize>
       <weight>75</weight>
       <italic>true</italic>
