@@ -55,6 +55,8 @@ void Ghost::update() {
             randomTargetLocation[0] = map->getRandomDouble(patrolCenterLocation[0] - patrolRadius, patrolCenterLocation[0] + patrolRadius);
             randomTargetLocation[1] = map->getRandomDouble(patrolCenterLocation[1] - patrolRadius, patrolCenterLocation[1] + patrolRadius);
             cout << "ghost update - picking location: " << randomTargetLocation[0] <<  " " << randomTargetLocation[1] << " " << map->distanceBetweenPoints(randomTargetLocation[0], randomTargetLocation[1], patrolCenterLocation[0], patrolCenterLocation[1]) << " " << patrolRadius << endl;
+            if (!map->isCoordinateInMap(randomTargetLocation[0], randomTargetLocation[1]))
+                continue;
             if (map->distanceBetweenPoints(randomTargetLocation[0], randomTargetLocation[1], patrolCenterLocation[0], patrolCenterLocation[1]) <= patrolRadius) { //randomly walk within the patrol radius
                 break;
             }
@@ -82,17 +84,17 @@ void Ghost::update() {
 
 void Ghost::patrol() {
     double d;
+    // if reach the target point
+    d = std::hypot(location[0] - randomTargetLocation[0], location[1] - randomTargetLocation[1]);
+    cout << "D: " << d << endl;
+    if (map->isDoubleZero(d)) {
+        state = State::STATIC; // directly go to next random point
+        return;
+    }
+
     vector<Handle*> list = map->getHandleGroup(location[0], location[1], detectRadius); // get all surrounding handle within detect radius
     vector<Handle*>::const_iterator it_end = list.end(); 
     for(vector<Handle*>::const_iterator it = list.begin(); it != it_end; ++it) {
-
-        // if reach the target point
-        d = std::hypot(location[0] - randomTargetLocation[0], location[1] - randomTargetLocation[1]);
-        cout << d << endl;
-        if (map->isDoubleZero(d)) {
-            state = State::STATIC; // directly go to next random point
-            return;
-        }
 
         //if within the detect radius has survivor, start chasing
         if ((*it)->getType() == Handle::Type::SURVIVOR && !(*it)->isInvulnerable() && !(*it)->isInvisible()) {
@@ -113,8 +115,8 @@ void Ghost::move_AI(double x, double y) {
     double total = abs(dx+dy);
 
     // separate max_speed to x and y components by ratio
-    velocity[0] = dx/total * max_speed;
-    velocity[1] = dy/total * max_speed;
+    velocity[0] = (dx/total) * max_speed;
+    velocity[1] = (dy/total) * max_speed;
 
     cout << "location[0]: " << location[0] << endl;
     cout << "location[1]: " << location[1] << endl;
