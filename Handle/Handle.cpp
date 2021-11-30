@@ -117,19 +117,14 @@ void Handle::setVelocityY(double speed) {
     velocity[1] = speed;
 }
 
-#include <iostream>
-bool Handle::hasCollision(const Handle *h) const { //check collision
+bool Handle::hasCollision(const Handle *h, double x, double y) const { //check collision
     // if one of them is collisionless
     if (h->isCollisionless() || isCollisionless()) {
         return false;
     }
-    cout << "going to check collision::" << endl;
-    double d = map->distanceBetweenPoints(this->location[0], this->location[1], h->location[0], h->location[1]); //check distance between
-    cout << location[0] << " " << location[1] << endl;
-    cout << h->location[0] << " " << h->location[1] << endl;
-    cout << "d: " << d << endl;
-    cout << collisionRadius << " " << h->collisionRadius << endl;
-    cout << d - this->collisionRadius - h->collisionRadius << endl;
+
+    //check distance between
+    double d = map->distanceBetweenPoints(x, y, h->location[0], h->location[1]);
     return ( (d - this->collisionRadius - h->collisionRadius) < 0);
 }
 
@@ -213,7 +208,7 @@ bool Handle::isCoordinateWalkable(double x, double y) const{
 
     vector<Handle*>::const_iterator it_end = list.end(); // check if it collide with existing handle
     for(vector<Handle*>::const_iterator it = list.begin(); it != it_end; ++it) {
-        if (this != *it && hasCollision(*it)) { //if collide, then cannot walk
+        if (this != *it && hasCollision(*it, x, y)) { //if collide, then cannot walk
             return false;
         }
     }
