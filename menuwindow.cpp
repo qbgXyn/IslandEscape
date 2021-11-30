@@ -67,14 +67,14 @@ void MenuWindow::start_game(int selected_level, string filename) {
     filename = ":/resources/world/"+filename;
     switch (selected_level) {
         case 1: {
-            width = 60;
-            height = 60;
+            width = 12;
+            height = 10;
             filePath = QString::fromStdString(filename);
             break;
         }
         case 2: {
-            width = 12;
-            height = 10;
+            width = 60;
+            height = 60;
             filePath = QString::fromStdString(filename);
             break;
         }
@@ -136,11 +136,11 @@ void MenuWindow::on_btn_start_clicked() {
 
 void MenuWindow::on_btn_level_1_clicked() {
     selected_level = 1;
-    start_game(selected_level, "Map1.txt");
+    start_game(selected_level, "Map2.txt");
 }
 void MenuWindow::on_btn_level_2_clicked() {
     selected_level = 2;
-    start_game(selected_level, "Map2.txt");
+    start_game(selected_level, "Map1.txt");
 }
 void MenuWindow::on_btn_level_3_clicked() {
     selected_level = 3;

@@ -41,7 +41,7 @@ namespace sword
     const string description = "a sword which deal 1 damage to enemy in front of you.";
     const string texture = ":/resources/images/Item/short_sword.png";
     const int durability = 150*GAME_TICK;
-    const double data = 1.0;
+    const double data = 2.0;
     const int duration = 1*GAME_TICK; // attack cooldown
 };
 

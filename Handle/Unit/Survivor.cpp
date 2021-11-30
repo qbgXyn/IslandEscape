@@ -4,14 +4,12 @@
 
 #include "../../Item/Item_data.h"
 
-#include <iostream>
-
 //#include <bits/stdc++.h>
-const float Survivor::base_collision_radius = 64.0;
-const double Survivor::base_max_speed = 10.0;
+const float Survivor::base_collision_radius = 128.0;
+const double Survivor::base_max_speed = 8.0;
 const int Survivor::base_attackInterval = 1; 
-const float Survivor::base_attack_radius = 96.0; 
-const double Survivor::base_attack_sector_angle = 60.0; // set base index for survivor
+const float Survivor::base_attack_radius = 128.0;
+const double Survivor::base_attack_sector_angle = 120.0; // set base index for survivor
 const int Survivor::base_max_health = 10.0;
 
 Survivor::Survivor(Map *map, double x, double y) : Unit(map, x, y) { //constructor
@@ -68,7 +66,7 @@ void Survivor::update() {
         Effect *e;
         for(vector<Effect*>::const_iterator it = EffectList.begin(); it != it_end; ++it) { // iterate all effect
             e = *it;
-            cout << e << endl;
+            //cout << e << endl;
             duration = (*it)->getDuration();
             --duration;
             if (duration > 0) {
@@ -80,7 +78,7 @@ void Survivor::update() {
     }
 
     // campfire section
-    vector<Handle*> nearbyList = map->getHandleGroup(location[0], location[1], 2*base_collision_radius);
+    vector<Handle*> nearbyList = map->getHandleGroup(location[0], location[1], base_collision_radius);
     vector<Handle*>::const_iterator it_end = nearbyList.end();
     bool isNearCampfire = false;
     for(vector<Handle*>::const_iterator it = nearbyList.begin(); it != it_end; ++it) { // search for campfire
@@ -120,18 +118,18 @@ double Survivor::getDirection() const {
 }
 
 void Survivor::setMoveDirection(bool move, double direction) {
+    this->direction = direction;
     if (!move) {
         setVelocityX(0);
         setVelocityY(0);
         return;
     }
-    this->direction = direction;
-    if (direction == 0 || direction == 180) {
+    if (direction == 90 || direction == -90) {
         setVelocityX(0);
-        setVelocityY((direction-90)*base_max_speed/90);
+        setVelocityY(-(direction)*base_max_speed/90);
     }
-    if (direction == -90 || direction == 90) {
-        setVelocityX((direction)*base_max_speed/90);
+    if (direction == 180 || direction == 0) {
+        setVelocityX((90-direction)*base_max_speed/90);
         setVelocityY(0);
     }
     if (direction == 45) {
@@ -139,21 +137,21 @@ void Survivor::setMoveDirection(bool move, double direction) {
         setVelocityY(-sqrt(base_max_speed*base_max_speed/2));
     }
     if (direction == 135) {
-        setVelocityX(sqrt(base_max_speed*base_max_speed/2));
-        setVelocityY(sqrt(base_max_speed*base_max_speed/2));
+        setVelocityX(-sqrt(base_max_speed*base_max_speed/2));
+        setVelocityY(-sqrt(base_max_speed*base_max_speed/2));
     }
     if (direction == -135) {
         setVelocityX(-sqrt(base_max_speed*base_max_speed/2));
         setVelocityY(sqrt(base_max_speed*base_max_speed/2));
     }
     if (direction == -45) {
-        setVelocityX(-sqrt(base_max_speed*base_max_speed/2));
-        setVelocityY(-sqrt(base_max_speed*base_max_speed/2));
+        setVelocityX(sqrt(base_max_speed*base_max_speed/2));
+        setVelocityY(sqrt(base_max_speed*base_max_speed/2));
     }
 }
 
 void Survivor::gainAttributeFromEffect(Effect *e) { //gain effect
-    cout << "gain effect" << endl;
+    //cout << "gain effect" << endl;
     Effect::Type type = e->getType();
     switch(type) {
         case Effect::Type::REGEN_INSTANT:
@@ -170,21 +168,21 @@ void Survivor::gainAttributeFromEffect(Effect *e) { //gain effect
             setInvisible(true);
             break;
     }
-     cout << "gain effect done" << endl;
+     //cout << "gain effect done" << endl;
 }
 
 void Survivor::addEffect(Effect *e) { //add effect into the vector list
-    cout << "add effect" << endl;
+    //cout << "add effect" << endl;
     gainAttributeFromEffect(e);
     if (e->getDuration() > 0) {// if duration > 0, add it to list and set-up timer
-        cout << "add effect to list" << endl;
+        //cout << "add effect to list" << endl;
         EffectList.push_back(e);
     }
-    cout << "add effect done" << endl;
+    //cout << "add effect done" << endl;
 }
 
 void Survivor::removeAttributeFromEffect(Effect *e) {
-    cout << "remove attribute effect" << endl;
+    //cout << "remove attribute effect" << endl;
     Effect::Type type = e->getType();
     switch(type) {
         case Effect::Type::SPEED:
@@ -199,21 +197,21 @@ void Survivor::removeAttributeFromEffect(Effect *e) {
         default:
             break;
     }
-    cout << "remove attribute effect done" << endl;
+    //cout << "remove attribute effect done" << endl;
 }
 void Survivor::removeEffect(Effect *e) {
-    cout << "remove effect" << endl;
+    //cout << "remove effect" << endl;
     removeAttributeFromEffect(e);
     vector<Effect*>::const_iterator it_end = EffectList.end();
     for(vector<Effect*>::const_iterator it = EffectList.begin(); it != it_end; ++it) { //search and remove the Effect
         if ((*it) == e) {
             delete e;
             EffectList.erase(it);
-            cout << "remove effect return" << endl;
+            //cout << "remove effect return" << endl;
             return; //assuming Effect is unique
         }
     }
-    cout << "remove effect done" << endl;
+    //cout << "remove effect done" << endl;
 }
 
 bool Survivor::isInventoryFull() const { //check if the "bag" is full
@@ -255,7 +253,7 @@ void Survivor::useItem(Item_inventory *i) { //use the holding item
         case Item::ID::REGEN_INSTANT_POTION: {
             Effect *e = new Effect(Effect::Type::REGEN_INSTANT, data, duration);
             addEffect(e);
-            cout << "add regen potion" << endl;
+            //cout << "add regen potion" << endl;
             break;
         }
         case Item::ID::SWORD: // if sword is not in cooldown
@@ -270,7 +268,7 @@ void Survivor::useItem(Item_inventory *i) { //use the holding item
         default:
             break;
     }
-    cout << "durability testing" << endl;
+    //cout << "durability testing" << endl;
     if (durability > 0) {
         --durability;
         if (durability == 0) {
@@ -283,40 +281,40 @@ void Survivor::useItem(Item_inventory *i) { //use the holding item
 
 #include <iostream>
 void Survivor::pickupItem() { //pick up a item nearby on the ground]
-    vector<Handle*> list = map->getHandleGroup(location[0], location[1], 2*base_collision_radius); // get all surrounding handles
-    cout << "pickup()" << endl;
+    vector<Handle*> list = map->getHandleGroup(location[0], location[1], base_collision_radius); // get all surrounding handles
+    //cout << "pickup()" << endl;
 
     Handle* h;
     Item_Handle* ih;
 
     vector<Handle*>::const_iterator it_end = list.end(); // check if it collide with existing handle
     for(vector<Handle*>::const_iterator it = list.begin(); it != it_end; ++it) { // iterate all handle
-        cout << "iterating handle" << endl;
+        //cout << "iterating handle" << endl;
         if (isInventoryFull()) { // no need to search more if inventory is full
-            cout << "inventory full" << endl;
+            //cout << "inventory full" << endl;
             return;
         }
         h = *it;
-        cout << h << endl;
+        //cout << h << endl;
         if (h->getType() == Handle::Type::ITEM) { // if it's item
-            cout << "get an item_handle" << endl;
+            //cout << "get an item_handle" << endl;
             for(int index = 0; index < maxSlotOfInventory; ++index) { // iterate all slot in inventory
-                cout << "searching for empty slot" << endl;
+                //cout << "searching for empty slot" << endl;
                 if (Inventory[index] == nullptr) {                  // find an empty slot of inventory
-                    cout << "find a empty slot: " << index << endl;
+                    //cout << "find a empty slot: " << index << endl;
                     ih = reinterpret_cast<Item_Handle*> (h);
-                    cout << "creating new item inventory" << endl;
-                    Inventory[index] = new Item_inventory {*ih->item};
-                    cout << "name: " << Inventory[index]->item->getName() << endl;
-                    cout << "new item inventory created" << endl;
+                    //cout << "creating new item inventory" << endl;
+                    Inventory[index] = new Item_inventory {ih->item->getID()};
+                    //cout << "name: " << Inventory[index]->item->getName() << endl;
+                    //cout << "new item inventory created" << endl;
                     map->removeHandle(h);
-                    cout << "item_handle removed" << endl;
+                    //cout << "item_handle removed" << endl;
                     break; // back to iterating handle
                 }
             }
         }
     }
-    cout << "pickup() finished" << endl;
+    //cout << "pickup() finished" << endl;
 }
 
 
@@ -407,7 +405,7 @@ int Survivor::getTorchTime() const{ //return the torch durability
 }
 
 bool Survivor::turnOnBoat() const { //if can turnon the boat, end the game
-    vector<Handle*> list = map->getHandleGroup(location[0], location[1], 2*base_collision_radius); // get all surrounding handle
+    vector<Handle*> list = map->getHandleGroup(location[0], location[1], base_collision_radius); // get all surrounding handle
 
     vector<Handle*>::const_iterator it_end = list.end(); // check if it collide with existing handle
     for(vector<Handle*>::const_iterator it = list.begin(); it != it_end; ++it) {

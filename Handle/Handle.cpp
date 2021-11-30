@@ -45,7 +45,7 @@ double Handle::getVelocityY() const { //accessor
 }
 
 double Handle::getDirection() const { //accessor
-    return atan2(velocity[0], -velocity[1]) * 180.0 / PI; //return the angle of the direction
+    return atan2(-velocity[1], velocity[0])*180.0/PI; //return the angle of the direction
 }
 
 float Handle::getCollisionRadius() const { //accessor
@@ -132,8 +132,6 @@ bool Handle::isGridVisible(int x, int y) const { //check if grid visible, only v
 bool Handle::isHandleVisible(Handle *h) const { //check if handle visible, only valid for Unit and it's derived class
     return false;
 }
-
-#include <iostream>
 
 void Handle::update() {
     /*

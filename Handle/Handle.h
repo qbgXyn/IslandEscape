@@ -61,7 +61,7 @@ class Handle {
         double getVelocity() const;
         double getVelocityX() const;
         double getVelocityY() const;
-        double getDirection() const;
+        virtual double getDirection() const;
 
         float getCollisionRadius() const; //accessor for collision radius
 

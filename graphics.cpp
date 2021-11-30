@@ -51,25 +51,25 @@ GameWidget::~GameWidget() {
 
 void GameWidget::loop() {
     // Player Movement
-    double direction = 0;
+    double direction = map->player->getDirection();
     if (LEFT==true) { //because we use vector to make smooth movement, the player need to rotate
-        direction = -90;
+        direction = 180;
         if (UP==true)
-            direction += 45;
-        if (DOWN==true)
             direction += -45;
+        if (DOWN==true)
+            direction += +45;
     }
     else if (RIGHT==true) {
-        direction = 90;
+        direction = 0;
         if (UP==true)
-            direction += -45;
-        if (DOWN==true)
             direction += 45;
+        if (DOWN==true)
+            direction += -45;
     }
     else if (UP==true)
-        direction = 0;
+        direction = 90;
     else if (DOWN==true)
-        direction = 180;
+        direction = -90;
 
     map->player->setMoveDirection( (UP||DOWN||LEFT||RIGHT), direction );
 
@@ -264,9 +264,22 @@ void GameWidget::drawHandle(QPainter& paint, Handle* Handle) {
 }
 
 void GameWidget::drawPlayer(QPainter& paint) {
+    // Draw attack sector
+    int radius = map->player->base_attack_radius;
+    int span = map->player->base_attack_sector_angle;
+    int dispx1, dispx2, dispy1, dispy2;
+    to_display_coordinates(-radius, -radius, dispx1, dispy1);
+    to_display_coordinates(radius, radius, dispx2, dispy2);
+    QRect rect(scroll_x+dispx1, scroll_y+dispy1, dispx2-dispx1, dispy2-dispy1);
+    QBrush previous_brush = paint.brush();
+    paint.setBrush(QBrush{ QColor::fromRgb(100,100,100,100) });
+    paint.drawPie( rect, (map->player->getDirection()-span/2)*16, span*16);
+    paint.setBrush(previous_brush);
+
+    // Draw player
     QPixmap player(":/resources/images/Handle/Unit/player.png");
     QMatrix rm;
-    rm.rotate(map->player->getDirection());
+    rm.rotate(90-map->player->getDirection());
     int w = player.width(), h = player.height();
     player = player.transformed(rm);
     player = player.copy((player.width()-w)/2, (player.height()-h)/2, w, h);
@@ -283,6 +296,12 @@ void GameWidget::drawVision(QPainter& paint) {
     paint.fillRect(width()/2-visible_radius, height(), 2*visible_radius, -(height()/2-visible_radius), NOT_VISIBLE);
 
     fillRect(paint, scroll_x-visible_radius, scroll_y-visible_radius, 2*visible_radius, 2*visible_radius, VISIBLE);
+    /* for (int i = 0; i < map->getMaxWidth(); ++i) {
+        for(int j = 0; j < map->getMaxHeight(); ++j) {
+            if (map->player->isGridVisible(i, j))
+                fillRect(paint, i*64, j*64, 64, 64, VISIBLE);
+        }
+    } */
 }
 
 void GameWidget::paintEvent(QPaintEvent* event) {
