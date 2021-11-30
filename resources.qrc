@@ -59,6 +59,8 @@
         <file>sound/ghost_chasing.mp3</file>
         <file>world/Map1.txt</file>
         <file>world/Map2.txt</file>
+        <file>world/HandleList1.txt</file>
+        <file>world/HandleList2.txt</file>
         <file>sound/main_bgm.wav</file>
         <file>sound/ingame_bgm.mp3</file>
         <file>images/UI/icon.ico</file>
