@@ -337,16 +337,12 @@ void Map::handleLoading()
             break;
         }
     }
-    
 
-
-    /*
-    double randomLocationX;
-    double randomLocationY;
-    int n{9};
+    // createing ghost
+    int n{10};
     for (int i = 0; i < n; i++)
     {
-        if (i >= 0 && i <= 4)
+        if (i >= 0 && i <= 5)
         {
             while (true)
             {
@@ -360,24 +356,9 @@ void Map::handleLoading()
             }
         } 
 
-        if (i == 5)
+        if (i >= 5)
         {
-            while (true)
-            {
-                randomLocationX = getRandomDouble(0, getMaxWidth());
-                randomLocationY = getRandomDouble(0, getMaxHeight()); 
-                Chest* newKeyChest = reinterpret_cast<Chest*> (createHandle(Handle::Type::CHEST, randomLocationX, randomLocationY));
-                if (newKeyChest != nullptr)
-                {
-                    newKeyChest->ChestAddItem(Item::ID::KEY);
-                    break;
-                } 
-            }
-        }
-
-        if (i >= 6)
-        {
-            int x = (i - 6) % 3;
+            int x = (i - 14) % 3;
             if (x == 0)
             {
                 while (true)
@@ -420,13 +401,11 @@ void Map::handleLoading()
                 }    
                 }
             }
-
         }
-
     }
-    */
 }
 
+#include <iostream>
 void Map::loadHandleList(QString filePath)
 {
   // Load file to create Handles for Map
@@ -445,7 +424,7 @@ void Map::loadHandleList(QString filePath)
     // qDebug() << numlist;
     int count = numlist.count();
     int x = 0; int y = 0;
-    for (int i = 0; i < count; i++) {
+    for (int i = 0; i < count;) {
         QString num = numlist.at(i);
         ++i;
         Handle::Type type = static_cast<Handle::Type>(num.toInt());
@@ -457,12 +436,24 @@ void Map::loadHandleList(QString filePath)
                 y = numlist.at(i).toInt();
                 ++i;
                 player = reinterpret_cast<Survivor*>(createHandle(type, x, y));
-                //map->player = createHandle(type, x, y);
-                break;
-            case Handle::Type::BOAT:
                 break;
             case Handle::Type::GHOST:
+                x = numlist.at(i).toInt();
+                ++i;
+                y = numlist.at(i).toInt();
+                ++i;
+                createHandle(type, x, y);
+                break;
+            case Handle::Type::BOAT:
+                ++i;
+                break;
             case Handle::Type::TREE:
+                x = numlist.at(i).toInt();
+                ++i;
+                y = numlist.at(i).toInt();
+                ++i;
+                createHandle(type, x, y);
+                break;
             case Handle::Type::CAMPFIRE:
                 x = numlist.at(i).toInt();
                 ++i;
