@@ -72,7 +72,7 @@ namespace torch_lit
     const string texture = ":/resources/images/Item/torch_lit01.png";
     const int durability = torch::durability;
     const double data = torch::data;
-    const int duration = 0;
+    const int duration = torch::duration;
 };
 
 

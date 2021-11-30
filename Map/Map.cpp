@@ -303,8 +303,8 @@ void Map::handleLoading()
         {
             while (true)
             {
-                randomLocationX = getRandomLocation(0, getMaxWidth());
-                randomLocationY = getRandomLocation(0, getMaxHeight());
+                randomLocationX = getRandomDouble(0, getMaxWidth());
+                randomLocationY = getRandomDouble(0, getMaxHeight());
                 Handle* newGhost = createHandle(Handle::Type::GHOST, randomLocationX, randomLocationY);
                 if (newGhost != nullptr)
                 {
@@ -317,12 +317,12 @@ void Map::handleLoading()
         {
             while (true)
             {
-                randomLocationX = getRandomLocation(0, getMaxWidth());
-                randomLocationY = getRandomLocation(0, getMaxHeight()); 
-                Handle* newKeyChest = createHandle(Handle::Type::CHEST, randomLocationX, randomLocationY);
+                randomLocationX = getRandomDouble(0, getMaxWidth());
+                randomLocationY = getRandomDouble(0, getMaxHeight()); 
+                Chest* newKeyChest = reinterpret_cast<Chest*> (createHandle(Handle::Type::CHEST, randomLocationX, randomLocationY));
                 if (newKeyChest != nullptr)
                 {
-                    newKeynChest.ChestAddItem(Item:ID::KEY);
+                    newKeyChest->ChestAddItem(Item::ID::KEY);
                     break;
                 } 
             }
@@ -335,12 +335,12 @@ void Map::handleLoading()
             {
                 while (true)
                 {
-                    randomLocationX = getRandomLocation(0, getMaxWidth());
-                    randomLocationY = getRandomLocation(0, getMaxHeight()); 
-                    Handle* newSpeedPotionChest = createHandle(Handle::Type::CHEST, randomLocationX, randomLocationY);
+                    randomLocationX = getRandomDouble(0, getMaxWidth());
+                    randomLocationY = getRandomDouble(0, getMaxHeight()); 
+                    Chest* newSpeedPotionChest = reinterpret_cast<Chest*> (createHandle(Handle::Type::CHEST, randomLocationX, randomLocationY));
                     if (newSpeedPotionChest != nullptr)
                 {
-                    newSpeedPotionChest.ChestAddItem(Item:ID::SPEED_POTION);
+                    newSpeedPotionChest->ChestAddItem(Item::ID::SPEED_POTION);
                     break;
                 }    
                 }
@@ -349,12 +349,12 @@ void Map::handleLoading()
             {
                 while (true)
                 {
-                    randomLocationX = getRandomLocation(0, getMaxWidth());
-                    randomLocationY = getRandomLocation(0, getMaxHeight()); 
-                    Handle* newRegenPotionChest = createHandle(Handle::Type::CHEST, randomLocationX, randomLocationY);
+                    randomLocationX = getRandomDouble(0, getMaxWidth());
+                    randomLocationY = getRandomDouble(0, getMaxHeight()); 
+                    Chest* newRegenPotionChest = reinterpret_cast<Chest*> (createHandle(Handle::Type::CHEST, randomLocationX, randomLocationY));
                     if (newRegenPotionChest != nullptr)
                 {
-                    newRegenPotionChest.ChestAddItem(Item:ID::REGEN_INSTANT_POTION);
+                    newRegenPotionChest->ChestAddItem(Item::ID::REGEN_INSTANT_POTION);
                     break;
                 }    
                 }
@@ -364,8 +364,8 @@ void Map::handleLoading()
             {
                 while (true)
                 {
-                    randomLocationX = getRandomLocation(0, getMaxWidth());
-                    randomLocationY = getRandomLocation(0, getMaxHeight()); 
+                    randomLocationX = getRandomDouble(0, getMaxWidth());
+                    randomLocationY = getRandomDouble(0, getMaxHeight()); 
                     Handle* newEmptyChest = createHandle(Handle::Type::CHEST, randomLocationX, randomLocationY);
                     if (newEmptyChest != nullptr)
                 {
