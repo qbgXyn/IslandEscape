@@ -72,7 +72,7 @@ Map::Map(double width, double height, QString filePath) : width(width), height(h
     createItem_Handle(Item::ID::KEY, 12*64-32, 12*64-32);
     createHandle(Handle::Type::GHOST, 400, 400);
 
-    // handleLoading();
+    handleLoading();
     // for (int i = 0; i < height; ++i) {
     //     for (int j = 0; j < width; ++j) {
     //         cout << array[j][i] << " ";
@@ -320,8 +320,48 @@ void Map::removeHandle(Handle *h) { //remove handle from the handle list
     }
 }
 
-/*void Map::handleLoading()
+void Map::handleLoading()
 { 
+    // randomly create a boat
+    double randomLocationX;
+    double randomLocationY;
+    Handle* boat;
+    while (true)
+    {
+        randomLocationX = getRandomDouble(0, width);
+        randomLocationY = getRandomDouble(0, height);
+        boat = createHandle(Handle::Type::BOAT, randomLocationX, randomLocationY);
+        if (boat != nullptr)
+        {
+            break;
+        }
+    }
+
+    int counter = 0; // total num of chest
+    vector<Handle*> result;
+    vector<Handle*>::const_iterator it_end = List.end();
+    for(vector<Handle*>::const_iterator it = List.begin(); it != it_end; ++it) { //loop through all existing handles, check if it's chest
+        if ((*it)->getType() == Handle::Type::CHEST) {
+            result.push_back(*it);
+            ++counter;
+        }
+    }
+
+    int keyChest = static_cast<int> ( getRandomDouble(0, counter) ); // get a random index of the chest list
+    counter = 0; // re-use counter 
+    it_end = result.end();
+    for(vector<Handle*>::const_iterator it = result.begin(); it != it_end; ++it) { //loop through all existing handles, check if is the index chest
+        if (counter != keyChest) {
+            ++counter;
+        }else {
+            (*it)->ChestAddItem(Item::ID::KEY);
+            break;
+        }
+    }
+    
+
+
+    /*
     double randomLocationX;
     double randomLocationY;
     int n{9};
@@ -405,8 +445,9 @@ void Map::removeHandle(Handle *h) { //remove handle from the handle list
         }
 
     }
+    */
 }
-*/
+
 
 void Map::loadHandleList(QString filePath)
 {

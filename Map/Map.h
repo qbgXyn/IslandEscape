@@ -61,7 +61,7 @@ class Map {
         Handle* createHandle(Handle::Type type, double x, double y); //create and remove handle in handle list
         void removeHandle(Handle *h);
 
-        void handleLoading();
+        void handleLoading(); // only for randomized location of boat and key
 
         void loadHandleList(QString filePath);
 
