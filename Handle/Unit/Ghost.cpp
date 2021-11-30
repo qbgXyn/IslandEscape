@@ -110,11 +110,11 @@ void Ghost::patrol() {
 void Ghost::move_AI(double x, double y) {
     double dx = x - location[0];
     double dy = y - location[1];
-    double total = abs(dx+dy);
+    double total = abs(dx)+abs(dy);
 
     // separate max_speed to x and y components by ratio
-    velocity[0] = (dx/total) * max_speed;
-    velocity[1] = (dy/total) * max_speed;
+    velocity[0] = ((dx)/total) * max_speed;
+    velocity[1] = ((dy)/total) * max_speed;
 
     // cout << "location[0]: " << location[0] << endl;
     // cout << "location[1]: " << location[1] << endl;
@@ -131,12 +131,11 @@ void Ghost::move_AI(double x, double y) {
     // cout << "v1: " << velocity[1] << endl;
 
     //if overshot
-    if (abs(velocity[0]) > abs(dx) && abs(velocity[1]) > abs(dy)) {
-        location[0] = x;
-        velocity[0] = 0;
-        location[1] = y;
-        velocity[1] = 0;
-        // cout << "overshot" << endl;
+    if (abs(velocity[0]) > abs(dx)) {
+        velocity[0] = dx;
+    }
+    if (abs(velocity[1]) > abs(dy)) {
+        velocity[1] = dy;
     }
 }
 
