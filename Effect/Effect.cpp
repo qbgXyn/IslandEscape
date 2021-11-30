@@ -4,7 +4,6 @@ Effect::Effect(Type type, double data, int duration) : type(type), data(data), d
     
 }
 
-
 int Effect::getDuration() const {
     return duration;
 }

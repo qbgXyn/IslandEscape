@@ -1,8 +1,8 @@
 #ifndef ITEM_H
 #define ITEM_H
 /*
-Data-holding class of Item
-while holding all functions into this class, we don't need to implement same variables/functions twice
+//Data-holding class of Item
+//while holding all functions into this class, we don't need to implement same variables/functions twice
 */
 
 #include <string>

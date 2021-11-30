@@ -1,12 +1,10 @@
 #ifndef CAMPFIRE_H
 #define CAMPFIRE_H
 /*
-decoration, while it has two function:
-1. re-gain durability of torch
-2. prevent ghost chasing player
+//decoration, while it has two function:
+//1. re-gain durability of torch
+//2. prevent ghost chasing player
 */
-
-
 #include "Decoration.h"
 
 class Campfire : public Decoration {

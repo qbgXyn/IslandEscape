@@ -1,9 +1,10 @@
-//This is the ghost part which will patrol around and player need to aviod or attack and kill the ghost. It is also a derived class
-//of unit as it used the attack function and get nearby handle function in unit. The movement of the ghost is setted as AI, when
-//it detects player within the detect radius, it will start chasing and deal damage if within attack sector. 
 #ifndef GHOST_H
 #define GHOST_H
-
+/*
+//This is the ghost part which will patrol around and player need to aviod or attack and kill the ghost. It is also a derived class
+//of unit as it used the attack function and get nearby handle function in unit. The movement of the ghost is setted as AI, when
+//it detects player within the detect radius, it will start chasing and deal damage if within attack sector.
+*/
 #include "Unit.h"
 
 class Ghost : public Unit {

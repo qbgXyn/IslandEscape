@@ -1,9 +1,10 @@
-//This is the base class of all objects appear on the map. It includes dervied classes of decoration which enrich the map,
-//inventory will link to items which player can use to increase visibility and attack damage. It also has units which are survivor
-// and ghost and they are the main characters of the game
 #ifndef HANDLE_H
 #define HANDLE_H
-
+/*
+//This is the base class of all objects appear on the map. It includes dervied classes of decoration which enrich the map,
+//inventory will link to items which player can use to increase visibility and attack damage. It also has units which are survivor
+//and ghost and they are the main characters of the game
+*/
 #include <vector>
 #include <cmath>
 #include <string>

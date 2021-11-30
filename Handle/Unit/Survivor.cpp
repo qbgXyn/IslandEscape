@@ -4,11 +4,9 @@
 
 #include "../../Item/Item_data.h"
 
-//#include <bits/stdc++.h>
 const int Survivor::base_collision_radius = 16;
 const int Survivor::base_pickup_radius = 128;
 const double Survivor::base_max_speed = 12.0;
-// const double Survivor::base_max_speed = 8.0; for testing set a higher speed
 const int Survivor::base_attackInterval = 1; 
 const float Survivor::base_attack_radius = 128.0;
 const double Survivor::base_attack_sector_angle = 120.0; // set base index for survivor
@@ -36,53 +34,46 @@ Survivor::Survivor(Map *map, double x, double y) : Unit(map, x, y) { //construct
 void Survivor::update() {
 
     Handle::update();
-    // cout << location[0] << " " << location[1] << endl;
+
     // attack interval section
-    if (attackInterval > 0) {
+    if (attackInterval > 0)
         --attackInterval;
-    }
 
     // sword section
-    {
-        int index = getItemInventoryIndex(Item::ID::SWORD_COOLDOWN);
-        if (index != ITEM_NOT_EXIST) { // sword in cooldown
-            int durability = Inventory[index]->item->getDurability();
-            --durability;
-            Inventory[index]->item->setDurability(durability);
-            if (durability % sword::duration == 0) { // cooldown finished
-                if (durability == 0) { // run out of durability
-                    deleteItemInventory(index);
-                }else {
-                    itemSwitchState(Item::ID::SWORD_COOLDOWN, Item::ID::SWORD);
-                }
+    int index = getItemInventoryIndex(Item::ID::SWORD_COOLDOWN);
+    if (index != ITEM_NOT_EXIST) { // sword in cooldown
+        int durability = Inventory[index]->item->getDurability();
+        --durability;
+        Inventory[index]->item->setDurability(durability);
+        if (durability % sword::duration == 0) { // cooldown finished
+            if (durability == 0) { // run out of durability
+                deleteItemInventory(index);
+            }else {
+                itemSwitchState(Item::ID::SWORD_COOLDOWN, Item::ID::SWORD);
             }
         }
     }
 
     // effect section
-    {
-        vector<Effect*>::const_iterator it_end = EffectList.end();
-        int duration;
-        Effect *e;
-        for(vector<Effect*>::const_iterator it = EffectList.begin(); it != it_end; ++it) { // iterate all effect
-            e = *it;
-            //cout << e << endl;
-            duration = (*it)->getDuration();
-            --duration;
-            if (duration > 0) {
-                e->setDuration(duration);
-            }else {
-                removeEffect(e);
-            }
+    int duration;
+    Effect *e;
+    for(vector<Effect*>::const_iterator it = EffectList.begin(); it != EffectList.end(); ++it) { // iterate all effect
+        e = *it;
+        duration = (*it)->getDuration();
+        --duration;
+        if (duration > 0) {
+            e->setDuration(duration);
+        }
+        else {
+            removeEffect(e);
         }
     }
 
     // campfire section
     // for time-saving, we put it there instead of insde campfire update()
     vector<Handle*> nearbyList = map->getHandleGroup(location[0], location[1], Campfire::base_buff_radius);
-    vector<Handle*>::const_iterator it_end = nearbyList.end();
     bool isNearCampfire = false;
-    for(vector<Handle*>::const_iterator it = nearbyList.begin(); it != it_end; ++it) { // search for campfire
+    for(vector<Handle*>::const_iterator it = nearbyList.begin(); it != nearbyList.end(); ++it) { // search for campfire
         if ((*it)->getType() == Handle::Type::CAMPFIRE) {
             isNearCampfire = true;
             break;
@@ -99,7 +90,6 @@ void Survivor::update() {
             invulerableByCampfire = true;
             setInvulnerable(true);
         }
-
         //gain torchtime 
         Item::ID id;
         int durability;
@@ -154,7 +144,6 @@ void Survivor::setMoveDirection(bool move, double direction) {
 }
 
 void Survivor::gainAttributeFromEffect(Effect *e) { //gain effect
-    //cout << "gain effect" << endl;
     Effect::Type type = e->getType();
     switch(type) {
         case Effect::Type::REGEN_INSTANT:
@@ -171,21 +160,16 @@ void Survivor::gainAttributeFromEffect(Effect *e) { //gain effect
             setInvisible(true);
             break;
     }
-     //cout << "gain effect done" << endl;
 }
 
 void Survivor::addEffect(Effect *e) { //add effect into the vector list
-    //cout << "add effect" << endl;
     gainAttributeFromEffect(e);
     if (e->getDuration() > 0) {// if duration > 0, add it to list and set-up timer
-        //cout << "add effect to list" << endl;
         EffectList.push_back(e);
     }
-    //cout << "add effect done" << endl;
 }
 
 void Survivor::removeAttributeFromEffect(Effect *e) {
-    //cout << "remove attribute effect" << endl;
     Effect::Type type = e->getType();
     switch(type) {
         case Effect::Type::SPEED:
@@ -200,21 +184,17 @@ void Survivor::removeAttributeFromEffect(Effect *e) {
         default:
             break;
     }
-    //cout << "remove attribute effect done" << endl;
 }
 void Survivor::removeEffect(Effect *e) {
-    //cout << "remove effect" << endl;
     removeAttributeFromEffect(e);
     vector<Effect*>::const_iterator it_end = EffectList.end();
     for(vector<Effect*>::const_iterator it = EffectList.begin(); it != it_end; ++it) { //search and remove the Effect
         if ((*it) == e) {
             delete e;
             EffectList.erase(it);
-            //cout << "remove effect return" << endl;
             return; //assuming Effect is unique
         }
     }
-    //cout << "remove effect done" << endl;
 }
 
 bool Survivor::isInventoryFull() const { //check if the "bag" is full
@@ -263,7 +243,6 @@ void Survivor::useItem(Item_inventory *i) { //use the holding item
             if (health == base_max_health) return; // forbid player waste potion
             Effect *e = new Effect(Effect::Type::REGEN_INSTANT, data, duration);
             addEffect(e);
-            //cout << "add regen potion" << endl;
             break;
         }
         case Item::ID::SWORD: // if sword is not in cooldown
@@ -278,12 +257,12 @@ void Survivor::useItem(Item_inventory *i) { //use the holding item
         default:
             break;
     }
-    //cout << "durability testing" << endl;
     if (durability > 0) {
         --durability;
         if (durability == 0) {
             deleteItemInventory(selectedItemIndex);
-        }else {
+        }
+        else {
             item->setDurability(durability);
         }
     }
@@ -313,9 +292,7 @@ void Survivor::pickupItem() { //pick up a item nearby on the ground]
             }
         }
     }
-    //cout << "pickup() finished" << endl;
 }
-
 
 void Survivor::dropItem() {
     Item_inventory *Item = Inventory[selectedItemIndex];
@@ -329,7 +306,6 @@ void Survivor::dropItem() {
         Inventory[selectedItemIndex] = nullptr;
     }
 }
-
 
 void Survivor::switchTorchState() { //switch between torch and set a new durability
 
@@ -367,15 +343,12 @@ void Survivor::itemSwitchState(Item::ID oldID, Item::ID newID) { //item is run o
         ih->item->setDurability(durability);
         Inventory[i] = ih; // put the item back to the inventory
     }
-
 }
-
 
 void Survivor::deleteItemInventory(int index) {
     delete Inventory[index];
     Inventory[index] = nullptr;
 }
-
 
 int Survivor::getTorchTime() const{ //return the torch durability
     Item::ID id;
@@ -386,7 +359,6 @@ int Survivor::getTorchTime() const{ //return the torch durability
                 return Inventory[i]->item->getDurability();
             }
         }
-
     }
     return 0;
 }

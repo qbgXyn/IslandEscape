@@ -1,7 +1,8 @@
-//Mainwindow ui for gui. It will call map constructor to build the map and start game loop.
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
+/*
+//Mainwindow ui for gui. It will start game loop and call loop in graphics
+*/
 #include "Map/Map.h"
 
 #include <QMainWindow>

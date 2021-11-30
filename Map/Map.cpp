@@ -2,7 +2,6 @@
 #include <cstdlib>
 #include <string>
 
-
 #include "Map.h"
 #include "../Handle/Handle.h"
 
@@ -41,16 +40,12 @@ Map::Map(double width, double height, QString filePath, QString HandleFilePath) 
     while(!file.atEnd())
     {
         match = file.readLine();
-//        qDebug() << match;
         numlist << match.split(' ');
     }
     file.close();
-    // qDebug() << numlist;
     int x = 0, y = 0;
     foreach(QString num, numlist) {
-        // std::cout << num.toInt();
         grid[x][y] = static_cast<Terrain::Type>(num.toInt());
-//        cout << y << " " << x << " " << num.toInt() << endl;
         ++x;
         if (x == i) {
             ++y;

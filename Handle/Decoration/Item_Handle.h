@@ -1,7 +1,7 @@
 #ifndef ITEM_HANDLE_H
 #define ITEM_HANDLE_H
 /*
-Handle type of item, since item can present in two ways: either on the map or inside survivor's inventory
+//Handle type of item, since item can present in two ways: either on the map or inside survivor's inventory
 */
 #include "Decoration.h"
 #include "../../Item/Item.h"

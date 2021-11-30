@@ -83,7 +83,8 @@ bool Handle::isInvisible() const { //check if visible
 void Handle::setInvulnerable(bool state) { //mutator
     if (state) {
         ++inInvulnerable;
-    }else {
+    }
+    else {
         --inInvulnerable;
     }
 }
@@ -91,7 +92,8 @@ void Handle::setInvulnerable(bool state) { //mutator
 void Handle::setInvisible(bool state) { //mutator
     if (state) {
         ++inInvisible;
-    }else {
+    }
+    else {
         --inInvisible;
     }
 }
@@ -99,13 +101,13 @@ void Handle::setInvisible(bool state) { //mutator
 void Handle::setinCollisionless(bool state) { //mutator
     if (state) {
         ++inCollisionless;
-    }else {
+    }
+    else {
         --inCollisionless;
     }
 }
 
-void Handle::setHealth(int newHealth) //mutator
-{
+void Handle::setHealth(int newHealth) { //mutator
     health = newHealth;
 }
 
@@ -153,8 +155,6 @@ void Handle::update() {
     5. if max speed not reached, and move button pressed, increase velocity
     */
     double newPosition[2]; //temp array for new position
-
-//    cout << "handle update:" << static_cast<int> (this->type) << endl;
    
     if (map->isDoubleZero(getVelocity())) { 
         return; // no need to update position since no velocity
@@ -162,13 +162,6 @@ void Handle::update() {
 
     newPosition[0] = location[0] + velocity[0]; //new position
     newPosition[1] = location[1] + velocity[1];
-
-    // if (type == Type::SURVIVOR) {
-    // cout << "position: " << location[0] << " " << location[1] << endl;
-    // cout << "velocity: " << velocity[0] << " " << velocity[1] << endl;
-    // cout << "newPosition: " << newPosition[0] << " " << newPosition[1] << endl;
-    // }
-
 
     if (isCoordinateWalkable(newPosition[0], newPosition[1]) == true)
     {

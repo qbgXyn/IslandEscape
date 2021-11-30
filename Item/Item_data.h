@@ -1,7 +1,8 @@
-//This is used for storing and displaying the item information
 #ifndef ITEM_DATA_H
 #define ITEM_DATA_H
-
+/*
+//This is used for storing and displaying the item information
+*/
 #include <string>
 #include "../util.h"
 using namespace std;

@@ -1,6 +1,8 @@
 #ifndef EFFECT_H
 #define EFFECT_H
-
+/*
+//when player use potion, he gets effects
+*/
 class Effect {
 
     public:

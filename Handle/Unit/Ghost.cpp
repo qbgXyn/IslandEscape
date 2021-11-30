@@ -63,13 +63,16 @@ void Ghost::update() {
             }
         }
         state = State::PATROL;
-    }else if (state == State::PATROL) {
+    }
+    else if (state == State::PATROL) {
         // cout << "ghost update - ai - patrol" << endl;
         patrol();
-    }else if (state == State::CHASE) {
+    }
+    else if (state == State::CHASE) {
         // cout << "ghost update - ai - chase" << endl;
         chase(chasing_target);
-    }else if (state == State::RETURN) {
+    }
+    else if (state == State::RETURN) {
         // cout << "ghost update - ai - return" << endl;
         move_AI(patrolCenterLocation[0], patrolCenterLocation[1]);
         double d = std::hypot(location[0] - patrolCenterLocation[0], location[1] - patrolCenterLocation[1]); // distance between itself and patrol center
@@ -101,9 +104,7 @@ void Ghost::patrol() {
             return; 
         }
     }
-
     move_AI(randomTargetLocation[0], randomTargetLocation[1]);
-
 }
 
 #include <iostream>
@@ -147,7 +148,8 @@ void Ghost::chase(Handle* u) {
         move_AI(patrolCenterLocation[0], patrolCenterLocation[1]);
         chasing_target = nullptr;
         state = State::STATIC; // directly go to next random point
-    }else {
+    }
+    else {
         if (map->distanceBetweenPoints(location[0], location[1], u->getX(), u->getY()) < base_attack_radius /* add is attack cooldown finished condition */) {
             if (attackInterval == 0) {
                 attack(base_attack_radius, base_attack_sector_angle);

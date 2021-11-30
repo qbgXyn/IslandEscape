@@ -1,10 +1,8 @@
 #ifndef TREE_H
 #define TREE_H
-
 /*
-decoration, no other usage
+//decoration, no other usage
 */
-
 #include "Decoration.h"
 
 class Tree : public Decoration {
