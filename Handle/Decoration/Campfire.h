@@ -10,12 +10,12 @@ decoration, while it has two function:
 #include "Decoration.h"
 
 class Campfire : public Decoration {
-    private:
-        static const int base_max_health = 10;
-        static const float base_collision_radius;
-        static const double base_max_speed;
     public:
         explicit Campfire(Map *map, double x, double y, int inInvulnerable = 1);
+        static const int base_max_health = 10;
+        static const float base_collision_radius;
+        static const int base_buff_radius;
+        static const double base_max_speed;
 
 
 };

@@ -6,6 +6,7 @@
 
 //#include <bits/stdc++.h>
 const float Survivor::base_collision_radius = 16.0;
+const int Survivor::base_pickup_radius = 64;
 const double Survivor::base_max_speed = 8.0;
 const int Survivor::base_attackInterval = 1; 
 const float Survivor::base_attack_radius = 128.0;
@@ -78,7 +79,8 @@ void Survivor::update() {
     }
 
     // campfire section
-    vector<Handle*> nearbyList = map->getHandleGroup(location[0], location[1], base_collision_radius);
+    // for time-saving, we put it there instead of insde campfire update()
+    vector<Handle*> nearbyList = map->getHandleGroup(location[0], location[1], Campfire::base_buff_radius);
     vector<Handle*>::const_iterator it_end = nearbyList.end();
     bool isNearCampfire = false;
     for(vector<Handle*>::const_iterator it = nearbyList.begin(); it != it_end; ++it) { // search for campfire
@@ -289,7 +291,7 @@ void Survivor::useItem(Item_inventory *i) { //use the holding item
 }
 
 void Survivor::pickupItem() { //pick up a item nearby on the ground]
-    vector<Handle*> list = map->getHandleGroup(location[0], location[1], base_collision_radius); // get all surrounding handles
+    vector<Handle*> list = map->getHandleGroup(location[0], location[1], base_pickup_radius); // get all surrounding handles
     //cout << "pickup()" << endl;
 
     Handle* h;
