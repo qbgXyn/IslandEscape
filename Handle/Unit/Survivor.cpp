@@ -323,10 +323,11 @@ void Survivor::pickupItem() { //pick up a item nearby on the ground]
 void Survivor::dropItem() {
     Item_inventory *Item = Inventory[selectedItemIndex];
     if (Item != nullptr) { //check if holding an item
-        if (Item->item->getID() == Item::ID::TORCH_LIT) // drop torch lit is not allowed
+        Item::ID id = Item->item->getID();
+        if (id == Item::ID::TORCH_LIT || id == Item::ID::SWORD_COOLDOWN) // drop torch lit and sword cooldown is not allowed
             return;
 
-        map->createItem_Handle(Item->item->getID(), location[0], location[1]);
+        map->createItem_Handle(id, location[0], location[1]);
         delete Item; //when drop the item, remove it from the array but will not move other item positon in the array
         Inventory[selectedItemIndex] = nullptr;
         return;
