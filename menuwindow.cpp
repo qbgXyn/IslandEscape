@@ -66,7 +66,7 @@ void MenuWindow::start_game(int selected_level, string filename, string handleFi
     QString HandleFilePath;
     int width, height;
     filename = ":/resources/world/"+filename;
-    handleFilename = ":/resources/world/"+handlefilename;
+    handleFilename = ":/resources/world/"+handleFilename;
     switch (selected_level) {
         case 1: {
             width = 60;
