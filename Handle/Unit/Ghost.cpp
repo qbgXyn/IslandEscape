@@ -33,6 +33,7 @@ Ghost::Ghost(Map *map, double x, double y, int species, Handle *chasing_target) 
     health = base_max_health;
     damage = base_damage;
     armor = base_armor; //initalise base value
+    setinCollisionless(true);
 
 }
 
@@ -46,15 +47,15 @@ void Ghost::update() {
         --attackInterval;
     }
 
-    cout << "update: " << location[0] << " " << location[1] << endl;
+    // cout << "update: " << location[0] << " " << location[1] << endl;
 
     // ai section
     if (state == State::STATIC) {
         while(true) {
-            cout << "ghost update - ai - selecting location" << endl;
+            //cout << "ghost update - ai - selecting location" << endl;
             randomTargetLocation[0] = map->getRandomDouble(patrolCenterLocation[0] - patrolRadius, patrolCenterLocation[0] + patrolRadius);
             randomTargetLocation[1] = map->getRandomDouble(patrolCenterLocation[1] - patrolRadius, patrolCenterLocation[1] + patrolRadius);
-            cout << "ghost update - picking location: " << randomTargetLocation[0] <<  " " << randomTargetLocation[1] << " " << map->distanceBetweenPoints(randomTargetLocation[0], randomTargetLocation[1], patrolCenterLocation[0], patrolCenterLocation[1]) << " " << patrolRadius << endl;
+            //cout << "ghost update - picking location: " << randomTargetLocation[0] <<  " " << randomTargetLocation[1] << " " << map->distanceBetweenPoints(randomTargetLocation[0], randomTargetLocation[1], patrolCenterLocation[0], patrolCenterLocation[1]) << " " << patrolRadius << endl;
             if (!map->isCoordinateInMap(randomTargetLocation[0], randomTargetLocation[1]))
                 continue;
             if (map->distanceBetweenPoints(randomTargetLocation[0], randomTargetLocation[1], patrolCenterLocation[0], patrolCenterLocation[1]) <= patrolRadius) { //randomly walk within the patrol radius
@@ -63,22 +64,19 @@ void Ghost::update() {
         }
         state = State::PATROL;
     }else if (state == State::PATROL) {
-        cout << "ghost update - ai - patrol" << endl;
+        // cout << "ghost update - ai - patrol" << endl;
         patrol();
     }else if (state == State::CHASE) {
-        cout << "ghost update - ai - chase" << endl;
+        // cout << "ghost update - ai - chase" << endl;
         chase(chasing_target);
     }else if (state == State::RETURN) {
-        cout << "ghost update - ai - return" << endl;
+        // cout << "ghost update - ai - return" << endl;
         move_AI(patrolCenterLocation[0], patrolCenterLocation[1]);
         double d = std::hypot(location[0] - patrolCenterLocation[0], location[1] - patrolCenterLocation[1]); // distance between itself and patrol center
-        cout << d << endl;
+        // cout << d << endl;
         if (map->isDoubleZero(d)) {
             state = State::STATIC;
         }
-    }else if (map->isDoubleZero(getVelocity())) {     // if velocity is 0, i.e ghost is static
-        cout << "ghost update - ai - reach start point" << endl;
-        state = State::STATIC;
     }
 }
 
@@ -86,9 +84,9 @@ void Ghost::patrol() {
     double d;
     // if reach the target point
     d = std::hypot(location[0] - randomTargetLocation[0], location[1] - randomTargetLocation[1]);
-    cout << "D: " << d << endl;
+    // cout << "D: " << d << endl;
     if (map->isDoubleZero(d)) {
-        state = State::STATIC; // directly go to next random point
+        state = State::RETURN; // directly go to next random point
         return;
     }
 
@@ -118,27 +116,27 @@ void Ghost::move_AI(double x, double y) {
     velocity[0] = (dx/total) * max_speed;
     velocity[1] = (dy/total) * max_speed;
 
-    cout << "location[0]: " << location[0] << endl;
-    cout << "location[1]: " << location[1] << endl;
-    cout << "patrolCenterLocation[0]: " << patrolCenterLocation[0] << endl;
-    cout << "patrolCenterLocation[1]: " << patrolCenterLocation[1] << endl;
-    cout << "randomTargetLocation[0]: " << randomTargetLocation[0] << endl;
-    cout << "randomTargetLocation[1]: " << randomTargetLocation[1] << endl;
-    cout << "x: " << x << endl;
-    cout << "y: " << y << endl;
-    cout << "dx: " << dx << endl;
-    cout << "dy: " << dy << endl;
-    cout << "total: " << total << endl;
-    cout << "v0: " << velocity[0] << endl;
-    cout << "v1: " << velocity[1] << endl;
+    // cout << "location[0]: " << location[0] << endl;
+    // cout << "location[1]: " << location[1] << endl;
+    // cout << "patrolCenterLocation[0]: " << patrolCenterLocation[0] << endl;
+    // cout << "patrolCenterLocation[1]: " << patrolCenterLocation[1] << endl;
+    // cout << "randomTargetLocation[0]: " << randomTargetLocation[0] << endl;
+    // cout << "randomTargetLocation[1]: " << randomTargetLocation[1] << endl;
+    // cout << "x: " << x << endl;
+    // cout << "y: " << y << endl;
+    // cout << "dx: " << dx << endl;
+    // cout << "dy: " << dy << endl;
+    // cout << "total: " << total << endl;
+    // cout << "v0: " << velocity[0] << endl;
+    // cout << "v1: " << velocity[1] << endl;
 
     //if overshot
-    if (abs(velocity[0]) > dx && abs(velocity[1]) > dy) {
+    if (abs(velocity[0]) > abs(dx) && abs(velocity[1]) > abs(dy)) {
         location[0] = x;
         velocity[0] = 0;
         location[1] = y;
         velocity[1] = 0;
-        cout << "overshot" << endl;
+        // cout << "overshot" << endl;
     }
 }
 
@@ -149,7 +147,7 @@ void Ghost::chase(Handle* u) {
     if (d > chasingRadius || !isHandleVisible(u) || u->isInvulnerable() || u->isInvisible()) {
         move_AI(patrolCenterLocation[0], patrolCenterLocation[1]);
         chasing_target = nullptr;
-        state = State::RETURN;
+        state = State::STATIC; // directly go to next random point
     }else {
         if (map->distanceBetweenPoints(location[0], location[1], u->getX(), u->getY()) < base_attack_radius /* add is attack cooldown finished condition */) {
             if (attackInterval == 0) {

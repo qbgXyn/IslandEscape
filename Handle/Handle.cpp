@@ -73,7 +73,7 @@ bool Handle::isInvulnerable() const { //check if invulnerable
 }
 
 bool Handle::isCollisionless() const { //check if collisionless 
-    return (collisionRadius > 0);
+    return (inCollisionless > 0 || map->isDoubleZero(collisionRadius));
 }
 
 bool Handle::isInvisible() const { //check if visible
