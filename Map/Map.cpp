@@ -296,30 +296,84 @@ void Map::handleLoading()
 { 
     double randomLocationX;
     double randomLocationY;
-    for (int i = 0; i < 108; i++)
+    int n{9};
+    for (int i = 0; i < n; i++)
     {
-        if (i >= 0 && i <= 99)
+        if (i >= 0 && i <= 4)
         {
             while (true)
             {
-                randomLocationX = getRandomDouble(0, getMaxWidth());
-                randomLocationY = getRandomDouble(0, getMaxHeight());
-                if (Ghost* ghost = reinterpret_cast<Ghost*>(createHandle(Handle::Type::GHOST, randomLocationX, randomLocationY)))
+                randomLocationX = getRandomLocation(0, getMaxWidth());
+                randomLocationY = getRandomLocation(0, getMaxHeight());
+                Handle* newGhost = createHandle(Handle::Type::GHOST, randomLocationX, randomLocationY);
+                if (newGhost != nullptr)
                 {
-                    //ghost->patrol();
-                    //ghost->ai();
                     break;
                 }
             }
+        } 
+
+        if (i == 5)
+        {
+            while (true)
+            {
+                randomLocationX = getRandomLocation(0, getMaxWidth());
+                randomLocationY = getRandomLocation(0, getMaxHeight()); 
+                Handle* newKeyChest = createHandle(Handle::Type::CHEST, randomLocationX, randomLocationY);
+                if (newKeyChest != nullptr)
+                {
+                    newKeynChest.ChestAddItem(Item:ID::KEY);
+                    break;
+                } 
+            }
         }
 
-        if (i >= 4)
+        if (i >= 6)
         {
-            /*while (true)
+            int x = (i - 6) % 3;
+            if (x == 0)
             {
-                randomLocationX = getRandomDouble(0, getMaxWidth());
-                randomLocationY = getRandomDouble(0, getMaxHeight());          
-            }*/
+                while (true)
+                {
+                    randomLocationX = getRandomLocation(0, getMaxWidth());
+                    randomLocationY = getRandomLocation(0, getMaxHeight()); 
+                    Handle* newSpeedPotionChest = createHandle(Handle::Type::CHEST, randomLocationX, randomLocationY);
+                    if (newSpeedPotionChest != nullptr)
+                {
+                    newSpeedPotionChest.ChestAddItem(Item:ID::SPEED_POTION);
+                    break;
+                }    
+                }
+            }
+            if (x == 1)
+            {
+                while (true)
+                {
+                    randomLocationX = getRandomLocation(0, getMaxWidth());
+                    randomLocationY = getRandomLocation(0, getMaxHeight()); 
+                    Handle* newRegenPotionChest = createHandle(Handle::Type::CHEST, randomLocationX, randomLocationY);
+                    if (newRegenPotionChest != nullptr)
+                {
+                    newRegenPotionChest.ChestAddItem(Item:ID::REGEN_INSTANT_POTION);
+                    break;
+                }    
+                }
+            }
+
+            if (x == 2)
+            {
+                while (true)
+                {
+                    randomLocationX = getRandomLocation(0, getMaxWidth());
+                    randomLocationY = getRandomLocation(0, getMaxHeight()); 
+                    Handle* newEmptyChest = createHandle(Handle::Type::CHEST, randomLocationX, randomLocationY);
+                    if (newEmptyChest != nullptr)
+                {
+                    break;
+                }    
+                }
+            }
+
         }
 
     }
