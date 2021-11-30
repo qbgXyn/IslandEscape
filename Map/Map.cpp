@@ -462,23 +462,31 @@ void Map::loadHandleList(QString filePath)
     // qDebug() << numlist;
     foreach(QString num, numlist) {
         Handle::Type type;
+        int x;
+        int y;
         // std::cout << num.toInt();
         type = static_cast<Handle::Type>(num.toInt());
         switch(type)
         {
             case Handle::Type::SURVIVOR:
-                map->player = createHandle(type, num.toInt(), num.toInt());
+                x = num.toInt();
+                y = num.toInt();
+                map->player = createHandle(type, x, y);
                 break;
             case Handle::Type::GHOST:
             case Handle::Type::BOAT:
             case Handle::Type::TREE:
             case Handle::Type::CAMPFIRE:
-            createHandle(type, num.toInt(), num.toInt());
+                x = num.toInt();
+                y = num.toInt();
+                createHandle(type, x, y);
             break;
 
             case Handle::Type::CHEST:
-            Handle* Chest;
-            Chest = createHandle(type, num.toInt(), num.toInt());
+                Handle* Chest;
+                x = num.toInt();
+                y = num.toInt();
+                Chest = createHandle(type, x, y);
             for (int i = 0; i < 9; i++)
             {
                 Item::ID itemType = static_cast<Item::ID>(num.toInt());
