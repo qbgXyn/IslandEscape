@@ -199,7 +199,7 @@ void MainWindow::main_loop() {
 
         close();
     }
-    if (map->game_time <= 0) {
+    if (map->game_time <= 0 || map->player->getHealth() <= 0) {
         loop_timer->stop();
 
         QMessageBox *mb = new QMessageBox{window()};
