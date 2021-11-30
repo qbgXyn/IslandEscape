@@ -144,7 +144,7 @@ void MenuWindow::on_btn_level_1_clicked() {
 //    start_game(selected_level, "Map2.txt", "HandleList2.txt");
     QMessageBox *mb = new QMessageBox{window()};
     mb->setWindowTitle("Island escape");
-    mb->setStyleSheet("font: 14pt \"Comic Sans MS\"; color : gray");
+    mb->setStyleSheet("font: 14pt \"Comic Sans MS\"; color : white");
     mb->setText(QString::fromStdString("BACKGROUND:\n"
                                        "you're lost on an island\n"
                                        "but you realized that the island is not that \"normal\"...\n"

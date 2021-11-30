@@ -427,7 +427,6 @@ void Map::handleLoading()
     */
 }
 
-#include <iostream>
 void Map::loadHandleList(QString filePath)
 {
   // Load file to create Handles for Map
