@@ -54,7 +54,7 @@ Map::Map(double width, double height, QString filePath, QString HandleFilePath) 
     }
 
     // Create Player
-    player = reinterpret_cast<Survivor*>(createHandle(Handle::Type::SURVIVOR, 320, 320));
+   //player = reinterpret_cast<Survivor*>(createHandle(Handle::Type::SURVIVOR, 320, 320));
 
     // Create Decorations
     /*createHandle(Handle::Type::BOAT, 2*64, 11*64/2);
@@ -471,7 +471,8 @@ void Map::loadHandleList(QString filePath)
             case Handle::Type::SURVIVOR:
                 x = num.toInt();
                 y = num.toInt();
-                map->player = createHandle(type, x, y);
+                map -> player = reinterpret_cast<Survivor*>(createHandle(type, x, y));
+                //map->player = createHandle(type, x, y);
                 break;
             case Handle::Type::GHOST:
             case Handle::Type::BOAT:
