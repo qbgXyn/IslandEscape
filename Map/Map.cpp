@@ -20,8 +20,6 @@
 #include <QTextStream>
 #include <QStringList>
 
-#include <iostream>
-
 Map::Map(double width, double height, QString filePath) : width(width), height(height) { //constructor:)
     int i = width/grid_size;  // width = i grids 
     int j = height/grid_size; // height = j grids
@@ -280,12 +278,12 @@ Item* Map::createItem(Item::ID id) { //create item
 
 
 void Map::removeHandle(Handle *h) { //remove handle from the handle list
-    cout << "remove handle()" << endl;
+    //cout << "remove handle()" << endl;
     vector<Handle*>::const_iterator it_end = List.end();
     for(vector<Handle*>::const_iterator it = List.begin(); it != it_end; ++it) { //search and remove the handle
-        cout << "iterating remove handle" << endl;
+        //cout << "iterating remove handle" << endl;
         if ((*it) == h) {
-            cout << "handle founded" << endl;
+            //cout << "handle founded" << endl;
             List.erase(it);
             return; //assuming handle is unique
         }
