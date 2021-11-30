@@ -61,7 +61,7 @@ namespace torch
     const string name = "torch";
     const string description = "a torch lighten up the surronding environments. Lit it up to increase your visibility by 3.";
     const string texture = ":/resources/images/Item/torch_item.png";
-    const int durability = 90*GAME_TICK;
+    const int durability = 60*GAME_TICK;
     const double data = 3.0;
     const int duration = 0;
 };
