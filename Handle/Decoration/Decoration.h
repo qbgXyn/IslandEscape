@@ -1,10 +1,8 @@
 #ifndef DECORATION_H
 #define DECORATION_H
 /*
-abstract class
+//abstract class of all decorations
 */
-
-
 #include "../Handle.h"
 class Decoration : public Handle {
     protected:

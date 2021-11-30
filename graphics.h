@@ -1,10 +1,8 @@
-/**
-* Utilities for graphics and display
-*/
-
 #ifndef GRAPHICS_H
 #define GRAPHICS_H
-
+/*
+//Utilities for graphics and display
+*/
 #include "Map/Map.h"
 #include "mainwindow.h"
 

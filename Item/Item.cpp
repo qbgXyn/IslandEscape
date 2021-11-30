@@ -5,8 +5,6 @@ Item::Item(Item::ID id, string name, string description, string texture, int dur
 
 }
 
-
-
 Item::ID Item::getID() const { //accessor
     return id;
 }
@@ -32,7 +30,6 @@ double Item::getData() const { //accessor
 double Item::getDuration() const { //accessor
     return duration;
 }
-
 
 void Item::setDurability(int durability) { //mutator
     this->durability = durability;

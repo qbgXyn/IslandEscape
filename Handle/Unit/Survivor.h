@@ -1,12 +1,13 @@
-//This is the header file of survivor, which is the character which the player controlling. In there, it is designed as the derived
-//class of unit such that it can use some common functions such as attack and find handles within the radius. In survivor class, 
-//it has pick up, switch, use and drop item function which only the player can use but ghost cannot. It also contain the components 
-//for the inventory array which acts as a "bag" for the player to store picked item and it will be display as a item bar in the 
-//buttom of the mainwindow like Minecraft. This part will be linked to the 1-9 key press in graphic to display and switch between
-//the holding object.
 #ifndef SURVIVOR_H
 #define SURVIVOR_H
-
+/*
+//This is the header file of survivor, which is the character which the player controlling. In there, it is designed as the derived
+//class of unit such that it can use some common functions such as attack and find handles within the radius. In survivor class,
+//it has pick up, switch, use and drop item function which only the player can use but ghost cannot. It also contain the components
+//for the inventory array which acts as a "bag" for the player to store picked item and it will be display as a item bar in the
+//buttom of the mainwindow like Minecraft. This part will be linked to the 1-9 key press in graphic to display and switch between
+//the holding object.
+*/
 #include "Unit.h"
 #include "../Inventory/Item_Inventory.h"
 

@@ -1,7 +1,8 @@
-//The place where link buttom with functions
 #ifndef MENUWINDOW_H
 #define MENUWINDOW_H
-
+/*
+//Menuwindow for gui. It will call map constructor to build the map and pass it to Mainwindow.
+*/
 #include "Map/Map.h"
 
 #include <QMainWindow>

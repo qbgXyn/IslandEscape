@@ -1,8 +1,9 @@
-//This is the base class for surviver and ghost, but also a dervied class of handle. It contains common functions like attack and
-//check handles within the circular sector. It also has visibility related functions. 
 #ifndef UNIT_H
 #define UNIT_H
-
+/*
+//This is the base class for surviver and ghost, but also a dervied class of handle. It contains common functions like attack and
+//check handles within the circular sector. It also has visibility related functions.
+*/
 #include "../Handle.h"
 #include "../../Effect/Effect.h"
 

@@ -42,8 +42,6 @@ MainWindow::MainWindow(Map *const map, MenuWindow* menuwindow, QWidget *parent) 
     bgmList->setPlaybackMode(QMediaPlaylist::CurrentItemInLoop);
 
     bgmList->setCurrentIndex(0);
-//    qDebug() << bgmList->currentIndex();
-//    bgmList->setCurrentIndex(2);
 
     bgm->setVolume(100);
     bgm->play();

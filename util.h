@@ -1,6 +1,8 @@
 #ifndef UTIL_H
 #define UTIL_H
-
+/*
+//const defined for uitility
+*/
 const double PI = 3.1415926;
 const float MAX_COLLISION_RADIUS = 128.0;
 const double ECLIPSE = 0.001;
