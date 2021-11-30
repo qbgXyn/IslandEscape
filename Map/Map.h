@@ -76,7 +76,7 @@ class Map {
 
         Terrain::Type** grid; //map gird which store terrain type in every grid
 
-        int game_time {100*GAME_TICK}; //seconds*Game_Tick
+        int game_time {300*GAME_TICK}; //seconds*Game_Tick
         bool win {false}; //true if win
 
         static const int grid_size = 64; // length of a square of a grid on the map, for displaying texture only(grass, sea, etc.)

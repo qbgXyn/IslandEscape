@@ -358,7 +358,7 @@ void Map::handleLoading()
 
         if (i >= 5)
         {
-            int x = (i - 14) % 3;
+            int x = (i - 5) % 3;
             if (x == 0)
             {
                 while (true)
