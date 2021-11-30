@@ -6,7 +6,7 @@
 
 //#include <bits/stdc++.h>
 const float Survivor::base_collision_radius = 16.0;
-const int Survivor::base_pickup_radius = 64;
+const float Survivor::base_pickup_radius = 128.0;
 const double Survivor::base_max_speed = 8.0;
 const int Survivor::base_attackInterval = 1; 
 const float Survivor::base_attack_radius = 128.0;
@@ -394,7 +394,7 @@ int Survivor::getTorchTime() const{ //return the torch durability
 }
 
 bool Survivor::turnOnBoat() const { //if can turnon the boat, end the game
-    vector<Handle*> list = map->getHandleGroup(location[0], location[1], base_collision_radius); // get all surrounding handle
+    vector<Handle*> list = map->getHandleGroup(location[0], location[1], base_pickup_radius); // get all surrounding handle
 
     vector<Handle*>::const_iterator it_end = list.end(); // check if it collide with existing handle
     for(vector<Handle*>::const_iterator it = list.begin(); it != it_end; ++it) {
