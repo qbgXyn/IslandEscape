@@ -7,7 +7,7 @@
 //#include <bits/stdc++.h>
 const int Survivor::base_collision_radius = 16;
 const int Survivor::base_pickup_radius = 128;
-const double Survivor::base_max_speed = 40.0;
+const double Survivor::base_max_speed = 12.0;
 // const double Survivor::base_max_speed = 8.0; for testing set a higher speed
 const int Survivor::base_attackInterval = 1; 
 const float Survivor::base_attack_radius = 128.0;
