@@ -28,8 +28,9 @@
 #include "util.h"
 #include <math.h>
 
-const QBrush NOT_VISIBLE{ QColor::fromRgb(0,0,0,222) };
-const QBrush VISIBLE{ QColor::fromRgb(0,0,0,130) };
+const QBrush NOT_VISIBLE{ QColor::fromRgb(0,0,0,233) };
+const QBrush VISIBLE_LIT{ QColor::fromRgb(50,50,0,130) };
+const QBrush VISIBLE{ QColor::fromRgb(00,00,0,160) };
 
 GameWidget::GameWidget(QWidget* parent) : //basic set up
     QWidget(parent),
@@ -295,7 +296,12 @@ void GameWidget::drawVision(QPainter& paint) {
     paint.fillRect(width()/2-visible_radius, 0, 2*visible_radius, height()/2-visible_radius, NOT_VISIBLE);
     paint.fillRect(width()/2-visible_radius, height(), 2*visible_radius, -(height()/2-visible_radius), NOT_VISIBLE);
 
-    fillRect(paint, scroll_x-visible_radius, scroll_y-visible_radius, 2*visible_radius, 2*visible_radius, VISIBLE);
+    if(map->player->getItemInventoryIndex(Item::ID::TORCH_LIT) != ITEM_NOT_EXIST) {
+        fillRect(paint, scroll_x-visible_radius, scroll_y-visible_radius, 2*visible_radius, 2*visible_radius, VISIBLE_LIT);
+    }else {
+        fillRect(paint, scroll_x-visible_radius, scroll_y-visible_radius, 2*visible_radius, 2*visible_radius, VISIBLE);
+    }
+
     /* for (int i = 0; i < map->getMaxWidth(); ++i) {
         for(int j = 0; j < map->getMaxHeight(); ++j) {
             if (map->player->isGridVisible(i, j))

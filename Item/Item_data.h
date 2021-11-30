@@ -38,7 +38,7 @@ namespace speed_potion
 namespace sword
 {
     const string name = "sword";
-    const string description = "a sword which deal 1 damage to enemy in front of you.";
+    const string description = "a sword which deal 2 damage to enemy in front of you.";
     const string texture = ":/resources/images/Item/short_sword.png";
     const int durability = 150*GAME_TICK;
     const double data = 2.0;

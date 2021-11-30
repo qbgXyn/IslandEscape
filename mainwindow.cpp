@@ -199,7 +199,7 @@ void MainWindow::main_loop() {
         menuwindow->initialize_level_btn();
 
         QMessageBox *mb = new QMessageBox{window()};
-        mb->setWindowTitle("Simple City");
+        mb->setWindowTitle("Island escape");
         mb->setStyleSheet("font: 14pt \"Comic Sans MS\";");
         mb->setText(QString::fromStdString("You WIN!!! HAHA :)"));
 
@@ -212,7 +212,7 @@ void MainWindow::main_loop() {
         loop_timer->stop();
 
         QMessageBox *mb = new QMessageBox{window()};
-        mb->setWindowTitle("Simple City");
+        mb->setWindowTitle("Island escape");
         mb->setStyleSheet("font: 14pt \"Comic Sans MS\";");
         mb->setText(QString::fromStdString("You LOSE!!! Bad Guy >_<"));
 
