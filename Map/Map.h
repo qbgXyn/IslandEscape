@@ -51,7 +51,9 @@ class Map {
         Terrain::Type get_at(double x, double y) const; //return the type of terrain of given location
 
         static Item* createItem(Item::ID); //item related functions
-        bool createItem_Handle(Item::ID id, double x, double y);
+        static Item* copyItem(Item *item); // copy a new item
+        Item_Handle* createItem_Handle(Item::ID id, double x, double y);
+        Item_Handle* createItem_Handle(Item *item, double x, double y);
 
         Handle* createHandle(Handle::Type type, double x, double y); //create and remove handle in handle list
         void removeHandle(Handle *h);

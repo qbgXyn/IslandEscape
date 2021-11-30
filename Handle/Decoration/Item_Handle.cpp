@@ -14,6 +14,18 @@ Item_Handle::Item_Handle(Map *map, double x, double y, Item::ID id, int inInvuln
 
 }
 
+#include <iostream>
+Item_Handle::Item_Handle(Map *map, double x, double y, Item *item, int inInvulnerable, int inCollisionless) : Decoration(map, x, y, inInvulnerable) {
+    std::cout << "item handle contor" << endl;
+    this->inCollisionless = inCollisionless;
+    type = Handle::Type::ITEM;
+    item = Map::copyItem(item);
+    pathable += Terrain::Type::GRASS;
+    pathable += Terrain::Type::STONE;
+    pathable += Terrain::Type::SHOAL;
+
+}
+
 Item_Handle::~Item_Handle() {
     delete item;
 }

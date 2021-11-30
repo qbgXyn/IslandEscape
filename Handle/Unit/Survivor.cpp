@@ -304,7 +304,7 @@ void Survivor::pickupItem() { //pick up a item nearby on the ground]
                     //cout << "find a empty slot: " << index << endl;
                     ih = reinterpret_cast<Item_Handle*> (h);
                     //cout << "creating new item inventory" << endl;
-                    Inventory[index] = new Item_inventory {ih->item->getID()};
+                    Inventory[index] = new Item_inventory {ih->item};
                     //cout << "name: " << Inventory[index]->item->getName() << endl;
                     //cout << "new item inventory created" << endl;
                     map->removeHandle(h);
@@ -324,13 +324,17 @@ void Survivor::dropItem() {
         Item::ID id = Item->item->getID();
         if (id == Item::ID::TORCH_LIT || id == Item::ID::SWORD_COOLDOWN) // drop torch lit and sword cooldown is not allowed
             return;
-
-        map->createItem_Handle(id, location[0], location[1]);
+        
+        int durability = Item->item->getDurability();
+        Item_Handle* handle = map->createItem_Handle(id, location[0], location[1]);
+        handle->item->setDurability(durability);
+        cout << "dropItem() created item" << endl;
+        cout << "Item_inventory" << Item << endl;
+        cout << "Item_inventory->item" << Item->item << endl;
         delete Item; //when drop the item, remove it from the array but will not move other item positon in the array
+        cout << "deleted" << endl;
         Inventory[selectedItemIndex] = nullptr;
-        return;
     }
-    return;
 }
 
 void Survivor::switchTorchState() { //switch between torch and set a new durability

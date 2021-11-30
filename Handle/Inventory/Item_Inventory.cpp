@@ -2,9 +2,9 @@
 #include "../../Map/Map.h"
 #include <iostream>
 
-Item_inventory::Item_inventory(Item &item) { //a constructor :)
+Item_inventory::Item_inventory(Item *item) { //a constructor :)
     //std::cout << "insided item_inventory contor" << std::endl;
-    this->item = &item;
+    this->item = Map::copyItem(item);
 }
 
 Item_inventory::Item_inventory(Item::ID id) { //a overload constructor :)

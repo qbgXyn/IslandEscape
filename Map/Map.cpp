@@ -185,15 +185,25 @@ Handle* Map::createHandle(Handle::Type type, double x, double y) { //create hand
 }
 
 
-bool Map::createItem_Handle(Item::ID id, double x, double y) { //create the handle list of the map)
-    Handle* handle = new Item_Handle{this, x, y, id};
+Item_Handle* Map::createItem_Handle(Item::ID id, double x, double y) { //create the handle list of the map)
+    Item_Handle* handle = new Item_Handle{this, x, y, id};
 
-    if (handle->isCoordinateWalkable(x, y)) { //double check to ensure that the coordinate is reasonable to put handles
-        List.push_back(handle); //insert the handle
-        return true;
-    }
-    delete handle;
-    return false;
+    // no need to check if walkable assuming only create by survivor, and walkable condition is more strict of survivor than item_handle
+    List.push_back(handle); //insert the handle
+    return handle;
+}
+
+#include <iostream>
+Item_Handle* Map::createItem_Handle(Item *item, double x, double y) { //create the handle list of the map)
+    cout << "createItem handle()" << endl;
+    Item_Handle* handle = new Item_Handle{this, x, y, item};
+    cout << "Item_handle " << handle << endl;
+    cout << "Item_handle->item" << reinterpret_cast<Item_Handle*> (handle) ->item << endl;
+    cout << reinterpret_cast<Item_Handle*> (handle) ->item->getName() << endl;
+    cout << "createItem handle() handle created" << endl;
+    // no need to check if walkable assuming only create by survivor, and walkable condition is more strict of survivor than item_handle
+    List.push_back(handle); //insert the handle
+    return handle;
 }
 
 Item* Map::createItem(Item::ID id) { //create item
@@ -274,6 +284,14 @@ Item* Map::createItem(Item::ID id) { //create item
     }
     //cout << "item created" << endl;
     return i;
+}
+
+//deep copy of an item
+Item* Map::copyItem(Item* item) {
+    cout << "copyitem()" << endl;
+    cout << "item name : " << item->getName() << endl;
+    Item* newItem = new Item {item->getID(), item->getName(), item->getDescription(), item->getTexture(), item->getDurability(), item->getData(), item->getDuration()};
+    return newItem;
 }
 
 

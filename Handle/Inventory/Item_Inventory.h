@@ -8,7 +8,7 @@ inventory type of item, since item can present in two ways: either on the map or
 using namespace std;
 class Item_inventory {
     public:
-        explicit Item_inventory(Item &item);
+        explicit Item_inventory(Item *item);
         explicit Item_inventory(Item::ID id);
         ~Item_inventory();
         Item *item;
