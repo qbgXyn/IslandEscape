@@ -56,24 +56,8 @@ Map::Map(double width, double height, QString filePath, QString HandleFilePath) 
     // Create Player
    //player = reinterpret_cast<Survivor*>(createHandle(Handle::Type::SURVIVOR, 320, 320));
 
-    // Create Decorations
-    /*createHandle(Handle::Type::BOAT, 2*64, 11*64/2);
-    createHandle(Handle::Type::CAMPFIRE, 10*64-32, 10*64-32);
-    createHandle(Handle::Type::CHEST, 7*64-32, 5*64-32);
-    createHandle(Handle::Type::TREE, 2*64-32, 2*64-32);
-    createHandle(Handle::Type::TREE, 4*64-32, 2*64-32);
-    createHandle(Handle::Type::TREE, 2*64-32, 4*64-32);
-    createHandle(Handle::Type::TREE, 4*64-32, 4*64-32);
-    createItem_Handle(Item::ID::KEY, 12*64-32, 12*64-32);
-    createHandle(Handle::Type::GHOST, 400, 400);*/
-
     loadHandleList(HandleFilePath);
-    // for (int i = 0; i < height; ++i) {
-    //     for (int j = 0; j < width; ++j) {
-    //         cout << array[j][i] << " ";
-    //     }
-    //     cout << endl;
-    // }
+    handleLoading(); // create a random boat and select a random chest to put in a key
 }
 
 Map::~Map() { //destructor coz that is pointer array
