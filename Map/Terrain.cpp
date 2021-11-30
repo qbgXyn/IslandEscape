@@ -1,6 +1,6 @@
 #include "Terrain.h"
 
-bool Terrain::operator()(Terrain::Type terrain) const { //count number of terrain, return true if there has at least one terrain 
+bool Terrain::operator()(Terrain::Type terrain) const { //count number of terrain, return true if it contains that type of terrain
     return t.count(terrain);
 }
 
