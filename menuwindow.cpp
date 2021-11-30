@@ -140,21 +140,21 @@ void MenuWindow::on_btn_start_clicked() {
 
 void MenuWindow::on_btn_level_1_clicked() {
     selected_level = 1;
-    start_game(selected_level, "Map2.txt", "HandleList2");
+    start_game(selected_level, "Map2.txt", "HandleList2.txt");
 }
 void MenuWindow::on_btn_level_2_clicked() {
     selected_level = 2;
-    start_game(selected_level, "Map1.txt", "HandleList1");
+    start_game(selected_level, "Map1.txt", "HandleList1.txt");
 }
 void MenuWindow::on_btn_level_3_clicked() {
     selected_level = 3;
-    start_game(selected_level, "Map3.txt", "HandleList3");
+    start_game(selected_level, "Map3.txt", "HandleList3.txt");
 }
 void MenuWindow::on_btn_level_4_clicked() {
     selected_level = 4;
-    start_game(selected_level, "Map4.txt", "HandleList4");
+    start_game(selected_level, "Map4.txt", "HandleList4.txt");
 }
 void MenuWindow::on_btn_level_5_clicked() {
     selected_level = 5;
-    start_game(selected_level, "Map5.txt", "HandleList5");
+    start_game(selected_level, "Map5.txt", "HandleList5.txt");
 }
