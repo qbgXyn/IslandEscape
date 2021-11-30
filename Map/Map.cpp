@@ -459,17 +459,10 @@ void Map::loadHandleList(QString filePath)
                 player = reinterpret_cast<Survivor*>(createHandle(type, x, y));
                 //map->player = createHandle(type, x, y);
                 break;
-            case Handle::Type::GHOST:
-                break;
             case Handle::Type::BOAT:
                 break;
+            case Handle::Type::GHOST:
             case Handle::Type::TREE:
-                x = numlist.at(i).toInt();
-                ++i;
-                y = numlist.at(i).toInt();
-                ++i;
-                createHandle(type, x, y);
-                break;
             case Handle::Type::CAMPFIRE:
                 x = numlist.at(i).toInt();
                 ++i;
