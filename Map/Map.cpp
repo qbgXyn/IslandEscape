@@ -427,7 +427,7 @@ void Map::handleLoading()
     */
 }
 
-
+#include <iostream>
 void Map::loadHandleList(QString filePath)
 {
   // Load file to create Handles for Map
@@ -444,40 +444,53 @@ void Map::loadHandleList(QString filePath)
     }
     file.close();
     // qDebug() << numlist;
-    foreach(QString num, numlist) {
-        Handle::Type type;
-        int x;
-        int y;
-        // std::cout << num.toInt();
-        type = static_cast<Handle::Type>(num.toInt());
+    int count = numlist.count();
+    int x = 0; int y = 0;
+    for (int i = 0; i < count; i++) {
+        QString num = numlist.at(i);
+        ++i;
+        Handle::Type type = static_cast<Handle::Type>(num.toInt());
         switch(type)
         {
             case Handle::Type::SURVIVOR:
-                x = num.toInt();
-                y = num.toInt();
+                x = numlist.at(i).toInt();
+                ++i;
+                y = numlist.at(i).toInt();
+                ++i;
                 player = reinterpret_cast<Survivor*>(createHandle(type, x, y));
                 //map->player = createHandle(type, x, y);
                 break;
             case Handle::Type::GHOST:
+                break;
             case Handle::Type::BOAT:
+                break;
             case Handle::Type::TREE:
-            case Handle::Type::CAMPFIRE:
-                x = num.toInt();
-                y = num.toInt();
+                x = numlist.at(i).toInt();
+                ++i;
+                y = numlist.at(i).toInt();
+                ++i;
                 createHandle(type, x, y);
-            break;
-
+                break;
+            case Handle::Type::CAMPFIRE:
+                x = numlist.at(i).toInt();
+                ++i;
+                y = numlist.at(i).toInt();
+                ++i;
+                createHandle(type, x, y);
+                break;
             case Handle::Type::CHEST:
                 Handle* Chest;
-                x = num.toInt();
-                y = num.toInt();
+                x = numlist.at(i).toInt();
+                ++i;
+                y = numlist.at(i).toInt();
+                ++i;
                 Chest = createHandle(type, x, y);
-            for (int i = 0; i < 9; i++)
-            {
-                Item::ID itemType = static_cast<Item::ID>(num.toInt());
-                Chest->ChestAddItem(itemType);
-            }
-            break;
+                for (int j = 0; j < 9; j++) {
+                    Item::ID itemType = static_cast<Item::ID>(numlist.at(i).toInt());
+                    ++i;
+                    Chest->ChestAddItem(itemType);
+                }
+                break;
             default:
                 break;
         }

@@ -140,8 +140,8 @@ void MenuWindow::on_btn_start_clicked() {
 }
 
 void MenuWindow::on_btn_level_1_clicked() {
-//    selected_level = 1;
-//    start_game(selected_level, "Map2.txt", "HandleList2");
+    selected_level = 1;
+    start_game(selected_level, "Map2.txt", "HandleList2.txt");
 //    QMessageBox::about(this, "Island escape", "hello");
     QMessageBox *mb = new QMessageBox{window()};
     mb->setWindowTitle("Island escape");
@@ -152,24 +152,25 @@ void MenuWindow::on_btn_level_1_clicked() {
                                        "Be a survivor, find a boat and a key to turn it on in order to escape from the ghostly island."));
     mb->setAttribute(Qt::WA_DeleteOnClose, true);
     mb->exec();
+
 }
 void MenuWindow::on_btn_level_2_clicked() {
     return; // not finished, so cannot click
     selected_level = 2;
-    start_game(selected_level, "Map1.txt", "HandleList1");
+    start_game(selected_level, "Map1.txt", "HandleList1.txt");
 }
 void MenuWindow::on_btn_level_3_clicked() {
     return; // not finished, so cannot click
     selected_level = 3;
-    start_game(selected_level, "Map3.txt", "HandleList3");
+    start_game(selected_level, "Map3.txt", "HandleList3.txt");
 }
 void MenuWindow::on_btn_level_4_clicked() {
     return; // not finished, so cannot click
     selected_level = 4;
-    start_game(selected_level, "Map4.txt", "HandleList4");
+    start_game(selected_level, "Map4.txt", "HandleList4.txt");
 }
 void MenuWindow::on_btn_level_5_clicked() {
     return; // not finished, so cannot click
     selected_level = 5;
-    start_game(selected_level, "Map5.txt", "HandleList5");
+    start_game(selected_level, "Map5.txt", "HandleList5.txt");
 }
