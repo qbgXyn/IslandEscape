@@ -325,14 +325,8 @@ void Survivor::dropItem() {
         if (id == Item::ID::TORCH_LIT || id == Item::ID::SWORD_COOLDOWN) // drop torch lit and sword cooldown is not allowed
             return;
         
-        int durability = Item->item->getDurability();
-        Item_Handle* handle = map->createItem_Handle(id, location[0], location[1]);
-        handle->item->setDurability(durability);
-        cout << "dropItem() created item" << endl;
-        cout << "Item_inventory" << Item << endl;
-        cout << "Item_inventory->item" << Item->item << endl;
+        map->createItem_Handle(Item->item, location[0], location[1]);
         delete Item; //when drop the item, remove it from the array but will not move other item positon in the array
-        cout << "deleted" << endl;
         Inventory[selectedItemIndex] = nullptr;
     }
 }
