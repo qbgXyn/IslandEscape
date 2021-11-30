@@ -455,7 +455,7 @@ void Map::loadHandleList(QString filePath)
             case Handle::Type::SURVIVOR:
                 x = num.toInt();
                 y = num.toInt();
-                map -> player = reinterpret_cast<Survivor*>(createHandle(type, x, y));
+                player = reinterpret_cast<Survivor*>(createHandle(type, x, y));
                 //map->player = createHandle(type, x, y);
                 break;
             case Handle::Type::GHOST:

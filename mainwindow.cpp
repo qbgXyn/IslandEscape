@@ -181,14 +181,6 @@ void MainWindow::main_loop() {
 
     ui->widget->loop();
 
-     // shifted to map->mapUpdate()
-//    // Check Handle Health
-//    for (vector<Handle*>::iterator p = map->List.begin(); p != map->List.end(); ++p) {
-//        if ((*p)->getHealth() <= 0) {
-//            map->removeHandle(reinterpret_cast<Handle*>(*p));
-//        }
-//    }
-
     // Check End game
     if (map->win) {
         loop_timer->stop();
