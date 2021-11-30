@@ -450,25 +450,25 @@ void Map::loadHandleList(QString filePath)
             case Handle::Type::CHEST:
             Handle* Chest;
             Chest = createHandle(type, num.toInt(), num.toInt());
-            For (int i = 0; i < 9; i++)
+            for (int i = 0; i < 9; i++)
             {
-                itemType = static_cast<Item::ID>(num.toInt());
+                Item::ID itemType = static_cast<Item::ID>(num.toInt());
                 switch(itemType)
                 {
                     case Item::ID::KEY:
-                    Chest.ChestAddItem(Item::ID::KEY);
+                    Chest->ChestAddItem(Item::ID::KEY);
                     break;
 
                     case Item::ID::SPEED_POTION:
-                    Chest.ChestAddItem(Item::ID::SPEED_POTION);
+                    Chest->ChestAddItem(Item::ID::SPEED_POTION);
                     break;
 
                     case Item::ID::REGEN_INSTANT_POTION:
-                    Chest.ChestAddItem(Item::ID::REGEN_INSTANT_POTION);
+                    Chest->ChestAddItem(Item::ID::REGEN_INSTANT_POTION);
                     break;
 
-                    default
-                    Chest.ChestAddItem(Item::ID::EMPTY);
+                    default:
+                    Chest->ChestAddItem(Item::ID::EMPTY);
 
                 }
             }
