@@ -320,7 +320,7 @@ void Map::removeHandle(Handle *h) { //remove handle from the handle list
     }
 }
 
-void Map::handleLoading()
+/*void Map::handleLoading()
 { 
     double randomLocationX;
     double randomLocationY;
@@ -404,6 +404,76 @@ void Map::handleLoading()
 
         }
 
+    }
+}
+*/
+
+void Map::loadHandleList(QString filePath)
+{
+  // Load file to create Handles for Map
+    QFile file(filePath);
+    QStringList numlist;
+    QString match;
+
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+    while(!file.atEnd())
+    {
+        match = file.readLine();
+//        qDebug() << match;
+        numlist << match.split(' ');
+    }
+    file.close();
+    // qDebug() << numlist;
+    int x = 0, y = 0;
+    foreach(QString num, numlist) {
+        Handle::Type type;
+        // std::cout << num.toInt();
+        type = static_cast<Handle::Type>(num.toInt());
+        switch(type)
+        {
+            case Handle::Type::GHOST:
+            createHandle(type, num.toInt(), num.toInt());
+            break;
+
+            case Handle::Type::BOAT:
+            createHandle(type, num.toInt(), num.toInt());
+            break;
+
+            case Handle::Type::TREE:
+            createHandle(type, num.toInt(), num.toInt());
+            break;
+
+            case Handle::Type::CAMPFIRE:
+            createHandle(type, num.toInt(), num.toInt());
+            break;
+
+            case Handle::Type::CHEST:
+            Handle* Chest;
+            Chest = createHandle(type, num.toInt(), num.toInt());
+            For (int i = 0; i < 9; i++)
+            {
+                itemType = static_cast<Item::ID>(num.toInt());
+                switch(itemType)
+                {
+                    case Item::ID::KEY:
+                    Chest.ChestAddItem(Item::ID::KEY);
+                    break;
+
+                    case Item::ID::SPEED_POTION:
+                    Chest.ChestAddItem(Item::ID::SPEED_POTION);
+                    break;
+
+                    case Item::ID::REGEN_INSTANT_POTION:
+                    Chest.ChestAddItem(Item::ID::REGEN_INSTANT_POTION);
+                    break;
+
+                    default
+                    Chest.ChestAddItem(Item::ID::EMPTY);
+
+                }
+            }
+            break;
+        }
     }
 }
 

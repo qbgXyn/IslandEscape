@@ -63,6 +63,8 @@ class Map {
 
         void handleLoading();
 
+        void loadHandleList(QString filePath);
+
         int getGameTime() const; //accessor and mutator of game time
         void setGameTime(int time);
        
