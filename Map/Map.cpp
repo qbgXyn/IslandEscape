@@ -211,7 +211,6 @@ Item_Handle* Map::createItem_Handle(Item::ID id, double x, double y) { //create 
     return handle;
 }
 
-#include <iostream>
 Item_Handle* Map::createItem_Handle(Item *item, double x, double y) { //create the handle list of the map)
     Item_Handle* handle = new Item_Handle{this, x, y, item};
     // no need to check if walkable assuming only create by survivor, and walkable condition is more strict of survivor than item_handle
