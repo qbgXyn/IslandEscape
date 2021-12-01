@@ -143,7 +143,7 @@ Terrain::Type Map::get_at(double x, double y) const { //return the type of terra
     return grid[(int)(x/grid_size)][(int)(y/grid_size)]; //if inside the map, return the terrain type
 }
 
-
+#include <iostream>
 Handle* Map::createHandle(Handle::Type type, double x, double y) { //create handles for the map on given location
     Handle* handle = nullptr;
     switch (type)
@@ -405,7 +405,9 @@ void Map::loadHandleList(QString filePath)
                 y = numlist.at(i).toInt();
                 ++i;
                 Chest = createHandle(type, x, y);
-                for (int j = 0; j < 9; j++) {
+                if (Chest == nullptr)
+                    ++++++++++++++++++i;
+                else for (int j = 0; j < 9; j++) {
                     Item::ID itemType = static_cast<Item::ID>(numlist.at(i).toInt());
                     ++i;
                     Chest->ChestAddItem(itemType);

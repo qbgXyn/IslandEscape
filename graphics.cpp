@@ -252,7 +252,7 @@ void GameWidget::drawHandle(QPainter& paint, Handle* Handle) {
         case Handle::Type::GHOST: {
             QPixmap ghost = GHOST[Handle->getSpecies()];
             QMatrix rm;
-            rm.rotate(Handle->getDirection());
+            rm.rotate(90-Handle->getDirection());
             int w = ghost.width(), h = ghost.height();
             ghost = ghost.transformed(rm);
             ghost = ghost.copy((ghost.width()-w)/2, (ghost.height()-h)/2, w, h);
