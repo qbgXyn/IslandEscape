@@ -57,11 +57,10 @@ void Survivor::update() {
     vector<Effect*>::const_iterator it_end = EffectList.end();
     int duration;
     Effect *e;
-    for(vector<Effect*>::const_iterator it = EffectList.begin(); it != it_end;) { // iterate all effect
+    for(vector<Effect*>::const_iterator it = EffectList.begin(); it != it_end; ++it) { // iterate all effect
         e = *it;
         duration = (*it)->getDuration();
         --duration;
-        ++it;
         if (duration > 0) {
             e->setDuration(duration);
         }
