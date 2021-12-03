@@ -1,6 +1,8 @@
 #include <random>
 #include <cstdlib>
 #include <string>
+#include <iostream>
+
 
 #include "Map.h"
 #include "../Handle/Handle.h"
@@ -143,6 +145,7 @@ Terrain::Type Map::get_at(double x, double y) const { //return the type of terra
     return grid[(int)(x/grid_size)][(int)(y/grid_size)]; //if inside the map, return the terrain type
 }
 
+#include <iostream>
 
 Handle* Map::createHandle(Handle::Type type, double x, double y) { //create handles for the map on given location
     Handle* handle = nullptr;
@@ -405,7 +408,6 @@ void Map::handleLoading()
     }
 }
 
-#include <iostream>
 void Map::loadHandleList(QString filePath)
 {
   // Load file to create Handles for Map
