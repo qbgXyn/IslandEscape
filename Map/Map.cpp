@@ -145,10 +145,9 @@ Terrain::Type Map::get_at(double x, double y) const { //return the type of terra
     return grid[(int)(x/grid_size)][(int)(y/grid_size)]; //if inside the map, return the terrain type
 }
 
-<<<<<<< HEAD
+
 #include <iostream>
-=======
->>>>>>> parent of 773631a (Merge branch 'main' of https://github.com/qbgXyn/2021F_COMP2012H16)
+
 
 Handle* Map::createHandle(Handle::Type type, double x, double y) { //create handles for the map on given location
     Handle* handle = nullptr;
@@ -343,7 +342,7 @@ void Map::handleLoading()
             break;
         }
     }
-
+/*
     // createing ghost
     int n{10};
     for (int i = 0; i < n; i++)
@@ -408,7 +407,7 @@ void Map::handleLoading()
                 }
             }
         }
-    }
+    }*/
 }
 
 void Map::loadHandleList(QString filePath)
@@ -429,8 +428,9 @@ void Map::loadHandleList(QString filePath)
     // qDebug() << numlist;
     int count = numlist.count();
     int x = 0; int y = 0;
-    for (int i = 0; i < count;) {
-        QString num = numlist.at(i);
+    if (Chest == nullptr)
+        ++++++++++++++++++i;
+    else for (int j = 0; j < 9; j++) {        QString num = numlist.at(i);
         ++i;
         Handle::Type type = static_cast<Handle::Type>(num.toInt());
         switch(type)

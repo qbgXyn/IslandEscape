@@ -30,7 +30,6 @@ Survivor::Survivor(Map *map, double x, double y) : Unit(map, x, y) { //construct
     visible_size += Inventory[1]->item->getData(); //add visibility given by torch (lit) given
 }
 
-#include <iostream>
 void Survivor::update() {
 
     Handle::update();
@@ -56,9 +55,9 @@ void Survivor::update() {
 
     // effect section
     int duration;
+    vector<Effect*>::const_iterator it_end = EffectList.end();
     Effect *e;
-    for(vector<Effect*>::const_iterator it = EffectList.begin(); it != EffectList.end(); ++it) { // iterate all effect
-        e = *it;
+    for(vector<Effect*>::const_iterator it = EffectList.begin(); it != it_end; ++it) { // iterate all effect        e = *it;
         duration = (*it)->getDuration();
         --duration;
         if (duration > 0) {
@@ -73,8 +72,8 @@ void Survivor::update() {
     // for time-saving, we put it there instead of insde campfire update()
     vector<Handle*> nearbyList = map->getHandleGroup(location[0], location[1], Campfire::base_buff_radius);
     bool isNearCampfire = false;
-    for(vector<Handle*>::const_iterator it = nearbyList.begin(); it != nearbyList.end(); ++it) { // search for campfire
-        if ((*it)->getType() == Handle::Type::CAMPFIRE) {
+    vector<Handle*>::const_iterator i_end = nearbyList.end();
+    for(vector<Handle*>::const_iterator it = nearbyList.begin(); it != i_end; ++it) { // search for campfire        if ((*it)->getType() == Handle::Type::CAMPFIRE) {
             isNearCampfire = true;
             break;
         }
@@ -190,8 +189,9 @@ void Survivor::removeEffect(Effect *e) {
     vector<Effect*>::const_iterator it_end = EffectList.end();
     for(vector<Effect*>::const_iterator it = EffectList.begin(); it != it_end; ++it) { //search and remove the Effect
         if ((*it) == e) {
-            delete e;
+
             EffectList.erase(it);
+            delete e;
             return; //assuming Effect is unique
         }
     }
