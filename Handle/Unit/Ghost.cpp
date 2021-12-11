@@ -37,6 +37,7 @@ Ghost::Ghost(Map *map, double x, double y, int species, Handle *chasing_target) 
 
 }
 
+#include <iostream>
 void Ghost::update() {
 
     Handle::update();    
@@ -106,6 +107,7 @@ void Ghost::patrol() {
     move_AI(randomTargetLocation[0], randomTargetLocation[1]);
 }
 
+#include <iostream>
 void Ghost::move_AI(double x, double y) {
     double dx = x - location[0];
     double dy = y - location[1];

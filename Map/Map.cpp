@@ -145,7 +145,10 @@ Terrain::Type Map::get_at(double x, double y) const { //return the type of terra
     return grid[(int)(x/grid_size)][(int)(y/grid_size)]; //if inside the map, return the terrain type
 }
 
+<<<<<<< HEAD
 #include <iostream>
+=======
+>>>>>>> parent of 773631a (Merge branch 'main' of https://github.com/qbgXyn/2021F_COMP2012H16)
 
 Handle* Map::createHandle(Handle::Type type, double x, double y) { //create handles for the map on given location
     Handle* handle = nullptr;

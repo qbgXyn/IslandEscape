@@ -17,7 +17,7 @@ class Chest : public Decoration {
         static const int base_collision_radius;
         static const double base_max_speed;
         virtual ~Chest();
-        virtual void ChestAddItem(Item::ID id) override;
+        virtual void ChestAddItem(Item::ID id);
 
 
 };
