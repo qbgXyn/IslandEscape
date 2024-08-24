@@ -1,5 +1,20 @@
-# 2021F_COMP2012H16
+# Island Escape
 
-use Qt5 to build it.
 
-load the .pro file then run it.
+## Background 
+Island Escape is a survial game that player act as a survivor who lost on a mystery island that isn't normal. Your goal is to escape this ghostly island.
+
+
+## Control
+
+
+| Button                        | Action                                                         |
+|-------------------------------|----------------------------------------------------------------|
+| ↑, ↓, ←, →                    | Move                                                           |
+| Space                         | Use Item                                                       |
+| Q                             | Drop Item                                                      |
+| 1-9                           | Select item                                                    |
+| C                             | Pickup Item                                                    |
+
+## Build
+Please use Qt5 Creator and load the .pro file to compile it.
