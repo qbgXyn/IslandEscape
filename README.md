@@ -2,7 +2,7 @@
 
 
 ## Background 
-Island Escape is a survial game that player act as a survivor who lost on a mystery island that isn't normal. Your goal is to escape this ghostly island.
+Island Escape is a survival game written in C++ and Qt5. The player acts as a survivor who is lost on a mystery island that isn't normal. The players aim to escape this ghostly island by either dodging ghosts or killing them and finding a key and a boat from the chests to get away from this island.
 
 
 ## Control
